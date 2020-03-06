@@ -8,7 +8,7 @@ export default () => {
     
     return (
         <Card className={lStyles.Card}>
-            <Card.Link href='https://github.com/unrealisticdev' target='_blank'>Project Files</Card.Link>
+            <Card.Link href='https://github.com/nokternelgames' target='_blank'>Project Files</Card.Link>
         </Card>
     )
 }

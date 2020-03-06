@@ -147,7 +147,7 @@ export const query = graphql`
           slug
           title
           id
-          createdAt(difference: "minutes")
+          createdAt(difference: "hours")
           image {
             file {
               url
@@ -162,7 +162,7 @@ export const query = graphql`
           slug
           title
           id
-          createdAt(difference: "minutes")
+          createdAt(difference: "hours")
           image {
             file {
               url
