@@ -1,0 +1,14 @@
+import React from 'react'
+
+import {Card} from 'react-bootstrap'
+
+import lStyles from './projfiles.module.scss'
+
+export default () => {
+    
+    return (
+        <Card className={lStyles.Card}>
+            <Card.Link href='https://github.com/unrealisticdev' target='_blank'>Project Files</Card.Link>
+        </Card>
+    )
+}

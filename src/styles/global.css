@@ -1,0 +1,71 @@
+html {
+  scrollbar-color:#EAAA03 #272822;
+  scrollbar-width: thin;
+}
+
+/* Adjust the position of the line numbers */
+.gatsby-highlight pre[class*="language-"].line-numbers {
+    padding-left: 2.8em;
+  }
+  
+  /**
+   * If you only want to use line numbering
+   */
+  
+  .gatsby-highlight {
+    background-color: #272822;/*#fdf6e3;*/
+    border-radius: 0em;
+    margin: 0.5em 0;
+    margin-top: 0;
+
+    overflow: auto;
+    scrollbar-color: rgba(234, 169, 3, 0) #27282200;
+    font-size: smaller;
+
+    margin-bottom: 1em;
+  }
+
+  .gatsby-highlight:hover {
+    scrollbar-color:#EAAA03 #27282200;
+  }
+  
+  .gatsby-highlight pre {
+    scrollbar-width: thin;
+  }
+
+  .gatsby-highlight pre[class*="language-"].line-numbers {
+    padding: 0;
+    padding-left: 2.8em;
+    overflow: initial;
+  }
+
+  .gatsby-remark-code-title {
+    margin-bottom: -0.6rem;
+    padding: 0.5em 1em;
+    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+      'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+      'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
+      monospace;
+  
+    background-color: #272822;
+    color: #EAAA03;
+    z-index: 0;
+    text-align: right;
+    font-style: italic;
+  
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+
+    display: inline;
+  }
+
+.gatsby-code-button-container {
+  padding: 0px;
+  height: 1px;
+  position: absolute;
+}
+.gatsby-code-button {
+  background-color: rgba(237, 86, 59, 0);
+  color: rgb(238, 72, 6);
+  padding-top: 0px;
+}

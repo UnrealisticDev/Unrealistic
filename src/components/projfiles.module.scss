@@ -1,0 +1,20 @@
+@import '../styles/variables.scss';
+
+.Card {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: $color-bg-primary;
+    border-width: 0;
+
+    text-align: center;
+
+    a {
+        color: $color-fg-yellow !important;
+        font-family: bebas-neue, sans-serif;
+    }
+}
+
+.Card:hover {
+    background-color: lighten($color-bg-secondary, 10%);
+}

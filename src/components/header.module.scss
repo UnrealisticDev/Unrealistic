@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+
+.unavbar {
+    background-color: $color-bg-secondary;
+
+    a {
+        color: white !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+        background-color: $color-bg-primary;
+    }
+
+    a::after {
+        color: $color-fg-yellow;
+    }
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        align-content: center;
+    }
+}

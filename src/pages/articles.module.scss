@@ -1,0 +1,45 @@
+@import '../styles/variables.scss';
+
+.Box {
+    display: flex;
+    flex-wrap: wrap;
+}
+.Box>* {
+    flex: 1 1 300px
+}
+
+.Content {
+    margin-top: 10px;
+    display: flex;
+    max-height: 200px;
+    max-width: 600px;
+    position: relative;
+}
+
+.Card {
+    background-color: $color-bg-secondary;
+    color: $color-fg-yellow;
+    border-radius: 0px;
+    padding: 15px;
+    max-width: 600px;
+    min-width: 200px;
+    display: inline-flex;;
+}
+
+.Title {
+    flex: 1 auto;
+    min-width: 100px;
+}
+
+.Subtitle {
+    color: white;
+    font-size: 13px;
+}
+
+.Image {
+    object-fit: cover;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // width: 20%;
+}
