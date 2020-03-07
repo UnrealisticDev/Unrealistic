@@ -21,13 +21,15 @@ export default () => {
   // create a standalone navbar item
   function createNavbarItem(name) {
     return (
-      <Link
-        to={getPath(name)}
-        className={styles.Link}
-        activeClassName={styles.LinkActive}
-      >
-        {capsWord(name)}
-      </Link>
+      <Nav.Item>
+        <Link
+          to={getPath(name)}
+          className={styles.Link}
+          activeClassName={styles.LinkActive}
+        >
+          {capsWord(name)}
+        </Link>
+      </Nav.Item>
     )
   }
 
