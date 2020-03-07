@@ -22,13 +22,13 @@ export default () => {
   function createNavbarItem(name) {
     return (
       <Nav.Item>
-        <Link
-          to={getPath(name)}
+        <Nav.Link
+          href={getPath(name)}
           className={styles.Link}
           activeClassName={styles.LinkActive}
         >
           {capsWord(name)}
-        </Link>
+        </Nav.Link>
       </Nav.Item>
     )
   }
