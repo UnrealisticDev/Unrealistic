@@ -1,15 +1,11 @@
 @import '../styles/variables.scss';
 
-.unavbar {
+.Unavbar {
     background-color: $color-bg-secondary;
-
-    a {
-        color: white !important;
-    }
 
     a:hover {
         text-decoration: none;
-        background-color: $color-bg-primary;
+        color: $color-fg-yellow;
     }
 
     a::after {
@@ -24,4 +20,15 @@
     img {
         align-content: center;
     }
+}
+
+.Link {
+    color: #404040;
+    align-self: center;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.LinkActive {
+    color: $color-fg-yellow !important;
 }

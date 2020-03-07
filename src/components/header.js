@@ -23,8 +23,8 @@ export default () => {
     return (
         <Link
           to={getPath(name)}
-          className=''
-          activeStyle={{ color: "#EAAA03" }}
+          className={styles.Link}
+          activeClassName={styles.LinkActive}
         >
           {capsWord(name)}
         </Link>
@@ -58,12 +58,11 @@ export default () => {
       text="light"
       expand="sm"
       sticky="top"
-      className={"px-4 my-0 py-1 " + styles.unavbar}
+      className={"px-4 my-0 py-0 " + styles.Unavbar}
     >
       <Navbar.Brand className='mr-2'>
         <Link to='/' className={styles.brand}>
           <Image src={logo} alt='' width='175' />
-          {/* {data.site.siteMetadata.title} */}
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
