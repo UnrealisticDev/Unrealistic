@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 import * as random from "random"
 
 import "bootstrap/dist/css/bootstrap.css"
@@ -16,7 +15,7 @@ export default ({ data }) => {
     var closestDiffIdx = -1
     for (var i = 0; i < data.allPosts.edges.length; ++i) {
       var post = data.allPosts.edges[i].node
-      if (post.createdAt !== null && post.createdAt < closestDiff) {
+      if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
         closestDiff = post.createdAt
         closestDiffIdx = i
       }
@@ -30,7 +29,7 @@ export default ({ data }) => {
     var closestDiffIdx = -1
     for (var i = 0; i < data.insiderPosts.edges.length; ++i) {
       var post = data.insiderPosts.edges[i].node
-      if (post.createdAt !== null && post.createdAt < closestDiff) {
+      if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
         closestDiff = post.createdAt
         closestDiffIdx = i
       }
@@ -140,7 +139,7 @@ export const query = graphql`
           slug
           title
           id
-          createdAt(difference: "hours")
+          createdAt(difference: "minutes")
           image {
             file {
               url
@@ -155,7 +154,7 @@ export const query = graphql`
           slug
           title
           id
-          createdAt(difference: "hours")
+          createdAt(difference: "minutes")
           image {
             file {
               url
