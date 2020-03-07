@@ -14,9 +14,8 @@ export default ({ data }) => {
     const { title, image, body } = data.contentfulBlogPost
 
     return (
-        <Overlord style={{ backgroundColor: "#151515" }}>
+        <Overlord title={title}>
             <Helmet>
-                <title>{title}</title>
                 <link
                     rel="stylesheet"
                     href="https://use.typekit.net/abe5nxq.css"
@@ -71,7 +70,7 @@ export default ({ data }) => {
                                             lg={8}
                                             className={postStyles.markdown}
                                         >
-                                            <div dangerouslySetInnerHTML={{__html: data.contentfulBlogPost.body.childMarkdownRemark.html}}/>
+                                            <div dangerouslySetInnerHTML={{__html: body.childMarkdownRemark.html}}/>
                                         </Col>
                                         <Col className="m-0 mx-2 p-0 d-xs-none">
                                             <Projfiles />

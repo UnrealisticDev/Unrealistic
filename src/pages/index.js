@@ -39,19 +39,16 @@ export default ({ data }) => {
     return data.insiderPosts.edges[closestDiffIdx].node
   }
 
-  function getRandomSlug(data) {
+  function getRandomPost() {
     var idx = random.int(0, data.allPosts.edges.length - 1)
-    return data.allPosts.edges[idx].node.slug
+    return data.allPosts.edges[idx].node
   }
 
   var freshPost = getNewestPost();
   var insiderPost = getNewestInsiderPost();
 
   return (
-    <Overlord>
-      <Helmet>
-        <title>Unrealistic</title>
-      </Helmet>
+    <Overlord title='Unrealistic'>
       <div style={{ height: "80vh" }}>
         <Container fluid className="mt-0 mx-0 my-2 h-100">
           <Row className="h-100">
@@ -80,7 +77,6 @@ export default ({ data }) => {
                       title="Editorial"
                       subtitle="Dive into the Unreal Editor"
                       to="/content/Binding-Input-Code-Only"
-                      // image="https://hollowknightsilksong.com/wp-content/uploads/2019/02/website_mini_0002_mini1.jpg"
                       image="https://www.onsetfacilities.com/wp-content/uploads/2019/07/Unreal-Engine-plugin-to-Cinema-4D.jpg"
                     />
                   </Row>
@@ -92,7 +88,6 @@ export default ({ data }) => {
                     title="Beginner's Guide"
                     subtitle="No better place to start than the start"
                     to="/content/Binding-Input-Code-Only"
-                    // image="https://hollowknightsilksong.com/wp-content/uploads/2019/02/website_mini_0002_mini1.jpg"
                     image="https://i.ytimg.com/vi/Yf9tQKheHbk/maxresdefault.jpg"
                   />
                 </Col>
@@ -100,16 +95,14 @@ export default ({ data }) => {
                   <Widget
                     title="Random"
                     subtitle="Try something new!"
-                    to={getRandomSlug(data)}
-                    // image="https://hollowknightsilksong.com/wp-content/uploads/2019/02/website_mini_0002_mini1.jpg"
-                    // image={qbanner}
+                    to={getRandomPost().slug}
                     image="https://images.wallpaperscraft.com/image/texture_relief_3d_156496_1920x1080.jpg"
                   />
                 </Col>
               </Row>
             </Col>
             <Col lg={3} xs={12} className="h-100 d-flex m-0 pr-0">
-              <Container
+              <Container // tip of the week
                 className="align-self-center px-5"
                 style={{ color: "#404040" }}
               >

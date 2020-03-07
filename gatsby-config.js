@@ -24,7 +24,6 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-plugin-catch-links`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-sharp`,
     {
@@ -128,6 +127,7 @@ module.exports = {
           },
         ]
       }
-    }
+    },
+    `gatsby-plugin-catch-links`,
   ]
 }

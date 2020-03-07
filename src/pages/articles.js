@@ -10,7 +10,7 @@ import localStyles from "./articles.module.scss"
 
 export default ({ data }) => {
     return (
-        <Overlord>
+        <Overlord title='Articles'>
             <Container className={localStyles.Box + " px-0 mx-0"}>
                 {data.allContentfulBlogPost.nodes.map(({slug, title, image}) => {
                     return (

@@ -21,7 +21,6 @@ export default () => {
   // create a standalone navbar item
   function createNavbarItem(name) {
     return (
-      <Nav.Link>
         <Link
           to={getPath(name)}
           className=''
@@ -29,7 +28,6 @@ export default () => {
         >
           {capsWord(name)}
         </Link>
-      </Nav.Link>
     )
   }
 
