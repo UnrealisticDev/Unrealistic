@@ -11,7 +11,7 @@ import styles from "./overlord.module.css"
 
 import favicon16 from "../images/favicon16.png"
 
-export default ({ children }, props) => (
+export default ({children, title}) => (
   <div className={styles.Body} style={{ minHeight: "100vh" }}>
     <Helmet
       link={[
@@ -23,7 +23,7 @@ export default ({ children }, props) => (
         },
       ]}
     >
-      <title>{props.title}</title>
+    <title>{title}</title>
     </Helmet>
     <Container fluid className={styles.Content + " m-0 p-0"}>
       <Header />

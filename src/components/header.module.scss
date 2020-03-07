@@ -1,6 +1,6 @@
 @import '../styles/variables.scss';
 
-.Unavbar {
+.Navbar {
     background-color: $color-bg-secondary;
 
     a:hover {
@@ -31,4 +31,14 @@
 
 .LinkActive {
     color: $color-fg-yellow !important;
+}
+
+.Dropdown {
+    a {
+        color: #404040 !important;
+    }
+
+    a:hover {
+        color: $color-fg-yellow !important;
+    }
 }

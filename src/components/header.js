@@ -21,20 +21,23 @@ export default () => {
   // create a standalone navbar item
   function createNavbarItem(name) {
     return (
-        <Link
-          to={getPath(name)}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          {capsWord(name)}
-        </Link>
+      <Link
+        to={getPath(name)}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+      >
+        {capsWord(name)}
+      </Link>
     )
   }
 
   // create a navbar dropdown with desired items
   function createNavbarDropdown(name, items) {
     return (
-      <NavDropdown title={capsWord(name)} className="basic-nav-dropdown">
+      <NavDropdown
+        title={capsWord(name)}
+        className={"basic-nav-dropdown " + styles.Dropdown}
+      >
         {items.map(it => (
           <NavDropdown.Item href={getPath(it)}>{capsWord(it)}</NavDropdown.Item>
         ))}
@@ -42,27 +45,16 @@ export default () => {
     )
   }
 
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          navbarItems
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <Navbar
       text="light"
       expand="sm"
       sticky="top"
-      className={"px-4 my-0 py-0 " + styles.Unavbar}
+      className={"px-4 my-0 py-2 " + styles.Navbar}
     >
-      <Navbar.Brand className='mr-2'>
-        <Link to='/' className={styles.brand}>
-          <Image src={logo} alt='' width='175' />
+      <Navbar.Brand className="mr-2">
+        <Link to="/" className={styles.brand}>
+          <Image src={logo} alt="" width="175" />
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
