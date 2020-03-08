@@ -1,20 +1,8 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-.title {
-
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    margin: 0;
-
-    max-width: 70%;
-
-    color: $color-fg-yellow;
-    background-color: rgba($color-bg-secondary, 1);
-    border-radius: 3px;
-    padding: 5px
-    
+.Title {
+    color: $color-fg-secondary !important;
 }
 
 .markdown h1::before,

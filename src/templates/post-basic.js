@@ -47,7 +47,7 @@ export default ({ data }) => {
                 </div>
               </Card.Body>
               <Card.Body className="py-0">
-                <h1 id="title">{title}</h1>
+                <h1 className={postStyles.Title}>{title}</h1>
 
                 <div
                   className={postStyles.markdown}
