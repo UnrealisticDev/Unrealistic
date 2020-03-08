@@ -63,9 +63,9 @@ export default () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {createNavbarItem("articles")}
-          {/* {createNavbarItem("glossary")} */}
-          {/* {createNavbarDropdown("creations", ["remapt"])} */}
-          {/* {createNavbarItem("aliph")} */}
+          {createNavbarItem("glossary")}
+          {createNavbarItem("aliph")}
+          {createNavbarDropdown("creations", ["remapt"])}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
