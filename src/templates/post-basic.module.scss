@@ -27,6 +27,7 @@ h2::before {
     h1,
     h2 {
         font-size: calc(12px + 2vw);
+        color: $color-fg-yellow !important;
     }
 
     p {
