@@ -1,70 +1,48 @@
 @import '../styles/variables.scss';
 
-@font-face {
-    font-family: "Title";
-    src: url("https://yoursite.com/css/fonts/CustomFont.eot");
-    src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-        url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-        url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
-}
-
 .Card {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
-    background-color: $color-bg-primary;
-    border-width: 0;
-    color: $color-fg-yellow !important;
-
+    background-color: #141C2A;
     text-align: center;
-}
+    color: #B0820A;
 
-.mine {
-    margin: 0;
-    font-family: bebas-neue, sans-serif;
-    padding-bottom: 4px;
-    color: $color-fg-secondary;
+    ul {
+        list-style: none;
+        padding-left: 0;
 
-    .card-title.h5 {}
-}
-
-ul {
-    list-style: none;
-    padding-left: 0;
-
-    p {
-        margin: 0;
-    }
-}
-
-li {
-
-    margin-top: 2px;
-    margin-bottom: 2px;
-
-    // lvl1
-    li {
-        // lvl2
-        padding-left: 1em;
-
-        li {
-            padding-left: 2em;
+        p {
+            margin: 0;
         }
     }
 
-    a {
-        color: white;
-        font-weight: 100;
-        font-size: 14px;
-        padding: 3px;
-    }
+    li {
 
-    a::before {
-        content: '';
-    }
+        margin-top: 2px;
+        margin-bottom: 2px;
 
-    a:hover {
-        text-decoration: none;
-        color: #ED553B;
+        // lvl1
+        li {
+            // lvl2
+            padding-left: 1em;
+
+            li {
+                padding-left: 2em;
+            }
+        }
+
+        a {
+            color: white;
+            font-weight: 100;
+            font-size: 14px;
+            padding: 3px;
+        }
+
+        a::before {
+            content: '';
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #ED553B;
+        }
     }
 }

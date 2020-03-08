@@ -18,15 +18,20 @@
     flex-direction: column;
 
     img {
-        align-content: center;
+        align-self: center;
+        margin: 0;
     }
 }
 
 .Link {
-    color: #404040;
+    color: #404040 !important;
     align-self: center;
     padding-left: .5em;
     padding-right: .5em;
+}
+.Link:hover {
+    text-decoration: none;
+    color: $color-fg-yellow !important;   
 }
 
 .LinkActive {

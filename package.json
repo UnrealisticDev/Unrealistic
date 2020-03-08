@@ -26,6 +26,7 @@
     "gatsby-remark-autolink-headers": "^2.1.24",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-code-titles": "^1.1.0",
+    "gatsby-remark-figure-caption": "^2.0.0",
     "gatsby-remark-images": "^3.1.44",
     "gatsby-remark-prismjs": "^3.3.32",
     "gatsby-remark-table-of-contents": "0.0.9",
@@ -47,6 +48,7 @@
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19",
     "typography-theme-kirkham": "^0.16.19",
+    "typography-theme-parnassus": "^0.16.19",
     "voca": "^1.4.0"
   },
   "devDependencies": {

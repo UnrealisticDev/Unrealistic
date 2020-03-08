@@ -1,83 +1,41 @@
 @import '../styles/variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-@font-face {
-    font-family: "Title";
-    src: url("https://yoursite.com/css/fonts/CustomFont.eot");
-    src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-    url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-    url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
-    }
-
-.title{
+.title {
 
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0px;
+    left: 0px;
     margin: 0;
 
-    max-width: 70%; // pretty good for large screens
+    max-width: 70%;
 
-    font-family: bebas-neue, sans-serif; 
-    // font-family: "Helvetica", "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
-    /* font-variant-caps: small-caps; */
-    // text-transform: ;
-    font-size: 4em;
-
-    padding-right: 15px;
-    padding-left: 0px;
     color: $color-fg-yellow;
-    background-color: $color-bg-secondary;
-    // text-align: center;
+    background-color: rgba($color-bg-secondary, 1);
+    border-radius: 3px;
+    padding: 5px
+    
 }
 
-.markdown {
-    // max-width: 600px;
-    //padding: 0px;
-    //margin: 0px;
-}
-
-.markdown h1::before, h2::before {
+.markdown h1::before,
+h2::before {
     content: "";
 }
 
-.markdown h1, h2 {
-    padding-bottom: 5px;
-    /* border-radius: 0px 16px 16px 0px; */
-    border-color: #EAAA03;
-    padding: 10px;
-    margin-top: 25px;
+.markdown {
 
-    font-family: "Segoe UI";
-    font-weight: 250;
-    font-size: 32px;
-    font-style: normal;
+    h1,
+    h2 {
+        font-size: calc(12px + 2vw);
+    }
 
-    background-color: #151515;
+    p {
+        font-weight: 300;
+        font-size: calc(12px + .6vw);
+    }
 
-    display: inline-block;
-}
-
-.markdown h2 {
-    font-size: 24px;
-    font-weight: 250;
-    border-width: 2px;
-    margin-top: 25px;
-
-    background-color: #151515;
-}
-
-.markdown p {
-    font-size: 16px;
-    font-weight: lighter;
-    text-align: justify;
-}
-
-.markdown img {
-    object-fit: contain;
-    max-width: 100%;
-}
-
-.imageoverlay {
-    font-size: 72px;
-    margin-top: 350px;
+    img {
+        object-fit: contain;
+        max-width: 100%;
+    }
 }

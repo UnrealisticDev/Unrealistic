@@ -43,17 +43,17 @@ export default ({ data }) => {
     return data.allPosts.edges[idx].node
   }
 
-  var freshPost = getNewestPost();
-  var insiderPost = getNewestInsiderPost();
+  var freshPost = getNewestPost()
+  var insiderPost = getNewestInsiderPost()
 
   return (
-    <Overlord title='Unrealistic'>
+    <Overlord title="Unrealistic">
       <div style={{ height: "80vh" }}>
-        <Container fluid className="mt-0 mx-0 my-2 h-100">
+        <Container fluid className="mx-0 h-100">
           <Row className="h-100">
-            <Col lg={9} xs={12}>
+            <Col lg="9" xs="9">
               <Row className="h-75">
-                <Col lg={9} xs={12} className="pl-0 pr-1 mr-0">
+                <Col xs="9" lg="9" className="pl-0 pr-1 mr-0">
                   <Widget
                     // title={getTitleFromSlug(getNewestPostSlug(data))}
                     title={freshPost.title}
@@ -62,27 +62,31 @@ export default ({ data }) => {
                     image={freshPost.image.file.url}
                   />
                 </Col>
-                <Col lg={3} xs={12} className="pl-1 pr-0 mr-0 w-100">
-                  <Row className="mx-0 my-0 px-0 pb-1 h-50">
-                    <Widget
-                      title={insiderPost.title}
-                      subtitle="Read up on the latest dev practices from industry professionals"
-                      to={insiderPost.slug}
-                      image={insiderPost.image.file.url}
-                    />
+                <Col xs="6" lg="3" className="pl-1 pr-0 mr-0 px-0 w-100">
+                  <Row className='mx-0 my-0 px-0 pb-1 h-100'>
+                    <Col xs='12' lg='12' className='px-0 mb-lg-2'>
+                      <Widget
+                        title={insiderPost.title}
+                        subtitle="Read up on the latest dev practices from industry professionals"
+                        to={insiderPost.slug}
+                        image={insiderPost.image.file.url}
+                      />
+                    </Col>
+                    <Col xs='12' lg='12' className='px-0'>
+                      <Widget
+                        title="Editorial"
+                        subtitle="Dive into the Unreal Editor"
+                        to="/content/Binding-Input-Code-Only"
+                        image="https://www.onsetfacilities.com/wp-content/uploads/2019/07/Unreal-Engine-plugin-to-Cinema-4D.jpg"
+                      />
+                    </Col>
                   </Row>
-                  <Row className="mx-0 my-0 px-0 pt-1 h-50">
-                    <Widget
-                      title="Editorial"
-                      subtitle="Dive into the Unreal Editor"
-                      to="/content/Binding-Input-Code-Only"
-                      image="https://www.onsetfacilities.com/wp-content/uploads/2019/07/Unreal-Engine-plugin-to-Cinema-4D.jpg"
-                    />
-                  </Row>
+                  <Row className="mx-0 my-0 px-0 pb-1 h-50"></Row>
+                  <Row className="mx-0 my-0 px-0 pt-1 h-50"></Row>
                 </Col>
               </Row>
               <Row className="h-25 mt-2">
-                <Col lg={4} xs={12} className="pl-0 pr-2">
+                <Col xs="6" lg="4" className="pl-0 pr-2">
                   <Widget
                     title="Beginner's Guide"
                     subtitle="No better place to start than the start"
@@ -90,7 +94,7 @@ export default ({ data }) => {
                     image="https://i.ytimg.com/vi/Yf9tQKheHbk/maxresdefault.jpg"
                   />
                 </Col>
-                <Col lg={8} xs={12} className="px-0">
+                <Col xs="6" lg="8" className="px-0">
                   <Widget
                     title="Random"
                     subtitle="Try something new!"
@@ -100,9 +104,9 @@ export default ({ data }) => {
                 </Col>
               </Row>
             </Col>
-            <Col lg={3} xs={12} className="h-100 d-flex m-0 pr-0">
+            <Col xs="12" lg="3" className="h-100 d-flex m-0 pr-lg-0 px-xs-0">
               <Container // tip of the week
-                className="align-self-center px-5"
+                className="align-self-center px-lg-3 px-xs-0"
                 style={{ color: "#404040" }}
               >
                 <h2
@@ -148,7 +152,7 @@ export const query = graphql`
         }
       }
     }
-    insiderPosts: allContentfulBlogPost(filter: {tags: {in: "insider"}}) {
+    insiderPosts: allContentfulBlogPost(filter: { tags: { in: "insider" } }) {
       edges {
         node {
           slug

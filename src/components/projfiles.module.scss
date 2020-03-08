@@ -1,17 +1,11 @@
 @import '../styles/variables.scss';
 
 .Card {
-    margin-top: 5px;
-    margin-bottom: 5px;
     padding: 10px;
-    background-color: $color-bg-primary;
-    border-width: 0;
-
+    background-color: #141C2A;
     text-align: center;
-
-    a {
-        color: $color-fg-yellow !important;
-        font-family: bebas-neue, sans-serif;
+    a{
+        color: #B0820A;
     }
 }
 

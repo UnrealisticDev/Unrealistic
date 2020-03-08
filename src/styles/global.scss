@@ -42,21 +42,14 @@ html {
   .gatsby-remark-code-title {
     margin-bottom: -0.6rem;
     padding: 0.5em 1em;
-    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
-      'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
-      'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
-      monospace;
   
     background-color: #272822;
-    color: #EAAA03;
-    z-index: 0;
-    text-align: right;
-    font-style: italic;
   
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
+    border-radius: 0px;
 
-    display: inline;
+    font-style: italic;
   }
 
 .gatsby-code-button-container {

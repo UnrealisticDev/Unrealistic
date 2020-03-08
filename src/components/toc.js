@@ -2,16 +2,16 @@ import React from 'react'
 
 import {Card} from 'react-bootstrap'
 
+import "bootstrap/dist/css/bootstrap.css"
 import lStyles from './toc.module.scss'
 
-export default (props, {children}) => {
+export default ({src}) => {
     
     return (
         <Card className={lStyles.Card}>
-            <Card.Title className={lStyles.mine}>Roadmap</Card.Title>
-            <hr/>
-            <Card.Body style={{padding: 0}}>
-                <div dangerouslySetInnerHTML={{__html: props.src}}/>
+            <Card.Title>Roadmap</Card.Title>
+            <Card.Body>
+                <div dangerouslySetInnerHTML={{__html: src}}/>
             </Card.Body>
         </Card>
     )

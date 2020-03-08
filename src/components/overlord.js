@@ -7,7 +7,7 @@ import Footer from "./footer"
 import { Container } from "react-bootstrap"
 
 import "bootstrap/dist/css/bootstrap.css"
-import styles from "./overlord.module.css"
+import styles from "./overlord.module.scss"
 
 import favicon16 from "../images/favicon16.png"
 
@@ -27,7 +27,7 @@ export default ({children, title}) => (
     </Helmet>
     <Container fluid className={styles.Content + " m-0 p-0"}>
       <Header />
-      <Container fluid className="mx-0 py-2 px-5">
+      <Container fluid className="mx-0 py-2 px-lg-5">
         {children}
       </Container>
     </Container>

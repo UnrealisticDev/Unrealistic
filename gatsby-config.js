@@ -52,6 +52,9 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-figure-caption`,
+          },
+          {
             resolve: 'gatsby-remark-code-titles',
             options: {
               className: 'gatsby-remark-code-title'
@@ -126,6 +129,12 @@ module.exports = {
             },
           },
         ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
       }
     },
     `gatsby-plugin-catch-links`,

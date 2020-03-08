@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import Overlord from "../components/overlord"
+import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
 import { Card, Container, Row, Col } from "react-bootstrap"
@@ -23,7 +24,7 @@ export default ({ data }) => {
       </Helmet>
       <Container className="p-0 mx-0 my-2" fluid>
         <Row>
-          <Col lg={9} xs={12}>
+          <Col lg={6} xs={12} className="px-0">
             <Card
               text="light"
               style={{
@@ -43,49 +44,35 @@ export default ({ data }) => {
                       maxHeight: "70vh",
                     }}
                   ></Card.Img>
-                  <h1
-                    className={postStyles.title}
-                    // style={{
-                    //     position: "absolute",
-                    //     bottom: 0,
-                    //     left: 0,
-                    //     backgroundColor: "#1D1D1D",
-                    //     margin: 0,
-                    //     padding: 5,
-                    //     fontSize: "64px",
-                    // }}
-                  >
-                    {title}
-                  </h1>
                 </div>
-                <Card.ImgOverlay
-                  style={{ margin: 200, textAlign: "center" }}
-                ></Card.ImgOverlay>
               </Card.Body>
               <Card.Body className="py-0">
-                <Container className="p-0">
-                  <Row className="p-0">
-                    <Col
-                      className="mx-2 p-0"
-                      lg={8}
-                      className={postStyles.markdown}
-                    >
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: body.childMarkdownRemark.html,
-                        }}
-                      />
-                    </Col>
-                    <Col className="m-0 mx-2 p-0 d-xs-none">
-                      <Projfiles />
-                      {/* <Toc src={data.contentfulBlogPost.body.childMarkdownRemark.tableOfContents} /> */}
-                    </Col>
-                  </Row>
-                </Container>
+                <h1 id="title">{title}</h1>
+
+                <div
+                  className={postStyles.markdown}
+                  dangerouslySetInnerHTML={{
+                    __html: body.childMarkdownRemark.html,
+                  }}
+                />
               </Card.Body>
             </Card>
           </Col>
-          <Col></Col>
+          <Col lg={2} className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
+            <Sidebar>
+              <Container className="mb-0 mx-0 px-0">
+                <Projfiles />
+              </Container>
+              <Container className="d-none d-lg-block px-0 mt-1">
+                <Toc
+                  src={
+                    data.contentfulBlogPost.body.childMarkdownRemark
+                      .tableOfContents
+                  }
+                />
+              </Container>
+            </Sidebar>
+          </Col>
         </Row>
       </Container>
     </Overlord>
