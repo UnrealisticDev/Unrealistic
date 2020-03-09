@@ -14,12 +14,18 @@ export default ({ data }) => {
           return (
             <div class='column is-multiline is-4 is-primary'>
                 <Link to={slug}>
-                    <div style={{height: '100%'}}>
-            {/*<Card.Image src={image.file.url} />*/}
-                      <div>
-                        <div>{title}</div>
+                  <div class='card'>
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img src="https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class='card-content'>
+                      <div class='content'>
+                         {title}
                       </div>
                     </div>
+                  </div>
                 </Link>
             </div>
           )
