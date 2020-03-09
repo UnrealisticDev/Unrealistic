@@ -15,7 +15,7 @@ export default ({ data }) => {
             <div class='column is-multiline is-4 is-primary'>
                 <Link to={slug}>
                   <div class='card'>
-                    <div class="card-image">
+            {/*<div class="card-image">
                       <figure class="image is-4by3">
                         <img src="https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png" alt="Placeholder image">
                       </figure>
@@ -24,7 +24,7 @@ export default ({ data }) => {
                       <div class='content'>
                          {title}
                       </div>
-                    </div>
+                    </div>*/}
                   </div>
                 </Link>
             </div>
