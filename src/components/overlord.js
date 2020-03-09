@@ -10,7 +10,7 @@ import styles from "./overlord.module.scss"
 import favicon16 from "../images/favicon16.png"
 
 export default ({children, title}) => (
-  <div className={styles.Body} style={{ minHeight: "100vh" }}>
+  <>
     <Helmet
       link={[
         {
@@ -21,7 +21,6 @@ export default ({children, title}) => (
         },
       ]}
     >
-    <html class='has-navbar-fixed-top'/>
     <title>{title}</title>
     </Helmet>
     <Header />
@@ -31,5 +30,5 @@ export default ({children, title}) => (
       </div>
     </section>
     <Footer className={styles.Footer} />
-  </div>
+  </>
 )
