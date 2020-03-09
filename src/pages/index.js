@@ -54,27 +54,27 @@ export default ({ data }) => {
         <div class='tile is-vertical'>  
           <div class='tile'>
             <div class='tile is-parent is-9'>
-              <div class='tile is-child box'>
+              <div class='tile is-child box has-background-grey'>
                 1
               </div>
             </div>
             <div class='tile is-parent is-vertical'>
-              <div class='tile is-child box'>
+              <div class='tile is-child box has-background-grey'>
                 2
               </div>
-              <div class='tile is-child box'>
+              <div class='tile is-child box has-background-grey'>
                 3
               </div>
             </div>
           </div>
           <div class='tile'>
             <div class='tile is-parent is-4'>
-              <div class='tile is-child box'>
+              <div class='tile is-child box has-background-grey'>
                 4
               </div>
             </div>
             <div class='tile is-parent is-8'>
-              <div class='tile is-child box'>
+              <div class='tile is-child box has-background-grey'>
                 5
               </div>
             </div>
