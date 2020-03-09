@@ -32,7 +32,7 @@ export default ({children, title}) => (
       <div class='hero-body>
         {children}
       </div>
-    </div>
+    </section>
     <Footer className={styles.Footer} />
   </div>
 )
