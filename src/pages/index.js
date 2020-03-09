@@ -51,7 +51,7 @@ export default ({ data }) => {
   return (
     <Overlord>
       <div class='tile is-ancestor'>
-        <div class='tile'>  
+        <div class='tile is-vertical'>  
           <div class='tile'>
             <div class='tile is-parent is-9'>
               <div class='tile is-child box'>
