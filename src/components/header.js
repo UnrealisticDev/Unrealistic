@@ -1,7 +1,5 @@
 import React from "react"
 
-// import { Navbar } from "react-bulma-components"
-// import Navbar from 'react-bulma-components/lib/components/navbar';
 import "../styles/global.scss"
 
 import logo from "../images/logo-and-name.png"
@@ -26,19 +24,8 @@ export default () => {
     )
   }
 
-  // function createNavbarDropdown(name, items) {
-  //   return (
-  //     <Navbar.Dropdown>
-  //       title={capsWord(name)}
-  //       {items.map(it => (
-  //         <Navbar.Item href={getPath(it)}>{capsWord(it)}</Navbar.Item>
-  //       ))}
-  //     </Navbar.Dropdown>
-  //   )
-  // }
-
   return (
-    <nav class="navbar is-transparent is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-transparent is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src='https://bulma.io/images/bulma-logo.png' width="112" height="28" style={{ margin: 0 }} />
