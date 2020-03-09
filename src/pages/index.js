@@ -67,7 +67,7 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
-          <div class='tile is-parent'>
+          <div class='tile is-parent is-12'>
             <div class='tile is-child box is-4'>
               4
             </div>
