@@ -3,108 +3,89 @@ import { graphql } from "gatsby"
 import * as random from "random"
 
 import "bootstrap/dist/css/bootstrap.css"
+import { Tile, Heading, Card, Container, Content} from "react-bulma-components"
 
 import Overlord from "../components/overlord"
-import Widget from "../components/widget"
-
-import { Container, Col, Row } from "react-bootstrap"
 
 export default ({ data }) => {
-  function getNewestPost() {
-    var closestDiff = 99999999
-    var closestDiffIdx = -1
-    for (var i = 0; i < data.allPosts.edges.length; ++i) {
-      var post = data.allPosts.edges[i].node
-      if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
-        closestDiff = post.createdAt
-        closestDiffIdx = i
-      }
-    }
 
-    return data.allPosts.edges[closestDiffIdx].node
-  }
+  console.log(data.allPosts);
+  // function getNewestPost() {
+  //   var closestDiff = 99999999
+  //   var closestDiffIdx = -1
+  //   for (var i = 0; i < data.allPosts.edges.length; ++i) {
+  //     var post = data.allPosts.edges[i].node
+  //     if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
+  //       closestDiff = post.createdAt
+  //       closestDiffIdx = i
+  //     }
+  //   }
 
-  function getNewestInsiderPost() {
-    var closestDiff = 99999999
-    var closestDiffIdx = -1
-    for (var i = 0; i < data.insiderPosts.edges.length; ++i) {
-      var post = data.insiderPosts.edges[i].node
-      if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
-        closestDiff = post.createdAt
-        closestDiffIdx = i
-      }
-    }
+  //   return data.allPosts.edges[closestDiffIdx].node
+  // }
 
-    return data.insiderPosts.edges[closestDiffIdx].node
-  }
+  // function getNewestInsiderPost() {
+  //   var closestDiff = 99999999
+  //   var closestDiffIdx = -1
+  //   for (var i = 0; i < data.insiderPosts.edges.length; ++i) {
+  //     var post = data.insiderPosts.edges[i].node
+  //     if (post.createdAt !== null && Number(post.createdAt) < closestDiff) {
+  //       closestDiff = post.createdAt
+  //       closestDiffIdx = i
+  //     }
+  //   }
 
-  function getRandomPost() {
-    var idx = random.int(0, data.allPosts.edges.length - 1)
-    return data.allPosts.edges[idx].node
-  }
+  //   return data.insiderPosts.edges[closestDiffIdx].node
+  // }
 
-  var freshPost = getNewestPost()
-  var insiderPost = getNewestInsiderPost()
+  // function getRandomPost() {
+  //   var idx = random.int(0, data.allPosts.edges.length - 1)
+  //   return data.allPosts.edges[idx].node
+  // }
+
+  // var freshPost = getNewestPost()
+  // var insiderPost = getNewestInsiderPost()
 
   return (
-    <Overlord title="Unrealistic">
-      <div style={{ height: "80vh" }}>
-        <Container fluid className="mx-0 h-100">
-          <Row className="h-100">
-            <Col lg="9" xs="9">
-              <Row className="h-75">
-                <Col xs="9" lg="9" className="pl-0 pr-1 mr-0">
-                  <Widget
-                    // title={getTitleFromSlug(getNewestPostSlug(data))}
-                    title={freshPost.title}
-                    subtitle="Fresh Off the Press"
-                    to={freshPost.slug}
-                    image={freshPost.image.file.url}
-                  />
-                </Col>
-                <Col xs="6" lg="3" className="pl-1 pr-0 mr-0 px-0 w-100">
-                  <Row className='mx-0 my-0 px-0 pb-1 h-100'>
-                    <Col xs='12' lg='12' className='px-0 mb-lg-2'>
-                      <Widget
-                        title={insiderPost.title}
-                        subtitle="Read up on the latest dev practices from industry professionals"
-                        to={insiderPost.slug}
-                        image={insiderPost.image.file.url}
-                      />
-                    </Col>
-                    <Col xs='12' lg='12' className='px-0'>
-                      <Widget
-                        title="Editorial"
-                        subtitle="Dive into the Unreal Editor"
-                        to="/content/Binding-Input-Code-Only"
-                        image="https://www.onsetfacilities.com/wp-content/uploads/2019/07/Unreal-Engine-plugin-to-Cinema-4D.jpg"
-                      />
-                    </Col>
-                  </Row>
-                  <Row className="mx-0 my-0 px-0 pb-1 h-50"></Row>
-                  <Row className="mx-0 my-0 px-0 pt-1 h-50"></Row>
-                </Col>
-              </Row>
-              <Row className="h-25 mt-2">
-                <Col xs="6" lg="4" className="pl-0 pr-2">
-                  <Widget
-                    title="Beginner's Guide"
-                    subtitle="No better place to start than the start"
-                    to="/content/Binding-Input-Code-Only"
-                    image="https://i.ytimg.com/vi/Yf9tQKheHbk/maxresdefault.jpg"
-                  />
-                </Col>
-                <Col xs="6" lg="8" className="px-0">
-                  <Widget
-                    title="Random"
-                    subtitle="Try something new!"
-                    to={getRandomPost().slug}
-                    image="https://images.wallpaperscraft.com/image/texture_relief_3d_156496_1920x1080.jpg"
-                  />
-                </Col>
-              </Row>
-            </Col>
-            <Col xs="12" lg="3" className="h-100 d-flex m-0 pr-lg-0 px-xs-0">
+    <Overlord>
+      <Tile kind="ancestor">
+        <Tile>
+          <Tile vertical>
+            <Tile>
+              <Tile size={9}>
+                <Tile kind="parent">
+                  <Tile renderAs="article" kind="child">
+                    <Content>
+                      {/* <img src={freshPost.image.file.url} style={{margin: 0}}/> */}
+                    </Content>
+                  </Tile>
+                </Tile>
+              </Tile>
+              <Tile vertical kind="parent">
+                <Tile renderAs="article" kind="child">
+                  <img src="https://images.wallpaperscraft.com/image/texture_relief_3d_156496_1920x1080.jpg" />
+                  <Heading>Titles</Heading>
+                  <Heading subtitle>Lols</Heading>
+                </Tile>
+                <Tile renderAs="article" kind="child">
+                  <img src="https://images.wallpaperscraft.com/image/texture_relief_3d_156496_1920x1080.jpg" />
+                </Tile>
+              </Tile>
+            </Tile>
+            <Tile kind="parent">
+              <Tile renderAs="article" kind="child" size={4}>
+                <img src="https://i.ytimg.com/vi/Yf9tQKheHbk/maxresdefault.jpg" />
+              </Tile>
+              <Tile renderAs="article" kind="child">
+                <img
+                  src="https://images.wallpaperscraft.com/image/texture_relief_3d_156496_1920x1080.jpg"
+                  style={{ objectFit: "cover" }}
+                />
+              </Tile>
+            </Tile>
+          </Tile>
+          <Tile kind="parent" size={3}>
+            <Tile kind="child">
               <Container // tip of the week
                 className="align-self-center px-lg-3 px-xs-0"
                 style={{ color: "#404040" }}
@@ -114,6 +95,7 @@ export default ({ data }) => {
                     textAlign: "center",
                     width: "100%",
                     borderBottom: "2px solid #EAAA03",
+                    color: "#FF9900",
                   }}
                 >
                   Tip of the Week
@@ -122,10 +104,10 @@ export default ({ data }) => {
                   {data.site.siteMetadata.tipOfTheWeek}
                 </p>
               </Container>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+            </Tile>
+          </Tile>
+        </Tile>
+      </Tile>
     </Overlord>
   )
 }
@@ -157,7 +139,6 @@ export const query = graphql`
         node {
           slug
           title
-          id
           createdAt(difference: "minutes")
           image {
             file {

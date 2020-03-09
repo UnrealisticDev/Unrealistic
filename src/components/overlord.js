@@ -23,6 +23,7 @@ export default ({children, title}) => (
         },
       ]}
     >
+    <html class='has-navbar-fixed-top'/>
     <title>{title}</title>
     </Helmet>
     <Container fluid className={styles.Content + " m-0 p-0"}>

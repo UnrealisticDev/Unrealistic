@@ -1,11 +1,11 @@
 import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
 
-import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap"
+// import { Navbar } from "react-bulma-components"
+// import Navbar from 'react-bulma-components/lib/components/navbar';
+import "../styles/global.scss"
 
 import logo from "../images/logo-and-name.png"
-import "bootstrap/dist/css/bootstrap.css"
-import styles from "./header.module.scss"
+// import styles from "./header.module.scss"
 
 import voca from "voca"
 
@@ -18,56 +18,52 @@ export default () => {
     return voca.capitalize(name)
   }
 
-  // create a standalone navbar item
   function createNavbarItem(name) {
     return (
-      <Nav.Item>
-        <Nav.Link
-          href={getPath(name)}
-          className={styles.Link}
-          activeClassName={styles.LinkActive}
-        >
-          {capsWord(name)}
-        </Nav.Link>
-      </Nav.Item>
+      <a class="navbar-item has-text-dark" href={getPath(name)}>
+        {capsWord(name)}
+      </a>
     )
   }
 
-  // create a navbar dropdown with desired items
-  function createNavbarDropdown(name, items) {
-    return (
-      <NavDropdown
-        title={capsWord(name)}
-        className={"basic-nav-dropdown " + styles.Dropdown}
-      >
-        {items.map(it => (
-          <NavDropdown.Item href={getPath(it)}>{capsWord(it)}</NavDropdown.Item>
-        ))}
-      </NavDropdown>
-    )
-  }
+  // function createNavbarDropdown(name, items) {
+  //   return (
+  //     <Navbar.Dropdown>
+  //       title={capsWord(name)}
+  //       {items.map(it => (
+  //         <Navbar.Item href={getPath(it)}>{capsWord(it)}</Navbar.Item>
+  //       ))}
+  //     </Navbar.Dropdown>
+  //   )
+  // }
 
   return (
-    <Navbar
-      text="light"
-      expand="sm"
-      sticky="top"
-      className={"px-4 my-0 py-2 " + styles.Navbar}
-    >
-      <Navbar.Brand className="mr-2">
-        <Link to="/" className={styles.brand}>
-          <Image src={logo} alt="" width="175" />
-        </Link>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+    <nav class="navbar is-transparent is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src='https://bulma.io/images/bulma-logo.png' width="112" height="28" style={{ margin: 0 }} />
+        </a>
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarOptions"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarOptions" class="navbar-menu">
+        <div class="navbar-start">
+          {createNavbarItem("home")}
           {createNavbarItem("articles")}
           {createNavbarItem("glossary")}
-          {createNavbarItem("aliph")}
-          {createNavbarDropdown("creations", ["remapt"])}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+          {createNavbarItem("about")}
+        </div>
+        <div class="navbar-end">{createNavbarItem("end")}</div>
+      </div>
+    </nav>
   )
 }

@@ -24,7 +24,8 @@ export default ({ data }) => {
       </Helmet>
       <Container className="p-0 mx-0 my-2" fluid>
         <Row>
-          <Col lg={6} xs={12} className="px-0">
+          <Col/>
+          <Col xs='12' lg='6' className="px-0">
             <Card
               text="light"
               style={{
@@ -50,7 +51,7 @@ export default ({ data }) => {
                 <h1 className={postStyles.Title}>{title}</h1>
 
                 <div
-                  className={postStyles.markdown}
+                  className={postStyles.Markdown}
                   dangerouslySetInnerHTML={{
                     __html: body.childMarkdownRemark.html,
                   }}
@@ -58,12 +59,12 @@ export default ({ data }) => {
               </Card.Body>
             </Card>
           </Col>
-          <Col lg={2} className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
+          <Col xs='12' lg='2' className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
             <Sidebar>
               <Container className="mb-0 mx-0 px-0">
                 <Projfiles />
               </Container>
-              <Container className="d-none d-lg-block px-0 mt-1">
+              <Container className="px-0 mt-2 d-none d-lg-block">
                 <Toc
                   src={
                     data.contentfulBlogPost.body.childMarkdownRemark
@@ -73,6 +74,7 @@ export default ({ data }) => {
               </Container>
             </Sidebar>
           </Col>
+          <Col/>
         </Row>
       </Container>
     </Overlord>

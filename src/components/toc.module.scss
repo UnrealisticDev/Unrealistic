@@ -1,7 +1,9 @@
 @import '../styles/variables.scss';
 
 .Card {
-    background-color: #141C2A;
+    // background-color: #141C2A;
+    background-color: $color-bg-secondary;
+    border: 2px solid #8F3524;
     text-align: center;
     color: #B0820A;
 
@@ -21,9 +23,11 @@
 
         // lvl1
         li {
+
             // lvl2
             padding-left: 1em;
 
+            // lvl3
             li {
                 padding-left: 2em;
             }

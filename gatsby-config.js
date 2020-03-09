@@ -24,7 +24,12 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: ["./src"],
+      }
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -40,7 +45,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
-              isIconAfterHeader: true,
+              isIconAfterHeader: false,
             }
           },
           {
@@ -54,12 +59,12 @@ module.exports = {
           {
             resolve: `gatsby-remark-figure-caption`,
           },
-          {
-            resolve: 'gatsby-remark-code-titles',
-            options: {
-              className: 'gatsby-remark-code-title'
-            }
-          },
+          // {
+          //   resolve: 'gatsby-remark-code-titles',
+          //   options: {
+          //     className: 'gatsby-remark-code-title'
+          //   }
+          // },
           // {
           //   resolve: `gatsby-remark-code-buttons`,
           // },
