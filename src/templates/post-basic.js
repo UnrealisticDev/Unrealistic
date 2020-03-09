@@ -33,7 +33,7 @@ export default ({ data }) => {
                 borderWidth: "0px",
               }}
             >
-    {/*<Card.Body>
+              <Card.Body>
                 <div style={{ position: "relative" }}>
                   <Card.Img
                     variant="top"
@@ -43,9 +43,9 @@ export default ({ data }) => {
                       objectFit: "cover",
                       maxHeight: "70vh",
                     }}
-                  ></Card.Img>
+                  >
                 </div>
-              </Card.Body>*/}
+              </Card.Body>
               <Card.Body className="py-0">
                 <h1 className={postStyles.Title}>{title}</h1>
                 <div
