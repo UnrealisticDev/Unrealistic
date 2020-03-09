@@ -3,33 +3,28 @@ import { graphql, Link } from "gatsby"
 
 import Overlord from "../components/overlord"
 
-import {
-  Heading,
-  Card,
-  Columns
-} from "react-bulma-components"
-
+import "../styles/global.scss"
 import localStyles from "./articles.module.scss"
 
 export default ({ data }) => {
   return (
     <Overlord title="Articles">
-      {/* <Columns multiline>
+      <div class='columns'>
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
-            <Columns.Column size={4}>
+            <div class='column is-4'>
                 <Link to={slug}>
                     <Card style={{height: '100%'}}>
-                      <Card.Image src={image.file.url} />
+            {/*<Card.Image src={image.file.url} />*/}
                       <Card.Content>
                         <Heading>{title}</Heading>
                       </Card.Content>
                     </Card>
                 </Link>
-            </Columns.Column>
+            </div>
           )
         })}
-      </Columns> */}
+      </div>
     </Overlord>
   )
 }
