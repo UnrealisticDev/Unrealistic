@@ -9,17 +9,17 @@ import localStyles from "./articles.module.scss"
 export default ({ data }) => {
   return (
     <Overlord title="Articles">
-      <div class='columns'>
+      <div class='columns is-desktop'>
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
             <div class='column is-4'>
                 <Link to={slug}>
-                    <Card style={{height: '100%'}}>
+                    <div style={{height: '100%'}}>
             {/*<Card.Image src={image.file.url} />*/}
-                      <Card.Content>
-                        <Heading>{title}</Heading>
-                      </Card.Content>
-                    </Card>
+                      <div>
+                        <div>{title}</div>
+                      </div>
+                    </div>
                 </Link>
             </div>
           )
