@@ -14,7 +14,7 @@ export default ({ data }) => {
           return (
             <div class='column is-4'>
                 <Link to={slug}>
-                  <div class='card has-background-dark'>
+                  <div class='card has-background-grey'>
                     <div class="card-image">
                       <figure class="image is-4by3">
                         <img src={image ? image.file.url : "https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png"} alt="Placeholder image" style={{objectFit: 'cover'}}/>
@@ -22,7 +22,7 @@ export default ({ data }) => {
                      </div>
                     <div class='card-content'>
                       <div class='content'>
-                        <div class='title has-text-info'>
+                        <div class='title has-text-warning'>
                          {title}
                         </div>
                       </div>
