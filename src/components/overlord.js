@@ -24,11 +24,8 @@ export default ({children, title}) => (
     <html class='has-navbar-fixed-top'/>
     <title>{title}</title>
     </Helmet>
-    <section class='hero is-dark is-fullheight'>
-      <div class='hero-head>
-        <Header/>
-      </div>
-      <Header />
+    <Header />
+    <section class='hero is-fullheight'>
       <div class='hero-body>
         {children}
       </div>
