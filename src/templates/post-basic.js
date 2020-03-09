@@ -37,7 +37,7 @@ export default ({ data }) => {
                 <div style={{ position: "relative" }}>
                   <Card.Img
                     variant="top"
-    {*/src={image.file.url}*/}
+    {/*src={image.file.url}*/}
                     alt=""
                     fluid
                     style={{
