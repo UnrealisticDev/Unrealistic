@@ -25,7 +25,7 @@ export default ({children, title}) => (
     <title>{title}</title>
     </Helmet>
     <Header />
-    <section class='hero is-fullheight'>
+    <section class='hero is-fullheight is-dark'>
       <div class='hero-body'>
         {children}
       </div>
