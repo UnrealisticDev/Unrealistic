@@ -35,7 +35,7 @@ export default ({ data }) => {
             >
               <Card.Body>
                 <div style={{ position: "relative" }}>
-                  <Card.Img
+    {/*<Card.Img
                     variant="top"
                     src={image ? image.file.url : ''}
                     alt=""
@@ -44,7 +44,8 @@ export default ({ data }) => {
                       objectFit: "cover",
                       maxHeight: "70vh",
                     }}
-                  >
+                  >*/}
+                
                 </div>
               </Card.Body>
               <Card.Body className="py-0">
