@@ -45,17 +45,16 @@ export default ({ data }) => {
                     }}
                   ></Card.Img>
                 </div>
-              </Card.Body>
+              </Card.Body>*/}
               <Card.Body className="py-0">
                 <h1 className={postStyles.Title}>{title}</h1>
-
                 <div
                   className={postStyles.Markdown}
                   dangerouslySetInnerHTML={{
                     __html: body.childMarkdownRemark.html,
                   }}
                 />
-              </Card.Body>*/}
+              </Card.Body>
             </Card>
           </Col>
           <Col xs='12' lg='2' className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
