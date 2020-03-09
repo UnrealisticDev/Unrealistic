@@ -4,9 +4,7 @@ import { Helmet } from "react-helmet"
 import Header from "./header"
 import Footer from "./footer"
 
-import { Container } from "react-bootstrap"
-
-import "bootstrap/dist/css/bootstrap.css"
+import "../styles/global.scss"
 import styles from "./overlord.module.scss"
 
 import favicon16 from "../images/favicon16.png"
@@ -26,12 +24,15 @@ export default ({children, title}) => (
     <html class='has-navbar-fixed-top'/>
     <title>{title}</title>
     </Helmet>
-    <Container fluid className={styles.Content + " m-0 p-0"}>
+    <section class='hero is-dark is-fullheight'>
+      <div class='hero-head>
+        <Header/>
+      </div>
       <Header />
-      <Container fluid className="mx-0 py-2 px-lg-5">
+      <div class='hero-body>
         {children}
-      </Container>
-    </Container>
+      </div>
+    </div>
     <Footer className={styles.Footer} />
   </div>
 )
