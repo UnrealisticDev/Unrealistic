@@ -12,7 +12,7 @@ export default ({ data }) => {
       <div class='columns is-desktop'>
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
-            <div class='column is-4'>
+            <div class='column is-multiline is-4 is-primary'>
                 <Link to={slug}>
                     <div style={{height: '100%'}}>
             {/*<Card.Image src={image.file.url} />*/}
