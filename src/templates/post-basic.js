@@ -37,7 +37,6 @@ export default ({ data }) => {
                 <div style={{ position: "relative" }}>
                   <Card.Img
                     variant="top"
-    {/*src={image.file.url}*/}
                     alt=""
                     fluid
                     style={{
@@ -67,8 +66,7 @@ export default ({ data }) => {
               <Container className="px-0 mt-2 d-none d-lg-block">
                 <Toc
                   src={
-                    data.contentfulBlogPost.body.childMarkdownRemark
-                      .tableOfContents
+                    data.contentfulBlogPost.body.childMarkdownRemark.tableOfContents
                   }
                 />
               </Container>
