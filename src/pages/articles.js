@@ -9,10 +9,10 @@ import localStyles from "./articles.module.scss"
 export default ({ data }) => {
   return (
     <Overlord title="Articles">
-      <div class='columns is-desktop'>
+      <div class='columns is-multiline is-desktop'>
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
-            <div class='column is-multiline is-4 is-primary'>
+            <div class='column is-4 is-primary'>
                 <Link to={slug}>
                   <div class='card is-primary'>
             {/*<div class="card-image">
