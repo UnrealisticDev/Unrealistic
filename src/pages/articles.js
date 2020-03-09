@@ -22,7 +22,9 @@ export default ({ data }) => {
                      </div>
                     <div class='card-content'>
                       <div class='content'>
+                        <div class='title'>
                          {title}
+                        </div>
                       </div>
                     </div>
                   </div>
