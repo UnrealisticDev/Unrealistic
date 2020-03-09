@@ -45,7 +45,7 @@ export default ({ data }) => {
                       maxHeight: "70vh",
                     }}
                   >*/}
-                
+                <img src={image ? image.file.url : ''}/>
                 </div>
               </Card.Body>
               <Card.Body className="py-0">
