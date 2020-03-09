@@ -1,13 +1,13 @@
 import React from "react"
-import { Container, Navbar, Nav, Image } from "react-bootstrap"
 
-import 'react-bulma-components/dist/react-bulma-components.min.css';
-import {
-  Footer
-} from "react-bulma-components"
+import "../styles/global.scss"
 
 export default () => (
-  <Footer>
-    © 2020 Nokternel Games.
-  </Footer>
+  <div class='footer'>
+    <div class='container'>
+      <div class='content'>
+          Copyright 2020 Nokternel Games.
+      </div>
+    </div>
+  </div>
 )
