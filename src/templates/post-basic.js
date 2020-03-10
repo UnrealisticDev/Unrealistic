@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
 
-// import postStyles from "./post-basic.module.scss"
+import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
   const { title, image, body } = data.contentfulBlogPost
@@ -14,9 +14,8 @@ export default ({ data }) => {
   return (
     <Layout title={title}>
       <div className="p-0 mx-0 my-2" fluid>
-        <div>
-          <div />
-          <div xs="12" lg="6" className="px-0">
+        <div className='columns'>
+          <div className="column is-6">
             <div
               text="light"
               style={{
@@ -30,9 +29,9 @@ export default ({ data }) => {
                 </div>
               </div>
               <div className="py-0">
-                <h1>{title}</h1>
+                <h1 className={postStyles.Title}>{title}</h1>
                 <div
-                  // className={postStyles.Markdown}
+                  className={postStyles.Markdown}
                   dangerouslySetInnerHTML={{
                     __html: body.childMarkdownRemark.html,
                   }}
@@ -40,7 +39,7 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
-          <div xs="12" lg="2" className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
+          <div className="column is-2">
             <Sidebar>
               <div className="mb-0 mx-0 px-0">
                 <Projfiles />
