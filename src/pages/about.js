@@ -1,7 +1,7 @@
 import React from 'react'
-import Overlord from '../components/overlord'
+import Layout from '../components/layout'
 
 export default () => (
-    <Overlord>
-    </Overlord>
+    <Layout>
+    </Layout>
 )

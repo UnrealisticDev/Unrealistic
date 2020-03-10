@@ -1,14 +1,14 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Overlord from "../components/overlord"
+import Layout from "../components/layout"
 
 import "../styles/global.scss"
 import localStyles from "./articles.module.scss"
 
 export default ({ data }) => {
   return (
-    <Overlord title="Articles">
+    <Layout title="Articles">
       <div class='columns is-multiline is-desktop'>
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
@@ -33,7 +33,7 @@ export default ({ data }) => {
           )
         })}
       </div>
-    </Overlord>
+    </Layout>
   )
 }
 

@@ -1,12 +1,10 @@
 import React from "react"
-import Overlord from "../components/overlord"
-
-import "bootstrap/dist/css/bootstrap.css"
+import Layout from "../components/layout"
 
 export default ({ data }) => {
     return (
-        <Overlord title='Aliph'>
+        <Layout title='Aliph'>
             Coming soon...
-        </Overlord>
+        </Layout>
     )
 }

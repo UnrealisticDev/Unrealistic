@@ -1,54 +1,35 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 
-import Overlord from "../components/overlord"
+import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
-import { Card, Container, Row, Col } from "react-bootstrap"
 
-import "bootstrap/dist/css/bootstrap.css"
 import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
   const { title, image, body } = data.contentfulBlogPost
 
   return (
-    <Overlord title={title}>
-      <Helmet>
-        <link
-          rel="stylesheet"
-          href="https://use.typekit.net/abe5nxq.css"
-        ></link>
-      </Helmet>
-      <Container className="p-0 mx-0 my-2" fluid>
-        <Row>
-          <Col/>
-          <Col xs='12' lg='6' className="px-0">
-            <Card
+    <Layout title={title}>
+      <div className="p-0 mx-0 my-2" fluid>
+        <div>
+          <div />
+          <div xs="12" lg="6" className="px-0">
+            <div
               text="light"
               style={{
-                backgroundColor: "#1D1D1D",
+                backgrounddivor: "#1D1D1D",
                 borderWidth: "0px",
               }}
             >
-              <Card.Body>
+              <div>
                 <div style={{ position: "relative" }}>
-    {/*<Card.Img
-                    variant="top"
-                    src={image ? image.file.url : ''}
-                    alt=""
-                    fluid
-                    style={{
-                      objectFit: "cover",
-                      maxHeight: "70vh",
-                    }}
-                  >*/}
-                <img src={image ? image.file.url : ''}/>
+                  <img src={image ? image.file.url : ""} />
                 </div>
-              </Card.Body>
-              <Card.Body className="py-0">
+              </div>
+              <div className="py-0">
                 <h1 className={postStyles.Title}>{title}</h1>
                 <div
                   className={postStyles.Markdown}
@@ -56,27 +37,28 @@ export default ({ data }) => {
                     __html: body.childMarkdownRemark.html,
                   }}
                 />
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs='12' lg='2' className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
+              </div>
+            </div>
+          </div>
+          <div xs="12" lg="2" className="p-0 mx-lg-2 my-2 my-lg-0 d-lg-block">
             <Sidebar>
-              <Container className="mb-0 mx-0 px-0">
+              <div className="mb-0 mx-0 px-0">
                 <Projfiles />
-              </Container>
-              <Container className="px-0 mt-2 d-none d-lg-block">
+              </div>
+              <div className="px-0 mt-2 d-none d-lg-block">
                 <Toc
                   src={
-                    data.contentfulBlogPost.body.childMarkdownRemark.tableOfContents
+                    data.contentfulBlogPost.body.childMarkdownRemark
+                      .tableOfContents
                   }
                 />
-              </Container>
+              </div>
             </Sidebar>
-          </Col>
-          <Col/>
-        </Row>
-      </Container>
-    </Overlord>
+          </div>
+          <div />
+        </div>
+      </div>
+    </Layout>
   )
 }
 

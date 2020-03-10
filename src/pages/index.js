@@ -2,13 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 import * as random from "random"
 
-import "../styles/global.scss"
-import "bootstrap/dist/css/bootstrap.css"
-
-import Overlord from "../components/overlord"
+import Layout from "../components/layout"
 
 export default ({ data }) => {
-  // console.log(data.allPosts);
   function getNewestPost() {
     var closestDiff = 99999999
     var closestDiffIdx = -1
@@ -51,7 +47,7 @@ export default ({ data }) => {
   var insiderPost = getNewestInsiderPost()
 
   return (
-    <Overlord>
+    <Layout>
       <div class="tile is-ancestor">
         <div class="tile is-vertical">
           <div class="tile">
@@ -115,8 +111,8 @@ export default ({ data }) => {
                 <div class="card-image">
                   <figure class="image is-3by1">
                     <img
-                      src="https://steamcdn-a.akamaihd.net/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.1920x1080.jpg?t=1577747500"
-                      alt="stuff"
+                      src="https://www.howtogeek.com/wp-content/uploads/2018/08/shutterstock_407554567.jpg"
+                      alt="Random banner"
                       style={{objectFit: 'cover'}}
                     />
                   </figure>
@@ -129,7 +125,7 @@ export default ({ data }) => {
           </div>
         </div>
       </div>
-    </Overlord>
+    </Layout>
   )
 }
 

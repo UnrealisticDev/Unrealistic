@@ -1,49 +1,49 @@
-@import '../styles/variables.scss';
+// @import '../styles/variables.scss';
 
-.Navbar {
-    background-color: $color-bg-secondary;
+// .Navbar {
+//     background-color: $color-bg-secondary;
 
-    a:hover {
-        text-decoration: none;
-        color: $color-fg-yellow;
-    }
+//     a:hover {
+//         text-decoration: none;
+//         color: $color-fg-yellow;
+//     }
 
-    a::after {
-        color: $color-fg-yellow;
-    }
-}
+//     a::after {
+//         color: $color-fg-yellow;
+//     }
+// }
 
-.brand {
-    display: flex;
-    flex-direction: column;
+// .brand {
+//     display: flex;
+//     flex-direction: column;
 
-    img {
-        align-self: center;
-        margin: 0;
-    }
-}
+//     img {
+//         align-self: center;
+//         margin: 0;
+//     }
+// }
 
-.Link {
-    color: #404040 !important;
-    align-self: center;
-    padding-left: .5em;
-    padding-right: .5em;
-}
-.Link:hover {
-    text-decoration: none;
-    color: $color-fg-yellow !important;   
-}
+// .Link {
+//     color: #404040 !important;
+//     align-self: center;
+//     padding-left: .5em;
+//     padding-right: .5em;
+// }
+// .Link:hover {
+//     text-decoration: none;
+//     color: $color-fg-yellow !important;   
+// }
 
-.LinkActive {
-    color: $color-fg-yellow !important;
-}
+// .LinkActive {
+//     color: $color-fg-yellow !important;
+// }
 
-.Dropdown {
-    a {
-        color: #404040 !important;
-    }
+// .Dropdown {
+//     a {
+//         color: #404040 !important;
+//     }
 
-    a:hover {
-        color: $color-fg-yellow !important;
-    }
-}
+//     a:hover {
+//         color: $color-fg-yellow !important;
+//     }
+// }
