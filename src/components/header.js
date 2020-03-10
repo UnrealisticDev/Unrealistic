@@ -16,9 +16,9 @@ export default () => {
     return voca.capitalize(name)
   }
 
-  function createNavbarItem(name) {
+  function createNavbarItem(name, overridePath) {
     return (
-      <a class="navbar-item has-text-dark" href={getPath(name)}>
+      <a class="navbar-item has-text-dark" href={overridePath ? overridePath : getPath(name)}>
         {capsWord(name)}
       </a>
     )
@@ -28,7 +28,7 @@ export default () => {
     <nav class="navbar is-transparent is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <img src={logo} width="112" height="28" style={{ margin: 0 }} />
+          <img src={logo} width="112" height="28" style={{alignSelf: 'center'}} />
         </a>
         <a
           role="button"
@@ -44,12 +44,12 @@ export default () => {
       </div>
       <div id="navbarOptions" class="navbar-menu">
         <div class="navbar-start">
-          {createNavbarItem("home")}
+          {createNavbarItem("home", '/')}
           {createNavbarItem("articles")}
           {createNavbarItem("glossary")}
           {createNavbarItem("about")}
         </div>
-        <div class="navbar-end">{createNavbarItem("end")}</div>
+        <div class="navbar-end"></div>
       </div>
     </nav>
   )
