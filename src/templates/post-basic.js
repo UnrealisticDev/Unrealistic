@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
 
-import postStyles from "./post-basic.module.scss"
+// import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
   const { title, image, body } = data.contentfulBlogPost
@@ -30,9 +30,9 @@ export default ({ data }) => {
                 </div>
               </div>
               <div className="py-0">
-                <h1 className={postStyles.Title}>{title}</h1>
+                <h1>{title}</h1>
                 <div
-                  className={postStyles.Markdown}
+                  // className={postStyles.Markdown}
                   dangerouslySetInnerHTML={{
                     __html: body.childMarkdownRemark.html,
                   }}

@@ -1,13 +1,9 @@
 import React from "react"
 
-import "../styles/global.scss"
-
 export default () => (
-  <div class='footer has-background-primary'>
-    <div class='container'>
-      <div class='content'>
-          Copyright 2020 Nokternel Games.
-      </div>
+  <footer class="hero is-dark">
+    <div class='hero-body'>
+      <div class="content has-text-centered">Copyright 2020 Nokternel Games.</div>
     </div>
-  </div>
+  </footer>
 )

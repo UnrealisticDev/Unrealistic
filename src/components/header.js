@@ -3,31 +3,32 @@ import { Link } from "gatsby"
 
 import logo from "../images/logo.png"
 
+import './header.scss'
+
 export default () => {
 
   return (
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img
             src={logo}
-            // width="112"
-            // height="28"
           />
         </a>
 
-        <a
+        <label
           role="button"
           class="navbar-burger burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample"
+          htmlFor='nav-toggle-state'
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </label>
       </div>
+      <input type="checkbox" id="nav-toggle-state" />
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
@@ -49,14 +50,6 @@ export default () => {
         </div>
 
         <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">Log in</a>
-            </div>
-          </div>
         </div>
       </div>
     </nav>
