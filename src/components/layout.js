@@ -12,7 +12,7 @@ export default ({ children, title }) => (
       <html className="has-navbar-fixed-top" />
     </Helmet>
     <Header />
-    <section className="section">
+    <section className="section has-background-light">
       <div class="container">{children}</div>
     </section>
     <Footer />

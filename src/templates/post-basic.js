@@ -6,6 +6,7 @@ import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
 
+import '../styles/code.scss'
 import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
@@ -13,7 +14,7 @@ export default ({ data }) => {
 
   return (
     <Layout title={title}>
-      <div className="p-0 mx-0 my-2" fluid>
+      <div className="container">
         <div className='columns'>
           <div className="column is-6">
             <div
@@ -39,8 +40,8 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="column is-2">
-            <Sidebar>
+          {/* <div className="column is-2">
+            {/* <Sidebar>
               <div className="mb-0 mx-0 px-0">
                 <Projfiles />
               </div>
@@ -53,7 +54,7 @@ export default ({ data }) => {
                 />
               </div>
             </Sidebar>
-          </div>
+          </div> */}
           <div />
         </div>
       </div>

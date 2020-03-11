@@ -1,10 +1,12 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
+$font-size-base: 1.5vw;
+
 .Title {
-    color: $color-fg-secondary !important;
+    color: #173F5F;
     margin-bottom: .5em;
-    font-size: calc(12px + 3vw);
+    font-size: $font-size-base * 3;
 }
 
 .Markdown h1::before,
@@ -14,51 +16,65 @@ h2::before {
 
 .Markdown {
 
-    color: $color-fg-primary;
+    // color: $color-fg-primary;
+    color: #2E2F3E;
+    font-size: $font-size-base;
+    font-weight: lighter;
+    line-height: $font-size-base * 1.2;
 
     h1,
     h2 {
-        font-size: calc(12px + 2vw);
-        color: $color-fg-yellow !important;
+        font-size: $font-size-base * 2;
         text-align: center;
-        margin-top: 1em;
-        margin-bottom: .5em;
+        margin-top: 2em;
+        margin-bottom: 5vh;
+    }
+
+    h1 {
+        color: #20639B;
+        // border-bottom: 2px solid #20639B;
+        display: inline-block;
     }
 
     h2 {
-        font-size: calc(12px + 1vw);
+        color: #3CAEA3;
+        // border-bottom: 2px solid #3CAEA3;
+        display: inline-block;
+        font-size: $font-size-base * 1.5;
     }
 
     p {
-        font-weight: 300;
-        font-size: calc(12px + .6vw);
-    }
+        // font-weight: 300;
+        line-height: $font-size-base * 1.6;
+        margin-bottom: 5vh;
 
-    blockquote {
-        color: darken($color-fg-primary, 30%);
-        font-style: italic;
-        margin-top: .4em;
-        padding-left: .5em;
-        border-left: 2px solid black;
-
-        p {
-            font-size: calc(12px + .3vw);
-        }
-    }
-
-    p {
         code {
-            background-color: $color-fg-secondary;
-            color: white;
+            background-color: #5A655D;
+            color: #F5F5F5;
             padding: 3px;
             border-radius: .3em;
         }
     }
 
+    blockquote {
+        color: darken($color-fg-primary, 30%);
+        font-style: italic;
+        // margin-top: 1.2em;
+        padding-left: 1em;
+        border-left: 2px solid black;
+
+        p {
+            font-size: $font-size-base * .85;
+            line-height: $font-size-base * 1.2;
+        }
+    }
+
+    ul {
+        margin-left: 3rem;
+    }
+
     li {
         list-style-type: square;
-        font-weight: 100;
-        margin-left: 1.5rem;
     }
 
     img {
