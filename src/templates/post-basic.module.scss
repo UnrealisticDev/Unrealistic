@@ -1,12 +1,12 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-$font-size-base: 1.5vmax;
+$font-size-base: 16px;
 
 .Title {
     color: #173F5F;
     margin-bottom: .5em;
-    font-size: $font-size-base * 3;
+    font-size: calc(#{$font-size-base} + 3vw);
 }
 
 .Markdown h1::before,
@@ -18,7 +18,7 @@ h2::before {
 
     // color: $color-fg-primary;
     color: #2E2F3E;
-    font-size: $font-size-base;
+    font-size: calc(#{$font-size-base} + 1vw);
     font-weight: lighter;
     line-height: $font-size-base * 1.2;
 
