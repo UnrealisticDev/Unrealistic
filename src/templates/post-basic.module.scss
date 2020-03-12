@@ -64,7 +64,8 @@ h2::before {
         border-left: 2px solid black;
 
         p {
-            font-size: $font-size-base * .85;
+            
+            font-size: calc(#{$font-size-base} + .8vw);
             line-height: $font-size-base * 1.2;
         }
     }
