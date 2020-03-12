@@ -24,19 +24,20 @@ h2::before {
 
     h1,
     h2 {
-        font-size: $font-size-base * 2;
         text-align: center;
         margin-top: 2em;
         margin-bottom: 5vh;
     }
 
     h1 {
+        font-size: calc(#{$font-size-base} + 2vw);    
         color: #20639B;
         // border-bottom: 2px solid #20639B;
         display: inline-block;
     }
 
     h2 {
+
         color: #3CAEA3;
         // border-bottom: 2px solid #3CAEA3;
         display: inline-block;
