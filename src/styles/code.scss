@@ -6,67 +6,52 @@
 .gatsby-highlight {
     margin: 0.5em 0;
     margin-top: 2em;
-    font-size: smaller;
     margin-bottom: 1em;
-    
-    overflow: auto;
-    scrollbar-color: rgba(234, 169, 3, 0) #27282200;
-  
+    font-size: smaller;
+
     position: relative;
 
     pre {
-      border-radius: .5em;
-      scrollbar-width: thin;
+      // border-radius: .5em;
+      scrollbar-width: none;
 
-      background-color: rgba(0, 0, 0, 0);
+      background-color: rgb(241, 238, 228);
+      // border-color: rgb(206, 202, 194);
+      // border-top: 1px solid rgb(206, 202, 194);
+      // border-bottom: 1px solid rgb(206, 202, 194);
     }
   }
   
-  // Show scrollbar on hover
-  .gatsby-highlight:hover {
-    scrollbar-color:#EAAA03 #27282200;
-  }
-
-  .gatsby-highlight-code-line {
-    background-color: #feb;
-    display: block;
-    margin-right: -1em;
-    margin-left: -1em;
-    padding-right: 1em;
-    padding-left: 0.75em;
-    border-left: 0.25em solid #f99;
-  }
+  //  // Code title
+  // .gatsby-highlight pre[class*="language-"]::before {
+  //   background: rgb(206, 202, 194);
+  //   border-radius: .25rem 0 .25rem 0;
+  //   color: black;
+  //   font-size: 12px;
+  //   letter-spacing: 0.025rem;
+  //   padding: 0.1rem 0.5rem;
+  //   position: absolute;
+  //   text-align: right;
+  //   text-transform: uppercase;
+  //   right: 0;
+  //   bottom: 1em;
+  // }
   
-//   // Code title
-  .gatsby-highlight pre[class*="language-"]::before {
-    background: #EAAA03;
-    border-radius: .25rem 0 0 .25rem;
-    color: black;
-    font-size: 12px;
-    letter-spacing: 0.025rem;
-    padding: 0.1rem 0.5rem;
-    position: absolute;
-    right: 1rem;
-    text-align: right;
-    text-transform: uppercase;
-    top: 0;
-  }
+  // .gatsby-highlight pre[class="language-cpp"]::before {
+  //   content: "cpp";
+  //   // background: #458043;
+  // }
   
-  .gatsby-highlight pre[class="language-cpp"]::before {
-    content: "cpp";
-    // background: #458043;
-  }
+  // .gatsby-highlight pre[class="language-csharp"]::before {
+  //   content: "c#";
+  //   // background: #458043;
+  // }
   
-  .gatsby-highlight pre[class="language-csharp"]::before {
-    content: "c#";
-    // background: #458043;
-  }
-  
-  .gatsby-highlight pre[class*="language-"].line-numbers {
-    padding: 0;
-    padding-left: 2.8em;
-    overflow: initial;
-  }
+  // .gatsby-highlight pre[class*="language-"].line-numbers {
+  //   padding: 0;
+  //   padding-left: 2.8em;
+  //   overflow: initial;
+  // }
   
   // .gatsby-remark-code-title {
   //   margin-bottom: -0.6rem;

@@ -8,7 +8,7 @@ import './header.scss'
 export default () => {
 
   return (
-    <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation" style={{boxShadow: '0 2px 2px 2px rgba(0,0,0,.2)'}}>
+    <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation" style={{boxShadow: '0 2px 2px -1px rgba(0,0,0,.2)'}}>
       <div class='container'>
         <div class="navbar-brand">
           <a class="navbar-item" href="/">

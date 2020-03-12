@@ -1,49 +1,57 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import localStyles from "./widget.module.scss"
+// import localStyles from "./widget.module.scss"
 
-export default props => {
+export default ({ title, subtitle, descriptor, image, to, dims }) => {
   function getImage() {
-    if (props.image) {
-      return <div src={props.image} className={localStyles.CardImg} />
+    if (image) {
+      return (
+        <div class="card-image">
+          <figure class="image is-5by3">
+            <img
+              src={image}
+              alt="Placeholder image"
+              style={{ objectFit: "cover" }}
+            />
+          </figure>
+        </div>
+      )
     }
   }
 
   function getDescriptor() {
-    if (props.descriptor) {
-      return <div>{props.descriptor}</div>
+    if (descriptor) {
+      return <div>{descriptor}</div>
     }
   }
 
   function getTitle() {
-    if (props.title) {
-      return <div className={localStyles.Title}>{props.title}</div>
+    if (title) {
+      return <div class="title">{title}</div>
     }
   }
 
   function getSubtitle() {
-    if (props.subtitle) {
-      return <div className={localStyles.Subtitle}>{props.subtitle}</div>
+    if (subtitle) {
+      return <div class="subtitle">{subtitle}</div>
     }
   }
 
   return (
-    <Link to={props.to} className="w-100">
-      <div
-        className="h-100 w-100 m-0"
-        variant="dark"
-        style={{ backgroundColor: "#1D1D1D" }}
-      >
-        {getImage()}
-        <div className='d-flex m-0 p-0'>
-          <div className={localStyles.TextContent + ' align-self-end'}>
-            {getDescriptor()}
-            {getTitle()}
-            {getSubtitle()}
+    <div className="box has-background-light">
+      <Link to={to}>
+        <div class="card">
+          {getImage()}
+          <div class="card-content">
+            <div class="content">
+              {getDescriptor()}
+              {getTitle()}
+              {getSubtitle()}
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }

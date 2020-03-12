@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projfiles from "../components/projfiles"
 
-import '../styles/code.scss'
+import "../styles/code.scss"
 import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
@@ -15,21 +15,13 @@ export default ({ data }) => {
   return (
     <Layout title={title}>
       <div className="container">
-        <div className='columns'>
-          <div className="column is-6">
-            <div
-              text="light"
-              style={{
-                backgrounddivor: "#1D1D1D",
-                borderWidth: "0px",
-              }}
-            >
-              <div>
-                <div style={{ position: "relative" }}>
-                  <img src={image ? image.file.url : ""} />
-                </div>
+        <div className="columns is-centered">
+          <div className="column is-8">
+            <div class="box has-background-light">
+              <div style={{ position: "relative" }}>
+                <img src={image ? image.file.url : ""} />
               </div>
-              <div className="py-0">
+              <div>
                 <h1 className={postStyles.Title}>{title}</h1>
                 <div
                   className={postStyles.Markdown}
@@ -40,21 +32,19 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
-          {/* <div className="column is-2">
-            {/* <Sidebar>
-              <div className="mb-0 mx-0 px-0">
-                <Projfiles />
-              </div>
-              <div className="px-0 mt-2 d-none d-lg-block">
+          <div className="column is-2">
+            <div className="box has-background-light" style={{ position: 'sticky', top: '10vmin' }}>
+              <Sidebar>
                 <Toc
                   src={
                     data.contentfulBlogPost.body.childMarkdownRemark
                       .tableOfContents
                   }
                 />
-              </div>
-            </Sidebar>
-          </div> */}
+                {/* <Projfiles /> */}
+              </Sidebar>
+            </div>
+          </div>
           <div />
         </div>
       </div>

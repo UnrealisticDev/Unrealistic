@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import * as random from "random"
 
+import Widget from "../components/widget"
+
 import Layout from "../components/layout"
 
 export default ({ data }) => {
@@ -52,74 +54,53 @@ export default ({ data }) => {
         <div class="tile is-vertical">
           <div class="tile">
             <div class="tile is-parent is-9">
-              <div class="tile is-child card has-background-grey">
-                <div class="card-image">
-                  <figure class="image is-5by3">
-                    <img src={getImageFromPost(freshPost)} />
-                  </figure>
-                </div>
-                <div class="card-header">
-                  <div class="card-header-title">{freshPost.title}</div>
-                </div>
+              <div class="tile is-child">
+                <Widget
+                  title={freshPost.title}
+                  subtitle="Fresh Off the Press"
+                  image={getImageFromPost(freshPost)}
+                  to={freshPost.slug}
+                />
               </div>
             </div>
             <div class="tile is-parent is-vertical">
-              <div class="tile is-child card has-background-grey">
-                <div class="card-image">
-                  <figure class="image is-5by4">
-                    <img src={getImageFromPost(insiderPost)} />
-                  </figure>
-                </div>
-                <div class="card-header">
-                  <div class="card-header-title">{insiderPost.title}</div>
-                </div>
+              <div class="tile is-child">
+                <Widget
+                  title={insiderPost.title}
+                  subtitle="Insider Insight"
+                  image={getImageFromPost(insiderPost)}
+                  to={insiderPost.slug}
+                />
               </div>
-              <div class="tile is-child card has-background-grey">
-                <div class="card-image">
-                  <figure class="image is-5by4">
-                    <img
-                      src="https://steamcdn-a.akamaihd.net/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.1920x1080.jpg?t=1577747500"
-                      alt="stuff"
-                    />
-                  </figure>
-                </div>
-                <div class="card-header">
-                  <div class="card-header-title">Editorial</div>
-                </div>
+              <div class="tile is-child">
+                <Widget
+                  title="Editorial"
+                  subtitle="Dive into the Unreal Editor"
+                  image="https://steamcdn-a.akamaihd.net/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.1920x1080.jpg?t=1577747500"
+                  to={freshPost.slug}
+                />
               </div>
             </div>
           </div>
           <div class="tile">
             <div class="tile is-parent is-4">
-              <div class="tile is-child card has-background-grey">
-                <div class="card-image">
-                  <figure class="image is-5by4">
-                    <img
-                      src="https://files.ayumilove.net/games/maplestory2/guide/beginner/MapleStory2_Beginner_Guide_9.jpg"
-                      alt="stuff"
-                      style={{objectFit: 'cover'}}
-                    />
-                  </figure>
-                </div>
-                <div class="card-header">
-                  <div class="card-header-title">Beginner's Guide</div>
-                </div>
+              <div class="tile is-child">
+                <Widget
+                  to="/"
+                  title="Beginners Guide"
+                  subtitle="Cut into the learning curve"
+                  image="https://files.ayumilove.net/games/maplestory2/guide/beginner/MapleStory2_Beginner_Guide_9.jpg"
+                />
               </div>
             </div>
-            <div class="tile is-parent is-8">
-              <div class="tile is-child card has-background-grey">
-                <div class="card-image">
-                  <figure class="image is-3by1">
-                    <img
-                      src="https://www.howtogeek.com/wp-content/uploads/2018/08/shutterstock_407554567.jpg"
-                      alt="Random banner"
-                      style={{objectFit: 'cover'}}
-                    />
-                  </figure>
-                </div>
-                <div class="card-header">
-                  <div class="card-header-title">Random</div>
-                </div>
+            <div class="tile is-parent">
+              <div class="tile is-child">
+                <Widget
+                  to="/"
+                  title="Random"
+                  subtitle="Try something new!"
+                  image="https://www.howtogeek.com/wp-content/uploads/2018/08/shutterstock_407554567.jpg"
+                />
               </div>
             </div>
           </div>

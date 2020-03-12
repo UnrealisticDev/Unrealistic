@@ -1,12 +1,17 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-$font-size-base: 16px;
+$font-size-base: 12px;
 
 .Title {
     color: #173F5F;
-    margin-bottom: .5em;
-    font-size: calc(#{$font-size-base} + 3vw);
+    margin-bottom: 3vmin;
+    font-size: calc(#{$font-size-base} + 4vw);;
+    // background-color: white;
+    text-align: center;
+    // align-self: center;
+    // border-bottom: 4px solid rgb(7, 25, 39);
+    // display: inline-block;
 }
 
 .Markdown h1::before,
@@ -20,13 +25,12 @@ h2::before {
     color: #2E2F3E;
     font-size: calc(#{$font-size-base} + 1vw);
     font-weight: lighter;
-    line-height: $font-size-base * 1.2;
 
     h1,
     h2 {
         text-align: center;
-        margin-top: 2em;
-        margin-bottom: 4em;
+        margin-top: 5vmin;
+        margin-bottom: 3vmin;
     }
 
     h1 {
@@ -39,18 +43,16 @@ h2::before {
     h2 {
         font-size: calc(#{$font-size-base} + 1.5vw);
         color: #3CAEA3;
-        // border-bottom: 2px solid #3CAEA3;
         display: inline-block;
     }
 
     p {
-        // font-weight: 300;
-        line-height: $font-size-base * 1.6;
-        margin-bottom: 5vmin;
+        line-height: calc((#{$font-size-base} + 1vw) * 1.4);
+        margin-bottom: 3vmin;
 
         code {
-            background-color: #5A655D;
-            color: #F5F5F5;
+            background-color: rgb(231, 224, 224);
+            color: rgb(53, 142, 184);
             padding: 3px;
             border-radius: .3em;
         }
@@ -59,22 +61,23 @@ h2::before {
     blockquote {
         color: darken($color-fg-primary, 30%);
         font-style: italic;
-        // margin-top: 1.2em;
         padding-left: 1em;
-        border-left: 2px solid black;
+        border-left: 1px solid rgb(208, 212, 216);
 
         p {
-            
             font-size: calc(#{$font-size-base} + .8vw);
-            line-height: $font-size-base * 1.2;
+            // line-height: $font-size-base * 1.2;
+            line-height: calc((#{$font-size-base} + .8vw) * 1.4);
         }
     }
 
-    ul {
+    ul, ol {
         margin-left: 3rem;
+        margin-top: 3vmin;
+        margin-bottom: 3vmin;
     }
 
-    li {
+    ul {
         list-style-type: square;
     }
 
