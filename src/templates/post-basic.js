@@ -42,6 +42,7 @@ export default ({ data }) => {
                         __html: body.childMarkdownRemark.html,
                       }}
                     />
+                    <hr style={{marginTop: '8vmin', marginBottom: '8vmin'}}/>
                     <HyvorTalk.Embed websiteId={292} />
                   </div>
                 </div>
