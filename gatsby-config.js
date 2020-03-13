@@ -39,12 +39,13 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          // {
-          //   resolve: `gatsby-remark-autolink-headers`,
-          //   options: {
-          //     isIconAfterHeader: false,
-          //   },
-          // },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              icon: false,
+              // isIconAfterHeader: true,
+            },
+          },
           // {
           //   resolve: `gatsby-remark-images`,
           //   options: {

@@ -1,17 +1,13 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-$font-size-base: 12px;
+$font-size-base: 8px;
 
 .Title {
-    color: #173F5F;
-    margin-bottom: 3vmin;
+    // color: #173F5F;
+    // margin-bottom: 3vmin;
     font-size: calc(#{$font-size-base} + 4vw);;
-    // background-color: white;
-    text-align: center;
-    // align-self: center;
-    // border-bottom: 4px solid rgb(7, 25, 39);
-    // display: inline-block;
+    // text-align: center;
 }
 
 .Markdown h1::before,
@@ -25,6 +21,8 @@ h2::before {
     color: #2E2F3E;
     font-size: calc(#{$font-size-base} + 1vw);
     font-weight: lighter;
+
+    word-wrap: break-word;
 
     h1,
     h2 {
@@ -47,7 +45,7 @@ h2::before {
     }
 
     p {
-        line-height: calc((#{$font-size-base} + 1vw) * 1.4);
+        line-height: calc((#{$font-size-base} + 1vw) * 1.6);
         margin-bottom: 3vmin;
 
         code {

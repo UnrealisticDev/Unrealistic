@@ -14,26 +14,43 @@ export default ({ data }) => {
 
   return (
     <Layout title={title}>
-      <div className="container">
+      <div className="container" style={{scrollBehavior: 'smooth'}}>
         <div className="columns is-centered">
           <div className="column is-8">
             <div class="box has-background-light">
-              <div style={{ position: "relative" }}>
-                <img src={image ? image.file.url : ""} />
-              </div>
-              <div>
-                <h1 className={postStyles.Title}>{title}</h1>
-                <div
-                  className={postStyles.Markdown}
-                  dangerouslySetInnerHTML={{
-                    __html: body.childMarkdownRemark.html,
-                  }}
-                />
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <div className={"title " + postStyles.Title}>{title}</div>
+                  </div>
+                </div>
+                <div class="card-image">
+                  <figure class="image is-5by3">
+                    <img
+                      src={image ? image.file.url : ""}
+                      alt="alt"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="content">
+                    <div
+                      className={postStyles.Markdown}
+                      dangerouslySetInnerHTML={{
+                        __html: body.childMarkdownRemark.html,
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="column is-2">
-            <div className="box has-background-light" style={{ position: 'sticky', top: '10vmin' }}>
+          <div className="column is-3">
+            <div
+              className="box has-background-light"
+              style={{ position: "sticky", top: "10vmin", bottom: "25vmin" }}
+            >
               <Sidebar>
                 <Toc
                   src={
@@ -41,7 +58,6 @@ export default ({ data }) => {
                       .tableOfContents
                   }
                 />
-                {/* <Projfiles /> */}
               </Sidebar>
             </div>
           </div>
@@ -65,7 +81,7 @@ export const postQuery = graphql`
       body {
         childMarkdownRemark {
           html
-          tableOfContents
+          tableOfContents(absolute: false)
         }
       }
     }
