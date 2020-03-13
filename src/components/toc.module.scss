@@ -11,35 +11,30 @@
         }
     }
 
+    a {
+        padding: 3px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #ED553B;
+    }
+
+    // lvl 1
     li {
 
         margin-top: 2px;
         margin-bottom: 2px;
 
-        // lvl1
+        // lvl 2
         li {
 
-            // lvl2
             padding-left: 1em;
 
             // lvl3
             li {
                 padding-left: 2em;
             }
-        }
-
-        a {
-            // font-size: 14px;
-            padding: 3px;
-        }
-
-        a::before {
-            content: '';
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: #ED553B;
         }
     }
 }

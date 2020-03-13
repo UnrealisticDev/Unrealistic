@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import HyvorTalk from "hyvor-talk-react"
 
 import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
@@ -14,7 +15,7 @@ export default ({ data }) => {
 
   return (
     <Layout title={title}>
-      <div className="container" style={{scrollBehavior: 'smooth'}}>
+      <div className="container">
         <div className="columns is-centered">
           <div className="column is-8">
             <div class="box has-background-light">
@@ -41,6 +42,7 @@ export default ({ data }) => {
                         __html: body.childMarkdownRemark.html,
                       }}
                     />
+                    <HyvorTalk.Embed websiteId={292} />
                   </div>
                 </div>
               </div>

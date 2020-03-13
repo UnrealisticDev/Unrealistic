@@ -6,7 +6,8 @@ $font-size-base: 8px;
 .Title {
     // color: #173F5F;
     // margin-bottom: 3vmin;
-    font-size: calc(#{$font-size-base} + 4vw);;
+    font-size: calc(#{$font-size-base} + 4vw);
+    ;
     // text-align: center;
 }
 
@@ -32,7 +33,7 @@ h2::before {
     }
 
     h1 {
-        font-size: calc(#{$font-size-base} + 2vw);    
+        font-size: calc(#{$font-size-base} + 2vw);
         color: #20639B;
         // border-bottom: 2px solid #20639B;
         display: inline-block;
@@ -47,12 +48,16 @@ h2::before {
     p {
         line-height: calc((#{$font-size-base} + 1vw) * 1.6);
         margin-bottom: 3vmin;
+    }
 
+    p,
+    ul {
         code {
             background-color: rgb(231, 224, 224);
             color: rgb(53, 142, 184);
             padding: 3px;
             border-radius: .3em;
+
         }
     }
 
@@ -69,7 +74,8 @@ h2::before {
         }
     }
 
-    ul, ol {
+    ul,
+    ol {
         margin-left: 3rem;
         margin-top: 3vmin;
         margin-bottom: 3vmin;
