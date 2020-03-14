@@ -78,7 +78,7 @@ export default ({ data }) => {
                     title={editorPost.title}
                     subtitle="Editorial"
                     image={editorPost.image.file.url}
-                    to={freshPost.slug}
+                    to={editorPost.slug}
                   />
                 </div>
               </div>
