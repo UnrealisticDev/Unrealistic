@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet"
 import Header from "./header"
 import Footer from "./footer"
 
+import './layout.scss'
+
 import favicon16 from "../images/favicon16.png"
 import favicon32 from "../images/favicon32.png"
 import favicon64 from "../images/favicon64.png"
@@ -18,7 +20,7 @@ function getFavicon(size, icon) {
 }
 
 export default ({ children, title }) => (
-  <>
+  <div className='site'>
     <Helmet
       link={[
         getFavicon(16, favicon16),
@@ -30,9 +32,9 @@ export default ({ children, title }) => (
       <html className="has-navbar-fixed-top" lang='en' />
     </Helmet>
     <Header />
-    <section className="section has-background-light">
+    <section className="section has-background-light site-content">
       <div class="container">{children}</div>
     </section>
-    <Footer />
-  </>
+    <Footer/>
+  </div>
 )
