@@ -48,7 +48,7 @@ export default ({ data }) => {
   var insiderPost = getNewestInsiderPost()
 
   return (
-    <Layout>
+    <Layout title='Unrealistic'>
       <div>
         {/* <section className='hero is-dark'>
           <div class="hero-body">
