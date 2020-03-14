@@ -1,0 +1,10 @@
+@import '../styles/variables.scss';
+
+.Card {
+    // padding: 10px;
+    // text-align: center;
+}
+
+.Card:hover {
+    background-color: darken(#DBDBDB, 10%) !important;
+}

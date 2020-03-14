@@ -5,6 +5,7 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
+import Projectfiles from '../components/projectfiles'
 
 import "../styles/code.scss"
 import postStyles from "./post-basic.module.scss"
@@ -60,6 +61,7 @@ export default ({ data }) => {
                       .tableOfContents
                   }
                 />
+                <Projectfiles src={data.contentfulBlogPost.projectfiles}/>
               </Sidebar>
             </div>
           </div>
@@ -86,6 +88,7 @@ export const postQuery = graphql`
           tableOfContents(absolute: false)
         }
       }
+      projectfiles
     }
   }
 `
