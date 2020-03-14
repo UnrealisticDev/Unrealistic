@@ -27,16 +27,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-unrealistic`,
-        short_name: `unrealistic`,
+        name: `Unrealistic.dev`,
+        short_name: `Unrealistic`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `standalone`,
-        icon: `src/images/favicon64.png`,
+        icon: `src/images/icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -141,5 +140,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-offline`,
   ],
 }
