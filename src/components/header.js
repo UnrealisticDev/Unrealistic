@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import logo from "../images/logo.png"
 
@@ -16,7 +15,7 @@ export default () => {
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src={logo} />
+            <img src={logo} alt="logo" />
           </a>
 
           <label
@@ -25,7 +24,7 @@ export default () => {
             aria-label="menu"
             aria-expanded="false"
             htmlFor="nav-toggle-state"
-            data-target='navbarBasicExample'
+            data-target="navbarBasicExample"
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -47,7 +46,8 @@ export default () => {
 
           <div class="navbar-end">
             <div class="navbar-item is-hidden-mobile" id="site-descriptor">
-              Welcome to Unrealistic: A place to learn about Unreal Engine 4, gamedev, and chasing your dreams
+              Welcome to Unrealistic: A place to learn about Unreal Engine 4,
+              gamedev, and chasing your dreams
             </div>
           </div>
         </div>

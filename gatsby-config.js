@@ -46,14 +46,14 @@ module.exports = {
               // isIconAfterHeader: true,
             },
           },
-          // {
-          //   resolve: `gatsby-remark-images`,
-          //   options: {
-          //     maxWidth: 600,
-          //     showCaptions: `true`,
-          //     wrapperStyle: `max-width: 100px`,
-          //   },
-          // },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+              showCaptions: `true`,
+              // wrapperStyle: `max-width: 100px`,
+            },
+          },
           // {
           //   resolve: `gatsby-remark-figure-caption`,
           // },
@@ -63,9 +63,12 @@ module.exports = {
           // //     className: 'gatsby-remark-code-title'
           // //   }
           // // },
-          // // {
-          // //   resolve: `gatsby-remark-code-buttons`,
-          // // },
+          // {
+          //   resolve: `gatsby-remark-code-buttons`,
+          //   options: {
+          //     toasterText: 'Copied to clipboard.'
+          //   }
+          // },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

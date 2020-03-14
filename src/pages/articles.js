@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 import "../styles/global.scss"
-import localStyles from "./articles.module.scss"
+import "./articles.module.scss"
 
 export default ({ data }) => {
   return (
@@ -24,7 +24,7 @@ export default ({ data }) => {
                               ? image.file.url
                               : "https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png"
                           }
-                          alt="Placeholder image"
+                          alt="Post Feature"
                           style={{ objectFit: "cover" }}
                         />
                       </figure>

@@ -2,9 +2,6 @@ import React from "react"
 
 import lStyles from "./toc.module.scss"
 
-import { LoremIpsum } from "lorem-ipsum"
-var lorem = new LoremIpsum()
-
 export default ({ src }) => {
   return (
     <div className="card">

@@ -66,15 +66,16 @@
   //   font-style: italic;
   // }
   
-  // .gatsby-code-button-container {
-  //   padding: 0px;
-  //   height: 1px;
-  //   position: absolute;
-  // }
+  .gatsby-code-button-container {
+    padding: 0px;
+    height: 1px;
+    // position: absolute;
+    display: inline;
+  }
   
-  // .gatsby-code-button {
-  //   background-color: rgba(237, 86, 59, 0);
-  //   color: rgb(238, 72, 6);
-  //   padding-top: 0px;
-  // }
+  .gatsby-code-button {
+    background-color: rgba(237, 86, 59, 0);
+    color: rgb(238, 72, 6);
+    padding-top: 0px;
+  }
   

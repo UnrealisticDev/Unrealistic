@@ -5,7 +5,6 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
-import Projfiles from "../components/projfiles"
 
 import "../styles/code.scss"
 import postStyles from "./post-basic.module.scss"

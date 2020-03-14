@@ -5,8 +5,6 @@ import * as random from "random"
 import Layout from "../components/layout"
 import Widget from "../components/widget"
 
-import logo from "../images/logo-and-name.png"
-
 export default ({ data }) => {
   function getNewestPost() {
     var closestDiff = 99999999

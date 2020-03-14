@@ -11,7 +11,7 @@ export default ({ title, subtitle, descriptor, image, to, dims }) => {
           <figure class="image is-5by3">
             <img
               src={image}
-              alt="Placeholder image"
+              alt="Post feature"
               style={{ objectFit: "cover" }}
             />
           </figure>
