@@ -2,13 +2,15 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import "../styles/global.scss"
 import "./articles.module.scss"
 
 export default ({ data }) => {
   return (
-    <Layout title="Articles">
+    <Layout>
+      <SEO title='Articles'/>
       <div class="columns is-multiline is-desktop">
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (

@@ -23,6 +23,7 @@
     "gatsby": "^2.19.35",
     "gatsby-plugin-catch-links": "^2.1.26",
     "gatsby-plugin-manifest": "^2.2.45",
+    "gatsby-plugin-offline": "^3.0.40",
     "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sass": "^2.1.30",
     "gatsby-plugin-sharp": "^2.4.5",

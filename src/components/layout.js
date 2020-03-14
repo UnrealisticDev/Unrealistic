@@ -19,7 +19,7 @@ function getFavicon(size, icon) {
   }
 }
 
-export default ({ children, title }) => (
+export default ({ children }) => (
   <div className='site'>
     <Helmet
       link={[
@@ -28,8 +28,7 @@ export default ({ children, title }) => (
         getFavicon(64, favicon64),
       ]}
     >
-      <title>{title}</title>
-      <html className="has-navbar-fixed-top" lang='en' />
+      <html className="has-navbar-fixed-top" lang='en'/>
     </Helmet>
     <Header />
     <section className="section has-background-light site-content">

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import * as random from "random"
 
 import Layout from "../components/layout"
+import SEO from '../components/seo'
 import Widget from "../components/widget"
 
 import logo from "../images/logo-name.png"
@@ -23,7 +24,8 @@ export default ({ data }) => {
   var editorPost = data.editorPosts.nodes[0]
 
   return (
-    <Layout title="Unrealistic">
+    <Layout>
+      <SEO title='Unrealistic'/>
       <div class="level">
         <div class="container">
           <div class="content has-text-centered">

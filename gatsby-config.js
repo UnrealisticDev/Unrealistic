@@ -7,6 +7,8 @@
 module.exports = {
   siteMetadata: {
     title: `Unrealistic`,
+    description: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
+    author: `Nokternel Games`,
     navbarItems: ["articles", "glossary", "creations", "about"],
     tipOfTheWeek:
       "Never think you have the best idea ever. Test it as soon as possible. As it will probably turn out to be shit anyway.",
@@ -30,10 +32,11 @@ module.exports = {
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/logo.png`,
+        display: `standalone`,
+        icon: `src/images/favicon64.png`,
       },
     },
+    `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-transformer-remark`,

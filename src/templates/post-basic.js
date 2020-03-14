@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import HyvorTalk from "hyvor-talk-react"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
@@ -16,7 +17,8 @@ export default ({ data }) => {
   var toc = body.childMarkdownRemark.tableOfContents
 
   return (
-    <Layout title={title}>
+    <Layout>
+      <SEO title={title}/>
       <div className="container">
         <div className="columns is-centered">
           <div className="column is-8">
