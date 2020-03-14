@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 
-// import localStyles from "./widget.module.scss"
+import styles from "./widget.module.scss"
 
-export default ({ title, subtitle, descriptor, image, to, dims }) => {
+export default ({ title, subtitle, descriptor, image, to, dims, maxheight }) => {
   function getImage() {
     if (image) {
       return (
@@ -52,10 +52,16 @@ export default ({ title, subtitle, descriptor, image, to, dims }) => {
     }
   }
 
+  function cHeight() {
+    if (maxheight) {
+      return styles.Height100;
+    }
+  }
+
   return (
-    <div className="box has-background-light">
+    <div className={"box has-background-light " + cHeight()}>
       <Link to={to}>
-        <div class="card">
+        <div class={"card " + cHeight()}>
           {getImage()}
           {getSubtitle()}
           <div class="card-content">

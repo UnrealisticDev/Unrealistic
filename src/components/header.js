@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react"
 
-import logo from "../images/logo.png"
+import logo from "../images/logo-new.png"
 
 import "./header.scss"
 
@@ -45,12 +45,7 @@ export default () => {
             </a>
           </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item is-hidden-mobile" id="site-descriptor">
-              Welcome to Unrealistic: A place to learn about Unreal Engine 4,
-              gamedev, and chasing your dreams
-            </div>
-          </div>
+          <div class="navbar-end"></div>
         </div>
       </div>
     </nav>
