@@ -34,7 +34,21 @@ export default ({ title, subtitle, descriptor, image, to, dims }) => {
 
   function getSubtitle() {
     if (subtitle) {
-      return <div class="subtitle">{subtitle}</div>
+      return (
+        <div
+          class="subtitle has-background-warning has-text-grey-darker"
+          style={{
+            display: "inline-block",
+            paddingRight: "1em",
+            paddingLeft: "1em",
+            paddingTop: ".2em",
+            paddingBottom: ".2em",
+            margin: '0'
+          }}
+        >
+          {subtitle}
+        </div>
+      )
     }
   }
 
@@ -43,11 +57,11 @@ export default ({ title, subtitle, descriptor, image, to, dims }) => {
       <Link to={to}>
         <div class="card">
           {getImage()}
+          {getSubtitle()}
           <div class="card-content">
             <div class="content">
               {getDescriptor()}
               {getTitle()}
-              {getSubtitle()}
             </div>
           </div>
         </div>

@@ -46,17 +46,17 @@ module.exports = {
               // isIconAfterHeader: true,
             },
           },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-              showCaptions: `true`,
-              // wrapperStyle: `max-width: 100px`,
-            },
-          },
           // {
-          //   resolve: `gatsby-remark-figure-caption`,
+          //   resolve: `gatsby-remark-images`,
+          //   options: {
+          //     maxWidth: 590,
+          //     showCaptions: `true`,
+          //     // wrapperStyle: `max-width: 100px`,
+          //   },
           // },
+          {
+            resolve: `gatsby-remark-figure-caption`,
+          },
           // // {
           // //   resolve: 'gatsby-remark-code-titles',
           // //   options: {

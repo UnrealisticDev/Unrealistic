@@ -5,13 +5,15 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
 import Toc from "../components/toc"
-import Projectfiles from '../components/projectfiles'
+import Projectfiles from "../components/projectfiles"
 
 import "../styles/code.scss"
 import postStyles from "./post-basic.module.scss"
 
 export default ({ data }) => {
-  const { title, image, body } = data.contentfulBlogPost
+  const { title, image, body, projectfiles } = data.contentfulBlogPost
+
+  var toc = body.childMarkdownRemark.tableOfContents
 
   return (
     <Layout title={title}>
@@ -42,29 +44,26 @@ export default ({ data }) => {
                         __html: body.childMarkdownRemark.html,
                       }}
                     />
-                    <hr style={{marginTop: '8vmin', marginBottom: '8vmin'}}/>
+                    <hr style={{ marginTop: "8vmin", marginBottom: "8vmin" }} />
                     <HyvorTalk.Embed websiteId={292} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="column is-3">
-            <div
-              className="box has-background-light"
-              style={{ position: "sticky", top: "10vmin", bottom: "25vmin" }}
-            >
-              <Sidebar>
-                <Toc
-                  src={
-                    data.contentfulBlogPost.body.childMarkdownRemark
-                      .tableOfContents
-                  }
-                />
-                <Projectfiles src={data.contentfulBlogPost.projectfiles}/>
-              </Sidebar>
+          {(toc || projectfiles) && (
+            <div className="column is-3">
+              <div
+                className="box has-background-light"
+                style={{ position: "sticky", top: "10vmin", bottom: "25vmin" }}
+              >
+                <Sidebar>
+                  <Toc src={toc} />
+                  <Projectfiles src={projectfiles} />
+                </Sidebar>
+              </div>
             </div>
-          </div>
+          )}
           <div />
         </div>
       </div>

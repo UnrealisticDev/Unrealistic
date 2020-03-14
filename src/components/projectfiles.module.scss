@@ -1,10 +1,15 @@
 @import '../styles/variables.scss';
 
 .Card {
-    // padding: 10px;
-    // text-align: center;
+    path {
+        color: lighten(#2c2c2c, 40%);
+    }
 }
 
 .Card:hover {
     background-color: darken(#DBDBDB, 10%) !important;
+
+    path {
+        color: #332329;
+    }
 }

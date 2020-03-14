@@ -46,23 +46,11 @@ export default ({ data }) => {
 
   var freshPost = getNewestPost()
   var insiderPost = getNewestInsiderPost()
+  var editorPost = data.editorPosts.nodes[0];
 
   return (
     <Layout title='Unrealistic'>
       <div>
-        {/* <section className='hero is-dark'>
-          <div class="hero-body">
-            <div class="content has-text-centered">
-              <figure class="image is-inline-block">
-                <img
-                  src={logo}
-                  alt="Logo and name"
-                />
-              </figure>
-              <div class='content'>Stuff</div>
-            </div>
-          </div>
-        </section> */}
         <div class="tile is-ancestor">
           <div class="tile is-vertical">
             <div class="tile">
@@ -87,9 +75,9 @@ export default ({ data }) => {
                 </div>
                 <div class="tile is-child">
                   <Widget
-                    title="Editorial"
-                    subtitle="Dive into the Unreal Editor"
-                    image="https://steamcdn-a.akamaihd.net/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.1920x1080.jpg?t=1577747500"
+                    title={editorPost.title}
+                    subtitle="Editorial"
+                    image={editorPost.image.file.url}
                     to={freshPost.slug}
                   />
                 </div>
@@ -100,8 +88,8 @@ export default ({ data }) => {
                 <div class="tile is-child">
                   <Widget
                     to="/"
-                    title="Beginners Guide"
-                    subtitle="Cut into the learning curve"
+                    title="No better place to start!"
+                    subtitle="Beginner's Guide"
                     image="https://files.ayumilove.net/games/maplestory2/guide/beginner/MapleStory2_Beginner_Guide_9.jpg"
                   />
                 </div>
@@ -156,6 +144,17 @@ export const query = graphql`
             file {
               url
             }
+          }
+        }
+      }
+    }
+    editorPosts: allContentfulBlogPost(filter: {tags: {in: "editor"}}, sort: {fields: createdAt, order: DESC}) {
+      nodes {
+        slug
+        title
+        image {
+          file {
+            url
           }
         }
       }
