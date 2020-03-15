@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import * as random from "random"
 
 import Layout from "../components/layout"
-import SEO from '../components/seo'
+import SEO from "../components/seo"
 import Widget from "../components/widget"
 
 import logo from "../images/logo-name.png"
@@ -22,20 +22,29 @@ export default ({ data }) => {
   var freshPost = data.newestPosts.nodes[0]
   var insiderPost = data.insiderPosts.nodes[0]
   var editorPost = data.editorPosts.nodes[0]
+  var devlogPost = data.projectSpudDevlog;
 
   return (
     <Layout>
-      <SEO title='Unrealistic'/>
+      <SEO title="Unrealistic" />
       <div class="level">
         <div class="container">
           <div class="content has-text-centered">
-            <figure class="image" style={{ maxWidth: "512px", marginLeft: 'auto', marginRight: 'auto', marginBottom: '.5vmin'}}>
+            <figure
+              class="image"
+              style={{
+                maxWidth: "512px",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: ".5vmin",
+              }}
+            >
               <img src={logo} alt="logo" />
             </figure>
-              <p style={{fontStyle: 'italic'}}>
-                A place to learn about Unreal Engine 4,<br/> gamedev, and chasing
-                your dreams
-              </p>
+            <p style={{ fontStyle: "italic" }}>
+              A place to learn about Unreal Engine 4,
+              <br /> gamedev, and chasing your dreams
+            </p>
           </div>
         </div>
       </div>
@@ -49,7 +58,7 @@ export default ({ data }) => {
                   subtitle="Fresh Off the Press"
                   image={getImageFromPost(freshPost)}
                   to={freshPost.slug}
-                  maxheight
+                  fullheight
                 />
               </div>
             </div>
@@ -73,11 +82,19 @@ export default ({ data }) => {
             </div>
           </div>
           <div class="tile">
-            <div class="tile is-parent is-4">
+            <div class="tile is-parent is-vertical is-4">
+              <div class="tile is-child">
+                <Widget
+                  to={devlogPost.slug}
+                  title="Project Spud"
+                  subtitle="Devlog"
+                  image={getImageFromPost(devlogPost)}
+                />
+              </div>
               <div class="tile is-child">
                 <Widget
                   to={getRandomPost().slug}
-                  title="Try something new!"
+                  title="Learn something new"
                   subtitle="Random"
                   image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
                 />
@@ -87,9 +104,10 @@ export default ({ data }) => {
               <div class="tile is-child">
                 <Widget
                   to="/"
-                  title="No better place to start!"
+                  title="No better place to start"
                   subtitle="Beginner's Guide"
                   image="https://files.ayumilove.net/games/maplestory2/guide/beginner/MapleStory2_Beginner_Guide_9.jpg"
+                  fullheight
                 />
               </div>
             </div>
@@ -122,7 +140,7 @@ export const query = graphql`
       }
     }
     newestPosts: allContentfulBlogPost(
-      filter: { tags: { nin: ["insider", "editor"] } }
+      filter: { tags: { nin: ["insider", "editor", "devlog"] } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
@@ -160,6 +178,14 @@ export const query = graphql`
           file {
             url
           }
+        }
+      }
+    }
+    projectSpudDevlog: contentfulBlogPost(slug: { eq: "devlog-project-spud" }) {
+      slug
+      image {
+        file {
+          url
         }
       }
     }

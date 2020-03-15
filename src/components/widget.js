@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 import styles from "./widget.module.scss"
 
-export default ({ title, subtitle, descriptor, image, to, dims, maxheight }) => {
+export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) => {
   function getImage() {
     if (image) {
       return (
@@ -53,7 +53,7 @@ export default ({ title, subtitle, descriptor, image, to, dims, maxheight }) => 
   }
 
   function cHeight() {
-    if (maxheight) {
+    if (fullheight) {
       return styles.Height100;
     }
   }
