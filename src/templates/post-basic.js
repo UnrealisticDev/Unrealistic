@@ -49,7 +49,6 @@ export default ({ data, pageContext }) => {
       <SEO title={title} />
       <div className="container">
         <div className="columns is-centered">
-          {makeSeriesMarker(beforePost)}
           <div className="column is-8">
             <div className="box has-background-light">
               <div className="card">
@@ -90,7 +89,7 @@ export default ({ data, pageContext }) => {
               </div>
             </div>
           </div>
-          {(toc || projectfiles) && (
+          {(toc || projectfiles || beforePost || afterPost) && (
             <div className="column is-3">
               <div
                 className="box has-background-light"
@@ -111,7 +110,6 @@ export default ({ data, pageContext }) => {
               </div>
             </div>
           )}
-          {makeSeriesMarker(afterPost)}
           <div />
         </div>
       </div>
