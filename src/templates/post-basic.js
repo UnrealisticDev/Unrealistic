@@ -11,7 +11,7 @@ import Projectfiles from "../components/projectfiles"
 import "../styles/code.scss"
 import postStyles from "./post-basic.module.scss"
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
   const {
     title,
     image,
@@ -22,13 +22,15 @@ export default ({ data }) => {
   } = data.contentfulBlogPost
 
   function makeSeriesMarker(post, right) {
-    return (
-      post && (
-        <div className="column">
-          <Link to={post.slug}>{post.title}</Link>
-        </div>
+    if (pageContext.pageSeries) {
+      return (
+        post && (
+          <div className="column">
+            <Link to={post.slug}>{post.title}</Link>
+          </div>
+        )
       )
-    )
+    }
   }
 
   var toc = body.childMarkdownRemark.tableOfContents
@@ -56,14 +58,14 @@ export default ({ data }) => {
                 <div className="card-content">
                   <div className="content">
                     <div className={"title " + postStyles.Title}>{title}</div>
-                    <div
+                     {series && <div
                       className={
                         "subtitle has-background-warning has-text-grey-darker " +
                         postStyles.Subtitle
                       }
                     >
                       {series}
-                    </div>
+                    </div>}
                   </div>
                 </div>
                 <div className="card-image">
