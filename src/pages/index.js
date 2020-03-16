@@ -22,16 +22,17 @@ export default ({ data }) => {
   var freshPost = data.newestPosts.nodes[0]
   var insiderPost = data.insiderPosts.nodes[0]
   var editorPost = data.editorPosts.nodes[0]
-  var devlogPost = data.projectSpudDevlog;
+  var devlogPost = data.projectSpudDevlog
+  var beginnerPost = data.beginnersGuide;
 
   return (
     <Layout>
       <SEO title="Unrealistic" />
-      <div class="level">
-        <div class="container">
-          <div class="content has-text-centered">
+      <div className="level">
+        <div className="container">
+          <div className="content has-text-centered">
             <figure
-              class="image"
+              className="image"
               style={{
                 maxWidth: "512px",
                 marginLeft: "auto",
@@ -48,11 +49,11 @@ export default ({ data }) => {
           </div>
         </div>
       </div>
-      <div class="tile is-ancestor">
-        <div class="tile is-vertical">
-          <div class="tile">
-            <div class="tile is-parent is-9">
-              <div class="tile is-child">
+      <div className="tile is-ancestor">
+        <div className="tile is-vertical">
+          <div className="tile">
+            <div className="tile is-parent is-9">
+              <div className="tile is-child">
                 <Widget
                   title={freshPost.title}
                   subtitle="Fresh Off the Press"
@@ -62,8 +63,8 @@ export default ({ data }) => {
                 />
               </div>
             </div>
-            <div class="tile is-parent is-vertical">
-              <div class="tile is-child">
+            <div className="tile is-parent is-vertical">
+              <div className="tile is-child">
                 <Widget
                   title={insiderPost.title}
                   subtitle="Insider Insight"
@@ -71,7 +72,7 @@ export default ({ data }) => {
                   to={insiderPost.slug}
                 />
               </div>
-              <div class="tile is-child">
+              <div className="tile is-child">
                 <Widget
                   title={editorPost.title}
                   subtitle="Editorial"
@@ -81,9 +82,9 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
-          <div class="tile">
-            <div class="tile is-parent is-vertical is-4">
-              <div class="tile is-child">
+          <div className="tile">
+            <div className="tile is-parent is-vertical is-4">
+              <div className="tile is-child">
                 <Widget
                   to={devlogPost.slug}
                   title="Project Spud"
@@ -91,7 +92,7 @@ export default ({ data }) => {
                   image={getImageFromPost(devlogPost)}
                 />
               </div>
-              <div class="tile is-child">
+              <div className="tile is-child">
                 <Widget
                   to={getRandomPost().slug}
                   title="Learn something new"
@@ -100,13 +101,13 @@ export default ({ data }) => {
                 />
               </div>
             </div>
-            <div class="tile is-parent">
-              <div class="tile is-child">
+            <div className="tile is-parent">
+              <div className="tile is-child">
                 <Widget
-                  to="/"
+                  to={beginnerPost.slug}
                   title="No better place to start"
                   subtitle="Beginner's Guide"
-                  image="https://files.ayumilove.net/games/maplestory2/guide/beginner/MapleStory2_Beginner_Guide_9.jpg"
+                  image={getImageFromPost(beginnerPost)}
                   fullheight
                 />
               </div>
@@ -140,7 +141,7 @@ export const query = graphql`
       }
     }
     newestPosts: allContentfulBlogPost(
-      filter: { tags: { nin: ["insider", "editor", "devlog"] } }
+      filter: { tags: { nin: ["insider", "editor", "devlog", "series"] } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
@@ -182,6 +183,18 @@ export const query = graphql`
       }
     }
     projectSpudDevlog: contentfulBlogPost(slug: { eq: "devlog-project-spud" }) {
+      slug
+      image {
+        file {
+          url
+        }
+      }
+    }
+    beginnersGuide: contentfulBlogPost(
+      series: { eq: "Beginner's Guide" }
+      seriesNum: { eq: 0 }
+    ) {
+      title
       slug
       image {
         file {

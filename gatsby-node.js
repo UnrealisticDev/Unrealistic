@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             node {
               id
               slug
+              series
             }
           }
         }
@@ -34,12 +35,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postTemplate = path.resolve(`./src/templates/post-basic.js`)
   result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
     const path = node.slug
+    const series = node.series
     console.log("Creating page: " + path)
     createPage({
       path,
       component: postTemplate,
       context: {
         pagePath: path,
+        pageSeries: series,
       },
     })
   })

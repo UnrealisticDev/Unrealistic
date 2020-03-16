@@ -4,11 +4,18 @@
 $font-size-base: 8px;
 
 .Title {
-    // color: #173F5F;
-    // margin-bottom: 3vmin;
     font-size: calc(#{$font-size-base} + 4vw);
-    ;
-    // text-align: center;
+}
+
+.Subtitle {
+    font-size: calc(#{$font-size-base} + .5vw);
+    text-transform: uppercase;
+    display: inline-block;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    margin: 0;
 }
 
 .Markdown h1::before,
