@@ -25,9 +25,7 @@ export default ({ data, pageContext }) => {
     if (pageContext.pageSeries) {
       return (
         post && (
-          <div className="column">
             <Link to={post.slug}>{post.title}</Link>
-          </div>
         )
       )
     }
@@ -102,6 +100,14 @@ export default ({ data, pageContext }) => {
                   <Toc src={toc} />
                   <Projectfiles src={projectfiles} />
                 </Sidebar>
+                <div className='level'>
+                  <div className='level-left'>
+                    <div className='level-item button'>{makeSeriesMarker(beforePost)}</div>
+                  </div>
+                  <div className='level-right'>
+                    <div className='level-item button'>{makeSeriesMarker(afterPost)}</div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
