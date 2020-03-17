@@ -5,6 +5,7 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar"
+import Seriesnav from '../components/seriesnav'
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
 
@@ -21,20 +22,10 @@ export default ({ data, pageContext }) => {
     seriesNum,
   } = data.contentfulBlogPost
 
-  function makeSeriesMarker(post, right) {
-    if (pageContext.pageSeries) {
-      return (
-        post && (
-            <Link to={post.slug}>{post.title}</Link>
-        )
-      )
-    }
-  }
-
   var toc = body.childMarkdownRemark.tableOfContents
 
-  var beforePost = {}
-  var afterPost = {}
+  var beforePost = null
+  var afterPost = null
   for (var i = 0; i < data.seriesNeighbors.nodes.length; ++i) {
     if (seriesNum - 1 === i) {
       beforePost = data.seriesNeighbors.nodes[i]
@@ -55,14 +46,6 @@ export default ({ data, pageContext }) => {
                 <div className="card-content">
                   <div className="content">
                     <div className={"title " + postStyles.Title}>{title}</div>
-                     {series && <div
-                      className={
-                        "subtitle has-background-warning has-text-grey-darker " +
-                        postStyles.Subtitle
-                      }
-                    >
-                      {series}
-                    </div>}
                   </div>
                 </div>
                 <div className="card-image">
@@ -93,20 +76,13 @@ export default ({ data, pageContext }) => {
             <div className="column is-3">
               <div
                 className="box has-background-light"
-                style={{ position: "sticky", top: "10vmin", bottom: "25vmin" }}
+                style={{ position: "sticky", top: "10vmin" }}
               >
                 <Sidebar>
+                  <Seriesnav series={series} beforePost={beforePost} afterPost={afterPost}/>
                   <Toc src={toc} />
                   <Projectfiles src={projectfiles} />
                 </Sidebar>
-                <div className='level'>
-                  <div className='level-left'>
-                    <div className='level-item button'>{makeSeriesMarker(beforePost)}</div>
-                  </div>
-                  <div className='level-right'>
-                    <div className='level-item button'>{makeSeriesMarker(afterPost)}</div>
-                  </div>
-                </div>
               </div>
             </div>
           )}
