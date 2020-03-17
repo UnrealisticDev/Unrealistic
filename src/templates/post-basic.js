@@ -5,7 +5,7 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar"
-import Seriesnav from '../components/seriesnav'
+import Seriesnav from "../components/seriesnav"
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
 
@@ -26,12 +26,14 @@ export default ({ data, pageContext }) => {
 
   var beforePost = null
   var afterPost = null
-  for (var i = 0; i < data.seriesNeighbors.nodes.length; ++i) {
-    if (seriesNum - 1 === i) {
-      beforePost = data.seriesNeighbors.nodes[i]
-    }
-    if (seriesNum + 1 === i) {
-      afterPost = data.seriesNeighbors.nodes[i]
+  if (series) {
+    for (var i = 0; i < data.seriesNeighbors.nodes.length; ++i) {
+      if (seriesNum - 1 === i) {
+        beforePost = data.seriesNeighbors.nodes[i]
+      }
+      if (seriesNum + 1 === i) {
+        afterPost = data.seriesNeighbors.nodes[i]
+      }
     }
   }
 
@@ -79,7 +81,11 @@ export default ({ data, pageContext }) => {
                 style={{ position: "sticky", top: "10vmin" }}
               >
                 <Sidebar>
-                  <Seriesnav series={series} beforePost={beforePost} afterPost={afterPost}/>
+                  <Seriesnav
+                    series={series}
+                    beforePost={beforePost}
+                    afterPost={afterPost}
+                  />
                   <Toc src={toc} />
                   <Projectfiles src={projectfiles} />
                 </Sidebar>
