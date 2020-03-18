@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import HyvorTalk from "hyvor-talk-react"
 
 import Layout from "../components/layout"
@@ -81,13 +81,13 @@ export default ({ data, pageContext }) => {
                 style={{ position: "sticky", top: "10vmin" }}
               >
                 <Sidebar>
-                  <Seriesnav
+                  {/* <Seriesnav
                     series={series}
                     beforePost={beforePost}
                     afterPost={afterPost}
-                  />
+                  /> */}
                   <Toc src={toc} />
-                  <Projectfiles src={projectfiles} />
+                  {/* <Projectfiles src={projectfiles} /> */}
                 </Sidebar>
               </div>
             </div>
