@@ -7,8 +7,8 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
   function getImage() {
     if (image) {
       return (
-        <div class="card-image">
-          <figure class="image is-5by3">
+        <div className="card-image">
+          <figure className="image is-5by3">
             <img
               src={image}
               alt="Post feature"
@@ -28,7 +28,7 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
 
   function getTitle() {
     if (title) {
-      return <div class="title">{title}</div>
+      return <div className="title">{title}</div>
     }
   }
 
@@ -36,7 +36,7 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
     if (subtitle) {
       return (
         <div
-          class="subtitle has-background-warning has-text-grey-darker"
+          className="subtitle has-background-warning has-text-grey-darker"
           style={{
             display: "inline-block",
             paddingRight: "1em",
@@ -61,11 +61,11 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
   return (
     <div className={"box has-background-light " + cHeight()}>
       <Link to={to}>
-        <div class={"card " + cHeight()}>
+        <div className={"card " + cHeight()}>
           {getImage()}
           {getSubtitle()}
-          <div class="card-content">
-            <div class="content">
+          <div className="card-content">
+            <div className="content">
               {getDescriptor()}
               {getTitle()}
             </div>

@@ -3,20 +3,28 @@ import React from "react"
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import lStyles from "./projectfiles.module.scss"
+import styles from "./projectfiles.module.scss"
 
 export default ({ src }) => {
   if (src) {
     return (
-      <div className={"card has-background-grey-lighter " + lStyles.Card}>
+      <div className={"card has-background-grey-lighter " + styles.Card}>
         <a href={src} target="_blank" rel="noopener noreferrer">
-          <div class="card-content">
-            <div class="content">
-              <div class="level">
-                <div class="subtitle" style={{ margin: 0 }}>
-                  Project Files
+          <div className="card-content">
+            <div className="content">
+              <div className="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <div className={"subtitle"} style={{ margin: 0 }}>
+                      Project Files
+                    </div>
+                  </div>
                 </div>
-                <FontAwesomeIcon icon={faExternalLinkAlt}/>
+                <div class="level-right">
+                  <div class="level-item">
+                    <FontAwesomeIcon icon={faExternalLinkAlt}/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

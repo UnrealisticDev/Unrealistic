@@ -22,17 +22,19 @@ export default ({ data, pageContext }) => {
     seriesNum,
   } = data.contentfulBlogPost
 
+  const { seriesNeighbors } = data
+
   var toc = body.childMarkdownRemark.tableOfContents
 
   var beforePost = null
   var afterPost = null
   if (series) {
-    for (var i = 0; i < data.seriesNeighbors.nodes.length; ++i) {
+    for (var i = 0; i < seriesNeighbors.nodes.length; ++i) {
       if (seriesNum - 1 === i) {
-        beforePost = data.seriesNeighbors.nodes[i]
+        beforePost = seriesNeighbors.nodes[i]
       }
       if (seriesNum + 1 === i) {
-        afterPost = data.seriesNeighbors.nodes[i]
+        afterPost = seriesNeighbors.nodes[i]
       }
     }
   }
@@ -81,13 +83,14 @@ export default ({ data, pageContext }) => {
                 style={{ position: "sticky", top: "10vmin" }}
               >
                 <Sidebar>
-                  {/* <Seriesnav
+                  <Seriesnav
                     series={series}
+                    seriesNeighbors={seriesNeighbors.nodes}
                     beforePost={beforePost}
                     afterPost={afterPost}
-                  /> */}
+                  />
                   <Toc src={toc} />
-                  {/* <Projectfiles src={projectfiles} /> */}
+                  <Projectfiles src={projectfiles} />
                 </Sidebar>
               </div>
             </div>

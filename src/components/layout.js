@@ -32,7 +32,7 @@ export default ({ children }) => (
     </Helmet>
     <Header />
     <section className="section has-background-light site-content">
-      <div class="container">{children}</div>
+      <div className="container">{children}</div>
     </section>
     <Footer/>
   </div>

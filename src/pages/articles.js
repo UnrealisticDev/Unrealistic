@@ -11,15 +11,15 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title='Articles'/>
-      <div class="columns is-multiline is-desktop">
+      <div className="columns is-multiline is-desktop">
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
-            <div class="column is-4">
+            <div className="column is-4">
               <Link to={slug}>
-                <div class="box">
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
+                <div className="box">
+                  <div className="card">
+                    <div className="card-image">
+                      <figure className="image is-4by3">
                         <img
                           src={
                             image
@@ -31,9 +31,9 @@ export default ({ data }) => {
                         />
                       </figure>
                     </div>
-                    <div class="card-content">
-                      <div class="content">
-                        <div class="title">{title}</div>
+                    <div className="card-content">
+                      <div className="content">
+                        <div className="title">{title}</div>
                       </div>
                     </div>
                   </div>
