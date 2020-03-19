@@ -105,3 +105,11 @@ h2::before {
         text-align: center;
     }
 }
+
+.SeriesNavInline {
+    color: rgb(209, 204, 204);
+}
+
+.SeriesNavInline:hover {
+    color: darken(rgb(209, 204, 204), 30%);
+}

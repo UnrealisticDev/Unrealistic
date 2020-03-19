@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import HyvorTalk from "hyvor-talk-react"
 
 import Layout from "../components/layout"
@@ -9,8 +9,14 @@ import Seriesnav from "../components/seriesnav"
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons"
+
 import "../styles/code.scss"
-import postStyles from "./post-basic.module.scss"
+import styles from "./post-basic.module.scss"
 
 export default ({ data, pageContext }) => {
   const {
@@ -49,7 +55,7 @@ export default ({ data, pageContext }) => {
               <div className="card">
                 <div className="card-content">
                   <div className="content">
-                    <div className={"title " + postStyles.Title}>{title}</div>
+                    <div className={"title " + styles.Title}>{title}</div>
                   </div>
                 </div>
                 <div className="card-image">
@@ -64,11 +70,45 @@ export default ({ data, pageContext }) => {
                 <div className="card-content">
                   <div className="content">
                     <div
-                      className={postStyles.Markdown}
+                      className={styles.Markdown}
                       dangerouslySetInnerHTML={{
                         __html: body.childMarkdownRemark.html,
                       }}
                     />
+                    <div class="level">
+                      <div class="level-right">
+                        <div class="level-item">
+                          {beforePost && (
+                            <Link to={beforePost.slug} className={styles.SeriesNavInline}>
+                              <div class="level is-mobile">
+                                <div class="level-item">
+                                  <FontAwesomeIcon icon={faChevronLeft} />
+                                </div>
+                                <div class="level-item">
+                                  {beforePost.title}
+                                </div>
+                              </div>
+                            </Link>
+                          )}{" "}
+                        </div>
+                      </div>
+                      <div class="level-left">
+                        <div class="level-item">
+                          {afterPost && (
+                            <Link to={afterPost.slug} className={styles.SeriesNavInline}>
+                              <div class="level is-mobile">
+                                <div class="level-item">
+                                  {afterPost.title}
+                                </div>
+                                <div class="level-item">
+                                  <FontAwesomeIcon icon={faChevronRight} />
+                                </div>
+                              </div>
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                     <hr style={{ marginTop: "8vmin", marginBottom: "8vmin" }} />
                     <HyvorTalk.Embed websiteId={292} />
                   </div>
@@ -78,21 +118,29 @@ export default ({ data, pageContext }) => {
           </div>
           {(toc || projectfiles || beforePost || afterPost) && (
             <div className="column is-3">
-              <div
-                className="box has-background-light"
-                style={{ position: "sticky", top: "10vmin" }}
-              >
-                <Sidebar>
-                  <Seriesnav
-                    series={series}
-                    seriesNeighbors={seriesNeighbors.nodes}
-                    beforePost={beforePost}
-                    afterPost={afterPost}
-                  />
-                  <Toc src={toc} />
-                  <Projectfiles src={projectfiles} />
-                </Sidebar>
-              </div>
+              {(beforePost || afterPost) && (
+                <div class="box has-background-light">
+                  <Sidebar>
+                    <Seriesnav
+                      series={series}
+                      seriesNeighbors={seriesNeighbors.nodes}
+                      beforePost={beforePost}
+                      afterPost={afterPost}
+                    />
+                  </Sidebar>
+                </div>
+              )}
+              {(toc || projectfiles) && (
+                <div
+                  className="box has-background-light"
+                  style={{ position: "sticky", top: "10vmin" }}
+                >
+                  <Sidebar>
+                    <Toc src={toc} />
+                    <Projectfiles src={projectfiles} />
+                  </Sidebar>
+                </div>
+              )}{" "}
             </div>
           )}
           <div />

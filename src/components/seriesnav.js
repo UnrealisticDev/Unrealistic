@@ -1,22 +1,14 @@
+/* eslint-disable */
 import React, { useState } from "react"
 import { Link } from "gatsby"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons"
 
 export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
-  // function makeSeriesMarker(post, after) {
-  //   return (
-  //     post && (
-  //       <Link to={post.slug}>
-  //         <div className="button has-background-grey-lighter">
-  //           {after ? ">" : "<"}
-  //         </div>
-  //       </Link>
-  //     )
-  //   )
-  // }
-
   const [seriesOpen, setSeriesOpen] = useState(false)
   const [seriesList, setSeriesList] = useState([])
 
@@ -30,9 +22,16 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
         mylist.push(
           <Link to={neighbor.slug}>
             <div class="content">
-              <button className={"button is-white"} style={{ width: "100%", justifyContent: 'left'}}>
-                <div>{(neighbor.seriesNum + 1) + '. ' + neighbor.title}</div>
-              </button>
+              <a
+                style={{
+                  width: "100%",
+                  justifyContent: "left",
+                  color: "#363636 !important",
+                }}
+                href="javascript:;"
+              >
+                {neighbor.seriesNum + 1 + ". " + neighbor.title}
+              </a>
             </div>
           </Link>
         )
@@ -45,53 +44,52 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
   return (
     <>
       {series && (
-        <div className="card" style={{ marginBottom: "1em" }}>
-          <div className="card-content">
-            <div className="content">
-              <div class="level">
-                <div
-                  class="level-left"
-                  style={{ maxWidth: "70%", overflowWrap: "break-word" }}
-                >
-                  <div class="level-item">
-                    <div className="subtitle">{series}</div>
+        <a
+          onClick={() => toggleSeriesList()}
+          onKeyDown={e => {
+            if (e.key === "Return") toggleSeriesList()
+          }}
+          href="javascript:;"
+        >
+          <div className="card">
+            <div className="card-content">
+              <div className="content">
+                <div class="level is-mobile">
+                  <div class="level-left">
+                    <div class="level-item">
+                      {beforePost && (
+                        <Link to={beforePost.slug}>
+                          <FontAwesomeIcon icon={faChevronLeft} />
+                        </Link>
+                      )}{" "}
+                    </div>
                   </div>
-                </div>
-                <div className="level-right">
-                  <div className="level-item">
-                    <button
-                      href="#"
-                      className="button is-white"
-                      onClick={() => toggleSeriesList()}
+                  <div
+                    class="level-item has-text-centered"
+                    style={{ margin: 0 }}
+                  >
+                    <div
+                      className="title"
+                      style={{ fontSize: "calc(12px + .75vw)" }}
                     >
-                      <FontAwesomeIcon icon={faPlus} />
-                    </button>
+                      {series}
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item">
+                      {afterPost && (
+                        <Link to={afterPost.slug}>
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Link>
+                      )}{" "}
+                    </div>
                   </div>
                 </div>
+                {seriesList}
               </div>
-              {seriesList}
-              {/* <div className="level is-mobile">
-                {beforePost && (
-                  <div className="level-left">
-                    <div className="level-item">
-                      {makeSeriesMarker(beforePost)}
-                    </div>
-                  </div>
-                )}
-                <div className="level-item has-text-centered">
-                  <div className="button has-background-grey-lighter">v</div>
-                </div>
-                {afterPost && (
-                  <div className="level-right">
-                    <div className="level-item">
-                      {makeSeriesMarker(afterPost, true)}
-                    </div>
-                  </div>
-                )}
-              </div> */}
             </div>
           </div>
-        </div>
+        </a>
       )}
     </>
   )
