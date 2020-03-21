@@ -43,6 +43,9 @@ export default () => {
             <a className="navbar-item" href="/articles/">
               Articles
             </a>
+            <a className="navbar-item" href="/about/">
+              About
+            </a>
           </div>
 
           <div className="navbar-end"></div>
