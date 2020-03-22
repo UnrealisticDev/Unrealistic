@@ -15,7 +15,7 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
   }
 
   return (
-    <div class="field">
+    <div className="field">
       <label className="label">{name}</label>
       <div className={getControlClass()}>{children}</div>
     </div>
@@ -25,22 +25,23 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
 export default () => {
   return (
     <form name="hireme" method="POST" netlify action='/success/'>
+      <input type="hidden" name="form-name" value="hireme" />
       <h1 className="title">Hire Us!</h1>
-      <div class="columns">
-        <div class="column">
+      <div className="columns">
+        <div className="column">
           <BulmaControl name="First Name">
             <input
-              class="input"
+              className="input"
               type="text"
               placeholder="John"
               name="firstname"
             />
           </BulmaControl>
         </div>
-        <div class="column">
+        <div className="column">
           <BulmaControl name="Last Name">
             <input
-              class="input"
+              className="input"
               type="text"
               placeholder="Smith"
               name="lastname"
@@ -50,12 +51,12 @@ export default () => {
       </div>
       <BulmaControl name="Email" hasLeftIcons>
         <input
-          class="input"
+          className="input"
           type="email"
           placeholder="johnsmith@gmail.com"
           name="email"
         />{" "}
-        <span class="icon is-small is-left">
+        <span className="icon is-small is-left">
           <FontAwesomeIcon icon={faEnvelope} />
         </span>
       </BulmaControl>

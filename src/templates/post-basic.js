@@ -75,16 +75,16 @@ export default ({ data, pageContext }) => {
                         __html: body.childMarkdownRemark.html,
                       }}
                     />
-                    <div class="level">
-                      <div class="level-right">
-                        <div class="level-item">
+                    <div className="level">
+                      <div className="level-right">
+                        <div className="level-item">
                           {beforePost && (
                             <Link to={beforePost.slug} className={styles.SeriesNavInline}>
-                              <div class="level is-mobile">
-                                <div class="level-item">
+                              <div className="level is-mobile">
+                                <div className="level-item">
                                   <FontAwesomeIcon icon={faChevronLeft} />
                                 </div>
-                                <div class="level-item">
+                                <div className="level-item">
                                   {beforePost.title}
                                 </div>
                               </div>
@@ -92,15 +92,15 @@ export default ({ data, pageContext }) => {
                           )}{" "}
                         </div>
                       </div>
-                      <div class="level-left">
-                        <div class="level-item">
+                      <div className="level-left">
+                        <div className="level-item">
                           {afterPost && (
                             <Link to={afterPost.slug} className={styles.SeriesNavInline}>
-                              <div class="level is-mobile">
-                                <div class="level-item">
+                              <div className="level is-mobile">
+                                <div className="level-item">
                                   {afterPost.title}
                                 </div>
-                                <div class="level-item">
+                                <div className="level-item">
                                   <FontAwesomeIcon icon={faChevronRight} />
                                 </div>
                               </div>
@@ -119,7 +119,7 @@ export default ({ data, pageContext }) => {
           {(toc || projectfiles || beforePost || afterPost) && (
             <div className="column is-3">
               {(beforePost || afterPost) && (
-                <div class="box has-background-light">
+                <div className="box has-background-light">
                   <Sidebar>
                     <Seriesnav
                       series={series}

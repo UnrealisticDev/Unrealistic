@@ -7,15 +7,15 @@ import Hireme from "../components/hireme"
 export default () => (
   <Layout>
     <SEO title="About" />
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-3">
+    <div className="container">
+      <div className="columns is-centered">
+        <div className="column is-3">
           <Hireme />
         </div>
-        <div class='column is-1'/>
-        <div class="column is-4">
-          <div class="container">
-            <div class="content">
+        <div className='column is-1'/>
+        <div className="column is-4">
+          <div className="container">
+            <div className="content">
               <div className="title">About Unrealistic</div>
               <p>
                 Unrealistic's mission is to inform, empower, and inspire our
@@ -25,7 +25,7 @@ export default () => (
                 business of making video games via our comment system.
               </p>
             </div>
-            <div class="content">
+            <div className="content">
               <div className="title">About Nokternel Games</div>
               <p>
                 Everything we do at Nokternel Games is based on the

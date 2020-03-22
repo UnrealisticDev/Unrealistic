@@ -13,15 +13,15 @@ export default ({ src }) => {
           <div className="card-content">
             <div className="content">
               <div className="level is-mobile">
-                <div class="level-left">
-                  <div class="level-item">
+                <div className="level-left">
+                  <div className="level-item">
                     <div className={"subtitle"} style={{ margin: 0 }}>
                       Project Files
                     </div>
                   </div>
                 </div>
-                <div class="level-right">
-                  <div class="level-item">
+                <div className="level-right">
+                  <div className="level-item">
                     <FontAwesomeIcon icon={faExternalLinkAlt}/>
                   </div>
                 </div>

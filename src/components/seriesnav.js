@@ -21,7 +21,7 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
 
         mylist.push(
           <Link to={neighbor.slug}>
-            <div class="content">
+            <div className="content">
               <a
                 style={{
                   width: "100%",
@@ -54,9 +54,9 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
           <div className="card">
             <div className="card-content">
               <div className="content">
-                <div class="level is-mobile">
-                  <div class="level-left">
-                    <div class="level-item">
+                <div className="level is-mobile">
+                  <div className="level-left">
+                    <div className="level-item">
                       {beforePost && (
                         <Link to={beforePost.slug}>
                           <FontAwesomeIcon icon={faChevronLeft} />
@@ -65,7 +65,7 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
                     </div>
                   </div>
                   <div
-                    class="level-item has-text-centered"
+                    className="level-item has-text-centered"
                     style={{ margin: 0 }}
                   >
                     <div
@@ -75,8 +75,8 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
                       {series}
                     </div>
                   </div>
-                  <div class="level-right">
-                    <div class="level-item">
+                  <div className="level-right">
+                    <div className="level-item">
                       {afterPost && (
                         <Link to={afterPost.slug}>
                           <FontAwesomeIcon icon={faChevronRight} />
