@@ -21,7 +21,7 @@ export default ({ data }) => {
 
   var freshPost = data.newestPosts.nodes[0]
   var insiderPost = data.insiderPosts.nodes[0]
-  var editorPost = data.editorPosts.nodes[0]
+  var stylePost = data.nokternelStyleGuide
   var devlogPost = data.projectSpudDevlog
   var beginnerPost = data.beginnersGuide;
 
@@ -74,10 +74,10 @@ export default ({ data }) => {
               </div>
               <div className="tile is-child">
                 <Widget
-                  title={editorPost.title}
-                  subtitle="Editorial"
-                  image={editorPost.image.file.url}
-                  to={editorPost.slug}
+                  title={stylePost.title}
+                  subtitle="Style"
+                  image={stylePost.image.file.url}
+                  to={stylePost.slug}
                 />
               </div>
             </div>
@@ -141,7 +141,7 @@ export const query = graphql`
       }
     }
     newestPosts: allContentfulBlogPost(
-      filter: { tags: { nin: ["insider", "editor", "devlog", "series"] } }
+      filter: { tags: { nin: ["insider", "devlog", "series", "nokternel-style-guide"] } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
@@ -182,6 +182,15 @@ export const query = graphql`
         }
       }
     }
+    nokternelStyleGuide: contentfulBlogPost(slug: { eq: "nokternel-style-guide" }) {
+      title
+      slug
+      image {
+        file {
+          url
+        }
+      }
+    }    
     projectSpudDevlog: contentfulBlogPost(slug: { eq: "devlog-project-spud" }) {
       slug
       image {

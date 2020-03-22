@@ -12,7 +12,7 @@ export default () => (
         <div className="column is-3">
           <Hireme />
         </div>
-        <div className='column is-1'/>
+        <div className="column is-1" />
         <div className="column is-4">
           <div className="container">
             <div className="content">
@@ -28,11 +28,11 @@ export default () => (
             <div className="content">
               <div className="title">About Nokternel Games</div>
               <p>
-                Everything we do at Nokternel Games is based on the
-                success of the gaming experiences we provide our players. The
-                goal of each discipline within the company -- be it art,
-                programming or customer support -- is to make our games as fun
-                as possible for as many people as we can reach.
+                Everything we do at Nokternel Games is based on the success of
+                the gaming experiences we provide our players. The goal of each
+                discipline within the company -- be it art, programming or
+                customer support -- is to make our games as fun as possible for
+                as many people as we can reach.
               </p>
             </div>
           </div>
