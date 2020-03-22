@@ -24,7 +24,7 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
 
 export default () => {
   return (
-    <form name="hireme" method="POST" data-netlify="true">
+    <form name="hireme" method="POST" netlify action='/success/'>
       <h1 className="title">Hire Us!</h1>
       <div class="columns">
         <div class="column">
