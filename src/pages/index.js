@@ -22,7 +22,7 @@ export default ({ data }) => {
   var freshPost = data.newestPosts.nodes[0]
   var insiderPost = data.insiderPosts.nodes[0]
   var stylePost = data.nokternelStyleGuide
-  var devlogPost = data.projectSpudDevlog
+  var devlogPost = data.projectAscendantDevlog
   var beginnerPost = data.beginnersGuide;
 
   return (
@@ -87,7 +87,7 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   to={devlogPost.slug}
-                  title="Project Spud"
+                  title="Project Ascendant"
                   subtitle="Devlog"
                   image={getImageFromPost(devlogPost)}
                 />
@@ -191,7 +191,7 @@ export const query = graphql`
         }
       }
     }    
-    projectSpudDevlog: contentfulBlogPost(slug: { eq: "devlog-project-spud" }) {
+    projectAscendantDevlog: contentfulBlogPost(slug: { eq: "devlog-project-ascendant" }) {
       slug
       image {
         file {
