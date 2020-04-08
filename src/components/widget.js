@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 import styles from "./widget.module.scss"
 
-export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) => {
+export default ({ title, subtitle, flair, descriptor, image, to, dims, fullheight }) => {
   function getImage() {
     if (image) {
       return (
@@ -20,20 +20,21 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
     }
   }
 
-  function getDescriptor() {
-    if (descriptor) {
-      return <div>{descriptor}</div>
-    }
-  }
-
   function getTitle() {
     if (title) {
       return <div className="title">{title}</div>
     }
   }
 
-  function getSubtitle() {
+  function getSubtitle()
+  {
     if (subtitle) {
+      return <div className='subtitle'>{subtitle}</div>
+    }
+  }
+
+  function getFlair() {
+    if (flair) {
       return (
         <div
           className="subtitle has-background-warning has-text-grey-darker"
@@ -46,7 +47,7 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
             margin: '0'
           }}
         >
-          {subtitle}
+          {flair}
         </div>
       )
     }
@@ -63,11 +64,11 @@ export default ({ title, subtitle, descriptor, image, to, dims, fullheight }) =>
       <Link to={to}>
         <div className={"card " + cHeight()}>
           {getImage()}
-          {getSubtitle()}
+          {getFlair()}
           <div className="card-content">
             <div className="content">
-              {getDescriptor()}
               {getTitle()}
+              {getSubtitle()}
             </div>
           </div>
         </div>

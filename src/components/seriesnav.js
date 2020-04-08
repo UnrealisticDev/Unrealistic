@@ -8,7 +8,9 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons"
 
-export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
+import styles from './seriesnav.module.scss'
+
+export default ({ series, seriesNeighbors, beforePost, afterPost, startNum }) => {
   const [seriesOpen, setSeriesOpen] = useState(false)
   const [seriesList, setSeriesList] = useState([])
 
@@ -20,19 +22,15 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
         const neighbor = seriesNeighbors[i]
 
         mylist.push(
-          <Link to={neighbor.slug}>
-            <div className="content">
-              <a
-                style={{
-                  width: "100%",
-                  justifyContent: "left",
-                  color: "#363636 !important",
-                }}
-                href="javascript:;"
-              >
-                {neighbor.seriesNum + 1 + ". " + neighbor.title}
-              </a>
-            </div>
+          <Link
+            to={neighbor.slug}
+            style={{
+              justifyContent: "left",
+            }}
+          >
+            <li href="javascript:;" className={styles.ListItem}>
+              {neighbor.title}
+            </li>
           </Link>
         )
       }
@@ -54,11 +52,11 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
           <div className="card">
             <div className="card-content">
               <div className="content">
-                <div className="level is-mobile">
+                <div className="level is-mobile" style={{margin: 0}}>
                   <div className="level-left">
                     <div className="level-item">
                       {beforePost && (
-                        <Link to={beforePost.slug}>
+                        <Link to={beforePost.slug} style={{ color: "#EAAA03" }}>
                           <FontAwesomeIcon icon={faChevronLeft} />
                         </Link>
                       )}{" "}
@@ -70,22 +68,24 @@ export default ({ series, seriesNeighbors, beforePost, afterPost }) => {
                   >
                     <div
                       className="title"
-                      style={{ fontSize: "calc(12px + .75vw)" }}
+                      style={{ fontSize: "calc(12px + .8vw)" }}
                     >
-                      {series}
+                      {"Series"}
                     </div>
                   </div>
                   <div className="level-right">
                     <div className="level-item">
                       {afterPost && (
-                        <Link to={afterPost.slug}>
+                        <Link to={afterPost.slug} style={{ color: "#EAAA03" }}>
                           <FontAwesomeIcon icon={faChevronRight} />
                         </Link>
                       )}{" "}
                     </div>
                   </div>
                 </div>
-                {seriesList}
+                <ol style={{padding: 0}} start={startNum}>
+                  {seriesList}
+                </ol>
               </div>
             </div>
           </div>

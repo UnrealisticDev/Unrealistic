@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-$font-size-base: 8px;
+$font-size-base: 6px;
 
 .Title {
     font-size: calc(#{$font-size-base} + 4vw);
@@ -25,10 +25,11 @@ h2::before {
 
 .Markdown {
 
+    font-family: 'Sen', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     // color: $color-fg-primary;
     color: #2E2F3E;
     font-size: calc(#{$font-size-base} + 1vw);
-    font-weight: lighter;
+    // font-weight: lighter;
 
     word-wrap: break-word;
 
@@ -83,13 +84,17 @@ h2::before {
 
     ul,
     ol {
-        margin-left: 3vmin;
+        margin-left: 6vmin;
         margin-top: 3vmin;
         margin-bottom: 3vmin;
     }
 
     ul {
         list-style-type: square;
+    }
+
+    li {
+        padding-left: 3vmin;
     }
 
     img {
@@ -107,9 +112,9 @@ h2::before {
 }
 
 .SeriesNavInline {
-    color: rgb(209, 204, 204);
+    color: darken(rgb(209, 204, 204), 30%);
 }
 
 .SeriesNavInline:hover {
-    color: darken(rgb(209, 204, 204), 30%);
+    color: darken(rgb(209, 204, 204), 60%);
 }

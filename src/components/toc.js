@@ -7,7 +7,7 @@ export default ({ src }) => {
     return (
       <div className="card">
         <div className="card-content">
-          <div className="title" style={{fontSize: 'calc(12px + .75vw)'}}>Table of Contents</div>
+          <div className="title" style={{fontSize: 'calc(12px + .75vw)', borderBottom: '2px solid #EAAA03', paddingBottom: '2vmin'}}>Table of Contents</div>
           <div>
             <div
               className={styles.List}

@@ -23,7 +23,7 @@ export default ({ data }) => {
   var insiderPost = data.insiderPosts.nodes[0]
   var stylePost = data.nokternelStyleGuide
   var devlogPost = data.projectAscendantDevlog
-  var beginnerPost = data.beginnersGuide;
+  var beginnerPost = data.beginnersGuide
 
   return (
     <Layout>
@@ -56,7 +56,8 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   title={freshPost.title}
-                  subtitle="Fresh Off the Press"
+                  flair="Fresh Off the Press"
+                  subtitle={freshPost.body.childMarkdownRemark.excerpt}
                   image={getImageFromPost(freshPost)}
                   to={freshPost.slug}
                   fullheight
@@ -67,7 +68,7 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   title={insiderPost.title}
-                  subtitle="Insider Insight"
+                  flair="Insider Insight"
                   image={getImageFromPost(insiderPost)}
                   to={insiderPost.slug}
                 />
@@ -75,7 +76,7 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   title={stylePost.title}
-                  subtitle="Style"
+                  flair="Style"
                   image={stylePost.image.file.url}
                   to={stylePost.slug}
                 />
@@ -88,15 +89,16 @@ export default ({ data }) => {
                 <Widget
                   to={devlogPost.slug}
                   title="Project Ascendant"
-                  subtitle="Devlog"
+                  subtitle="An upcoming stealth crawler"
+                  flair="Devlog"
                   image={getImageFromPost(devlogPost)}
                 />
               </div>
               <div className="tile is-child">
                 <Widget
                   to={getRandomPost().slug}
-                  title="Learn something new"
-                  subtitle="Random"
+                  title="Random"
+                  subtitle="Learn something new"
                   image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
                 />
               </div>
@@ -105,8 +107,9 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   to={beginnerPost.slug}
-                  title="Build a tower defense game from top to bottom in just 21 days"
-                  subtitle="Beginner's Guide"
+                  subtitle="Build a tower defense game from top to bottom in just 21 days"
+                  title="Beginner's Guide"
+                  flair="Tutorials"
                   image={getImageFromPost(beginnerPost)}
                   fullheight
                 />
@@ -141,7 +144,9 @@ export const query = graphql`
       }
     }
     newestPosts: allContentfulBlogPost(
-      filter: { tags: { nin: ["insider", "devlog", "series", "nokternel-style-guide"] } }
+      filter: {
+        tags: { nin: ["insider", "devlog", "series", "nokternel-style-guide"] }
+      }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
@@ -150,6 +155,11 @@ export const query = graphql`
         image {
           file {
             url
+          }
+        }
+        body {
+          childMarkdownRemark {
+            excerpt
           }
         }
       }
@@ -182,7 +192,9 @@ export const query = graphql`
         }
       }
     }
-    nokternelStyleGuide: contentfulBlogPost(slug: { eq: "nokternel-style-guide" }) {
+    nokternelStyleGuide: contentfulBlogPost(
+      slug: { eq: "nokternel-style-guide" }
+    ) {
       title
       slug
       image {
@@ -190,8 +202,10 @@ export const query = graphql`
           url
         }
       }
-    }    
-    projectAscendantDevlog: contentfulBlogPost(slug: { eq: "devlog-project-ascendant" }) {
+    }
+    projectAscendantDevlog: contentfulBlogPost(
+      slug: { eq: "devlog-project-ascendant" }
+    ) {
       slug
       image {
         file {

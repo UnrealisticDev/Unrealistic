@@ -53,19 +53,35 @@ export default ({ data, pageContext }) => {
           <div className="column is-8">
             <div className="box has-background-light">
               <div className="card">
-                <div className="card-content">
-                  <div className="content">
-                    <div className={"title " + styles.Title}>{title}</div>
+                {/* <div className="card-content">
+                  <div className="content"></div>
+                </div> */}
+                <div style={{ position: "relative" }}>
+                  <div className="card-image">
+                    <figure className="image is-5by3">
+                      <img
+                        src={image ? image.file.url : ""}
+                        alt="alt"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </figure>
                   </div>
-                </div>
-                <div className="card-image">
-                  <figure className="image is-5by3">
-                    <img
-                      src={image ? image.file.url : ""}
-                      alt="alt"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </figure>
+                  <div
+                    className={"title " + styles.Title}
+                    style={{
+                      position: "absolute",
+                      bottom: ".5em",
+                      right: ".5em",
+                      color: '#EAAA03',
+                      backgroundColor: 'rgb(64, 64, 64, .4)',
+                      padding: '.5em',
+                      justifyContent: 'end',
+                      maxWidth: '85%',
+                      borderBottom: '5px solid #EAAA03',
+                    }}
+                  >
+                    {title}
+                  </div>
                 </div>
                 <div className="card-content">
                   <div className="content">
@@ -79,7 +95,10 @@ export default ({ data, pageContext }) => {
                       <div className="level-right">
                         <div className="level-item">
                           {beforePost && (
-                            <Link to={beforePost.slug} className={styles.SeriesNavInline}>
+                            <Link
+                              to={beforePost.slug}
+                              className={styles.SeriesNavInline}
+                            >
                               <div className="level is-mobile">
                                 <div className="level-item">
                                   <FontAwesomeIcon icon={faChevronLeft} />
@@ -95,7 +114,10 @@ export default ({ data, pageContext }) => {
                       <div className="level-left">
                         <div className="level-item">
                           {afterPost && (
-                            <Link to={afterPost.slug} className={styles.SeriesNavInline}>
+                            <Link
+                              to={afterPost.slug}
+                              className={styles.SeriesNavInline}
+                            >
                               <div className="level is-mobile">
                                 <div className="level-item">
                                   {afterPost.title}
@@ -126,6 +148,7 @@ export default ({ data, pageContext }) => {
                       seriesNeighbors={seriesNeighbors.nodes}
                       beforePost={beforePost}
                       afterPost={afterPost}
+                      startNum={seriesNeighbors.nodes[0].seriesNum}
                     />
                   </Sidebar>
                 </div>
@@ -137,8 +160,8 @@ export default ({ data, pageContext }) => {
                 >
                   <Sidebar>
                     <Toc src={toc} />
-                    <Projectfiles src={projectfiles} />
                   </Sidebar>
+                  <Projectfiles src={projectfiles} />
                 </div>
               )}{" "}
             </div>

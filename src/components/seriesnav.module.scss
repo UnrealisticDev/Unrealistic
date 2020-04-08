@@ -1,0 +1,9 @@
+@import '../styles/variables.scss';
+
+.ListItem {
+    color: lighten(#363636, 10%);
+}
+
+.ListItem:hover {
+    color: #EAAA03;
+}
