@@ -105,7 +105,7 @@ export default ({ data }) => {
               <div className="tile is-child">
                 <Widget
                   to={beginnerPost.slug}
-                  title="No better place to start"
+                  title="Build a tower defense game from top to bottom in 21 days."
                   subtitle="Beginner's Guide"
                   image={getImageFromPost(beginnerPost)}
                   fullheight

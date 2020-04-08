@@ -13,11 +13,13 @@
 
     a {
         padding: 3px;
+        color: #363636;
     }
 
     a:hover {
         text-decoration: none;
-        color: #ED553B;
+        color: #EAAA03;
+        ; //#ED553B;
     }
 
     // lvl 1
@@ -26,15 +28,31 @@
         margin-top: 2px;
         margin-bottom: 2px;
 
+        a {
+            padding: 3px;
+            color: lighten(#363636, 10%);
+        }
+
         // lvl 2
         li {
 
             padding-left: 1em;
 
+            a {
+                padding: 3px;
+                color: lighten(#363636, 20%);
+            }
+
             // lvl3
             li {
                 padding-left: 2em;
             }
+        }
+
+        li::before
+        {
+            content: '- ';
+            color: #EAAA03;
         }
     }
 }
