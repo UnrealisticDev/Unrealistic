@@ -16,8 +16,8 @@ export default ({ data }) => {
           return (
             <div className="column is-4">
               <Link to={slug}>
-                <div className="box">
-                  <div className="card">
+                <div className="box is-paddingless" style={{height: '100%'}}>
+                  <div className="card" style={{height: '100%'}}>
                     <div className="card-image">
                       <figure className="image is-4by3">
                         <img

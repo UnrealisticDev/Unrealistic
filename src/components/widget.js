@@ -60,7 +60,7 @@ export default ({ title, subtitle, flair, descriptor, image, to, dims, fullheigh
   }
 
   return (
-    <div className={"box has-background-light " + cHeight()}>
+    <div className={"box is-paddingless has-background-light " + cHeight()}>
       <Link to={to}>
         <div className={"card " + cHeight()}>
           {getImage()}

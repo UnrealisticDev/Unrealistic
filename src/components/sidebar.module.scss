@@ -1,7 +1,11 @@
 @import '../styles/variables.scss';
 
 .Content {
-    background-color: $color-bg-secondary;
-    // background: #591D1D;
-    padding: 1em;
+    max-height: 50vh;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.Content::-webkit-scrollbar {
+    display: none;
 }

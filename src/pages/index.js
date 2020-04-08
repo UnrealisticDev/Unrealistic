@@ -28,27 +28,29 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Unrealistic" />
-      <div className="level">
-        <div className="container">
-          <div className="content has-text-centered">
-            <figure
-              className="image"
-              style={{
-                maxWidth: "512px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginBottom: ".5vmin",
-              }}
-            >
-              <img src={logo} alt="logo" />
-            </figure>
-            <p style={{ fontStyle: "italic" }}>
-              A place to learn about Unreal Engine 4,
-              <br /> gamedev, and chasing your dreams
-            </p>
+      <section class="section">
+        <div className="level">
+          <div className="container">
+            <div className="content has-text-centered">
+              <figure
+                className="image"
+                style={{
+                  maxWidth: "512px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: ".5vmin",
+                }}
+              >
+                <img src={logo} alt="logo" />
+              </figure>
+              <p style={{ fontStyle: "italic" }}>
+                A place to learn about Unreal Engine 4,
+                <br /> gamedev, and chasing your dreams
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
       <div className="tile is-ancestor">
         <div className="tile is-vertical">
           <div className="tile">
@@ -71,6 +73,7 @@ export default ({ data }) => {
                   flair="Insider Insight"
                   image={getImageFromPost(insiderPost)}
                   to={insiderPost.slug}
+                  fullheight
                 />
               </div>
               <div className="tile is-child">
@@ -79,6 +82,7 @@ export default ({ data }) => {
                   flair="Style"
                   image={stylePost.image.file.url}
                   to={stylePost.slug}
+                  fullheight
                 />
               </div>
             </div>

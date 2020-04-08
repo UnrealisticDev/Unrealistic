@@ -83,7 +83,7 @@ export default ({ series, seriesNeighbors, beforePost, afterPost, startNum }) =>
                     </div>
                   </div>
                 </div>
-                <ol style={{padding: 0}} start={startNum}>
+                <ol style={{padding: 0, margin: 0}} start={startNum}>
                   {seriesList}
                 </ol>
               </div>

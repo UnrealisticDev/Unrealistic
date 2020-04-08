@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
-$font-size-base: 6px;
+$font-size-base: 10px;
 
 .Title {
     font-size: calc(#{$font-size-base} + 4vw);
@@ -28,7 +28,7 @@ h2::before {
     font-family: 'Sen', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     // color: $color-fg-primary;
     color: #2E2F3E;
-    font-size: calc(#{$font-size-base} + 1vw);
+    font-size: calc(#{$font-size-base} + 1vmin);
     // font-weight: lighter;
 
     word-wrap: break-word;
@@ -54,7 +54,7 @@ h2::before {
     }
 
     p {
-        line-height: calc((#{$font-size-base} + 1vw) * 1.6);
+        line-height: calc((#{$font-size-base} + 1vmin) * 1.6);
         margin-bottom: 3vmin;
     }
 
@@ -76,9 +76,10 @@ h2::before {
         border-left: 1px solid rgb(208, 212, 216);
 
         p {
-            font-size: calc(#{$font-size-base} + .8vw);
+            font-size: calc(#{$font-size-base} + .8vmin);
             // line-height: $font-size-base * 1.2;
-            line-height: calc((#{$font-size-base} + .8vw) * 1.4);
+            line-height: calc((#{$font-size-base} + .8vmin) * 1.4);
+            margin: 0;
         }
     }
 

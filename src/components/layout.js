@@ -31,7 +31,7 @@ export default ({ children }) => (
       <html className="has-navbar-fixed-top" lang='en'/>
     </Helmet>
     <Header />
-    <section className="section has-background-light site-content">
+    <section className="has-background-light site-content" style={{paddingTop: '5vmin', paddingBottom: '5vmin'}}>
       <div className="container">{children}</div>
     </section>
     <Footer/>
