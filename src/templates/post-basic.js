@@ -166,8 +166,8 @@ export default ({ data, pageContext }) => {
         )}
         <div />
       </div>
-      <ScrollUpButton>
-        <FontAwesomeIcon
+      <ScrollUpButton ShowAtPosition={1500}>
+        {/* <FontAwesomeIcon
           icon={faChevronCircleUp}
           size="2x"
           style={{
@@ -177,7 +177,7 @@ export default ({ data, pageContext }) => {
             right: "10vmin",
             height: "10vmin",
           }}
-        />
+        /> */}
       </ScrollUpButton>
     </Layout>
   )

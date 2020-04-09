@@ -6,11 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faChevronLeft,
   faChevronRight,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons"
 
-import styles from './seriesnav.module.scss'
+import styles from "./seriesnav.module.scss"
 
-export default ({ series, seriesNeighbors, beforePost, afterPost, startNum }) => {
+export default ({
+  series,
+  seriesNeighbors,
+  beforePost,
+  afterPost,
+  startNum,
+}) => {
   const [seriesOpen, setSeriesOpen] = useState(false)
   const [seriesList, setSeriesList] = useState([])
 
@@ -42,29 +49,36 @@ export default ({ series, seriesNeighbors, beforePost, afterPost, startNum }) =>
   return (
     <>
       {series && (
-        <a
-          onClick={() => toggleSeriesList()}
-          onKeyDown={e => {
-            if (e.key === "Return") toggleSeriesList()
-          }}
-          href="javascript:;"
-        >
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <div className="level is-mobile" style={{margin: 0}}>
-                  <div className="level-left">
-                    <div className="level-item">
-                      {beforePost && (
-                        <Link to={beforePost.slug} style={{ color: "#EAAA03" }}>
-                          <FontAwesomeIcon icon={faChevronLeft} />
-                        </Link>
-                      )}{" "}
+        <div className="card">
+          <div className="card-content">
+            <div className="content">
+              <div className="level is-mobile" style={{ margin: 0 }}>
+                <div className="level-left">
+                  {beforePost && (
+                    <div className="level-right">
+                      <Link to={beforePost.slug}>
+                        <div className="level-item button is-marginless is-white">
+                          <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            style={{ color: "#EAAA03" }}
+                          />
+                        </div>
+                      </Link>
                     </div>
-                  </div>
+                  )}
+                </div>
+                <div
+                  className="level-item has-text-centered"
+                  style={{ margin: 0 }}
+                >
                   <div
-                    className="level-item has-text-centered"
-                    style={{ margin: 0 }}
+                    class="button is-white"
+                    onClick={() => toggleSeriesList()}
+                    onKeyDown={e => {
+                      if (e.key === "Return") toggleSeriesList()
+                    }}
+                    href="javascript:;"
+                    style={{flex: '1 0 auto'}}
                   >
                     <div
                       className="title"
@@ -73,23 +87,32 @@ export default ({ series, seriesNeighbors, beforePost, afterPost, startNum }) =>
                       {"Series"}
                     </div>
                   </div>
-                  <div className="level-right">
-                    <div className="level-item">
-                      {afterPost && (
-                        <Link to={afterPost.slug} style={{ color: "#EAAA03" }}>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </Link>
-                      )}{" "}
-                    </div>
-                  </div>
                 </div>
-                <ol style={{padding: 0, margin: 0}} start={startNum}>
-                  {seriesList}
-                </ol>
+                {afterPost && (
+                  <div className="level-right">
+                    <Link to={afterPost.slug}>
+                      <div className="level-item button is-marginless is-white">
+                        <FontAwesomeIcon
+                          icon={faChevronRight}
+                          style={{ color: "#EAAA03" }}
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                )}
               </div>
+              <ol
+                style={{
+                  padding: seriesList.length === 0 ? "0" : "2.5vmin",
+                  margin: 0,
+                }}
+                start={startNum}
+              >
+                {seriesList}
+              </ol>
             </div>
           </div>
-        </a>
+        </div>
       )}
     </>
   )

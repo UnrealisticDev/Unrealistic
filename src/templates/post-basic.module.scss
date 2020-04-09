@@ -114,6 +114,7 @@ h2::before {
 
 .SeriesNavInline {
     color: darken(rgb(209, 204, 204), 30%);
+    overflow-wrap: break-word;
 }
 
 .SeriesNavInline:hover {
