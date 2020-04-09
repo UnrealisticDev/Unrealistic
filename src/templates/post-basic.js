@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faChevronLeft,
   faChevronRight,
-  faChevronCircleUp,
+  faAngleUp as faChevronCircleUp,
 } from "@fortawesome/free-solid-svg-icons"
 
 import "../styles/code.scss"
@@ -166,18 +166,65 @@ export default ({ data, pageContext }) => {
         )}
         <div />
       </div>
-      <ScrollUpButton ShowAtPosition={1500}>
-        {/* <FontAwesomeIcon
-          icon={faChevronCircleUp}
-          size="2x"
-          style={{
-            color: "#EAAA03",
-            justifyContent: "right",
-            position: "absolute",
-            right: "10vmin",
-            height: "10vmin",
-          }}
-        /> */}
+      <ScrollUpButton
+
+        ShowAtPosition={1200}
+
+        style={{
+          color: "#EAAA03",
+          justifyContent: "right",
+          position: "fixed",
+          right: "5vmin",
+          bottom: "2vmin",
+          // height: "10vmin",
+
+          // backgroundColor: "rgb(87, 86, 86)",
+          // height: 30,
+          // position: "fixed",
+          // bottom: 20,
+          // width: 30,
+          WebkitTransition: "all 0.5s ease-in-out",
+          transition: "all 0.5s ease-in-out",
+          transitionProperty: "opacity, right",
+          cursor: "pointer",
+
+          opacity: 0,
+          // right: -75,
+          zIndex: 1000,
+          fill: "#292929",
+          paddingBottom: 1,
+          paddingLeft: 1,
+          paddingRight: 1,
+        }}
+
+        ToggledStyle={{
+          color: "#EAAA03",
+          justifyContent: "right",
+          position: "fixed",
+          right: "5vmin",
+          bottom: "2vmin",
+          // height: "10vmin",
+
+          // backgroundColor: "rgb(87, 86, 86)",
+          // height: 30,
+          // position: "fixed",
+          // bottom: 20,
+          // width: 30,
+          WebkitTransition: "all 0.5s ease-in-out",
+          transition: "all 0.5s ease-in-out",
+          transitionProperty: "opacity, right",
+          cursor: "pointer",
+
+          opacity: 100,
+          // right: -75,
+          zIndex: 1000,
+          fill: "#292929",
+          paddingBottom: 1,
+          paddingLeft: 1,
+          paddingRight: 1,
+        }}
+      >
+        <FontAwesomeIcon icon={faChevronCircleUp} size="2x" />
       </ScrollUpButton>
     </Layout>
   )
