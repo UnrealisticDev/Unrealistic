@@ -8,11 +8,13 @@ import Sidebar from "../components/sidebar"
 import Seriesnav from "../components/seriesnav"
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
+import ScrollUpButton from "react-scroll-up-button"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faChevronLeft,
   faChevronRight,
+  faChevronCircleUp,
 } from "@fortawesome/free-solid-svg-icons"
 
 import "../styles/code.scss"
@@ -164,6 +166,19 @@ export default ({ data, pageContext }) => {
         )}
         <div />
       </div>
+      <ScrollUpButton>
+        <FontAwesomeIcon
+          icon={faChevronCircleUp}
+          size="2x"
+          style={{
+            color: "#EAAA03",
+            justifyContent: "right",
+            position: "absolute",
+            right: "10vmin",
+            height: "10vmin",
+          }}
+        />
+      </ScrollUpButton>
     </Layout>
   )
 }

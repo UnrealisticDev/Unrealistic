@@ -46,6 +46,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
+    "react-scroll-up-button": "^1.6.4",
     "sharp": "^0.24.1",
     "voca": "^1.4.0"
   },
