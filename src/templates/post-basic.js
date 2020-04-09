@@ -168,7 +168,7 @@ export default ({ data, pageContext }) => {
       </div>
       <ScrollUpButton
 
-        ShowAtPosition={1200}
+        ShowAtPosition={600}
 
         style={{
           color: "#EAAA03",
