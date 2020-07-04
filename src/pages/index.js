@@ -21,7 +21,7 @@ export default ({ data }) => {
 
   var freshPost = data.newestPosts.nodes[0]
   var insiderPost = data.insiderPosts.nodes[0]
-  var stylePost = data.nokternelStyleGuide
+  var stylePost = data.unrealisticStyleGuide
   var devlogPost = data.projectAscendantDevlog
   var beginnerPost = data.beginnersGuide
 
@@ -196,8 +196,8 @@ export const query = graphql`
         }
       }
     }
-    nokternelStyleGuide: contentfulBlogPost(
-      slug: { eq: "nokternel-style-guide" }
+    unrealisticStyleGuide: contentfulBlogPost(
+      slug: { eq: "unrealistic-style-guide" }
     ) {
       title
       slug
