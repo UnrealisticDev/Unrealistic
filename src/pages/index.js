@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import * as random from "random"
 
+import router from '../scripts/router'
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Widget from "../components/widget"
@@ -61,7 +63,7 @@ export default ({ data }) => {
                   flair="Fresh Off the Press"
                   subtitle={freshPost.body.childMarkdownRemark.excerpt}
                   image={getImageFromPost(freshPost)}
-                  to={freshPost.slug}
+                  to={router.getArticleSlug(freshPost.slug)}
                   fullheight
                 />
               </div>
@@ -72,7 +74,7 @@ export default ({ data }) => {
                   title={insiderPost.title}
                   flair="Insider Insight"
                   image={getImageFromPost(insiderPost)}
-                  to={insiderPost.slug}
+                  to={router.getArticleSlug(insiderPost.slug)}
                   fullheight
                 />
               </div>
@@ -81,7 +83,7 @@ export default ({ data }) => {
                   title={stylePost.title}
                   flair="Style"
                   image={stylePost.image.file.url}
-                  to={stylePost.slug}
+                  to={router.getArticleSlug(stylePost.slug)}
                   fullheight
                 />
               </div>
@@ -91,7 +93,7 @@ export default ({ data }) => {
             <div className="tile is-parent is-vertical is-4">
               <div className="tile is-child">
                 <Widget
-                  to={devlogPost.slug}
+                  to={router.getArticleSlug(devlogPost.slug)}
                   title="Project Ascendant"
                   subtitle="An upcoming stealth crawler"
                   flair="Devlog"
@@ -100,7 +102,7 @@ export default ({ data }) => {
               </div>
               <div className="tile is-child">
                 <Widget
-                  to={getRandomPost().slug}
+                  to={router.getArticleSlug(getRandomPost().slug)}
                   title="Random"
                   subtitle="Learn something new"
                   image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
@@ -110,7 +112,7 @@ export default ({ data }) => {
             <div className="tile is-parent">
               <div className="tile is-child">
                 <Widget
-                  to={beginnerPost.slug}
+                  to={router.getArticleSlug(beginnerPost.slug)}
                   subtitle="Build a tower defense game from top to bottom in just 21 days"
                   title="Beginner's Guide"
                   flair="Tutorials"

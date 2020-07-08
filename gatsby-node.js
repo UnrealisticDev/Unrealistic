@@ -1,5 +1,6 @@
 const path = require(`path`)
 const slash = require(`slash`)
+const router = require(`./src/scripts/router`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -23,6 +24,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        allContentfulPlugin {
+          edges {
+            node {
+              id
+              slug
+              docTag
+            }
+          }
+        }
       }
     `
   )
@@ -32,18 +42,33 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const postTemplate = path.resolve(`./src/templates/post-basic.js`)
+  const articleTemplate = path.resolve(`./src/templates/article.js`)
   result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
-    const path = node.slug
+    const path = router.getArticleSlug(node.slug)
     const series = node.series
     console.log("Creating page: " + path)
     createPage({
       path,
-      component: postTemplate,
+      component: articleTemplate,
       context: {
-        pagePath: path,
+        pagePath: node.slug,
         pageSeries: series,
       },
+    })
+  })
+
+  const pluginTemplate = path.resolve(`./src/templates/plugin.js`)
+  result.data.allContentfulPlugin.edges.forEach(({node}) => {
+    const path = router.getProductSlug(node.slug)
+    const series = node.series
+    console.log("Creating page: " + path)
+    createPage({
+      path,
+      component: pluginTemplate,
+      context: {
+        slug: node.slug,
+        docTag: node.docTag
+      }
     })
   })
 }

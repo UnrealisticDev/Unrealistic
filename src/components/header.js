@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from "react"
+import router from "../scripts/router"
 
 import logo from "../images/logo-new.png"
 
@@ -39,10 +40,22 @@ export default () => {
             <a className="navbar-item" href="/">
               Home
             </a>
-
             <a className="navbar-item" href="/articles/">
               Articles
             </a>
+            <div class="navbar-item has-dropdown is-hoverable" href="/">
+              <a href="" class="navbar-link">
+                Products
+              </a>
+              <div class="navbar-dropdown has-background-light">
+                <a href={router.getProductSlug("remapt")} class="navbar-item">
+                  Remapt
+                </a>
+                <a href={router.getProductSlug("prefixed")} class="navbar-item">
+                  Prefixed
+                </a>
+              </div>
+            </div>
             <a className="navbar-item" href="/about/">
               About
             </a>

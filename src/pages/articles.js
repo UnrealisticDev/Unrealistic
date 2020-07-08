@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import router from '../scripts/router'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -15,7 +16,7 @@ export default ({ data }) => {
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
             <div className="column is-4">
-              <Link to={slug}>
+              <Link to={router.getArticleSlug(slug)}>
                 <div className="box is-paddingless" style={{height: '100%'}}>
                   <div className="card" style={{height: '100%'}}>
                     <div className="card-image">

@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 import "../styles/code.scss"
-import styles from "./post-basic.module.scss"
+import styles from "./article.module.scss"
 
 export default ({ data, pageContext }) => {
   const {
