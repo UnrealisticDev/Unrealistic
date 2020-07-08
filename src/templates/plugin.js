@@ -11,7 +11,7 @@ export default ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title="Plugin" />
+      <SEO title={plugin.name} />
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-8">
           <div class="tile is-parent">
@@ -37,7 +37,9 @@ export default ({ data, pageContext }) => {
                 {data.documentation.nodes.map(({ slug, title }) => {
                   return (
                     <li>
-                      <Link href={router.getArticleSlug(slug)}>{title}</Link>
+                      <Link href={router.getArticleSlug(slug)}>
+                        {title.replace(plugin.name + ": ", "")}
+                      </Link>
                     </li>
                   )
                 })}
@@ -67,7 +69,10 @@ export const pluginQuery = graphql`
       marketplaceUrl
       docTag
     }
-    documentation: allContentfulBlogPost(filter: { tags: { in: [$docTag] } }) {
+    documentation: allContentfulBlogPost(
+      filter: { tags: { in: [$docTag] } }
+      sort: { fields: createdAt, order: ASC }
+    ) {
       nodes {
         title
         slug
