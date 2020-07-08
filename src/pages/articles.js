@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import router from '../scripts/router'
+import router from "../scripts/router"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -11,14 +11,14 @@ import "./articles.module.scss"
 export default ({ data }) => {
   return (
     <Layout>
-      <SEO title='Articles'/>
+      <SEO title="Articles" />
       <div className="columns is-multiline is-desktop">
         {data.allContentfulBlogPost.nodes.map(({ slug, title, image }) => {
           return (
             <div className="column is-4">
               <Link to={router.getArticleSlug(slug)}>
-                <div className="box is-paddingless" style={{height: '100%'}}>
-                  <div className="card" style={{height: '100%'}}>
+                <div className="box is-paddingless" style={{ height: "100%" }}>
+                  <div className="card" style={{ height: "100%" }}>
                     <div className="card-image">
                       <figure className="image is-4by3">
                         <img
@@ -50,7 +50,16 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulBlogPost(sort: { fields: createdAt, order: DESC }) {
+    allContentfulBlogPost(
+      filter: {
+        tags: {
+          nin: [
+            "docs"
+          ]
+        }
+      }
+      sort: { fields: createdAt, order: DESC }
+    ) {
       nodes {
         slug
         title

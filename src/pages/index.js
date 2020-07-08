@@ -151,7 +151,7 @@ export const query = graphql`
     }
     newestPosts: allContentfulBlogPost(
       filter: {
-        tags: { nin: ["insider", "devlog", "series", "nokternel-style-guide"] }
+        tags: { nin: ["insider", "devlog", "series", "unrealistic-style-guide", "docs"] }
       }
       sort: { fields: createdAt, order: DESC }
     ) {
