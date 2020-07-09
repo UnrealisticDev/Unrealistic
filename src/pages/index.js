@@ -71,19 +71,19 @@ export default ({ data }) => {
             <div className="tile is-parent is-vertical">
               <div className="tile is-child">
                 <Widget
-                  title={insiderPost.title}
-                  flair="Insider Insight"
-                  image={getImageFromPost(insiderPost)}
-                  to={router.getArticleSlug(insiderPost.slug)}
+                  title={stylePost.title}
+                  flair="Style"
+                  image={stylePost.image.file.url}
+                  to={router.getArticleSlug(stylePost.slug)}
                   fullheight
                 />
               </div>
               <div className="tile is-child">
                 <Widget
-                  title={stylePost.title}
-                  flair="Style"
-                  image={stylePost.image.file.url}
-                  to={router.getArticleSlug(stylePost.slug)}
+                  title={insiderPost.title}
+                  flair="Insider Insight"
+                  image={getImageFromPost(insiderPost)}
+                  to={router.getArticleSlug(insiderPost.slug)}
                   fullheight
                 />
               </div>
