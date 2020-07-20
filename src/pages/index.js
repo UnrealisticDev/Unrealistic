@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import * as random from "random"
 
-import router from '../scripts/router'
+import router from "../scripts/router"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -47,7 +47,7 @@ export default ({ data }) => {
               </figure>
               <p style={{ fontStyle: "italic" }}>
                 A place to learn about Unreal Engine 4,
-                <br /> gamedev, and chasing your dreams
+                <br /> gamedev, and XR
               </p>
             </div>
           </div>
@@ -151,7 +151,15 @@ export const query = graphql`
     }
     newestPosts: allContentfulBlogPost(
       filter: {
-        tags: { nin: ["insider", "devlog", "series", "unrealistic-style-guide", "docs"] }
+        tags: {
+          nin: [
+            "insider"
+            "devlog"
+            "series"
+            "unrealistic-style-guide"
+            "docs"
+          ]
+        }
       }
       sort: { fields: createdAt, order: DESC }
     ) {
