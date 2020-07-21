@@ -35,10 +35,10 @@ class SeriesNav extends React.Component {
 			<>
 				{series && (
 					<>
-						<div class="card">
-							<div class="card-content">
-								<div class='level is-mobile' onClick={this.toggleMenu}>
-									<div class='level-left'>
+						<div className="card">
+							<div className="card-content">
+								<div className='level is-mobile' onClick={this.toggleMenu}>
+									<div className='level-left'>
 										<p
 											className='menu-label'
 											style={{ margin: 0, marginRight: '.5em' }}

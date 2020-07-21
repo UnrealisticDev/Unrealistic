@@ -20,10 +20,10 @@ class TOC extends React.Component {
 	render() {
 		return this.props.src ? (
 			<>
-				<div class='card'>
-					<div class='card-content'>
+				<div className='card'>
+					<div className='card-content'>
 						<div
-							class='level is-mobile'
+							className='level is-mobile'
 							onClick={this.toggleExpansion}
 							onKeyPress={(e) => {
 								if (e.key === 'Return') 
@@ -32,7 +32,7 @@ class TOC extends React.Component {
 							role='button'
 							tabIndex='0'
 						>
-							<div class='level-left'>
+							<div className='level-left'>
 								<p className='menu-label'>Table of Contents</p>
 							</div>
 							<div className='level-right'>
