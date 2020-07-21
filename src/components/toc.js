@@ -23,7 +23,7 @@ class TOC extends React.Component {
 				<div class='card'>
 					<div class='card-content'>
 						<div
-							class='level'
+							class='level is-mobile'
 							onClick={this.toggleExpansion}
 							onKeyPress={(e) => {
 								if (e.key === 'Return') 

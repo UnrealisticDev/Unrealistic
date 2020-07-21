@@ -37,7 +37,7 @@ class SeriesNav extends React.Component {
 					<>
 						<div class="card">
 							<div class="card-content">
-								<div class='level' onClick={this.toggleMenu}>
+								<div class='level is-mobile' onClick={this.toggleMenu}>
 									<div class='level-left'>
 										<p
 											className='menu-label'
