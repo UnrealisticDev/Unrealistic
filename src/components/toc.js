@@ -20,21 +20,25 @@ class TOC extends React.Component {
 	render() {
 		return this.props.src ? (
 			<>
-				<div class='level' onClick={this.toggleExpansion}>
-					<div class='level-left'>
-						<p className='menu-label'>Contents</p>
-					</div>
-					<div className='level-right'>
-						<FontAwesomeIcon
-							icon={this.state.expanded ? faChevronUp : faChevronDown}
-						/>
+				<div class="card">
+					<div class="card-content">
+						<div class='level' onClick={this.toggleExpansion}>
+							<div class='level-left'>
+								<p className='menu-label'>Table of Contents</p>
+							</div>
+							<div className='level-right'>
+								<FontAwesomeIcon
+									icon={this.state.expanded ? faChevronUp : faChevronDown}
+								/>
+							</div>
+						</div>
+						{this.state.expanded && (
+							<ul className={'menu-list ' + styles.List}>
+								<div dangerouslySetInnerHTML={{ __html: this.props.src }} />
+							</ul>
+						)}
 					</div>
 				</div>
-				{this.state.expanded && (
-					<ul className={'menu-list ' + styles.List}>
-						<div dangerouslySetInnerHTML={{ __html: this.props.src }} />
-					</ul>
-				)}
 			</>
 		) : null;
 	}

@@ -35,40 +35,44 @@ class SeriesNav extends React.Component {
 			<>
 				{series && (
 					<>
-						<div class='level' onClick={this.toggleMenu}>
-							<div class='level-left'>
-								<p
-									className='menu-label'
-									style={{ margin: 0, marginRight: '.5em' }}
-								>
-									{series}
-								</p>
-								{beforePost && (
-									<Link to={'../' + beforePost.slug}>
-										<FontAwesomeIcon className='has-text-warning' icon={faChevronLeft} />
-									</Link>
-								)}
-								{afterPost && (
-									<Link to={'../' + afterPost.slug}>
-										<FontAwesomeIcon className='has-text-warning' icon={faChevronRight} />
-									</Link>
-								)}
-							</div>
-							<div className='level-right'>
-								<FontAwesomeIcon
-									icon={this.state.showMenu ? faChevronUp : faChevronDown}
-								/>
+						<div class="card">
+							<div class="card-content">
+								<div class='level' onClick={this.toggleMenu}>
+									<div class='level-left'>
+										<p
+											className='menu-label'
+											style={{ margin: 0, marginRight: '.5em' }}
+										>
+											{series}
+										</p>
+										{beforePost && (
+											<Link to={'../' + beforePost.slug}>
+												<FontAwesomeIcon className='has-text-warning' icon={faChevronLeft} />
+											</Link>
+										)}
+										{afterPost && (
+											<Link to={'../' + afterPost.slug}>
+												<FontAwesomeIcon className='has-text-warning' icon={faChevronRight} />
+											</Link>
+										)}
+									</div>
+									<div className='level-right'>
+										<FontAwesomeIcon
+											icon={this.state.showMenu ? faChevronUp : faChevronDown}
+										/>
+									</div>
+								</div>
+								{this.state.showMenu ? (
+									<ul className='menu-list'>
+										{seriesNeighbors.map((neighbor) => (
+											<li>
+												<Link href={'../' + neighbor.slug}>{neighbor.title}</Link>
+											</li>
+										))}
+									</ul>
+								) : null}
 							</div>
 						</div>
-						{this.state.showMenu ? (
-							<ul className='menu-list'>
-								{seriesNeighbors.map((neighbor) => (
-									<li>
-										<Link href={'../' + neighbor.slug}>{neighbor.title}</Link>
-									</li>
-								))}
-							</ul>
-						) : null}
 					</>
 				)}
 			</>
