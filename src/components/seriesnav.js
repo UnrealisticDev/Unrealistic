@@ -45,12 +45,12 @@ class SeriesNav extends React.Component {
 								</p>
 								{beforePost && (
 									<Link to={'../' + beforePost.slug}>
-										<FontAwesomeIcon icon={faChevronLeft} />
+										<FontAwesomeIcon className='has-text-warning' icon={faChevronLeft} />
 									</Link>
 								)}
 								{afterPost && (
 									<Link to={'../' + afterPost.slug}>
-										<FontAwesomeIcon icon={faChevronRight} />
+										<FontAwesomeIcon className='has-text-warning' icon={faChevronRight} />
 									</Link>
 								)}
 							</div>
