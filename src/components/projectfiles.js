@@ -7,9 +7,9 @@ import styles from './projectfiles.module.scss';
 
 class ProjectFiles extends React.Component {
 	render() {
-		return src ? (
+		return this.props.src ? (
 			<div className={'card has-background-grey-lighter ' + styles.Card}>
-				<a href={src} target='_blank' rel='noopener noreferrer'>
+				<a href={this.props.src} target='_blank' rel='noopener noreferrer'>
 					<div className='card-content'>
 						<div className='content'>
 							<div className='level is-mobile'>

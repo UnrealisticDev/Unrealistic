@@ -136,34 +136,6 @@ export default ({ data, pageContext }) => {
 						</div>
 					</div>
 				</div>
-				{/* {(toc || projectfiles || beforePost || afterPost) && (
-          <div className="column is-3">
-            {(beforePost || afterPost) && (
-              <div className="box has-background-light is-paddingless">
-                <Sidebar>
-                  <Seriesnav
-                    series={series}
-                    seriesNeighbors={seriesNeighbors.nodes}
-                    beforePost={beforePost}
-                    afterPost={afterPost}
-                    startNum={seriesNeighbors.nodes[0].seriesNum}
-                  />
-                </Sidebar>
-              </div>
-            )}
-            {(toc || projectfiles) && (
-              <div
-                className="box has-background-light is-paddingless"
-                style={{ position: "sticky", top: "10vmin" }}
-              >
-                <Sidebar>
-                  <Toc src={toc} />
-                </Sidebar>
-                <Projectfiles src={projectfiles} />
-              </div>
-            )}{" "}
-          </div>
-        )} */}
 				<div className='column is-3'>
 					<Sidebar>
 						<SeriesNav
