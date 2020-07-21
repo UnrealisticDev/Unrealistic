@@ -29,7 +29,7 @@ class SeriesNav extends React.Component {
 	}
 
 	render() {
-		var { series, seriesNeighbors } = this.props;
+		var { series, seriesNeighbors, beforePost, afterPost } = this.props;
 
 		return (
 			<>
@@ -37,7 +37,22 @@ class SeriesNav extends React.Component {
 					<>
 						<div class='level' onClick={this.toggleMenu}>
 							<div class='level-left'>
-								<p className='menu-label'>{series}</p>
+								<p
+									className='menu-label'
+									style={{ margin: 0, marginRight: '.5em' }}
+								>
+									{series}
+								</p>
+								{beforePost && (
+									<Link to={'../' + beforePost.slug}>
+										<FontAwesomeIcon icon={faChevronLeft} />
+									</Link>
+								)}
+								{afterPost && (
+									<Link to={'../' + afterPost.slug}>
+										<FontAwesomeIcon icon={faChevronRight} />
+									</Link>
+								)}
 							</div>
 							<div className='level-right'>
 								<FontAwesomeIcon
@@ -49,7 +64,7 @@ class SeriesNav extends React.Component {
 							<ul className='menu-list'>
 								{seriesNeighbors.map((neighbor) => (
 									<li>
-										<a href={'./' + neighbor.slug}>{neighbor.title}</a>
+										<Link href={'../' + neighbor.slug}>{neighbor.title}</Link>
 									</li>
 								))}
 							</ul>
