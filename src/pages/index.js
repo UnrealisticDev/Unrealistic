@@ -47,7 +47,7 @@ export default ({ data }) => {
               </figure>
               <p style={{ fontStyle: "italic" }}>
                 A place to learn about Unreal Engine 4,
-                <br /> gamedev, and XR
+                <br className='is-hidden-mobile'/> gamedev, and other things
               </p>
             </div>
           </div>
