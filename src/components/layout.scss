@@ -6,4 +6,7 @@
 
 .site-content {
     flex-grow: 1;
+    @media screen and (max-width: 769px) {
+        padding: 0;
+    }
 }
