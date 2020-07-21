@@ -71,7 +71,7 @@ export default ({
                   style={{ margin: 0 }}
                 >
                   <div
-                    class="button is-white"
+                    className="button is-white"
                     onClick={() => toggleSeriesList()}
                     onKeyDown={e => {
                       if (e.key === "Return") toggleSeriesList()

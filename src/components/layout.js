@@ -33,7 +33,7 @@ export default ({ children }) => (
     <div className="site">
       <Header />
       <section className="site-content section has-background-light">
-        <div class="container">
+        <div className="container">
           {children}
         </div>
       </section>

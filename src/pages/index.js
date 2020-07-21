@@ -30,7 +30,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Unrealistic" />
-      <section class="section">
+      <section className="section">
         <div className="level">
           <div className="container">
             <div className="content has-text-centered">

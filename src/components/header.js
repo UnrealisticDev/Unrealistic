@@ -43,15 +43,15 @@ export default () => {
             <a className="navbar-item" href="/articles/">
               Articles
             </a>
-            <div class="navbar-item has-dropdown is-hoverable" href="/">
-              <a href="" class="navbar-link">
+            <div className="navbar-item has-dropdown is-hoverable" href="/">
+              <a href="" className="navbar-link">
                 Products
               </a>
-              <div class="navbar-dropdown has-background-light">
-                <a href={router.getProductSlug("remapt")} class="navbar-item">
+              <div className="navbar-dropdown has-background-light">
+                <a href={router.getProductSlug("remapt")} className="navbar-item">
                   Remapt
                 </a>
-                <a href={router.getProductSlug("prefixed")} class="navbar-item">
+                <a href={router.getProductSlug("prefixed")} className="navbar-item">
                   Prefixed
                 </a>
               </div>

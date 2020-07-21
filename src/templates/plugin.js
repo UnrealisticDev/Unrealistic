@@ -12,15 +12,15 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={plugin.name} />
-      <div class="tile is-ancestor">
-        <div class="tile is-vertical is-8">
-          <div class="tile is-parent">
-            <div class="tile is-child">
+      <div className="tile is-ancestor">
+        <div className="tile is-vertical is-8">
+          <div className="tile is-parent">
+            <div className="tile is-child">
               <img src={plugin.featureImage.file.url} alt="Plugin Feature" />
             </div>
           </div>
-          <div class="tile is-parent">
-            <div class="tile is-child content">
+          <div className="tile is-parent">
+            <div className="tile is-child content">
               <h1>{plugin.longName}</h1>
               <p>{plugin.description.description}</p>
               <a className="button is-warning" href={plugin.marketplaceUrl}>
@@ -29,9 +29,9 @@ export default ({ data, pageContext }) => {
             </div>
           </div>
         </div>
-        <div class="tile is-4 is-parent">
-          <div class="tile is-child">
-            <aside class="menu">
+        <div className="tile is-4 is-parent">
+          <div className="tile is-child">
+            <aside className="menu">
               <p className="menu-label">Documentation</p>
               <ul className="menu-list">
                 {data.documentation.nodes.map(({ slug, title }) => {
