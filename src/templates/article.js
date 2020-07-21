@@ -33,7 +33,6 @@ export default ({ data, pageContext }) => {
 	const { seriesNeighbors } = data;
 
 	var toc = body.childMarkdownRemark.tableOfContents;
-	var headings = body.childMarkdownRemark.headings;
 
 	var beforePost = null;
 	var afterPost = null;
@@ -137,20 +136,21 @@ export default ({ data, pageContext }) => {
 						</div>
 					</div>
 				</div>
-				<div className='column is-3'>
-					<Sidebar>
-						<SeriesNav
-							series={series}
-							seriesNeighbors={seriesNeighbors.nodes}
-							beforePost={beforePost}
-							afterPost={afterPost}
-							startNum={seriesNeighbors.nodes[0].seriesNum}
-						/>
-						<TOC headings={headings} src={toc} />
-						<ProjectFiles src={projectfiles} />
-					</Sidebar>
-				</div>
-				<div />
+				{(series || toc || projectfiles) && (
+					<div className='column is-3'>
+						<Sidebar>
+							<SeriesNav
+								series={series}
+								seriesNeighbors={seriesNeighbors.nodes}
+								beforePost={beforePost}
+								afterPost={afterPost}
+								startNum={seriesNeighbors.nodes[0].seriesNum}
+							/>
+							<TOC src={toc} />
+							<ProjectFiles src={projectfiles} />
+						</Sidebar>
+					</div>
+				)}
 			</div>
 			<ScrollUpButton
 				ShowAtPosition={600}
