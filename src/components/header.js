@@ -47,7 +47,7 @@ export default () => {
               <a href="" className="navbar-link">
                 Products
               </a>
-              <div className="navbar-dropdown has-background-light">
+              <div className="navbar-dropdown">
                 <a href={router.getProductSlug("remapt")} className="navbar-item">
                   Remapt
                 </a>
