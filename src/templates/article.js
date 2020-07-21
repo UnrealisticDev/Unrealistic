@@ -50,7 +50,7 @@ export default ({ data, pageContext }) => {
 	return (
 		<Layout>
 			<SEO title={title} />
-			<div className='columns is-centered'>
+			<div className={'columns is-centered ' + styles.Container}>
 				<div className='column is-8'>
 					<div className='box has-background-light is-paddingless'>
 						<div className='card'>

@@ -3,6 +3,13 @@
 
 $font-size-base: 10px;
 
+.Container {
+    @media screen and (max-width: 769px) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
 .Title {
     font-size: calc(#{$font-size-base} + 4vw);
 }
