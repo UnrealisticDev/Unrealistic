@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Sidebar from '../components/sidebar';
 import SeriesNav from '../components/seriesnav';
-import Toc from '../components/toc';
+import TOC from '../components/toc';
 import ProjectFiles from '../components/projectfiles';
 import ScrollUpButton from 'react-scroll-up-button';
 
@@ -32,7 +32,7 @@ export default ({ data, pageContext }) => {
 
 	const { seriesNeighbors } = data;
 
-	var toc = body.childMarkdownRemark.tableOfContents;
+	var headings = body.childMarkdownRemark.headings;
 
 	var beforePost = null;
 	var afterPost = null;
@@ -145,7 +145,7 @@ export default ({ data, pageContext }) => {
 							afterPost={afterPost}
 							startNum={seriesNeighbors.nodes[0].seriesNum}
 						/>
-						<Toc src={toc} />
+						<TOC headings={headings} />
 						<ProjectFiles src={projectfiles} />
 					</Sidebar>
 				</div>
@@ -225,7 +225,10 @@ export const postQuery = graphql`
 			body {
 				childMarkdownRemark {
 					html
-					tableOfContents(absolute: false)
+					headings {
+						depth
+						value
+					}
 				}
 			}
 			projectfiles

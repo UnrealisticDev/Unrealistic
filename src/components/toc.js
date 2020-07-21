@@ -1,19 +1,20 @@
-import React from "react"
+import React from 'react';
 
-import styles from "./toc.module.scss"
+import styles from './toc.module.scss';
 
-export default ({ src }) => {
-  if (src) {
-    return (
-      <>
-        <p className="menu-label">Contents</p>
-        <div
-          className={styles.List}
-          dangerouslySetInnerHTML={{ __html: src }}
-        />
-      </>
-    )
-  } else {
-    return <></>
-  }
+class TOC extends React.Component {
+	render() {
+		return this.props.headings ? (
+			<>
+				<p className='menu-label'>Contents</p>
+				<ul className={'menu-list ' + styles.List}>
+					{this.props.headings.map(({ depth, value }) => (
+						<li style={{paddingLeft: (depth - 1) * '.2em'}}><a href={'#' + value}>{value}</a></li>
+					))}
+				</ul>
+			</>
+		) : null;
+	}
 }
+
+export default TOC;
