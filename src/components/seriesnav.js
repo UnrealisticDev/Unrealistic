@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faChevronLeft,
   faChevronRight,
-  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons"
 
 import styles from "./seriesnav.module.scss"
@@ -30,7 +29,7 @@ export default ({
 
         mylist.push(
           <Link
-            to={neighbor.slug}
+            to={"../" + neighbor.slug}
             style={{
               justifyContent: "left",
             }}
@@ -56,7 +55,7 @@ export default ({
                 <div className="level-left">
                   {beforePost && (
                     <div className="level-right">
-                      <Link to={beforePost.slug}>
+                      <Link to={"../" + beforePost.slug}>
                         <div className="level-item button is-marginless is-white">
                           <FontAwesomeIcon
                             icon={faChevronLeft}
@@ -78,7 +77,7 @@ export default ({
                       if (e.key === "Return") toggleSeriesList()
                     }}
                     href="javascript:;"
-                    style={{flex: '1 0 auto'}}
+                    style={{ flex: "1 0 auto" }}
                   >
                     <div
                       className="title"
@@ -90,7 +89,7 @@ export default ({
                 </div>
                 {afterPost && (
                   <div className="level-right">
-                    <Link to={afterPost.slug}>
+                    <Link to={"../" + afterPost.slug}>
                       <div className="level-item button is-marginless is-white">
                         <FontAwesomeIcon
                           icon={faChevronRight}
