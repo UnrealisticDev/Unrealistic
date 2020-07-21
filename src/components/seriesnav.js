@@ -1,118 +1,64 @@
 /* eslint-disable */
-import React, { useState } from "react"
-import { Link } from "gatsby"
+import React, { useState } from 'react';
+import { Link } from 'gatsby';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons"
+	faChevronLeft,
+	faChevronRight,
+	faChevronDown,
+	faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 
-import styles from "./seriesnav.module.scss"
+import styles from './seriesnav.module.scss';
 
-export default ({
-  series,
-  seriesNeighbors,
-  beforePost,
-  afterPost,
-  startNum,
-}) => {
-  const [seriesOpen, setSeriesOpen] = useState(false)
-  const [seriesList, setSeriesList] = useState([])
+class SeriesNav extends React.Component {
+	constructor() {
+		super();
+		this.state = { showMenu: false };
 
-  function toggleSeriesList() {
-    var mylist = []
+		this.toggleMenu = this.toggleMenu.bind(this);
+	}
 
-    if (!seriesOpen) {
-      for (var i = 0; i < seriesNeighbors.length; ++i) {
-        const neighbor = seriesNeighbors[i]
+	toggleMenu(event) {
+		event.preventDefault();
 
-        mylist.push(
-          <Link
-            to={"../" + neighbor.slug}
-            style={{
-              justifyContent: "left",
-            }}
-          >
-            <li href="javascript:;" className={styles.ListItem}>
-              {neighbor.title}
-            </li>
-          </Link>
-        )
-      }
-    }
-    setSeriesOpen(!seriesOpen)
-    setSeriesList(mylist)
-  }
+		this.setState({
+			showMenu: !this.state.showMenu,
+		});
+	}
 
-  return (
-    <>
-      {series && (
-        <div className="card">
-          <div className="card-content">
-            <div className="content">
-              <div className="level is-mobile" style={{ margin: 0 }}>
-                <div className="level-left">
-                  {beforePost && (
-                    <div className="level-right">
-                      <Link to={"../" + beforePost.slug}>
-                        <div className="level-item button is-marginless is-white">
-                          <FontAwesomeIcon
-                            icon={faChevronLeft}
-                            style={{ color: "#EAAA03" }}
-                          />
-                        </div>
-                      </Link>
-                    </div>
-                  )}
-                </div>
-                <div
-                  className="level-item has-text-centered"
-                  style={{ margin: 0 }}
-                >
-                  <div
-                    className="button is-white"
-                    onClick={() => toggleSeriesList()}
-                    onKeyDown={e => {
-                      if (e.key === "Return") toggleSeriesList()
-                    }}
-                    href="javascript:;"
-                    style={{ flex: "1 0 auto" }}
-                  >
-                    <div
-                      className="title"
-                      style={{ fontSize: "calc(12px + .8vw)" }}
-                    >
-                      {"Series"}
-                    </div>
-                  </div>
-                </div>
-                {afterPost && (
-                  <div className="level-right">
-                    <Link to={"../" + afterPost.slug}>
-                      <div className="level-item button is-marginless is-white">
-                        <FontAwesomeIcon
-                          icon={faChevronRight}
-                          style={{ color: "#EAAA03" }}
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                )}
-              </div>
-              <ol
-                style={{
-                  padding: seriesList.length === 0 ? "0" : "2.5vmin",
-                  margin: 0,
-                }}
-                start={startNum}
-              >
-                {seriesList}
-              </ol>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  )
+	render() {
+		var { series, seriesNeighbors } = this.props;
+
+		return (
+			<>
+				{series && (
+					<>
+						<div class='level' onClick={this.toggleMenu}>
+							<div class='level-left'>
+								<p className='menu-label'>{series}</p>
+							</div>
+							<div className='level-right'>
+								<FontAwesomeIcon
+									icon={this.state.showMenu ? faChevronUp : faChevronDown}
+								/>
+							</div>
+						</div>
+						{this.state.showMenu ? (
+							<ul className='menu-list'>
+								{seriesNeighbors.map((neighbor) => (
+									<li>
+										<a href={'./' + neighbor.slug}>{neighbor.title}</a>
+									</li>
+								))}
+							</ul>
+						) : null}
+					</>
+				)}
+			</>
+		);
+	}
 }
+
+export default SeriesNav;

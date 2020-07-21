@@ -1,11 +1,11 @@
 @import '../styles/variables.scss';
 
-.Content {
-    max-height: 50vh;
-    overflow: scroll;
-    scrollbar-width: none;
-}
+.Container {
 
-.Content::-webkit-scrollbar {
-    display: none;
+    @media (min-width: 1024px) {
+        height: 80vh;
+        overflow: hidden;
+        position: sticky;
+        top: 10vmin;
+    }
 }

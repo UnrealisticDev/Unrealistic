@@ -1,6 +1,28 @@
 @import '../styles/variables.scss';
 
+.Container {
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+.Title {
+    font-size: calc(12px + .75vw);
+    border-bottom: 2px solid #EAAA03;
+    padding-bottom: 2vmin;
+
+    flex: 0 0 auto;
+}
+
 .List {
+
+    // flex: 1 1 auto;
+    overflow: auto;
+    height: 100%;
+    scrollbar-width: thin;
 
     ul {
         list-style: none;
@@ -48,11 +70,5 @@
                 padding-left: 2em;
             }
         }
-
-        // li::before
-        // {
-        //     content: '- ';
-        //     color: #EAAA03;
-        // }
     }
 }

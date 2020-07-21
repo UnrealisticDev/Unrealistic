@@ -5,7 +5,7 @@ import HyvorTalk from "hyvor-talk-react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar"
-import Seriesnav from "../components/seriesnav"
+import SeriesNav from "../components/seriesnav"
 import Toc from "../components/toc"
 import Projectfiles from "../components/projectfiles"
 import ScrollUpButton from "react-scroll-up-button"
@@ -136,7 +136,7 @@ export default ({ data, pageContext }) => {
             </div>
           </div>
         </div>
-        {(toc || projectfiles || beforePost || afterPost) && (
+        {/* {(toc || projectfiles || beforePost || afterPost) && (
           <div className="column is-3">
             {(beforePost || afterPost) && (
               <div className="box has-background-light is-paddingless">
@@ -163,13 +163,23 @@ export default ({ data, pageContext }) => {
               </div>
             )}{" "}
           </div>
-        )}
+        )} */}
+        <div className="column is-3">
+          <Sidebar>
+            <SeriesNav
+              series={series}
+              seriesNeighbors={seriesNeighbors.nodes}
+              beforePost={beforePost}
+              afterPost={afterPost}
+              startNum={seriesNeighbors.nodes[0].seriesNum}
+            />
+            <Toc src={toc} />
+          </Sidebar>
+        </div>
         <div />
       </div>
       <ScrollUpButton
-
         ShowAtPosition={600}
-
         style={{
           color: "#EAAA03",
           justifyContent: "right",
@@ -196,7 +206,6 @@ export default ({ data, pageContext }) => {
           paddingLeft: 1,
           paddingRight: 1,
         }}
-
         ToggledStyle={{
           color: "#EAAA03",
           justifyContent: "right",
