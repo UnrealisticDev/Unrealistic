@@ -4,13 +4,11 @@ import styles from './toc.module.scss';
 
 class TOC extends React.Component {
 	render() {
-		return this.props.headings ? (
+		return this.props.src ? (
 			<>
 				<p className='menu-label'>Contents</p>
 				<ul className={'menu-list ' + styles.List}>
-					{this.props.headings.map(({ depth, value }) => (
-						<li style={{paddingLeft: (depth - 1) * '.2em'}}><a href={'#' + value}>{value}</a></li>
-					))}
+					<div dangerouslySetInnerHTML={{__html: this.props.src}}/>
 				</ul>
 			</>
 		) : null;

@@ -32,6 +32,7 @@ export default ({ data, pageContext }) => {
 
 	const { seriesNeighbors } = data;
 
+	var toc = body.childMarkdownRemark.tableOfContents;
 	var headings = body.childMarkdownRemark.headings;
 
 	var beforePost = null;
@@ -145,7 +146,7 @@ export default ({ data, pageContext }) => {
 							afterPost={afterPost}
 							startNum={seriesNeighbors.nodes[0].seriesNum}
 						/>
-						<TOC headings={headings} />
+						<TOC headings={headings} src={toc} />
 						<ProjectFiles src={projectfiles} />
 					</Sidebar>
 				</div>
@@ -229,6 +230,7 @@ export const postQuery = graphql`
 						depth
 						value
 					}
+					tableOfContents(absolute: false)
 				}
 			}
 			projectfiles
