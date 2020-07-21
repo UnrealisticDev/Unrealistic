@@ -63,7 +63,7 @@ class SeriesNav extends React.Component {
 									</div>
 								</div>
 								{this.state.showMenu ? (
-									<ul className='menu-list'>
+									<ul className={'menu-list ' + styles.List}>
 										{seriesNeighbors.map((neighbor) => (
 											<li>
 												<Link href={'../' + neighbor.slug}>{neighbor.title}</Link>

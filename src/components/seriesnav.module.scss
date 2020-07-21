@@ -1,5 +1,13 @@
 @import '../styles/variables.scss';
 
+.List {
+    @media (min-width: 1024px) {
+        overflow-y: auto;
+        max-height: 70vh;
+        scrollbar-width: thin;
+    }
+}
+
 .ListItem {
     color: lighten(#363636, 10%);
 }
