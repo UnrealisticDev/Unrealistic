@@ -8,7 +8,7 @@ class TOC extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			expanded: !(window.innerWidth < 769),
+			expanded: false,
 		};
 		this.toggleExpansion = this.toggleExpansion.bind(this);
 	}

@@ -15,7 +15,7 @@ import styles from './seriesnav.module.scss';
 class SeriesNav extends React.Component {
 	constructor() {
 		super();
-		this.state = { showMenu: !(window.innerWidth < 769) };
+		this.state = { showMenu: false };
 
 		this.toggleMenu = this.toggleMenu.bind(this);
 	}
