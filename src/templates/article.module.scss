@@ -2,61 +2,70 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Sen:400,700&display=swap');
 
 $font-size-base: 10px;
+$font-family: 'Sen',
+'Segoe UI',
+Tahoma,
+Geneva,
+Verdana,
+sans-serif;
 
-.Container {
+// The main article section
+.MainSection {
+    @media screen and (max-width: 769px) {
+        padding: 0;
+    }
+}
+
+// Columns splitting up the article into body and sidebar
+.Columns {
     @media screen and (max-width: 769px) {
         display: flex;
         flex-direction: column-reverse;
     }
 }
 
+// Contains title and feature image
+.FrontmatterContainer {
+    position: relative;
+}
+
 .Title {
-    font-size: calc(#{$font-size-base} + 4vw);
-}
-
-.Subtitle {
-    font-size: calc(#{$font-size-base} + .5vw);
-    text-transform: uppercase;
-    display: inline-block;
-    padding-right: 1em;
-    padding-left: 1em;
-    padding-top: .2em;
-    padding-bottom: .2em;
-    margin: 0;
-}
-
-.Markdown h1::before,
-h2::before {
-    content: "";
-}
-
-.Markdown {
-
-    font-family: 'Sen', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    // color: $color-fg-primary;
-    color: #2E2F3E;
-    font-size: calc(#{$font-size-base} + 1vmin);
-    // font-weight: lighter;
-
-    word-wrap: break-word;
-
-    h1,
-    h2 {
-        text-align: left;
-        margin-top: 5vmin;
-        margin-bottom: 3vmin;
+    @media (max-width: 769px) {
+        font-size: calc(#{$font-size-base} + 4vw);
     }
 
-    h1 {
+    @media (min-width: 770px) {
         font-size: calc(#{$font-size-base} + 2vw);
-        color: #20639B;
-        // border-bottom: 2px solid #20639B;
+    }
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2vmin;
+    max-width: 90%;
+    background-color: darken(#F5F5F5, 70%);
+    border-radius: 0px 15px 0px 0px;
+    overflow: hidden;
+    color: #EAAA03;
+
+}
+
+// Markdown body
+.Markdown {
+
+    font-family: $font-family;
+    font-size: calc(#{$font-size-base} + 1vmin);
+    word-wrap: break-word;
+
+    h2 {
+        font-size: calc(#{$font-size-base} + 1.8vw);
+        color: darken(#f5f5f5, 50%);
         display: inline-block;
     }
 
-    h2 {
+    h3 {
         font-size: calc(#{$font-size-base} + 1.5vw);
-        color: #3CAEA3;
+        color: darken(#f5f5f5, 20%);
         display: inline-block;
     }
 
@@ -84,7 +93,6 @@ h2::before {
 
         p {
             font-size: calc(#{$font-size-base} + .8vmin);
-            // line-height: $font-size-base * 1.2;
             line-height: calc((#{$font-size-base} + .8vmin) * 1.4);
             margin: 0;
         }

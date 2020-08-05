@@ -1,251 +1,271 @@
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import HyvorTalk from 'hyvor-talk-react';
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Img from "gatsby-image";
+import rehypeReact from "rehype-react";
+import HyvorTalk from "hyvor-talk-react";
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import Sidebar from '../components/sidebar';
-import SeriesNav from '../components/seriesnav';
-import TOC from '../components/toc';
-import ProjectFiles from '../components/projectfiles';
-import ScrollUpButton from 'react-scroll-up-button';
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Sidebar from "../components/sidebar";
+import SeriesNav from "../components/seriesnav";
+import TOC from "../components/toc";
+import ProjectFiles from "../components/projectfiles";
+import ScrollUpButton from "react-scroll-up-button";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faChevronLeft,
-	faChevronRight,
-	faAngleUp as faChevronCircleUp,
-} from '@fortawesome/free-solid-svg-icons';
+  faChevronLeft,
+  faChevronRight,
+  faAngleUp as faChevronCircleUp
+} from "@fortawesome/free-solid-svg-icons";
 
-import '../styles/code.scss';
-import styles from './article.module.scss';
+import "../styles/code.scss";
+import styles from "./article.module.scss";
 
-export default ({ data, pageContext }) => {
-	const {
-		title,
-		image,
-		body,
-		projectfiles,
-		series,
-		seriesNum,
-	} = data.contentfulBlogPost;
+/* Header id formatter. */
+const format = string => {
+  return string.toLowerCase().replaceAll(" ", "-");
+};
 
-	const { seriesNeighbors } = data;
+/* Used to demote headers. */
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
+    h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>
+  }
+}).Compiler;
 
-	var toc = body.childMarkdownRemark.tableOfContents;
+export default ({ data }) => {
+  const {
+    title,
+    image,
+    body,
+    projectfiles,
+    series,
+    seriesNum
+  } = data.contentfulBlogPost;
 
-	var beforePost = null;
-	var afterPost = null;
-	if (series) {
-		for (var i = 0; i < seriesNeighbors.nodes.length; ++i) {
-			if (seriesNum - 1 === i) {
-				beforePost = seriesNeighbors.nodes[i];
-			}
-			if (seriesNum + 1 === i) {
-				afterPost = seriesNeighbors.nodes[i];
-			}
-		}
-	}
+  const { seriesNeighbors } = data;
+  const toc = body.childMarkdownRemark.tableOfContents;
+  var beforePost = null;
+  var afterPost = null;
 
-	return (
-		<Layout>
-			<SEO title={title} />
-			<div className={'columns is-centered ' + styles.Container}>
-				<div className='column is-8'>
-					<div className='box has-background-light is-paddingless'>
-						<div className='card'>
-							<div style={{ position: 'relative' }}>
-								<div className='card-image'>
-									<figure className='image is-5by3'>
-										<img
-											src={image ? image.file.url : ''}
-											alt='alt'
-											style={{ objectFit: 'cover' }}
-										/>
-									</figure>
-								</div>
-								<div
-									className={'title ' + styles.Title}
-									style={{
-										position: 'absolute',
-										bottom: '.5em',
-										right: '.5em',
-										color: '#EAAA03',
-										backgroundColor: 'rgb(64, 64, 64, .4)',
-										padding: '.5em',
-										justifyContent: 'end',
-										maxWidth: '85%',
-										borderBottom: '5px solid #EAAA03',
-									}}
-								>
-									{title}
-								</div>
-							</div>
-							<div className='card-content'>
-								<div className='content'>
-									<div
-										className={styles.Markdown}
-										dangerouslySetInnerHTML={{
-											__html: body.childMarkdownRemark.html,
-										}}
-									/>
-									<div className='level'>
-										<div className='level-right'>
-											<div className='level-item'>
-												{beforePost && (
-													<Link
-														to={beforePost.slug}
-														className={styles.SeriesNavInline}
-													>
-														<div className='level is-mobile'>
-															<div className='level-item'>
-																<FontAwesomeIcon icon={faChevronLeft} />
-															</div>
-															<div className='level-item'>
-																{beforePost.title}
-															</div>
-														</div>
-													</Link>
-												)}{' '}
-											</div>
-										</div>
-										<div className='level-left'>
-											<div className='level-item'>
-												{afterPost && (
-													<Link
-														to={afterPost.slug}
-														className={styles.SeriesNavInline}
-													>
-														<div className='level is-mobile'>
-															<div className='level-item'>
-																{afterPost.title}
-															</div>
-															<div className='level-item'>
-																<FontAwesomeIcon icon={faChevronRight} />
-															</div>
-														</div>
-													</Link>
-												)}
-											</div>
-										</div>
-									</div>
-									<hr style={{ marginTop: '8vmin', marginBottom: '8vmin' }} />
-									<HyvorTalk.Embed websiteId={292} />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				{(series || toc || projectfiles) && (
-					<div className='column is-3'>
-						<Sidebar>
-							<SeriesNav
-								series={series}
-								seriesNeighbors={seriesNeighbors.nodes}
-								beforePost={beforePost}
-								afterPost={afterPost}
-								startNum={seriesNeighbors.nodes[0].seriesNum}
-							/>
-							<TOC src={toc} />
-							<ProjectFiles src={projectfiles} />
-						</Sidebar>
-					</div>
-				)}
-			</div>
-			<ScrollUpButton
-				ShowAtPosition={600}
-				style={{
-					color: '#EAAA03',
-					justifyContent: 'right',
-					position: 'fixed',
-					right: '5vmin',
-					bottom: '2vmin',
-					// height: "10vmin",
+  if (series) {
+    for (var i = 0; i < seriesNeighbors.nodes.length; ++i) {
+      if (seriesNum - 1 === i) {
+        beforePost = seriesNeighbors.nodes[i];
+      }
+      if (seriesNum + 1 === i) {
+        afterPost = seriesNeighbors.nodes[i];
+      }
+    }
+  }
 
-					// backgroundColor: "rgb(87, 86, 86)",
-					// height: 30,
-					// position: "fixed",
-					// bottom: 20,
-					// width: 30,
-					WebkitTransition: 'all 0.5s ease-in-out',
-					transition: 'all 0.5s ease-in-out',
-					transitionProperty: 'opacity, right',
-					cursor: 'pointer',
+  return (
+    <Layout>
+      <SEO title={title} />
+      <section className={"section " + styles.MainSection}>
+        <div class="container">
+          <div className={"columns " + styles.Columns}>
+            {/* Main Article */}
+            <div className="column is-8">
+              <div className="box has-background-light is-paddingless">
+                <div className="card">
+                  {/* Frontmatter */}
+                  <div className={styles.FrontmatterContainer}>
+                    {/* Feature image */}
+                    <Img
+                      fluid={image ? image.fluid : ""}
+                      alt="Article Feature"
+                    />
+                    {/* Title */}
+                    <h1 className={"title has-background-dark " + styles.Title}>
+                      {title}
+                    </h1>
+                  </div>
+                  {/* Body */}
+                  <div className="card-content">
+                    <div className="content">
+                      {/* Body - Markdown */}
+                      {
+                        <div className={styles.Markdown}>
+                          {renderAst(body.childMarkdownRemark.htmlAst)}
+                        </div>
+                      }
+                      {/* Body - Series - Previous/Next */}
+                      {(beforePost || afterPost) && (
+                        <div className="level">
+                          <div className="level-right">
+                            <div className="level-item">
+                              {beforePost && (
+                                <Link
+                                  to={beforePost.slug}
+                                  className={styles.SeriesNavInline}
+                                >
+                                  <div className="level is-mobile">
+                                    <div className="level-item">
+                                      <FontAwesomeIcon icon={faChevronLeft} />
+                                    </div>
+                                    <div className="level-item">
+                                      {beforePost.title}
+                                    </div>
+                                  </div>
+                                </Link>
+                              )}{" "}
+                            </div>
+                          </div>
+                          <div className="level-left">
+                            <div className="level-item">
+                              {afterPost && (
+                                <Link
+                                  to={afterPost.slug}
+                                  className={styles.SeriesNavInline}
+                                >
+                                  <div className="level is-mobile">
+                                    <div className="level-item">
+                                      {afterPost.title}
+                                    </div>
+                                    <div className="level-item">
+                                      <FontAwesomeIcon icon={faChevronRight} />
+                                    </div>
+                                  </div>
+                                </Link>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      <hr
+                        style={{
+                          marginTop: "8vmin",
+                          marginBottom: "8vmin"
+                        }}
+                      />
+                      {/* Body - Comments */}
+                      <HyvorTalk.Embed websiteId={292} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Sidebar */}
+            {(series || toc || projectfiles) && (
+              <div className="column is-3 is-hidden-mobile">
+                <Sidebar>
+                  <SeriesNav
+                    series={series}
+                    seriesNeighbors={seriesNeighbors.nodes}
+                    beforePost={beforePost}
+                    afterPost={afterPost}
+                    startNum={seriesNeighbors.nodes[0].seriesNum}
+                  />
+                  <TOC src={toc} />
+                  <ProjectFiles src={projectfiles} />
+                </Sidebar>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+      <ScrollUpButton
+        ShowAtPosition={600}
+        style={{
+          color: "#EAAA03",
+          justifyContent: "right",
+          position: "fixed",
+          right: "5vmin",
+          bottom: "2vmin",
+          // height: "10vmin",
 
-					opacity: 0,
-					// right: -75,
-					zIndex: 1000,
-					fill: '#292929',
-					paddingBottom: 1,
-					paddingLeft: 1,
-					paddingRight: 1,
-				}}
-				ToggledStyle={{
-					color: '#EAAA03',
-					justifyContent: 'right',
-					position: 'fixed',
-					right: '5vmin',
-					bottom: '2vmin',
-					// height: "10vmin",
+          // backgroundColor: "rgb(87, 86, 86)",
+          // height: 30,
+          // position: "fixed",
+          // bottom: 20,
+          // width: 30,
+          WebkitTransition: "all 0.5s ease-in-out",
+          transition: "all 0.5s ease-in-out",
+          transitionProperty: "opacity, right",
+          cursor: "pointer",
 
-					// backgroundColor: "rgb(87, 86, 86)",
-					// height: 30,
-					// position: "fixed",
-					// bottom: 20,
-					// width: 30,
-					WebkitTransition: 'all 0.5s ease-in-out',
-					transition: 'all 0.5s ease-in-out',
-					transitionProperty: 'opacity, right',
-					cursor: 'pointer',
+          opacity: 0,
+          // right: -75,
+          zIndex: 1000,
+          fill: "#292929",
+          paddingBottom: 1,
+          paddingLeft: 1,
+          paddingRight: 1
+        }}
+        ToggledStyle={{
+          color: "#EAAA03",
+          justifyContent: "right",
+          position: "fixed",
+          right: "5vmin",
+          bottom: "2vmin",
+          // height: "10vmin",
 
-					opacity: 100,
-					// right: -75,
-					zIndex: 1000,
-					fill: '#292929',
-					paddingBottom: 1,
-					paddingLeft: 1,
-					paddingRight: 1,
-				}}
-			>
-				<FontAwesomeIcon icon={faChevronCircleUp} size='2x' />
-			</ScrollUpButton>
-		</Layout>
-	);
+          // backgroundColor: "rgb(87, 86, 86)",
+          // height: 30,
+          // position: "fixed",
+          // bottom: 20,
+          // width: 30,
+          WebkitTransition: "all 0.5s ease-in-out",
+          transition: "all 0.5s ease-in-out",
+          transitionProperty: "opacity, right",
+          cursor: "pointer",
+
+          opacity: 100,
+          // right: -75,
+          zIndex: 1000,
+          fill: "#292929",
+          paddingBottom: 1,
+          paddingLeft: 1,
+          paddingRight: 1
+        }}
+      >
+        <FontAwesomeIcon icon={faChevronCircleUp} size="2x" />
+      </ScrollUpButton>
+    </Layout>
+  );
 };
 
 export const postQuery = graphql`
-	query($pagePath: String!, $pageSeries: String) {
-		contentfulBlogPost(slug: { eq: $pagePath }) {
-			slug
-			title
-			image {
-				file {
-					url
-				}
-			}
-			body {
-				childMarkdownRemark {
-					html
-					headings {
-						depth
-						value
-					}
-					tableOfContents(absolute: false)
-				}
-			}
-			projectfiles
-			series
-			seriesNum
-		}
-		seriesNeighbors: allContentfulBlogPost(
-			filter: { series: { eq: $pageSeries } }
-			sort: { fields: seriesNum, order: ASC }
-		) {
-			nodes {
-				title
-				slug
-				seriesNum
-			}
-		}
-	}
+  query($pagePath: String!, $pageSeries: String) {
+    contentfulBlogPost(slug: { eq: $pagePath }) {
+      slug
+      title
+      image {
+        fluid {
+          ...GatsbyContentfulFluid
+        }
+        file {
+          url
+        }
+      }
+      body {
+        childMarkdownRemark {
+          html
+          htmlAst
+          headings {
+            depth
+            value
+          }
+          tableOfContents(absolute: false)
+        }
+      }
+      projectfiles
+      series
+      seriesNum
+    }
+    seriesNeighbors: allContentfulBlogPost(
+      filter: { series: { eq: $pageSeries } }
+      sort: { fields: seriesNum, order: ASC }
+    ) {
+      nodes {
+        title
+        slug
+        seriesNum
+      }
+    }
+  }
 `;

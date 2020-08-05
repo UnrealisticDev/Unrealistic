@@ -10,7 +10,7 @@ function SEO({ title, description, meta, lang }) {
         site {
           siteMetadata {
             title
-            description
+            tagline
             author
           }
         }
@@ -18,7 +18,7 @@ function SEO({ title, description, meta, lang }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.tagline
 
   return (
     <Helmet

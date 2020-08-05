@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 
 .Card {
-    path {
+    a, path {
         color: lighten(#2c2c2c, 40%);
     }
 }
@@ -9,7 +9,7 @@
 .Card:hover {
     background-color: darken(#DBDBDB, 10%) !important;
 
-    path {
+    a, path {
         color: #332329;
     }
 }

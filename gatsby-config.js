@@ -5,147 +5,79 @@
  */
 
 module.exports = {
+  /* Site details */
   siteMetadata: {
     title: `Unrealistic`,
-    description: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
-    author: `Nokternel Games`,
-    navbarItems: ["articles", "glossary", "creations", "about"],
+    tagline: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
+    author: `Mowgl33`,
     tipOfTheWeek:
-      "Never think you have the best idea ever. Test it as soon as possible. As it will probably turn out to be shit anyway.",
+      "Never think you have the best idea ever. Test it as soon as possible. As it will probably turn out to be shit anyway."
   },
   plugins: [
+    /* Page routing, metadata, SEO */
+
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-160708075-1"
+      }
+    },
+    /* Content sourcing and transformation */
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `4z1i7rtd5bsh`,
-        accessToken: `Xeqkswi8vvM5us2jEa7ESxU4MyAqyZQj5EHQ1SyzTe8`,
-      },
+        accessToken: `Xeqkswi8vvM5us2jEa7ESxU4MyAqyZQj5EHQ1SyzTe8`
+      }
     },
+    /* - Sharp (enables gatsby-image) */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
+    /* - Remark (enables markdown support) */
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              maxWidth: 590,
+              showCaptions: `true`
+            }
+          },
+          {
+            resolve: `gatsby-remark-figure-caption`
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: true,
+              escapeEntities: {}
+            }
+          }
+        ]
+      }
+    },
+    /* Progressive Web App (PWA) */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Unrealistic.dev`,
         short_name: `Unrealistic`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#f5f5f5`,
+        theme_color: `#f5f5f5`,
         display: `standalone`,
-        icon: `src/images/icon.png`,
-      },
-    },
-    `gatsby-plugin-sass`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-autolink-headers`,
-            options: {
-              icon: false,
-              // isIconAfterHeader: true,
-            },
-          },
-          // {
-          //   resolve: `gatsby-remark-images`,
-          //   options: {
-          //     maxWidth: 590,
-          //     showCaptions: `true`,
-          //     // wrapperStyle: `max-width: 100px`,
-          //   },
-          // },
-          {
-            resolve: `gatsby-remark-figure-caption`,
-          },
-          // // {
-          // //   resolve: 'gatsby-remark-code-titles',
-          // //   options: {
-          // //     className: 'gatsby-remark-code-title'
-          // //   }
-          // // },
-          // {
-          //   resolve: `gatsby-remark-code-buttons`,
-          //   options: {
-          //     toasterText: 'Copied to clipboard.'
-          //   }
-          // },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              // Class prefix for <pre> tags containing syntax highlighting;
-              // defaults to 'language-' (e.g. <pre class="language-js">).
-              // If your site loads Prism into the browser at runtime,
-              // (e.g. for use with libraries like react-live),
-              // you may use this to prevent Prism from re-processing syntax.
-              // This is an uncommon use-case though;
-              // If you're unsure, it's best to use the default value.
-              classPrefix: "language-",
-              // This is used to allow setting a language for inline code
-              // (i.e. single backticks) by creating a separator.
-              // This separator is a string and will do no white-space
-              // stripping.
-              // A suggested value for English speakers is the non-ascii
-              // character '›'.
-              inlineCodeMarker: null,
-              // This lets you set up language aliases.  For example,
-              // setting this to '{ sh: "bash" }' will let you use
-              // the language "sh" which will highlight using the
-              // bash highlighter.
-              aliases: {},
-              // This toggles the display of line numbers globally alongside the code.
-              // To use it, add the following line in gatsby-browser.js
-              // right after importing the prism color scheme:
-              //  require("prismjs/plugins/line-numbers/prism-line-numbers.css")
-              // Defaults to false.
-              // If you wish to only show line numbers on certain code blocks,
-              // leave false and use the {numberLines: true} syntax below
-              showLineNumbers: false,
-              // If setting this to true, the parser won't handle and highlight inline
-              // code used in markdown i.e. single backtick code like `this`.
-              noInlineHighlight: true,
-              // This adds a new language definition to Prism or extend an already
-              // existing language definition. More details on this option can be
-              // found under the header "Add new language definition or extend an
-              // existing language" below.
-              languageExtensions: [
-                {
-                  language: "superscript",
-                  extend: "javascript",
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
-                    },
-                  },
-                },
-              ],
-              // Customize the prompt used in shell output
-              // Values below are default
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
-              },
-              // By default the HTML entities <>&'" are escaped.
-              // Add additional HTML escapes by providing a mapping
-              // of HTML entities and their escape value IE: { '}': '&#123;' }
-              escapeEntities: {},
-            },
-          },
-        ],
-      },
-    },
-    `gatsby-plugin-catch-links`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-160708075-1',
+        icon: `src/images/logo-maskable.png`
       }
     },
-    `gatsby-plugin-offline`,
-  ],
-}
+    `gatsby-plugin-offline`
+  ]
+};
