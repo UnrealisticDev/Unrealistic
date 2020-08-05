@@ -84,8 +84,15 @@ sans-serif;
         code {
             background-color: rgb(231, 224, 224);
             color: rgb(53, 142, 184);
-            padding: 5px;
             border-radius: .3em;
+
+            @media screen and (max-width: 769px) {
+                padding: 1vmin;
+            }
+
+            @media screen and (min-width: 770px) {
+                padding: .5vmin;
+            }
         }
     }
 
