@@ -74,14 +74,28 @@ sans-serif;
         margin-bottom: 3vmin;
     }
 
+    a {
+        color: #EAAA03;
+
+    }
+
     p,
     ul {
         code {
             background-color: rgb(231, 224, 224);
             color: rgb(53, 142, 184);
-            padding: 3px;
+            padding: 5px;
             border-radius: .3em;
+        }
+    }
 
+    pre {
+        position: relative;
+        
+        button {
+            position: absolute;
+            top: 0;
+            right: 0; 
         }
     }
 
@@ -98,25 +112,12 @@ sans-serif;
         }
     }
 
-    ul,
-    ol {
-        margin-left: 6vmin;
-        margin-top: 3vmin;
-        margin-bottom: 3vmin;
-    }
-
     ul {
         list-style-type: square;
     }
 
     li {
         padding-left: 3vmin;
-    }
-
-    img {
-        object-fit: contain;
-        max-width: 100%;
-        margin-bottom: .5em;
     }
 
     figcaption {

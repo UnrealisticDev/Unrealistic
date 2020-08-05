@@ -34,6 +34,7 @@
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-default-html-attrs": "^1.0.1",
     "gatsby-remark-figure-caption": "^2.0.0",
+    "gatsby-remark-images": "^3.3.25",
     "gatsby-remark-images-contentful": "^2.3.12",
     "gatsby-remark-prismjs": "^3.3.32",
     "gatsby-source-contentful": "^2.1.89",

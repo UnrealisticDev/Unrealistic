@@ -16,23 +16,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faAngleUp as faChevronCircleUp
+  faAngleUp,
+  faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/code.scss";
 import styles from "./article.module.scss";
+
+/* Todo: Enable lazy loaded images in markdown. */
 
 /* Header id formatter. */
 const format = string => {
   return string.toLowerCase().replaceAll(" ", "-");
 };
 
-/* Used to demote headers. */
+var codeblockId = 0;
+
+/* Used to demote headers and do other html processing. */
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components: {
     h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
-    h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>
+    h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
+    pre: props => {
+      var id = "codeblock" + ++codeblockId;
+      return (
+        <pre className="language-cpp" id={id}>
+          <button
+            className="button is-light"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                document.getElementById(id).innerText
+              );
+            }}
+          >
+            <FontAwesomeIcon className="has-text-grey" icon={faCopy} />
+          </button>
+          {props.children}
+        </pre>
+      );
+    }
   }
 }).Compiler;
 
@@ -66,7 +89,7 @@ export default ({ data }) => {
     <Layout>
       <SEO title={title} />
       <section className={"section " + styles.MainSection}>
-        <div class="container">
+        <div className="container">
           <div className={"columns " + styles.Columns}>
             {/* Main Article */}
             <div className="column is-8">
@@ -100,7 +123,7 @@ export default ({ data }) => {
                             <div className="level-item">
                               {beforePost && (
                                 <Link
-                                  to={beforePost.slug}
+                                  to={"../" + beforePost.slug}
                                   className={styles.SeriesNavInline}
                                 >
                                   <div className="level is-mobile">
@@ -119,7 +142,7 @@ export default ({ data }) => {
                             <div className="level-item">
                               {afterPost && (
                                 <Link
-                                  to={afterPost.slug}
+                                  to={"../" + afterPost.slug}
                                   className={styles.SeriesNavInline}
                                 >
                                   <div className="level is-mobile">
@@ -223,7 +246,7 @@ export default ({ data }) => {
           paddingRight: 1
         }}
       >
-        <FontAwesomeIcon icon={faChevronCircleUp} size="2x" />
+        <FontAwesomeIcon icon={faAngleUp} size="2x" />
       </ScrollUpButton>
     </Layout>
   );
@@ -238,13 +261,9 @@ export const postQuery = graphql`
         fluid {
           ...GatsbyContentfulFluid
         }
-        file {
-          url
-        }
       }
       body {
         childMarkdownRemark {
-          html
           htmlAst
           headings {
             depth
