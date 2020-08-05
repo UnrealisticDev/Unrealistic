@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from 'gatsby-image'
 
 import router from "../scripts/router"
 
@@ -20,7 +21,7 @@ export default ({ data, pageContext }) => {
             <div className="tile is-vertical is-8">
               <div className="tile is-parent">
                 <div className="tile is-child">
-                  <img src={plugin.featureImage.file.url} alt="Plugin Feature" />
+                  <Img fluid={plugin.featureImage.fluid} alt="Plugin Feature" />
                 </div>
               </div>
               <div className="tile is-parent">
@@ -70,6 +71,9 @@ export const pluginQuery = graphql`
       featureImage {
         file {
           url
+        }
+        fluid {
+          ...GatsbyContentfulFluid
         }
       }
       marketplaceUrl

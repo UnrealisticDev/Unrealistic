@@ -26,7 +26,7 @@ export default () => {
   return (
     <form name="hireme" method="POST" netlify action='/success/'>
       <input type="hidden" name="form-name" value="hireme" />
-      <h1 className="title">Hire Us!</h1>
+      <h1 className="title is-size-1">Hire Us!</h1>
       <div className="columns">
         <div className="column">
           <BulmaControl name="First Name">
