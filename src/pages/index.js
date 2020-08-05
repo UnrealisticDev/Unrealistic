@@ -30,102 +30,104 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Unrealistic" />
-      <div class="container">
-        <section className="section">
-          <div className="level">
-            <div className="container">
-              <div className="content has-text-centered">
-                <figure
-                  className="image"
-                  style={{
-                    maxWidth: "512px",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    marginBottom: ".5vmin",
-                  }}
-                >
-                  <img src={logo} alt="logo" />
-                </figure>
-                <p style={{ fontStyle: "italic" }}>
-                  A place to learn about Unreal Engine 4,
-                  <br className='is-hidden-mobile'/> gamedev, and other things
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div className="tile is-ancestor">
-          <div className="tile is-vertical">
-            <div className="tile">
-              <div className="tile is-parent is-9">
-                <div className="tile is-child">
-                  <Widget
-                    title={freshPost.title}
-                    flair="Fresh Off the Press"
-                    subtitle={freshPost.body.childMarkdownRemark.excerpt}
-                    image={getImageFromPost(freshPost)}
-                    to={router.getArticleSlug(freshPost.slug)}
-                    fullheight
-                  />
-                </div>
-              </div>
-              <div className="tile is-parent is-vertical">
-                <div className="tile is-child">
-                  <Widget
-                    title={stylePost.title}
-                    flair="Style"
-                    image={stylePost.image.file.url}
-                    to={router.getArticleSlug(stylePost.slug)}
-                    fullheight
-                  />
-                </div>
-                <div className="tile is-child">
-                  <Widget
-                    title={insiderPost.title}
-                    flair="Insider Insight"
-                    image={getImageFromPost(insiderPost)}
-                    to={router.getArticleSlug(insiderPost.slug)}
-                    fullheight
-                  />
+      <section class="section">
+        <div class="container">
+          <section className="section">
+            <div className="level">
+              <div className="container">
+                <div className="content has-text-centered">
+                  <figure
+                    className="image"
+                    style={{
+                      maxWidth: "512px",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      marginBottom: ".5vmin",
+                    }}
+                  >
+                    <img src={logo} alt="logo" />
+                  </figure>
+                  <p style={{ fontStyle: "italic" }}>
+                    A place to learn about Unreal Engine 4,
+                    <br className='is-hidden-mobile'/> gamedev, and other things
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="tile">
-              <div className="tile is-parent is-vertical is-4">
-                <div className="tile is-child">
-                  <Widget
-                    to={router.getArticleSlug(devlogPost.slug)}
-                    title="Project Ascendant"
-                    subtitle="An upcoming stealth crawler"
-                    flair="Devlog"
-                    image={getImageFromPost(devlogPost)}
-                  />
+          </section>
+          <div className="tile is-ancestor">
+            <div className="tile is-vertical">
+              <div className="tile">
+                <div className="tile is-parent is-9">
+                  <div className="tile is-child">
+                    <Widget
+                      title={freshPost.title}
+                      flair="Fresh Off the Press"
+                      subtitle={freshPost.body.childMarkdownRemark.excerpt}
+                      image={getImageFromPost(freshPost)}
+                      to={router.getArticleSlug(freshPost.slug)}
+                      fullheight
+                    />
+                  </div>
                 </div>
-                <div className="tile is-child">
-                  <Widget
-                    to={router.getArticleSlug(getRandomPost().slug)}
-                    title="Random"
-                    subtitle="Learn something new"
-                    image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
-                  />
+                <div className="tile is-parent is-vertical">
+                  <div className="tile is-child">
+                    <Widget
+                      title={stylePost.title}
+                      flair="Style"
+                      image={stylePost.image.file.url}
+                      to={router.getArticleSlug(stylePost.slug)}
+                      fullheight
+                    />
+                  </div>
+                  <div className="tile is-child">
+                    <Widget
+                      title={insiderPost.title}
+                      flair="Insider Insight"
+                      image={getImageFromPost(insiderPost)}
+                      to={router.getArticleSlug(insiderPost.slug)}
+                      fullheight
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="tile is-parent">
-                <div className="tile is-child">
-                  <Widget
-                    to={router.getArticleSlug(beginnerPost.slug)}
-                    subtitle="Build a tower defense game from top to bottom in just 21 days"
-                    title="Beginner's Guide"
-                    flair="Tutorials"
-                    image={getImageFromPost(beginnerPost)}
-                    fullheight
-                  />
+              <div className="tile">
+                <div className="tile is-parent is-vertical is-4">
+                  <div className="tile is-child">
+                    <Widget
+                      to={router.getArticleSlug(devlogPost.slug)}
+                      title="Project Ascendant"
+                      subtitle="An upcoming stealth crawler"
+                      flair="Devlog"
+                      image={getImageFromPost(devlogPost)}
+                    />
+                  </div>
+                  <div className="tile is-child">
+                    <Widget
+                      to={router.getArticleSlug(getRandomPost().slug)}
+                      title="Random"
+                      subtitle="Learn something new"
+                      image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
+                    />
+                  </div>
+                </div>
+                <div className="tile is-parent">
+                  <div className="tile is-child">
+                    <Widget
+                      to={router.getArticleSlug(beginnerPost.slug)}
+                      subtitle="Build a tower defense game from top to bottom in just 21 days"
+                      title="Beginner's Guide"
+                      flair="Tutorials"
+                      image={getImageFromPost(beginnerPost)}
+                      fullheight
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }

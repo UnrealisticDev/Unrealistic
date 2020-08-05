@@ -69,9 +69,6 @@ export const pluginQuery = graphql`
         description
       }
       featureImage {
-        file {
-          url
-        }
         fluid {
           ...GatsbyContentfulFluid
         }
