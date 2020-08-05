@@ -27,7 +27,8 @@ import styles from "./article.module.scss";
 
 /* Header id formatter. */
 const format = string => {
-  return string.toLowerCase().replaceAll(" ", "-");
+  // return typeof string === String ? string.toLowerCase().replaceAll(" ", "-") : '';
+  return '';
 };
 
 var codeblockId = 0;
