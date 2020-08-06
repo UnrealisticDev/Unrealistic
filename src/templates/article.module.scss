@@ -69,6 +69,10 @@ sans-serif;
         display: inline-block;
     }
 
+    h4 {
+        color: darken(#f5f5f5, 15%);
+    }
+
     p {
         line-height: calc((#{$font-size-base} + 1vmin) * 1.6);
         margin-bottom: 3vmin;

@@ -27,8 +27,14 @@ import styles from "./article.module.scss";
 
 /* Header id formatter. */
 const format = string => {
-  // return typeof string === String ? string.toLowerCase().replaceAll(" ", "-") : '';
-  return '';
+  // console.log(string);
+  const regex = /,|\./gi;
+  const spacesregex = /\s/gi;
+  var processed = string.toLowerCase();
+  processed = processed.replace(regex, '');
+  processed = processed.replace(spacesregex, '-');
+  // console.log(processed);
+  return processed;
 };
 
 var codeblockId = 0;
@@ -39,6 +45,7 @@ const renderAst = new rehypeReact({
   components: {
     h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
     h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
+    h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
