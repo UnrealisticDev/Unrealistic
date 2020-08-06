@@ -8,7 +8,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Widget from "../components/widget"
 
-import logo from "../images/logo-name.png"
+import logoAndName from "../images/logo-name.png"
 
 export default ({ data }) => {
   function getRandomPost() {
@@ -18,7 +18,7 @@ export default ({ data }) => {
 
   function getImageFromPost(post) {
     var defaultImg = "https://bulma.io/images/placeholders/1280x960.png;"
-    return post && post.image ? post.image.file.url : defaultImg
+    return post && post.image ? post.image : defaultImg
   }
 
   var freshPost = data.newestPosts.nodes[0]
@@ -45,7 +45,7 @@ export default ({ data }) => {
                       marginBottom: ".5vmin",
                     }}
                   >
-                    <img src={logo} alt="logo" />
+                    <img src={logoAndName} alt="logo" />
                   </figure>
                   <p style={{ fontStyle: "italic" }}>
                     A place to learn about Unreal Engine 4,
@@ -75,8 +75,8 @@ export default ({ data }) => {
                     <Widget
                       title={stylePost.title}
                       flair="Style"
-                      image={stylePost.image.file.url}
                       to={router.getArticleSlug(stylePost.slug)}
+                      image={getImageFromPost(stylePost)}
                       fullheight
                     />
                   </div>
@@ -149,6 +149,9 @@ export const query = graphql`
             file {
               url
             }
+            fluid {
+              ...GatsbyContentfulFluid
+            }
           }
         }
       }
@@ -174,6 +177,9 @@ export const query = graphql`
           file {
             url
           }
+          fluid {
+            ...GatsbyContentfulFluid
+          }
         }
         body {
           childMarkdownRemark {
@@ -185,6 +191,7 @@ export const query = graphql`
     insiderPosts: allContentfulBlogPost(
       filter: { tags: { in: "insider" } }
       sort: { fields: createdAt, order: DESC }
+      limit: 1
     ) {
       nodes {
         slug
@@ -193,12 +200,16 @@ export const query = graphql`
           file {
             url
           }
+          fluid {
+            ...GatsbyContentfulFluid
+          }
         }
       }
     }
     editorPosts: allContentfulBlogPost(
       filter: { tags: { in: "editor" } }
       sort: { fields: createdAt, order: DESC }
+      limit: 1
     ) {
       nodes {
         slug
@@ -206,6 +217,9 @@ export const query = graphql`
         image {
           file {
             url
+          }
+          fluid {
+            ...GatsbyContentfulFluid
           }
         }
       }
@@ -219,6 +233,9 @@ export const query = graphql`
         file {
           url
         }
+        fluid {
+          ...GatsbyContentfulFluid
+        }
       }
     }
     projectAscendantDevlog: contentfulBlogPost(
@@ -228,6 +245,9 @@ export const query = graphql`
       image {
         file {
           url
+        }
+        fluid {
+          ...GatsbyContentfulFluid
         }
       }
     }
@@ -240,6 +260,9 @@ export const query = graphql`
       image {
         file {
           url
+        }
+        fluid {
+          ...GatsbyContentfulFluid
         }
       }
     }

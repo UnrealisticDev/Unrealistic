@@ -1,35 +1,44 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
+import Img from "gatsby-image";
 
-import styles from "./widget.module.scss"
+import styles from "./widget.module.scss";
 
-export default ({ title, subtitle, flair, descriptor, image, to, dims, fullheight }) => {
+export default ({
+  title,
+  subtitle,
+  flair,
+  descriptor,
+  image,
+  to,
+  dims,
+  fullheight
+}) => {
   function getImage() {
     if (image) {
-      return (
-        <div className="card-image">
-          <figure className="image is-5by3">
-            <img
-              src={image}
-              alt="Post feature"
-              style={{ objectFit: "cover" }}
-            />
-          </figure>
-        </div>
-      )
+      if (image.fluid) {
+        return (
+          <div className="card-image">
+            <Img fluid={image ? image.fluid : null} />
+          </div>
+        );
+      } else {
+        return <img src={image} alt="Splash" />;
+      }
+    } else {
+      return null;
     }
   }
 
   function getTitle() {
     if (title) {
-      return <div className="title">{title}</div>
+      return <div className="title">{title}</div>;
     }
   }
 
-  function getSubtitle()
-  {
+  function getSubtitle() {
     if (subtitle) {
-      return <div className='subtitle'>{subtitle}</div>
+      return <div className="subtitle">{subtitle}</div>;
     }
   }
 
@@ -44,12 +53,12 @@ export default ({ title, subtitle, flair, descriptor, image, to, dims, fullheigh
             paddingLeft: "1em",
             paddingTop: ".2em",
             paddingBottom: ".2em",
-            margin: '0'
+            margin: "0"
           }}
         >
           {flair}
         </div>
-      )
+      );
     }
   }
 
@@ -74,5 +83,5 @@ export default ({ title, subtitle, flair, descriptor, image, to, dims, fullheigh
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
