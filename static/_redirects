@@ -1,4 +1,8 @@
 # This is a Netlify redirect file
 
+# Redirect http and www to main page
+http://unrealistic.dev /
+https://www.unrealistic.dev /
+
 http://* https://*
 http://www.* https://*
