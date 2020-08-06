@@ -143,16 +143,6 @@ export const query = graphql`
       edges {
         node {
           slug
-          title
-          id
-          image {
-            file {
-              url
-            }
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
         }
       }
     }
@@ -169,14 +159,12 @@ export const query = graphql`
         }
       }
       sort: { fields: createdAt, order: DESC }
+      limit: 1
     ) {
       nodes {
         slug
         title
         image {
-          file {
-            url
-          }
           fluid {
             ...GatsbyContentfulFluid
           }
@@ -197,27 +185,6 @@ export const query = graphql`
         slug
         title
         image {
-          file {
-            url
-          }
-          fluid {
-            ...GatsbyContentfulFluid
-          }
-        }
-      }
-    }
-    editorPosts: allContentfulBlogPost(
-      filter: { tags: { in: "editor" } }
-      sort: { fields: createdAt, order: DESC }
-      limit: 1
-    ) {
-      nodes {
-        slug
-        title
-        image {
-          file {
-            url
-          }
           fluid {
             ...GatsbyContentfulFluid
           }
@@ -230,9 +197,6 @@ export const query = graphql`
       title
       slug
       image {
-        file {
-          url
-        }
         fluid {
           ...GatsbyContentfulFluid
         }
@@ -243,9 +207,6 @@ export const query = graphql`
     ) {
       slug
       image {
-        file {
-          url
-        }
         fluid {
           ...GatsbyContentfulFluid
         }
@@ -258,9 +219,6 @@ export const query = graphql`
       title
       slug
       image {
-        file {
-          url
-        }
         fluid {
           ...GatsbyContentfulFluid
         }
