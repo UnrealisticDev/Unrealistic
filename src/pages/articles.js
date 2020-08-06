@@ -41,8 +41,8 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Articles" />
-      <div class="section">
-        <div class="container">
+      <div className="section">
+        <div className="container">
           <div className="title is-size-1">Articles</div>
           <div className="subtitle">
             Find all the posts you're looking for, and some you're not.

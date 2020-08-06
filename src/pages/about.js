@@ -7,8 +7,8 @@ import Hireme from "../components/hireme"
 export default () => (
   <Layout>
     <SEO title="About" />
-    <section class="section">
-      <div class="container">
+    <section className="section">
+      <div className="container">
         <div className="columns">
           <div className="column is-3">
             <Hireme />

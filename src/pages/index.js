@@ -30,8 +30,8 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Unrealistic" />
-      <section class="section">
-        <div class="container">
+      <section className="section">
+        <div className="container">
           <section className="section">
             <div className="level">
               <div className="container">
