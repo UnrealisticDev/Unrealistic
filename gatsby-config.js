@@ -7,6 +7,7 @@
 module.exports = {
   /* Site details */
   siteMetadata: {
+    siteUrl: `https://unrealistic.dev`,
     title: `Unrealistic`,
     tagline: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
     author: `Mowgl33`,
@@ -18,6 +19,7 @@ module.exports = {
 
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
