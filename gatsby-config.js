@@ -63,6 +63,8 @@ module.exports = {
         ]
       }
     },
+    /* Hosting */
+    `gatsby-plugin-netlify`,
     /* Progressive Web App (PWA) */
     {
       resolve: `gatsby-plugin-manifest`,

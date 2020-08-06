@@ -1,0 +1,4 @@
+# This is a Netlify redirect file
+
+http://* https://*
+http://www.* https://*
