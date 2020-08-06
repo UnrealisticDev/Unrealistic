@@ -73,6 +73,10 @@ sans-serif;
         color: darken(#f5f5f5, 15%);
     }
 
+    h5 {
+        color: darken(#f5f5f5, 12%);
+    }
+
     p {
         line-height: calc((#{$font-size-base} + 1vmin) * 1.6);
         margin-bottom: 3vmin;

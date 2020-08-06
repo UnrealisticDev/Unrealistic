@@ -46,6 +46,7 @@ const renderAst = new rehypeReact({
     h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
     h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
     h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
+    h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
