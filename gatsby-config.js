@@ -63,6 +63,15 @@ module.exports = {
         ]
       }
     },
+    /* - Site search */
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: `Y7ES67CX6H`,
+        apiKey: `7f89d8a0c9168f15d2e36ef0b99087ff`,
+        queries: require("./src/utils/algolia-queries")
+      }
+    },
     /* Hosting */
     `gatsby-plugin-netlify`,
     /* Progressive Web App (PWA) */
