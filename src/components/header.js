@@ -50,13 +50,13 @@ export default () => {
               </a>
               <div className="navbar-dropdown">
                 <a
-                  href={router.getProductSlug("remapt")}
+                  href={router.getProductSlug("remapt") + '/'}
                   className="navbar-item"
                 >
                   Remapt
                 </a>
                 <a
-                  href={router.getProductSlug("prefixed")}
+                  href={router.getProductSlug("prefixed") + '/'}
                   className="navbar-item"
                 >
                   Prefixed

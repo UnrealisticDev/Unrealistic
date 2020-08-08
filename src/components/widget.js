@@ -25,7 +25,7 @@ export default ({ title, subtitle, flair, image, to, fullheight }) => {
 
   return (
     <div className={"box is-paddingless has-background-light " + cHeight()}>
-      <Link to={to}>
+      <Link to={to + '/'}>
         <div className={"card " + cHeight()}>
           <div className={styles.ImageContainer}>
             {image ? (

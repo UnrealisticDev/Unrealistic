@@ -10,11 +10,18 @@ module.exports = {
     siteUrl: `https://unrealistic.dev`,
     title: `Unrealistic`,
     tagline: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
-    author: `Mowgl33`,
+    author: `Mowgl33`
   },
   plugins: [
     /* Page routing, metadata, SEO */
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-force-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://unrealistic.dev`
+      }
+    },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
     {

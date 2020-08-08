@@ -42,7 +42,7 @@ export default ({ data, pageContext }) => {
                     {data.documentation.nodes.map(({ slug, title }) => {
                       return (
                         <li>
-                          <Link href={router.getArticleSlug(slug)}>
+                          <Link href={router.getArticleSlug(slug) + '/'}>
                             {title.replace(plugin.name + ": ", "")}
                           </Link>
                         </li>

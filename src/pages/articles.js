@@ -11,7 +11,7 @@ import styles from "./articles.module.scss";
 function Article({ source }) {
   return (
     <div className="column is-4">
-      <Link to={source.slug}>
+      <Link to={source.slug + '/'}>
         <div className={"box is-paddingless " + styles.Box}>
           <Img
             fluid={
