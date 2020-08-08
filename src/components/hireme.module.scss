@@ -1,3 +1,9 @@
+@import '../styles/variables.scss';
+
 ::placeholder {
     color: rgb(99, 94, 94) !important;
+}
+
+.Submit {
+    background-color: $color-fg-yellow;
 }

@@ -1,17 +1,17 @@
 /* eslint-disable no-useless-concat */
-import React from "react"
+import React from "react";
 
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./hireme.module.scss"
+import styles from "./hireme.module.scss";
 
 function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
   function getControlClass() {
-    var className = "control"
-    className = className.concat(hasLeftIcons ? " " + "has-icons-left" : "")
-    className = className.concat(hasRightIcons ? " " + "has-icons-right" : "")
-    return className
+    var className = "control";
+    className = className.concat(hasLeftIcons ? " " + "has-icons-left" : "");
+    className = className.concat(hasRightIcons ? " " + "has-icons-right" : "");
+    return className;
   }
 
   return (
@@ -19,12 +19,12 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
       <label className="label">{name}</label>
       <div className={getControlClass()}>{children}</div>
     </div>
-  )
+  );
 }
 
 export default () => {
   return (
-    <form name="hireme" method="POST" netlify action='/success/'>
+    <form name="hireme" method="POST" netlify action="/success/">
       <input type="hidden" name="form-name" value="hireme" />
       <h1 className="title is-size-1">Hire Us!</h1>
       <div className="columns">
@@ -68,10 +68,10 @@ export default () => {
         />
       </BulmaControl>
       <BulmaControl>
-        <button className="button is-warning" type="submit">
+        <button className={"button " + styles.Submit} type="submit">
           Submit
         </button>
       </BulmaControl>
     </form>
-  )
-}
+  );
+};
