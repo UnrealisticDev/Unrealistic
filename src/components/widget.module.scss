@@ -21,18 +21,28 @@ $p-comfort: 5px;
     font-weight: lighter;
     font-size: smaller;
     margin: 0;
-
-    color: white;
 }
 
-.CardImg {
+.ImageContainer {
+    position: relative;
+}
+
+.Flair {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-    margin:0px;
+    
+    max-width: 90%;
+    background-color: darken(#F5F5F5, 70%);
+    color: lighten(grey, 30%);
+    border-radius: 0px 15px 0px 0px;
+
+    padding: 1vmin;
+    margin: 0;
+}
+
+.Flair:hover {
+    color: $color-fg-yellow
 }
 
 .Height100 {

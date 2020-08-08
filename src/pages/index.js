@@ -1,31 +1,35 @@
-import React from "react"
-import { graphql } from "gatsby"
-import * as random from "random"
+import React from "react";
+import { graphql } from "gatsby";
+import * as random from "random";
 
-import router from "../scripts/router"
+import router from "../scripts/router";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Widget from "../components/widget"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Widget from "../components/widget";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import logoAndName from "../images/logo-name.png"
+import logoAndName from "../images/logo-name.png";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+
+import "./index.scss";
 
 export default ({ data }) => {
   function getRandomPost() {
-    var idx = random.int(0, data.allPosts.edges.length - 1)
-    return data.allPosts.edges[idx].node
+    var idx = random.int(0, data.allPosts.edges.length - 1);
+    return data.allPosts.edges[idx].node;
   }
 
   function getImageFromPost(post) {
-    var defaultImg = "https://bulma.io/images/placeholders/1280x960.png;"
-    return post && post.image ? post.image : defaultImg
+    var defaultImg = "https://bulma.io/images/placeholders/1280x960.png;";
+    return post && post.image ? post.image : defaultImg;
   }
 
-  var freshPost = data.newestPosts.nodes[0]
-  var insiderPost = data.insiderPosts.nodes[0]
-  var stylePost = data.unrealisticStyleGuide
-  var devlogPost = data.projectAscendantDevlog
-  var beginnerPost = data.beginnersGuide
+  var totw = data.totw.edges[0].node;
+  var freshPost = data.newestPosts.nodes[0];
+  var stylePost = data.unrealisticStyleGuide;
+  var devlogPost = data.projectAscendantDevlog;
+  var beginnerPost = data.beginnersGuide;
 
   return (
     <Layout>
@@ -42,14 +46,15 @@ export default ({ data }) => {
                       maxWidth: "512px",
                       marginLeft: "auto",
                       marginRight: "auto",
-                      marginBottom: ".5vmin",
+                      marginBottom: ".5vmin"
                     }}
                   >
                     <img src={logoAndName} alt="logo" />
                   </figure>
                   <p style={{ fontStyle: "italic" }}>
                     A place to learn about Unreal Engine 4,
-                    <br className='is-hidden-mobile'/> gamedev, and other things
+                    <br className="is-hidden-mobile" /> gamedev, and other
+                    things
                   </p>
                 </div>
               </div>
@@ -74,6 +79,7 @@ export default ({ data }) => {
                   <div className="tile is-child">
                     <Widget
                       title={stylePost.title}
+                      subtitle="A comprehensive set of style conventions for UE4 projects."
                       flair="Style"
                       to={router.getArticleSlug(stylePost.slug)}
                       image={getImageFromPost(stylePost)}
@@ -81,13 +87,22 @@ export default ({ data }) => {
                     />
                   </div>
                   <div className="tile is-child">
-                    <Widget
-                      title={insiderPost.title}
-                      flair="Insider Insight"
-                      image={getImageFromPost(insiderPost)}
-                      to={router.getArticleSlug(insiderPost.slug)}
-                      fullheight
-                    />
+                    <div className={"content tip-of-the-week"}>
+                      <hr />
+                      <div className='title' id="totw-title">
+                        Tip of the Week
+                      </div>
+                      <p>{totw.text.text}</p>
+                      <p id="totw-author">{totw.author}</p>
+                      {totw.source && (
+                        <a href={totw.source} style={{ margin: "15px" }}>
+                          <FontAwesomeIcon
+                            icon={faExternalLinkAlt}
+                            id="totw-source"
+                          />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -115,11 +130,11 @@ export default ({ data }) => {
                   <div className="tile is-child">
                     <Widget
                       to={router.getArticleSlug(beginnerPost.slug)}
-                      subtitle="Build a tower defense game from top to bottom in just 21 days"
+                      subtitle="Build a tower defense game from top to bottom in just 21 days."
                       title="Beginner's Guide"
                       flair="Tutorials"
                       image={getImageFromPost(beginnerPost)}
-                      fullheight
+                      
                     />
                   </div>
                 </div>
@@ -129,14 +144,22 @@ export default ({ data }) => {
         </div>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query {
-    site {
-      siteMetadata {
-        tipOfTheWeek
+    totw: allContentfulTipOfTheWeek(
+      limit: 1
+      sort: { fields: createdAt, order: DESC }
+    ) {
+      edges {
+        node {
+          text {
+            text
+          }
+          author
+        }
       }
     }
     allPosts: allContentfulBlogPost {
@@ -225,4 +248,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

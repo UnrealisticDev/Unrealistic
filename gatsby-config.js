@@ -11,12 +11,9 @@ module.exports = {
     title: `Unrealistic`,
     tagline: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
     author: `Mowgl33`,
-    tipOfTheWeek:
-      "Never think you have the best idea ever. Test it as soon as possible. As it will probably turn out to be shit anyway."
   },
   plugins: [
     /* Page routing, metadata, SEO */
-
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
