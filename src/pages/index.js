@@ -87,7 +87,7 @@ export default ({ data }) => {
                     />
                   </div>
                   <div className="tile is-child">
-                    <div className={"content tip-of-the-week"}>
+                    <div className={"content tip-of-the-week has-text-centered"}>
                       <hr />
                       <div className='title' id="totw-title">
                         Tip of the Week
@@ -112,7 +112,7 @@ export default ({ data }) => {
                     <Widget
                       to={router.getArticleSlug(devlogPost.slug)}
                       title="Project Ascendant"
-                      subtitle="An upcoming stealth crawler"
+                      subtitle="An upcoming stealth crawler."
                       flair="Devlog"
                       image={getImageFromPost(devlogPost)}
                     />
@@ -121,7 +121,7 @@ export default ({ data }) => {
                     <Widget
                       to={router.getArticleSlug(getRandomPost().slug)}
                       title="Random"
-                      subtitle="Learn something new"
+                      subtitle="Learn something new."
                       image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
                     />
                   </div>
