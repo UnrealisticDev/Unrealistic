@@ -51,7 +51,7 @@ export default ({ data }) => {
                   >
                     <img src={logoAndName} alt="logo" />
                   </figure>
-                  <p style={{ fontStyle: "italic" }}>
+                  <p id="tagline" style={{ fontStyle: "italic" }}>
                     A place to learn about Unreal Engine 4,
                     <br className="is-hidden-mobile" /> gamedev, and other
                     things
