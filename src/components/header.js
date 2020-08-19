@@ -61,6 +61,12 @@ export default () => {
                 >
                   Prefixed
                 </a>
+                <a
+                  href={router.getProductSlug("cursory") + '/'}
+                  className="navbar-item"
+                >
+                  Cursory
+                </a>
               </div>
             </div>
             <a className="navbar-item" href="/about/">
