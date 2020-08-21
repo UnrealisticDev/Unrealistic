@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import rehypeReact from "rehype-react";
@@ -20,6 +20,7 @@ import {
   faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
+import Prism from 'prismjs'
 import "../styles/code.scss";
 import styles from "./article.module.scss";
 
@@ -69,6 +70,11 @@ const renderAst = new rehypeReact({
 }).Compiler;
 
 export default ({ data }) => {
+
+  useEffect(() => {
+    Prism.highlightAll();
+  })
+
   const {
     title,
     image,
