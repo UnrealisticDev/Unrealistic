@@ -54,7 +54,6 @@ module.exports = {
               showCaptions: `true`
             }
           },
-          `gatsby-remark-figure-caption`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

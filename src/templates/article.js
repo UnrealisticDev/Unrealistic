@@ -27,13 +27,11 @@ import styles from "./article.module.scss";
 
 /* Header id formatter. */
 const format = string => {
-  // console.log(string);
   const regex = /,|\./gi;
   const spacesregex = /\s/gi;
   var processed = string.toLowerCase();
-  processed = processed.replace(regex, '');
-  processed = processed.replace(spacesregex, '-');
-  // console.log(processed);
+  processed = processed.replace(regex, "");
+  processed = processed.replace(spacesregex, "-");
   return processed;
 };
 
@@ -64,7 +62,7 @@ const renderAst = new rehypeReact({
           {props.children}
         </pre>
       );
-    }
+    },
   }
 }).Compiler;
 
@@ -79,6 +77,7 @@ export default ({ data }) => {
   } = data.contentfulBlogPost;
 
   const { seriesNeighbors } = data;
+  const excerpt = body.childMarkdownRemark.excerpt;
   const toc = body.childMarkdownRemark.tableOfContents;
   var beforePost = null;
   var afterPost = null;
@@ -96,7 +95,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} />
+      <SEO title={title} description={excerpt}/>
       <section className={"section " + styles.MainSection}>
         <div className="container">
           <div className={"columns " + styles.Columns}>
@@ -273,6 +272,7 @@ export const postQuery = graphql`
       }
       body {
         childMarkdownRemark {
+          excerpt
           htmlAst
           headings {
             depth
