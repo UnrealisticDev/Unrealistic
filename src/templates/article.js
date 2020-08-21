@@ -48,21 +48,23 @@ const renderAst = new rehypeReact({
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
-        <pre className="language-cpp" id={id}>
-          <button
-            className="button is-light"
-            onClick={() => {
-              navigator.clipboard.writeText(
-                document.getElementById(id).innerText
-              );
-            }}
-          >
-            <FontAwesomeIcon className="has-text-grey" icon={faCopy} />
-          </button>
-          {props.children}
-        </pre>
+        <div className="gatsby-highlight" data-language="javascript">
+          <pre id={id} className='language-javascript'>
+            <button
+              className="button is-light"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  document.getElementById(id).innerText
+                );
+              }}
+            >
+              <FontAwesomeIcon className="has-text-grey" icon={faCopy} />
+            </button>
+            <code className='language-javascript'>{props.children}</code>
+          </pre>
+        </div>
       );
-    },
+    }
   }
 }).Compiler;
 
@@ -95,7 +97,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={excerpt}/>
+      <SEO title={title} description={excerpt} />
       <section className={"section " + styles.MainSection}>
         <div className="container">
           <div className={"columns " + styles.Columns}>
@@ -207,20 +209,12 @@ export default ({ data }) => {
           position: "fixed",
           right: "5vmin",
           bottom: "2vmin",
-          // height: "10vmin",
-
-          // backgroundColor: "rgb(87, 86, 86)",
-          // height: 30,
-          // position: "fixed",
-          // bottom: 20,
-          // width: 30,
           WebkitTransition: "all 0.5s ease-in-out",
           transition: "all 0.5s ease-in-out",
           transitionProperty: "opacity, right",
           cursor: "pointer",
 
           opacity: 0,
-          // right: -75,
           zIndex: 1000,
           fill: "#292929",
           paddingBottom: 1,
@@ -233,20 +227,12 @@ export default ({ data }) => {
           position: "fixed",
           right: "5vmin",
           bottom: "2vmin",
-          // height: "10vmin",
-
-          // backgroundColor: "rgb(87, 86, 86)",
-          // height: 30,
-          // position: "fixed",
-          // bottom: 20,
-          // width: 30,
           WebkitTransition: "all 0.5s ease-in-out",
           transition: "all 0.5s ease-in-out",
           transitionProperty: "opacity, right",
           cursor: "pointer",
 
           opacity: 100,
-          // right: -75,
           zIndex: 1000,
           fill: "#292929",
           paddingBottom: 1,
