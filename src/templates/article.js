@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import rehypeReact from "rehype-react";
@@ -20,7 +20,7 @@ import {
   faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
-import Prism from 'prismjs'
+import Prism from "prismjs";
 import "../styles/code.scss";
 import styles from "./article.module.scss";
 
@@ -49,31 +49,28 @@ const renderAst = new rehypeReact({
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
-        <div className="gatsby-highlight" data-language="javascript">
-          <pre id={id} className='language-javascript'>
-            <button
-              className="button is-light"
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  document.getElementById(id).innerText
-                );
-              }}
-            >
-              <FontAwesomeIcon className="has-text-grey" icon={faCopy} />
-            </button>
-            <code className='language-javascript'>{props.children}</code>
-          </pre>
-        </div>
+        <pre id={id}>
+          <button
+            className="button is-light"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                document.getElementById(id).innerText
+              );
+            }}
+          >
+            <FontAwesomeIcon className="has-text-grey" icon={faCopy} />
+          </button>
+          {props.children}
+        </pre>
       );
     }
   }
 }).Compiler;
 
 export default ({ data }) => {
-
   useEffect(() => {
     Prism.highlightAll();
-  })
+  });
 
   const {
     title,
