@@ -29,7 +29,7 @@ import styles from "./article.module.scss";
 const format = string => {
   const regex = /,|\./gi;
   const spacesregex = /\s/gi;
-  var processed = string.toLowerCase();
+  var processed = String(string).toLowerCase();
   processed = processed.replace(regex, "");
   processed = processed.replace(spacesregex, "-");
   return processed;
