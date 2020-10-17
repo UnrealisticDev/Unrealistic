@@ -250,7 +250,6 @@ export const postQuery = graphql`
     post: contentfulPost(slug: { eq: $slug }) {
       slug
       title
-      metaDescription
       image {
         fluid {
           ...GatsbyContentfulFluid
