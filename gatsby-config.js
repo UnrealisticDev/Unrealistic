@@ -15,15 +15,17 @@ module.exports = {
   plugins: [
     /* Page routing, metadata, SEO */
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-force-trailing-slashes`,
+    `gatsby-plugin-catch-links`,
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: `gatsby-plugin-advanced-sitemap`,
       options: {
-        siteUrl: `https://unrealistic.dev`
+        exclude: [
+          `/404`,
+          `/success`,
+          `glossary`
+        ]
       }
     },
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
