@@ -22,7 +22,7 @@ module.exports = {
         exclude: [
           `/404`,
           `/success`,
-          `glossary`
+          `/glossary`
         ]
       }
     },

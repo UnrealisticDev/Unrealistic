@@ -40,7 +40,7 @@ function Article({ source }) {
 export default ({ data }) => {
   return (
     <Layout>
-      <SEO title="Articles" />
+      <SEO title="Posts" />
       <div className="section">
         <div className="container">
           <div className="title is-size-1">Posts</div>

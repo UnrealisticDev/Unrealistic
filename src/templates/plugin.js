@@ -14,7 +14,7 @@ export default ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title={plugin.name} />
+      <SEO title={plugin.longName} />
       <section className="section">
         <div className="container">
           <div className="tile is-ancestor">

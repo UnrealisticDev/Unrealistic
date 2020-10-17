@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/code.scss";
-import styles from "./article.module.scss";
+import styles from "./post.module.scss";
 
 /* Todo: Enable lazy loaded images in markdown. */
 

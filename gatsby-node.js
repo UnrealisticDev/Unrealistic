@@ -34,14 +34,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const postTemplate = path.resolve(`./src/templates/post.js`);
   query.data.allContentfulPost.edges.forEach(({ node }) => {
-    const path = router.getArticleSlug(node.slug) + "/";
+    const slug = node.slug;
     const series = node.series;
+    const path = router.getArticleSlug(slug);
     console.log("Creating page: " + path);
     createPage({
       path,
       component: postTemplate,
       context: {
-        slug: node.slug,
+        slug: slug,
         series: series
       }
     });
@@ -49,14 +50,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const pluginTemplate = path.resolve(`./src/templates/plugin.js`);
   query.data.allContentfulPlugin.edges.forEach(({ node }) => {
-    const path = router.getProductSlug(node.slug) + "/";
+    const slug = node.slug;
+    const docTag = node.docTag;
+    const path = router.getProductSlug(node.slug);
     console.log("Creating page: " + path);
     createPage({
       path,
       component: pluginTemplate,
       context: {
-        slug: node.slug,
-        docTag: node.docTag
+        slug: slug,
+        docTag: docTag
       }
     });
   });
