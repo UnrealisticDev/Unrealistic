@@ -1,5 +1,5 @@
 function getArticleSlug(base) {
-  return "/articles/" + base
+  return "/posts/" + base
 }
 
 function getProductSlug(base) {

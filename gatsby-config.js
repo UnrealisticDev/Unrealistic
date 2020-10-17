@@ -13,7 +13,7 @@ module.exports = {
     author: `Mowgl33`
   },
   plugins: [
-    /* Page routing, metadata, SEO */
+    /* Page routing, metadata, SEO, analytics */
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     {

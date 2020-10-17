@@ -41,8 +41,8 @@ export default () => {
             <a className="navbar-item" href="/">
               Home
             </a>
-            <a className="navbar-item" href="/articles/">
-              Articles
+            <a className="navbar-item" href="/posts/">
+              Posts
             </a>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
               <a href="" className="navbar-link">
@@ -50,19 +50,19 @@ export default () => {
               </a>
               <div className="navbar-dropdown">
                 <a
-                  href={router.getProductSlug("remapt") + '/'}
+                  href={router.getProductSlug("remapt") + "/"}
                   className="navbar-item"
                 >
                   Remapt
                 </a>
                 <a
-                  href={router.getProductSlug("prefixed") + '/'}
+                  href={router.getProductSlug("prefixed") + "/"}
                   className="navbar-item"
                 >
                   Prefixed
                 </a>
                 <a
-                  href={router.getProductSlug("cursory") + '/'}
+                  href={router.getProductSlug("cursory") + "/"}
                   className="navbar-item"
                 >
                   Cursory

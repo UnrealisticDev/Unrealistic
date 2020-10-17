@@ -76,7 +76,7 @@ export const pluginQuery = graphql`
       marketplaceUrl
       docTag
     }
-    documentation: allContentfulBlogPost(
+    documentation: allContentfulPost(
       filter: { tags: { in: [$docTag] } }
       sort: { fields: createdAt, order: ASC }
     ) {

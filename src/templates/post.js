@@ -75,7 +75,7 @@ export default ({ data }) => {
     projectfiles,
     series,
     seriesNum
-  } = data.contentfulBlogPost;
+  } = data.post;
 
   const { seriesNeighbors } = data;
   const excerpt = body.childMarkdownRemark.excerpt;
@@ -246,10 +246,11 @@ export default ({ data }) => {
 };
 
 export const postQuery = graphql`
-  query($pagePath: String!, $pageSeries: String) {
-    contentfulBlogPost(slug: { eq: $pagePath }) {
+  query($slug: String!, $series: String) {
+    post: contentfulPost(slug: { eq: $slug }) {
       slug
       title
+      metaDescription
       image {
         fluid {
           ...GatsbyContentfulFluid
@@ -270,8 +271,8 @@ export const postQuery = graphql`
       series
       seriesNum
     }
-    seriesNeighbors: allContentfulBlogPost(
-      filter: { series: { eq: $pageSeries } }
+    seriesNeighbors: allContentfulPost(
+      filter: { series: { eq: $series } }
       sort: { fields: seriesNum, order: ASC }
     ) {
       nodes {

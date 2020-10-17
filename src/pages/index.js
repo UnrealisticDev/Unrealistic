@@ -162,14 +162,14 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allContentfulBlogPost {
+    allPosts: allContentfulPost {
       edges {
         node {
           slug
         }
       }
     }
-    newestPosts: allContentfulBlogPost(
+    newestPosts: allContentfulPost(
       filter: {
         tags: {
           nin: [
@@ -199,7 +199,7 @@ export const query = graphql`
         }
       }
     }
-    insiderPosts: allContentfulBlogPost(
+    insiderPosts: allContentfulPost(
       filter: { tags: { in: "insider" } }
       sort: { fields: createdAt, order: DESC }
       limit: 1
@@ -214,7 +214,7 @@ export const query = graphql`
         }
       }
     }
-    unrealisticStyleGuide: contentfulBlogPost(
+    unrealisticStyleGuide: contentfulPost(
       slug: { eq: "unrealistic-style-guide" }
     ) {
       title
@@ -225,7 +225,7 @@ export const query = graphql`
         }
       }
     }
-    projectAscendantDevlog: contentfulBlogPost(
+    projectAscendantDevlog: contentfulPost(
       slug: { eq: "devlog-project-ascendant" }
     ) {
       slug
@@ -235,7 +235,7 @@ export const query = graphql`
         }
       }
     }
-    beginnersGuide: contentfulBlogPost(
+    beginnersGuide: contentfulPost(
       series: { eq: "Beginner's Guide" }
       seriesNum: { eq: 0 }
     ) {

@@ -18,12 +18,13 @@ function SEO({ title, description, meta, lang }) {
     `
   )
 
+  const metaTitle = title.concat(' | Unrealistic');
   const metaDescription = description || site.siteMetadata.tagline
 
   return (
     <Helmet
       htmlAttributes={{ lang }}
-      title={title}
+      title={metaTitle}
       meta={[
         {
           name: `description`,
@@ -31,7 +32,7 @@ function SEO({ title, description, meta, lang }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `og:description`,

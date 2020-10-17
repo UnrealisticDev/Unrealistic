@@ -43,12 +43,12 @@ export default ({ data }) => {
       <SEO title="Articles" />
       <div className="section">
         <div className="container">
-          <div className="title is-size-1">Articles</div>
+          <div className="title is-size-1">Posts</div>
           <div className="subtitle">
             Find all the posts you're looking for, and some you're not.
           </div>
           <div className="columns is-multiline is-desktop">
-            {data.allContentfulBlogPost.nodes.map(article => {
+            {data.allContentfulPost.nodes.map(article => {
               return <Article source={article} />;
             })}
           </div>
@@ -60,7 +60,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulBlogPost(
+    allContentfulPost(
       filter: { tags: { nin: ["docs"] } }
       sort: { fields: createdAt, order: DESC }
     ) {

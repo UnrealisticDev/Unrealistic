@@ -3,7 +3,7 @@ const escapeStringRegexp = require("escape-string-regexp");
 const indexName = `Articles`;
 
 const articleQuery = `{
-    articles: allContentfulBlogPost {
+    articles: allContentfulPost {
       edges {
         node {
           id
