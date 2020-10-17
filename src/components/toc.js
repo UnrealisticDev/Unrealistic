@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./toc.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 class TOC extends React.Component {
   constructor() {
@@ -20,33 +20,33 @@ class TOC extends React.Component {
   render() {
     return this.props.src ? (
       <>
-        <div className="card">
-          <div className="card-content">
-            <div
-              className="level is-mobile"
-              onClick={this.toggleExpansion}
-              onKeyPress={e => {
-                if (e.key === "Return") this.toggleExpansion();
-              }}
-              role="button"
-              tabIndex="0"
-            >
-              <div className="level-left">
-                <p className="menu-label">Table of Contents</p>
-              </div>
-              <div className="level-right">
-                <FontAwesomeIcon
-                  icon={this.state.expanded ? faChevronUp : faChevronDown}
-                />
-              </div>
-            </div>
-            {this.state.expanded && (
-              <ul className={"menu-list " + styles.List}>
-                <div dangerouslySetInnerHTML={{ __html: this.props.src }} />
-              </ul>
-            )}
+        
+        
+        <div
+          className="level is-mobile"
+          onClick={this.toggleExpansion}
+          onKeyPress={e => {
+            if (e.key === "Return") this.toggleExpansion();
+          }}
+          role="button"
+          tabIndex="0"
+        >
+          <div className="level-left">
+            <p className="menu-label">Contents</p>
+          </div>
+          <div className="level-right">
+            <FontAwesomeIcon
+              icon={this.state.expanded ? faMinus : faPlus}
+            />
           </div>
         </div>
+        {this.state.expanded && (
+          <ul className={"menu-list " + styles.List}>
+            <div dangerouslySetInnerHTML={{ __html: this.props.src }} />
+          </ul>
+        )}
+      
+      
       </>
     ) : null;
   }

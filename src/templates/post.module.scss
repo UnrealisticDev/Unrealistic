@@ -9,13 +9,6 @@ Geneva,
 Verdana,
 sans-serif;
 
-// The main article section
-.MainSection {
-    @media screen and (max-width: 769px) {
-        padding: 0;
-    }
-}
-
 // Columns splitting up the article into body and sidebar
 .Columns {
     @media screen and (max-width: 769px) {
@@ -24,83 +17,13 @@ sans-serif;
     }
 }
 
-// Contains title and feature image
-.FrontmatterContainer {
-    position: relative;
-}
-
-.Title {
-    @font-face {
-        font-family: "basic-sans", sans-serif;
-        src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff2"), url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff"), url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("opentype");
-        font-style: normal;
-        font-weight: 900;
-        font-display: auto;
-    }
-
-    font-family: "basic-sans", sans-serif;
-
-    @media (max-width: 769px) {
-        font-size: calc(#{$font-size-base} + 4vw);
-    }
-
-    @media (min-width: 770px) {
-        font-size: calc(#{$font-size-base} + 2vw);
-    }
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 2vmin;
-    max-width: 90%;
-    background-color: darken(#F5F5F5, 70%);
-    border-radius: 0px 15px 0px 0px;
-    overflow: hidden;
-    color: #EAAA03;
-
-}
-
 // Markdown body
 .Markdown {
-
-    font-family: $font-family;
-    font-size: calc(#{$font-size-base} + 1vmin);
-    word-wrap: break-word;
-
-    h2 {
-        font-size: calc(#{$font-size-base} + 1.8vw);
-        color: darken(#f5f5f5, 50%);
-        display: inline-block;
-    }
-
-    h3 {
-        font-size: calc(#{$font-size-base} + 1.5vw);
-        color: darken(#f5f5f5, 20%);
-        display: inline-block;
-    }
-
-    h4 {
-        color: darken(#f5f5f5, 15%);
-    }
-
-    h5 {
-        color: darken(#f5f5f5, 12%);
-    }
-
-    p {
-        line-height: calc((#{$font-size-base} + 1vmin) * 1.6);
-        margin-bottom: 3vmin;
-    }
-
-    a {
-        color: #EAAA03;
-
-    }
 
     p,
     ul {
         code {
-            background-color: rgb(231, 224, 224);
+            background-color: rgb(250, 242, 242);
             color: rgb(53, 142, 184);
             border-radius: .3em;
 
@@ -124,19 +47,6 @@ sans-serif;
         }
 
         scrollbar-width: none;
-    }
-
-    blockquote {
-        color: darken($color-fg-primary, 30%);
-        font-style: italic;
-        padding-left: 1em;
-        border-left: 1px solid rgb(208, 212, 216);
-
-        p {
-            font-size: calc(#{$font-size-base} + .8vmin);
-            line-height: calc((#{$font-size-base} + .8vmin) * 1.4);
-            margin: 0;
-        }
     }
 
     ul {

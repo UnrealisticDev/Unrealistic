@@ -32,6 +32,10 @@ module.exports = {
         trackingId: "UA-160708075-1"
       }
     },
+    /* Styling */
+    {
+      resolve: `gatsby-plugin-styled-components`,
+    },
     /* Content sourcing and transformation */
     {
       resolve: `gatsby-source-contentful`,

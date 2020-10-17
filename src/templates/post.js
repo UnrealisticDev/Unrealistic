@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
+import styled from "styled-components";
 import rehypeReact from "rehype-react";
 import HyvorTalk from "hyvor-talk-react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Sidebar from "../components/sidebar";
-import SeriesNav from "../components/seriesnav";
 import TOC from "../components/toc";
 import ProjectFiles from "../components/projectfiles";
 import ScrollUpButton from "react-scroll-up-button";
@@ -50,7 +50,7 @@ const renderAst = new rehypeReact({
       return (
         <pre id={id}>
           <button
-            className="button is-light"
+            className="button is-light is-hidden"
             onClick={() => {
               navigator.clipboard.writeText(
                 document.getElementById(id).innerText
@@ -66,10 +66,126 @@ const renderAst = new rehypeReact({
   }
 }).Compiler;
 
-export default ({ data }) => {
+const Section = styled.div`
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+`;
 
+const CreateDate = ({ createdAt }) => {
+  const date = new Date(createdAt);
+  var internationalize = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  }).format;
+  var dateFormatted = internationalize(date);
+
+  return (
+    <div class="level-item">
+      <p className="subtitle is-size-6">{dateFormatted}</p>
+    </div>
+  );
+};
+
+const Title = styled.h1`
+  @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+  font-family: "basic-sans", sans-serif;
+  color: #363636;
+`;
+
+const Series = ({ series }) => {
+  return (
+    series && (
+      <>
+        <div className="level-item">·</div>
+        <div class="level-item">
+          <p className="subtitle is-size-6">{series}</p>
+        </div>
+      </>
+    )
+  );
+};
+
+const Frontmatter = styled.div`
+  ${"" /* margin-bottom: 2vmin; */}
+  @media screen and (max-width: 769px) {
+    padding: 3rem 1.5rem 0 1.5rem;
+  }
+`;
+
+const Body = styled.div`
+  @media screen and (max-width: 769px) {
+    padding: 3rem 1.5rem;
+  }
+`;
+
+const Markdown = styled.div`
+  @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+
+  & h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Lato", sans-serif;
+    color: #363636;
+    display: inline-block;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  & h2 {
+    font-size: calc(10px + 1.8vw);
+    border-bottom: 2px solid #eaaa03;
+  }
+
+  & h3 {
+    font-size: calc(10px + 1.2vw);
+  }
+
+  & p {
+    font-family: "Open Sans", sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  & blockquote {
+    margin-bottom: 1rem;
+    padding-left: 3rem;
+    color: grey;
+  }
+
+  a {
+    color: #3298DC;
+    border-bottom: 2px dotted #363636;
+  }
+`;
+
+export default ({ data }) => {
   const {
     title,
+    createdAt,
     image,
     body,
     projectfiles,
@@ -96,102 +212,98 @@ export default ({ data }) => {
 
   return (
     <Layout>
+      <style>
+        {" "}
+        @import
+        url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
+      </style>
       <SEO title={title} description={excerpt} />
-      <section className={"section " + styles.MainSection}>
-        <div className="container">
-          <div className={"columns " + styles.Columns}>
-            {/* Main Article */}
-            <div className="column is-8">
-              <div className="box has-background-light is-paddingless">
-                <div className="card">
-                  {/* Frontmatter */}
-                  <div className={styles.FrontmatterContainer}>
-                    {/* Feature image */}
-                    <Img
-                      fluid={image ? image.fluid : ""}
-                      alt="Article Feature"
-                    />
-                    {/* Title */}
-                    <h1 className={"title has-background-dark " + styles.Title}>
-                      {title}
-                    </h1>
+
+      <Section className="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <Frontmatter>
+                <Title className={"title is-size-1 is-size-3-mobile"}>
+                  {title}
+                </Title>
+                <div className="level is-mobile subtitle">
+                  <div class="level-left">
+                    <CreateDate createdAt={createdAt} />
+                    <Series series={series} />
                   </div>
-                  {/* Body */}
-                  <div className="card-content">
-                    <div className="content">
-                      {/* Body - Markdown */}
-                      {
-                        <div className={styles.Markdown}>
-                          {renderAst(body.childMarkdownRemark.htmlAst)}
-                        </div>
-                      }
-                      {/* Body - Series - Previous/Next */}
-                      {(beforePost || afterPost) && (
-                        <div className="level">
-                          <div className="level-right">
+                </div>
+              </Frontmatter>
+            </div>
+            <div className="column is-2 is-hidden-mobile" />
+          </div>
+
+          <div
+            className={"columns is-variable is-5 is-centered " + styles.Columns}
+          >
+            {/* Main Article */}
+            <div className="column is-6">
+              <Img
+                fluid={image ? image.fluid : ""}
+                alt="Article Feature"
+                style={{ marginBottom: "2vmin" }}
+              />
+              <Body>
+                <Markdown className={styles.Markdown}>
+                  {renderAst(body.childMarkdownRemark.htmlAst)}
+                </Markdown>
+              </Body>
+              {(beforePost || afterPost) && (
+                <div className="level">
+                  <div className="level-right">
+                    <div className="level-item">
+                      {beforePost && (
+                        <Link
+                          to={"../" + beforePost.slug}
+                          className={styles.SeriesNavInline}
+                        >
+                          <div className="level is-mobile">
                             <div className="level-item">
-                              {beforePost && (
-                                <Link
-                                  to={"../" + beforePost.slug}
-                                  className={styles.SeriesNavInline}
-                                >
-                                  <div className="level is-mobile">
-                                    <div className="level-item">
-                                      <FontAwesomeIcon icon={faChevronLeft} />
-                                    </div>
-                                    <div className="level-item">
-                                      {beforePost.title}
-                                    </div>
-                                  </div>
-                                </Link>
-                              )}{" "}
+                              <FontAwesomeIcon icon={faChevronLeft} />
+                            </div>
+                            <div className="level-item">{beforePost.title}</div>
+                          </div>
+                        </Link>
+                      )}{" "}
+                    </div>
+                  </div>
+                  <div className="level-left">
+                    <div className="level-item">
+                      {afterPost && (
+                        <Link
+                          to={"../" + afterPost.slug}
+                          className={styles.SeriesNavInline}
+                        >
+                          <div className="level is-mobile">
+                            <div className="level-item">{afterPost.title}</div>
+                            <div className="level-item">
+                              <FontAwesomeIcon icon={faChevronRight} />
                             </div>
                           </div>
-                          <div className="level-left">
-                            <div className="level-item">
-                              {afterPost && (
-                                <Link
-                                  to={"../" + afterPost.slug}
-                                  className={styles.SeriesNavInline}
-                                >
-                                  <div className="level is-mobile">
-                                    <div className="level-item">
-                                      {afterPost.title}
-                                    </div>
-                                    <div className="level-item">
-                                      <FontAwesomeIcon icon={faChevronRight} />
-                                    </div>
-                                  </div>
-                                </Link>
-                              )}
-                            </div>
-                          </div>
-                        </div>
+                        </Link>
                       )}
-                      <hr
-                        style={{
-                          marginTop: "8vmin",
-                          marginBottom: "8vmin"
-                        }}
-                      />
-                      {/* Body - Comments */}
-                      <HyvorTalk.Embed websiteId={292} />
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
+              <hr
+                style={{
+                  marginTop: "8vmin",
+                  marginBottom: "8vmin"
+                }}
+              />
+              {/* Body - Comments */}
+              <HyvorTalk.Embed websiteId={292} />
             </div>
             {/* Sidebar */}
             {(series || toc || projectfiles) && (
-              <div className="column is-3 is-hidden-mobile">
+              <div className="column is-2 is-hidden-mobile">
                 <Sidebar>
-                  <SeriesNav
-                    series={series}
-                    seriesNeighbors={seriesNeighbors.nodes}
-                    beforePost={beforePost}
-                    afterPost={afterPost}
-                    startNum={seriesNeighbors.nodes[0].seriesNum}
-                  />
                   <TOC src={toc} />
                   <ProjectFiles src={projectfiles} />
                 </Sidebar>
@@ -199,7 +311,8 @@ export default ({ data }) => {
             )}
           </div>
         </div>
-      </section>
+      </Section>
+
       <ScrollUpButton
         ShowAtPosition={600}
         style={{
@@ -250,6 +363,7 @@ export const postQuery = graphql`
     post: contentfulPost(slug: { eq: $slug }) {
       slug
       title
+      createdAt
       image {
         fluid {
           ...GatsbyContentfulFluid
