@@ -277,7 +277,7 @@ const FurtherReadingPost = ({ post }) => {
         style={{
           textAlign: "left",
           color: "#363636",
-          fontFamily: '"basic-sans", sans-serif',
+          fontFamily: 'Lato, sans-serif',
           fontWeight: "300 !important"
         }}
       >
