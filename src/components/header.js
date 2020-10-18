@@ -1,11 +1,21 @@
 /* eslint-disable */
 import React from "react";
+import styled from "styled-components";
+
 import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 import logo from "../images/logo.png";
 
-import "./header.scss";
+const Toggle = styled.input`
+  &#nav-toggle-state {
+    display: none;
+  }
+
+  &#nav-toggle-state:checked ~ .navbar-menu {
+    display: block;
+  }
+`;
 
 export default () => {
   return (
@@ -34,14 +44,14 @@ export default () => {
             <span aria-hidden="true"></span>
           </label>
         </div>
-        <input type="checkbox" id="nav-toggle-state" />
+        <Toggle type="checkbox" id="nav-toggle-state" />
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <a className="navbar-item" href="/">
               Home
             </a>
-            <a className="navbar-item" href="/posts/">
+            <a className="navbar-item" href="/posts">
               Posts
             </a>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
@@ -50,26 +60,26 @@ export default () => {
               </a>
               <div className="navbar-dropdown">
                 <a
-                  href={router.getProductSlug("remapt") + "/"}
+                  href={router.getProductSlug("remapt")}
                   className="navbar-item"
                 >
                   Remapt
                 </a>
                 <a
-                  href={router.getProductSlug("prefixed") + "/"}
+                  href={router.getProductSlug("prefixed")}
                   className="navbar-item"
                 >
                   Prefixed
                 </a>
                 <a
-                  href={router.getProductSlug("cursory") + "/"}
+                  href={router.getProductSlug("cursory")}
                   className="navbar-item"
                 >
                   Cursory
                 </a>
               </div>
             </div>
-            <a className="navbar-item" href="/about/">
+            <a className="navbar-item" href="/about">
               About
             </a>
           </div>

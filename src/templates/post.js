@@ -277,7 +277,7 @@ const FurtherReadingPost = ({ post }) => {
         style={{
           textAlign: "left",
           color: "#363636",
-          fontFamily: 'Lato, sans-serif',
+          fontFamily: "Lato, sans-serif",
           fontWeight: "300 !important"
         }}
       >
@@ -384,21 +384,11 @@ export default ({ data }) => {
                   Further Reading
                 </h2>
                 <div class="columns">
-                  <div className="column is-4">
-                    <FurtherReadingPost
-                      post={furtherReadingPosts.edges[0].node}
-                    ></FurtherReadingPost>
-                  </div>{" "}
-                  <div className="column is-4">
-                    <FurtherReadingPost
-                      post={furtherReadingPosts.edges[1].node}
-                    ></FurtherReadingPost>
-                  </div>{" "}
-                  <div className="column is-4">
-                    <FurtherReadingPost
-                      post={furtherReadingPosts.edges[2].node}
-                    ></FurtherReadingPost>
-                  </div>
+                  {furtherReadingPosts.edges.map(({ node }) => (
+                    <div className="column is-4">
+                      <FurtherReadingPost post={node}></FurtherReadingPost>
+                    </div>
+                  ))}
                 </div>
               </div>
               <Separator />

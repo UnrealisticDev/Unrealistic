@@ -1,14 +1,30 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
 
 import Header from "./header";
 import Footer from "./footer";
 
-import "./layout.scss";
-
 import favicon16 from "../images/favicon16.png";
 import favicon32 from "../images/favicon32.png";
 import favicon64 from "../images/favicon64.png";
+
+const Site = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    min-height: calc(100vh - 3.25rem);
+  }
+`;
+
+const Content = styled.div`
+  flex-grow: 1;
+
+  @media screen and (max-width: 769px) {
+    padding: 0;
+  }
+`;
 
 function getFavicon(size, icon) {
   return {
@@ -30,10 +46,12 @@ export default ({ children }) => (
     >
       <html className="has-navbar-fixed-top" lang="en" />
     </Helmet>
-    <div className="site">
+    <Site>
       <Header />
-      <div className="site-content has-background-light">{children}</div>
-    </div>
+      <Content className="has-background-light">
+        {children}
+      </Content>
+    </Site>
     <Footer />
   </>
 );
