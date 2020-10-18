@@ -19,8 +19,11 @@
 
 .List {
 
+    font-size: calc(1.5vmin);
+
     @media (min-width: 1024px) {
         overflow-y: auto;
+        overflow-x: visible;
         max-height: 70vh;
         scrollbar-width: thin;
     }

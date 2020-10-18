@@ -1,31 +1,31 @@
 import React from "react";
+import styled from "styled-components";
 
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "./projectfiles.module.scss";
+const Wrapper = styled.a`
+  color: #363636;
+  &:hover {
+    color: #209cee;
+  }
+`;
 
-export default function ProjectFiles({ src }) {
+export default ({ src }) => {
   return src ? (
-    <div className={"card has-background-grey-lighter " + styles.Card}>
-      <a href={src} target="_blank" rel="noopener noreferrer">
-        <div className="card-content">
-          <div className="content">
-            <div className="level is-mobile">
-              <div className="level-left">
-                <div className="level-item menu-label">
-                  <div>Project Files</div>
-                </div>
-              </div>
-              <div className="level-right">
-                <div className="level-item">
-                  <FontAwesomeIcon icon={faExternalLinkAlt} />
-                </div>
-              </div>
-            </div>
+    <Wrapper href={src} target="_blank" rel="noopener noreferrer">
+      <div className="level is-mobile">
+        <div className="level-left">
+          <div className="level-item menu-label">
+            <p>Project Files</p>
           </div>
         </div>
-      </a>
-    </div>
+        <div className="level-right">
+          <div className="level-item">
+            <FontAwesomeIcon icon={faFolder} />
+          </div>
+        </div>
+      </div>
+    </Wrapper>
   ) : null;
-}
+};

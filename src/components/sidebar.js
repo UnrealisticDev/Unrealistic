@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import styled from 'styled-components'
 
-import styles from './sidebar.module.scss';
+const Aside = styled.aside`
+  @media (min-width: 769px) {
+    height: 80vh;
+    overflow-x: visible;
+    overflow-y: hidden;
+    position: sticky;
+    top: 15vmin;
+  }
+`;
 
-export default ({children}) => (
-    <aside className={'menu ' + styles.Container}>
-        {children}
-    </aside>
-)
+export default ({ children }) => <Aside className="menu">{children}</Aside>;

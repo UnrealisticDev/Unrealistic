@@ -9,60 +9,8 @@ Geneva,
 Verdana,
 sans-serif;
 
-// Columns splitting up the article into body and sidebar
-.Columns {
-    @media screen and (max-width: 769px) {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-}
-
 // Markdown body
 .Markdown {
-
-    p,
-    ul {
-        code {
-            background-color: rgb(250, 242, 242);
-            color: rgb(53, 142, 184);
-            border-radius: .3em;
-
-            @media screen and (max-width: 769px) {
-                padding: 1vmin;
-            }
-
-            @media screen and (min-width: 770px) {
-                padding: .5vmin;
-            }
-        }
-    }
-
-    pre {
-        position: relative;
-
-        button {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        scrollbar-width: none;
-    }
-
-    ul {
-        list-style-type: square;
-    }
-
-    li {
-        padding-left: 3vmin;
-    }
-
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 1vmin;
-    }
 
     figcaption {
         font-weight: 100;

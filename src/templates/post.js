@@ -5,6 +5,8 @@ import styled from "styled-components";
 import rehypeReact from "rehype-react";
 import HyvorTalk from "hyvor-talk-react";
 
+import router from "../scripts/router";
+
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Sidebar from "../components/sidebar";
@@ -14,10 +16,10 @@ import ScrollUpButton from "react-scroll-up-button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
-  faChevronRight,
   faAngleUp,
-  faCopy
+  faCopy,
+  faArrowRight,
+  faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/code.scss";
@@ -45,6 +47,7 @@ const renderAst = new rehypeReact({
     h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
     h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
     h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
+    h5: props => <h6 id={format(props.children[0])}>{props.children}</h6>,
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
@@ -87,6 +90,10 @@ const CreateDate = ({ createdAt }) => {
     </div>
   );
 };
+
+function sanitizeTitle(title, series) {
+  return series ? title.replace(series.concat(": "), "") : title;
+}
 
 const Title = styled.h1`
   @font-face {
@@ -176,10 +183,88 @@ const Markdown = styled.div`
     color: grey;
   }
 
-  a {
-    color: #3298DC;
+  a:not(.gatsby-resp-image-link) {
+    color: #3298dc;
     border-bottom: 2px dotted #363636;
   }
+
+  ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    list-style-type: square;
+  }
+
+  li {
+    padding-left: 3vmin;
+  }
+
+  pre {
+    position: relative;
+
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    scrollbar-width: none;
+  }
+
+  p > code,
+  ul > code {
+    background-color: rgb(250, 242, 242);
+    color: rgb(53, 142, 184);
+    border-radius: 0.3em;
+
+    @media screen and (max-width: 769px) {
+      padding: 1vmin;
+    }
+
+    @media screen and (min-width: 770px) {
+      padding: 0.5vmin;
+    }
+  }
+`;
+
+const SeriesNavWrapper = styled.div`
+  margin-top: 3rem;
+`;
+
+const SeriesNavLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  flex-direction: ${props => (props.next === true ? "row-reverse" : "row")};
+  p {
+    display: inline-block;
+    color: #363636;
+    white-space: nowrap;
+  }
+`;
+
+const SeriesNavInline = ({ post, next }) =>
+  post && (
+    <SeriesNavLink
+      to={router.getArticleSlug(post.slug)}
+      next={next ? true : false}
+    >
+      <FontAwesomeIcon
+        icon={next ? faArrowRight : faArrowLeft}
+        style={{ flex: "0 0 28px" }}
+      />
+      <p className="is-hidden-mobile">
+        {sanitizeTitle(post.title, post.series)}
+      </p>
+    </SeriesNavLink>
+  );
+
+const Separator = styled.hr`
+  background: grey;
+  height: 1px;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8vmin;
+  margin-bottom: 8vmin;
 `;
 
 export default ({ data }) => {
@@ -193,6 +278,7 @@ export default ({ data }) => {
     seriesNum
   } = data.post;
 
+  const displayTitle = sanitizeTitle(title);
   const { seriesNeighbors } = data;
   const excerpt = body.childMarkdownRemark.excerpt;
   const toc = body.childMarkdownRemark.tableOfContents;
@@ -213,7 +299,6 @@ export default ({ data }) => {
   return (
     <Layout>
       <style>
-        {" "}
         @import
         url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
       </style>
@@ -225,7 +310,7 @@ export default ({ data }) => {
             <div class="column is-6">
               <Frontmatter>
                 <Title className={"title is-size-1 is-size-3-mobile"}>
-                  {title}
+                  {displayTitle}
                 </Title>
                 <div className="level is-mobile subtitle">
                   <div class="level-left">
@@ -237,11 +322,7 @@ export default ({ data }) => {
             </div>
             <div className="column is-2 is-hidden-mobile" />
           </div>
-
-          <div
-            className={"columns is-variable is-5 is-centered " + styles.Columns}
-          >
-            {/* Main Article */}
+          <div className={"columns is-variable is-5 is-centered"}>
             <div className="column is-6">
               <Img
                 fluid={image ? image.fluid : ""}
@@ -252,52 +333,38 @@ export default ({ data }) => {
                 <Markdown className={styles.Markdown}>
                   {renderAst(body.childMarkdownRemark.htmlAst)}
                 </Markdown>
+                {(beforePost || afterPost) && (
+                  <SeriesNavWrapper className="level is-mobile">
+                    <div className="level-right">
+                      <div className="level-item">
+                        {beforePost && <SeriesNavInline post={beforePost} />}
+                      </div>
+                    </div>
+                    <div className="level-left">
+                      <div className="level-item">
+                        {afterPost && <SeriesNavInline post={afterPost} next />}
+                      </div>
+                    </div>
+                  </SeriesNavWrapper>
+                )}
               </Body>
-              {(beforePost || afterPost) && (
-                <div className="level">
-                  <div className="level-right">
-                    <div className="level-item">
-                      {beforePost && (
-                        <Link
-                          to={"../" + beforePost.slug}
-                          className={styles.SeriesNavInline}
-                        >
-                          <div className="level is-mobile">
-                            <div className="level-item">
-                              <FontAwesomeIcon icon={faChevronLeft} />
-                            </div>
-                            <div className="level-item">{beforePost.title}</div>
-                          </div>
-                        </Link>
-                      )}{" "}
-                    </div>
-                  </div>
-                  <div className="level-left">
-                    <div className="level-item">
-                      {afterPost && (
-                        <Link
-                          to={"../" + afterPost.slug}
-                          className={styles.SeriesNavInline}
-                        >
-                          <div className="level is-mobile">
-                            <div className="level-item">{afterPost.title}</div>
-                            <div className="level-item">
-                              <FontAwesomeIcon icon={faChevronRight} />
-                            </div>
-                          </div>
-                        </Link>
-                      )}
-                    </div>
+              {/* <Separator />
+              <div class="has-text-centered">
+                <h2 style={{ marginBottom: "2rem" }}>More Like This</h2>
+                <div class="columns">
+                  <div className="column is-4">
+                    <div className="card" style={{ height: "40vh" }}></div>
+                  </div>{" "}
+                  <div className="column is-4">
+                    <div className="card" style={{ height: "40vh" }}></div>
+                  </div>{" "}
+                  <div className="column is-4">
+                    <div className="card" style={{ height: "40vh" }}></div>
                   </div>
                 </div>
-              )}
-              <hr
-                style={{
-                  marginTop: "8vmin",
-                  marginBottom: "8vmin"
-                }}
-              />
-              {/* Body - Comments */}
+              </div>
+              <Separator /> */}
+              <hr style={{marginBottom: '5vmin', marginTop: '5vmin'}}/>
               <HyvorTalk.Embed websiteId={292} />
             </div>
             {/* Sidebar */}
@@ -391,6 +458,7 @@ export const postQuery = graphql`
       nodes {
         title
         slug
+        series
         seriesNum
       }
     }
