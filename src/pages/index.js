@@ -70,7 +70,7 @@ export default ({ data }) => {
                       flair="Fresh Off the Press"
                       subtitle={freshPost.body.childMarkdownRemark.excerpt}
                       image={getImageFromPost(freshPost)}
-                      to={router.getArticleSlug(freshPost.slug)}
+                      to={router.getPostSlug(freshPost.slug)}
                       fullheight
                     />
                   </div>
@@ -81,7 +81,7 @@ export default ({ data }) => {
                       title={stylePost.title}
                       subtitle="A comprehensive set of style conventions for UE4 projects."
                       flair="Style"
-                      to={router.getArticleSlug(stylePost.slug)}
+                      to={router.getPostSlug(stylePost.slug)}
                       image={getImageFromPost(stylePost)}
                       fullheight
                     />
@@ -110,7 +110,7 @@ export default ({ data }) => {
                 <div className="tile is-parent is-vertical is-4">
                   <div className="tile is-child">
                     <Widget
-                      to={router.getArticleSlug(devlogPost.slug)}
+                      to={router.getPostSlug(devlogPost.slug)}
                       title="Project Ascendant"
                       subtitle="An upcoming stealth crawler."
                       flair="Devlog"
@@ -119,7 +119,7 @@ export default ({ data }) => {
                   </div>
                   <div className="tile is-child">
                     <Widget
-                      to={router.getArticleSlug(getRandomPost().slug)}
+                      to={router.getPostSlug(getRandomPost().slug)}
                       title="Random"
                       subtitle="Learn something new."
                       image="https://cdn.vox-cdn.com/thumbor/2PaCKdhf1dUhQkcGE9P-pMwKcJQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/8587203/overwatch_loot_box.jpg"
@@ -129,7 +129,7 @@ export default ({ data }) => {
                 <div className="tile is-parent">
                   <div className="tile is-child">
                     <Widget
-                      to={router.getArticleSlug(beginnerPost.slug)}
+                      to={router.getPostSlug(beginnerPost.slug)}
                       subtitle="Build a tower defense game from top to bottom in just 21 days."
                       title="Beginner's Guide"
                       flair="Tutorials"

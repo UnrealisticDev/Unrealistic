@@ -1,4 +1,4 @@
-function getArticleSlug(base) {
+function getPostSlug(base) {
   return "/posts/" + base
 }
 
@@ -6,5 +6,5 @@ function getProductSlug(base) {
   return "/products/" + base
 }
 
-module.exports.getPostSlug = getArticleSlug
+module.exports.getPostSlug = getPostSlug
 module.exports.getProductSlug = getProductSlug
