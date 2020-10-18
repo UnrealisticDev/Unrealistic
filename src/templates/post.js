@@ -23,7 +23,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/code.scss";
-import styles from "./post.module.scss";
 
 /* Todo: Enable lazy loaded images in markdown. */
 
@@ -188,9 +187,13 @@ const Markdown = styled.div`
     border-bottom: 2px dotted #363636;
   }
 
-  ul {
+  ul,
+  ol {
     margin-left: 2rem;
     margin-bottom: 1rem;
+  }
+
+  ul {
     list-style-type: square;
   }
 
@@ -244,7 +247,7 @@ const SeriesNavLink = styled(Link)`
 const SeriesNavInline = ({ post, next }) =>
   post && (
     <SeriesNavLink
-      to={router.getArticleSlug(post.slug)}
+      to={router.getPostSlug(post.slug)}
       next={next ? true : false}
     >
       <FontAwesomeIcon
@@ -258,14 +261,31 @@ const SeriesNavInline = ({ post, next }) =>
   );
 
 const Separator = styled.hr`
-  background: grey;
-  height: 1px;
-  width: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 8vmin;
-  margin-bottom: 8vmin;
+  margin-top: 5vmin;
+  margin-bottom: 5vmin;
 `;
+
+const FurtherReadingPost = ({ post }) => {
+  return (
+    <Link to={router.getPostSlug(post.slug)} style={{ height: "30vmin" }}>
+      <Img
+        fluid={post.image ? post.image.fluid : ""}
+        alt="Article Feature"
+        style={{ marginBottom: "2vmin" }}
+      />
+      <div
+        style={{
+          textAlign: "left",
+          color: "#363636",
+          fontFamily: '"basic-sans", sans-serif',
+          fontWeight: "300 !important"
+        }}
+      >
+        {post.title}
+      </div>
+    </Link>
+  );
+};
 
 export default ({ data }) => {
   const {
@@ -295,6 +315,8 @@ export default ({ data }) => {
       }
     }
   }
+
+  const furtherReadingPosts = data.furtherReadingPosts;
 
   return (
     <Layout>
@@ -330,7 +352,7 @@ export default ({ data }) => {
                 style={{ marginBottom: "2vmin" }}
               />
               <Body>
-                <Markdown className={styles.Markdown}>
+                <Markdown>
                   {renderAst(body.childMarkdownRemark.htmlAst)}
                 </Markdown>
                 {(beforePost || afterPost) && (
@@ -348,23 +370,38 @@ export default ({ data }) => {
                   </SeriesNavWrapper>
                 )}
               </Body>
-              {/* <Separator />
+              <Separator />
               <div class="has-text-centered">
-                <h2 style={{ marginBottom: "2rem" }}>More Like This</h2>
+                <h2
+                  style={{
+                    marginBottom: "2rem",
+                    fontWeight: "600",
+                    fontFamily: "segoe ui, sans-serif",
+                    fontSize: "22px",
+                    color: "#111111"
+                  }}
+                >
+                  Further Reading
+                </h2>
                 <div class="columns">
                   <div className="column is-4">
-                    <div className="card" style={{ height: "40vh" }}></div>
+                    <FurtherReadingPost
+                      post={furtherReadingPosts.edges[0].node}
+                    ></FurtherReadingPost>
                   </div>{" "}
                   <div className="column is-4">
-                    <div className="card" style={{ height: "40vh" }}></div>
+                    <FurtherReadingPost
+                      post={furtherReadingPosts.edges[1].node}
+                    ></FurtherReadingPost>
                   </div>{" "}
                   <div className="column is-4">
-                    <div className="card" style={{ height: "40vh" }}></div>
+                    <FurtherReadingPost
+                      post={furtherReadingPosts.edges[2].node}
+                    ></FurtherReadingPost>
                   </div>
                 </div>
               </div>
-              <Separator /> */}
-              <hr style={{marginBottom: '5vmin', marginTop: '5vmin'}}/>
+              <Separator />
               <HyvorTalk.Embed websiteId={292} />
             </div>
             {/* Sidebar */}
@@ -460,6 +497,22 @@ export const postQuery = graphql`
         slug
         series
         seriesNum
+      }
+    }
+    furtherReadingPosts: allContentfulPost(
+      limit: 3
+      sort: { fields: createdAt, order: DESC }
+    ) {
+      edges {
+        node {
+          title
+          slug
+          image {
+            fluid(maxWidth: 300) {
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
       }
     }
   }

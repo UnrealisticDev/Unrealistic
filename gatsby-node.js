@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   query.data.allContentfulPost.edges.forEach(({ node }) => {
     const slug = node.slug;
     const series = node.series;
-    const path = router.getArticleSlug(slug);
+    const path = router.getPostSlug(slug);
     console.log("Creating page: " + path);
     createPage({
       path,

@@ -6,5 +6,5 @@ function getProductSlug(base) {
   return "/products/" + base
 }
 
-module.exports.getArticleSlug = getArticleSlug
+module.exports.getPostSlug = getArticleSlug
 module.exports.getProductSlug = getProductSlug
