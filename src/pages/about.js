@@ -30,7 +30,7 @@ const ContentBody = styled.div`
 
 export default () => (
   <Layout>
-    <SEO title="About" />
+    <SEO title="About" canonical="/about" />
     <section className="section">
       <div class="hero">
         <ContentBody className="hero-body">
