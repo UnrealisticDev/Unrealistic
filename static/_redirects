@@ -4,7 +4,7 @@
 http://unrealistic.dev /
 https://www.unrealistic.dev /
 
-http://* https://*
-http://www.* https://*
+http://* https://:splat
+https://www.* https://:splat
 
 /articles/* /posts/:splat
