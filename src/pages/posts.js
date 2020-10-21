@@ -6,9 +6,6 @@ import styled from "styled-components";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-import "../styles/global.scss";
-import styles from "./articles.module.scss";
-
 const Title = styled.h1`
   @font-face {
     font-family: "basic-sans";
@@ -31,7 +28,17 @@ const ArticleBody = styled.div`
     background: lightgrey;
     border-radius: 5px;
   }
-`
+`;
+
+const ArticleImage = styled(Img)`
+  margin-bottom: 2vmin;
+  object-fit: cover;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 
 const ArticleTitle = styled.h2`
   font-family: Lato, sans-serif;
@@ -40,26 +47,26 @@ const ArticleTitle = styled.h2`
 
 const ArticleExcerpt = styled.p`
   color: #363636;
-`
+`;
 
 function Article({ source }) {
   return (
-    <div className="column is-4" style={{marginBottom: '3rem'}}>
+    <div className="column is-4" style={{ marginBottom: "3rem" }}>
       <Link to={source.slug + "/"}>
-        <ArticleBody className={""} style={{padding: '2rem'}}>
-          <Img
+        <ArticleBody className={""} style={{ padding: "2rem" }}>
+          <ArticleImage
             fluid={
               source.image
                 ? source.image.fluid
                 : "https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png"
             }
             alt="Post Feature"
-            className={styles.Image}
-            style={{marginBottom: '2vmin'}}
           />
 
           <ArticleTitle>{source.title}</ArticleTitle>
-          <ArticleExcerpt>{source.body.childMarkdownRemark.excerpt}</ArticleExcerpt>
+          <ArticleExcerpt>
+            {source.body.childMarkdownRemark.excerpt}
+          </ArticleExcerpt>
         </ArticleBody>
       </Link>
     </div>
@@ -81,7 +88,7 @@ export default ({ data }) => {
             Find all the posts you're looking for, and some you're not.
           </div>
           <div className="columns is-multiline is-desktop is-variable is-6">
-            {data.allContentfulPost.nodes.map(article => {
+            {data.posts.nodes.map(article => {
               return <Article source={article} />;
             })}
           </div>
@@ -93,7 +100,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulPost(
+    posts: allContentfulPost(
       filter: { tags: { nin: ["docs"] } }
       sort: { fields: createdAt, order: DESC }
     ) {
