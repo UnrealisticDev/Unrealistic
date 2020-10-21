@@ -33,7 +33,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Unrealistic" />
+      <SEO title="Unrealistic: Game Development Tutorials, Insider Insights, and Industry Analysis" titleOverride/>
       <section className="section">
         <div className="container">
           <section className="section">
@@ -87,9 +87,11 @@ export default ({ data }) => {
                     />
                   </div>
                   <div className="tile is-child">
-                    <div className={"content tip-of-the-week has-text-centered"}>
+                    <div
+                      className={"content tip-of-the-week has-text-centered"}
+                    >
                       <hr />
-                      <div className='title' id="totw-title">
+                      <div className="title" id="totw-title">
                         Tip of the Week
                       </div>
                       <p>{totw.text.text}</p>
@@ -134,7 +136,6 @@ export default ({ data }) => {
                       title="Beginner's Guide"
                       flair="Tutorials"
                       image={getImageFromPost(beginnerPost)}
-                      
                     />
                   </div>
                 </div>
@@ -235,7 +236,7 @@ export const query = graphql`
         }
       }
     }
-    beginnersGuide: contentfulPost{
+    beginnersGuide: contentfulPost {
       title
       slug
       image {

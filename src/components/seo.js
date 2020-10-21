@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ title, description, canonical, meta, lang }) {
+function SEO({ title, titleOverride, description, canonical, meta, lang }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,7 +20,7 @@ function SEO({ title, description, canonical, meta, lang }) {
   );
 
   const { siteUrl, tagline } = site.siteMetadata;
-  const metaTitle = title.concat(" | Unrealistic");
+  const metaTitle = titleOverride ? title : title.concat(" | Unrealistic");
   const metaDescription = description || tagline;
 
   return (
