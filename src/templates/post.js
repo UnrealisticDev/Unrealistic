@@ -17,6 +17,7 @@ import ScrollUpButton from "react-scroll-up-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleUp,
+  faAngleDown,
   faCopy,
   faArrowRight,
   faArrowLeft
@@ -123,6 +124,51 @@ const Series = ({ series }) => {
     )
   );
 };
+
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+const TopicTags = ({ tags }) => {
+  return (
+    tags && (
+      <>
+        <div className="level-item">·</div>
+        <div class="level-item">
+          <div className="subtitle is-size-6 dropdown is-hoverable is-light">
+            {" "}
+            <div class="dropdown-trigger">
+              <button
+                class="button is-light"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+              >
+                <span>{capitalize(tags[0])}</span>
+                <span class="icon is-small">
+                  <FontAwesomeIcon icon={faAngleDown} />
+                </span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content">
+                {tags.map(tag => {
+                  return (
+                    <div href='#' className="dropdown-item">
+                      {capitalize(tag)}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  );
+};
+
+const StyledTopicTags = styled(TopicTags)``;
 
 const Frontmatter = styled.div`
   ${"" /* margin-bottom: 2vmin; */}
@@ -268,8 +314,7 @@ const Separator = styled.hr`
   margin-bottom: 5vmin;
 `;
 
-const FurtherReadingBody = styled.div`
-`;
+const FurtherReadingBody = styled.div``;
 
 const FurtherReadingPost = ({ post }) => {
   return (
@@ -337,7 +382,16 @@ function getFurtherReading(furtherReading) {
 }
 
 export default ({ data }) => {
-  const { title, excerpt, createdAt, image, body, projectfiles, series } = data.post;
+  const {
+    title,
+    excerpt,
+    createdAt,
+    image,
+    body,
+    topicTags,
+    projectfiles,
+    series
+  } = data.post;
 
   const description = excerpt || body.childMarkdownRemark.excerpt;
   const toc = body.childMarkdownRemark.tableOfContents;
@@ -364,6 +418,7 @@ export default ({ data }) => {
                   <div class="level-left">
                     <CreateDate createdAt={createdAt} />
                     <Series series={series} />
+                    <StyledTopicTags tags={topicTags} />
                   </div>
                 </div>
               </Frontmatter>
@@ -501,6 +556,7 @@ export const postQuery = graphql`
           tableOfContents(absolute: false)
         }
       }
+      topicTags
       projectfiles
       series: seriesRef {
         title
