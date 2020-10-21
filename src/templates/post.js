@@ -91,7 +91,7 @@ const CreateDate = ({ createdAt }) => {
 };
 
 function sanitizeTitle(title, series) {
-  return series ? title.replace(series.concat(": "), "") : title;
+  return series ? title.replace(series.title.concat(": "), "") : title;
 }
 
 const Title = styled.h1`
@@ -117,7 +117,7 @@ const Series = ({ series }) => {
       <>
         <div className="level-item">·</div>
         <div class="level-item">
-          <p className="subtitle is-size-6">{series}</p>
+          <p className="subtitle is-size-6">{series.title}</p>
         </div>
       </>
     )
@@ -211,6 +211,9 @@ const Markdown = styled.div`
     }
 
     scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   p > code,
@@ -265,58 +268,81 @@ const Separator = styled.hr`
   margin-bottom: 5vmin;
 `;
 
+const FurtherReadingBody = styled.div`
+`;
+
 const FurtherReadingPost = ({ post }) => {
   return (
-    <Link to={router.getPostSlug(post.slug)} style={{ height: "30vmin" }}>
-      <Img
-        fluid={post.image ? post.image.fluid : ""}
-        alt="Article Feature"
-        style={{ marginBottom: "2vmin" }}
-      />
-      <div
-        style={{
-          textAlign: "left",
-          color: "#363636",
-          fontFamily: "Lato, sans-serif",
-          fontWeight: "300 !important"
-        }}
-      >
-        {post.title}
-      </div>
-    </Link>
+    <FurtherReadingBody>
+      <Link to={router.getPostSlug(post.slug)}>
+        <Img
+          fluid={post.image ? post.image.fluid : ""}
+          alt="Article Feature"
+          style={{ marginBottom: "2vmin" }}
+        />
+        <div
+          style={{
+            textAlign: "left",
+            color: "#363636",
+            fontFamily: "Lato, sans-serif",
+            fontWeight: "300 !important"
+          }}
+        >
+          {post.title}
+        </div>
+      </Link>
+    </FurtherReadingBody>
   );
 };
 
-export default ({ data }) => {
-  const {
-    title,
-    createdAt,
-    image,
-    body,
-    projectfiles,
-    series,
-    seriesNum
-  } = data.post;
+function findSeriesNeighbors(post, series) {
+  var ret = {};
 
-  const displayTitle = sanitizeTitle(title);
-  const { seriesNeighbors } = data;
-  const excerpt = body.childMarkdownRemark.excerpt;
-  const toc = body.childMarkdownRemark.tableOfContents;
-  var beforePost = null;
-  var afterPost = null;
+  if (post && series) {
+    series = series.posts;
+    const postIndex = series.findIndex(element => element.id === post.id);
 
-  if (series) {
-    for (var i = 0; i < seriesNeighbors.nodes.length; ++i) {
-      if (seriesNum - 1 === i) {
-        beforePost = seriesNeighbors.nodes[i];
-      }
-      if (seriesNum + 1 === i) {
-        afterPost = seriesNeighbors.nodes[i];
-      }
-    }
+    const beforePostIndex = postIndex - 1;
+    ret.beforePost =
+      series[beforePostIndex] !== void 0 ? series[beforePostIndex] : null;
+
+    const afterPostIndex = postIndex + 1;
+    ret.afterPost =
+      series[afterPostIndex] !== void 0 ? series[afterPostIndex] : null;
   }
 
-  const furtherReadingPosts = data.furtherReadingPosts;
+  return ret;
+}
+
+function getFurtherReading(furtherReading) {
+  furtherReading = furtherReading.edges;
+  var outPosts = [];
+
+  if (furtherReading.length < 3) {
+    outPosts = furtherReading;
+  } else {
+    var indices = [];
+    while (indices.length < 3) {
+      var r = Math.floor(Math.random() * (furtherReading.length - 1)) + 1;
+      if (indices.indexOf(r) === -1) {
+        indices.push(r);
+      }
+    }
+    indices.forEach(i => {
+      outPosts.push(furtherReading[i]);
+    });
+  }
+
+  return outPosts;
+}
+
+export default ({ data }) => {
+  const { title, createdAt, image, body, projectfiles, series } = data.post;
+
+  const excerpt = body.childMarkdownRemark.excerpt;
+  const toc = body.childMarkdownRemark.tableOfContents;
+  const neighbors = findSeriesNeighbors(data.post, series);
+  const furtherReading = getFurtherReading(data.furtherReading);
 
   return (
     <Layout>
@@ -332,7 +358,7 @@ export default ({ data }) => {
             <div class="column is-6">
               <Frontmatter>
                 <Title className={"title is-size-1 is-size-3-mobile"}>
-                  {displayTitle}
+                  {sanitizeTitle(title, series)}
                 </Title>
                 <div className="level is-mobile subtitle">
                   <div class="level-left">
@@ -355,16 +381,20 @@ export default ({ data }) => {
                 <Markdown>
                   {renderAst(body.childMarkdownRemark.htmlAst)}
                 </Markdown>
-                {(beforePost || afterPost) && (
+                {neighbors && (
                   <SeriesNavWrapper className="level is-mobile">
                     <div className="level-right">
                       <div className="level-item">
-                        {beforePost && <SeriesNavInline post={beforePost} />}
+                        {neighbors.beforePost && (
+                          <SeriesNavInline post={neighbors.beforePost} />
+                        )}
                       </div>
                     </div>
                     <div className="level-left">
                       <div className="level-item">
-                        {afterPost && <SeriesNavInline post={afterPost} next />}
+                        {neighbors.afterPost && (
+                          <SeriesNavInline post={neighbors.afterPost} next />
+                        )}
                       </div>
                     </div>
                   </SeriesNavWrapper>
@@ -381,10 +411,10 @@ export default ({ data }) => {
                     color: "#111111"
                   }}
                 >
-                  Further Reading
+                  Up Next
                 </h2>
                 <div class="columns">
-                  {furtherReadingPosts.edges.map(({ node }) => (
+                  {furtherReading.map(({ node }) => (
                     <div className="column is-4">
                       <FurtherReadingPost post={node}></FurtherReadingPost>
                     </div>
@@ -453,9 +483,9 @@ export default ({ data }) => {
 };
 
 export const postQuery = graphql`
-  query($slug: String!, $series: String) {
+  query($slug: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
-      slug
+      id
       title
       createdAt
       image {
@@ -465,32 +495,24 @@ export const postQuery = graphql`
       }
       body {
         childMarkdownRemark {
-          excerpt
+          excerpt(pruneLength: 160)
           htmlAst
-          headings {
-            depth
-            value
-          }
           tableOfContents(absolute: false)
         }
       }
       projectfiles
-      series
-      seriesNum
-    }
-    seriesNeighbors: allContentfulPost(
-      filter: { series: { eq: $series } }
-      sort: { fields: seriesNum, order: ASC }
-    ) {
-      nodes {
+      series: seriesRef {
         title
-        slug
-        series
-        seriesNum
+        posts {
+          id
+          title
+          slug
+        }
       }
     }
-    furtherReadingPosts: allContentfulPost(
-      limit: 3
+
+    furtherReading: allContentfulPost(
+      filter: { seriesRef: { id: { eq: null } } }
       sort: { fields: createdAt, order: DESC }
     ) {
       edges {

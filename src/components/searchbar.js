@@ -4,8 +4,16 @@ import { InstantSearch } from "react-instantsearch-dom";
 import SearchEntry from "./searchbar/searchentry";
 import SearchResult from "./searchbar/searchresult";
 import useClickOutside from "./searchbar/clickoutside";
+import styled from 'styled-components'
 
-import styles from "./searchbar.module.scss";
+const SearchRoot = styled.div`
+  position: relative;
+`
+
+const StyledSearchResult = styled(SearchResult)`
+  position: absolute;
+  right: 0;
+`
 
 const indices = [{ name: `Articles`, title: `Articles` }];
 
@@ -21,19 +29,18 @@ export default function Searchbar(props) {
   useClickOutside(rootRef, () => setFocus(false));
 
   return (
-    <div ref={rootRef} className={styles.SearchRoot}>
+    <SearchRoot ref={rootRef}>
       <InstantSearch
         searchClient={searchClient}
         indexName={indices[0].name}
         onSearchStateChange={({ query }) => setQuery(query)}
       >
         <SearchEntry onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-        <SearchResult
+        <StyledSearchResult
           show={query && query.length > 0 && hasFocus}
           indices={indices}
-          className={styles.SearchResult}
         />
       </InstantSearch>
-    </div>
+    </SearchRoot>
   );
 }

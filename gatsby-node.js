@@ -11,15 +11,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           edges {
             node {
               slug
-              series
             }
           }
         }
         allContentfulPlugin {
           edges {
             node {
-              slug
-              docTag
+              name
             }
           }
         }
@@ -50,16 +48,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const pluginTemplate = path.resolve(`./src/templates/plugin.js`);
   query.data.allContentfulPlugin.edges.forEach(({ node }) => {
-    const slug = node.slug;
-    const docTag = node.docTag;
-    const path = router.getProductSlug(node.slug);
+    const { name } = node;
+    const path = router.getProductSlug(name.toLowerCase());
     console.log("Creating page: " + path);
     createPage({
       path,
       component: pluginTemplate,
       context: {
-        slug: slug,
-        docTag: docTag
+        name: name
       }
     });
   });

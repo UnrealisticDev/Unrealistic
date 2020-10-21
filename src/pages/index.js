@@ -235,10 +235,7 @@ export const query = graphql`
         }
       }
     }
-    beginnersGuide: contentfulPost(
-      series: { eq: "Beginner's Guide" }
-      seriesNum: { eq: 0 }
-    ) {
+    beginnersGuide: contentfulPost{
       title
       slug
       image {

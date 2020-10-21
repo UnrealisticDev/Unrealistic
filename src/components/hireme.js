@@ -1,10 +1,41 @@
 /* eslint-disable no-useless-concat */
 import React from "react";
+import styled from 'styled-components'
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "./hireme.module.scss";
+const Form = styled.form`
+  & input.input {
+    background-color: lightgrey !important;
+    color: #171716;
+  }
+
+  & textarea {
+    background-color: lightgrey !important;
+  }
+  
+  & input.input::placeholder, textarea::placeholder {
+    color: #575754 !important;
+  }
+`
+
+const Title = styled.h2`
+    @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+
+  font-family: "basic-sans";
+`
 
 function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
   function getControlClass() {
@@ -24,10 +55,10 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
 
 export default () => {
   return (
-    <form name="hireme" method="POST" netlify action="/success/">
+    <Form name="hireme" method="POST" netlify action="/success/">
       <input type="hidden" name="form-name" value="hireme" />
-      <h1 className="title is-size-1">Hire Us!</h1>
-      <div className="columns">
+      <Title className="title is-size-3">Now Accepting New Projects</Title>
+      <div className="columns is-variable is-1">
         <div className="column">
           <BulmaControl name="First Name">
             <input
@@ -68,10 +99,10 @@ export default () => {
         />
       </BulmaControl>
       <BulmaControl>
-        <button className={"button " + styles.Submit} type="submit">
+        <button className={"button is-dark is-fullwidth"} style={{color: '#EAAA03' }} type="submit">
           Submit
         </button>
       </BulmaControl>
-    </form>
+    </Form>
   );
 };

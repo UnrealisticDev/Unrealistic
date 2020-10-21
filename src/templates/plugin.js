@@ -1,16 +1,16 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image'
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Img from "gatsby-image";
 
-import router from "../scripts/router"
+import router from "../scripts/router";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
-import styles from './plugin.module.scss'
+import styles from "./plugin.module.scss";
 
 export default ({ data, pageContext }) => {
-  const plugin = data.contentfulPlugin
+  const { plugin, docs } = data;
 
   return (
     <Layout>
@@ -28,7 +28,10 @@ export default ({ data, pageContext }) => {
                 <div className="tile is-child content">
                   <h1>{plugin.longName}</h1>
                   <p>{plugin.description.description}</p>
-                  <a className={"button " + styles.MarketplaceButton} href={plugin.marketplaceUrl}>
+                  <a
+                    className={"button " + styles.MarketplaceButton}
+                    href={plugin.marketplaceUrl}
+                  >
                     Get it on the Marketplace
                   </a>
                 </div>
@@ -39,14 +42,14 @@ export default ({ data, pageContext }) => {
                 <aside className="menu">
                   <p className="menu-label">Documentation</p>
                   <ul className="menu-list">
-                    {data.documentation.nodes.map(({ slug, title }) => {
+                    {docs.posts.map(({ slug, title }) => {
                       return (
                         <li>
-                          <Link href={router.getPostSlug(slug) + '/'}>
-                            {title.replace(plugin.name + ": ", "")}
+                          <Link href={router.getPostSlug(slug)}>
+                            {title.replace(plugin.name.concat(": "), "")}
                           </Link>
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </aside>
@@ -56,13 +59,12 @@ export default ({ data, pageContext }) => {
         </div>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
 export const pluginQuery = graphql`
-  query($slug: String!, $docTag: String) {
-    contentfulPlugin(slug: { eq: $slug }) {
-      slug
+  query($name: String!) {
+    plugin: contentfulPlugin(name: { eq: $name }) {
       name
       longName
       description {
@@ -74,16 +76,12 @@ export const pluginQuery = graphql`
         }
       }
       marketplaceUrl
-      docTag
     }
-    documentation: allContentfulPost(
-      filter: { tags: { in: [$docTag] } }
-      sort: { fields: createdAt, order: ASC }
-    ) {
-      nodes {
+    docs: contentfulSeries(title: {eq: $name}) {
+      posts {
         title
         slug
       }
     }
   }
-`
+`;
