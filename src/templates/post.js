@@ -537,7 +537,7 @@ export default ({ data }) => {
   );
 };
 
-export const postQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
       id

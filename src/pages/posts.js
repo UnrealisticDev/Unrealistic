@@ -23,15 +23,33 @@ const Title = styled.h1`
   color: #363636;
 `;
 
+const Subtitle = styled.p`
+  margin-bottom: 1rem;
+  width: 30vw;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
 const ArticleBody = styled.div`
+  padding: 2rem;
+
   &:hover {
     background: lightgrey;
     border-radius: 5px;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 0rem;
+    &:hover {
+      background: transparent;
+    }
+  }
 `;
 
 const ArticleImage = styled(Img)`
-  margin-bottom: 2vmin;
+  margin-bottom: 1rem;
   object-fit: cover;
   height: 100%;
 
@@ -41,6 +59,7 @@ const ArticleImage = styled(Img)`
 `;
 
 const ArticleTitle = styled.h2`
+  margin-bottom: 1rem;
   font-family: Lato, sans-serif;
   color: #363636;
 `;
@@ -53,7 +72,7 @@ function Article({ source }) {
   return (
     <div className="column is-4" style={{ marginBottom: "3rem" }}>
       <Link to={source.slug + "/"}>
-        <ArticleBody className={""} style={{ padding: "2rem" }}>
+        <ArticleBody>
           <ArticleImage
             fluid={
               source.image
@@ -65,7 +84,7 @@ function Article({ source }) {
 
           <ArticleTitle>{source.title}</ArticleTitle>
           <ArticleExcerpt>
-            {source.body.childMarkdownRemark.excerpt}
+            {source.excerpt || source.body.childMarkdownRemark.excerpt}
           </ArticleExcerpt>
         </ArticleBody>
       </Link>
@@ -80,13 +99,19 @@ export default ({ data }) => {
         @import
         url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
       </style>
-      <SEO title="Posts" />
+      <SEO
+        title="Game Dev Library"
+        description="Find game development insight here, with articles about Unreal Engine 4 and Unity Engine, tips and tricks from insiders, and analysis of industry trends."
+      />
       <div className="section">
         <div className="container">
-          <Title className="title is-size-1">Posts</Title>
-          <div className="subtitle">
-            Find all the posts you're looking for, and some you're not.
-          </div>
+          <Title className="title is-size-1">Game Dev Library</Title>
+          <Subtitle>
+            Find anything and everything about game development here, from
+            how-to's for popular technologies like Unreal Engine 4 and Unity
+            Engine, to tips and tricks from gaming insiders, to analysis of the
+            latest developments in the gaming industry.
+          </Subtitle>
           <div className="columns is-multiline is-desktop is-variable is-6">
             {data.posts.nodes.map(article => {
               return <Article source={article} />;
@@ -107,6 +132,7 @@ export const query = graphql`
       nodes {
         slug
         title
+        excerpt
         image {
           fluid {
             ...GatsbyContentfulFluid

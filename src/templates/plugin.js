@@ -37,26 +37,27 @@ const DocLink = styled(Link)`
 
 export default ({ data, pageContext }) => {
   const { plugin, docs } = data;
+  const { name, longName, featureImage, description, marketplaceUrl } = plugin;
 
   return (
     <Layout>
-      <SEO title={plugin.longName} />
+      <SEO title={longName.concat(" for Unreal Engine 4")} description={description.description} />
       <section className="section">
         <div className="container">
           <div className="tile is-ancestor">
             <div className="tile is-vertical is-8">
               <div className="tile is-parent">
                 <div className="tile is-child">
-                  <Img fluid={plugin.featureImage.fluid} alt="Plugin Feature" />
+                  <Img fluid={featureImage.fluid} alt="Plugin Feature" />
                 </div>
               </div>
               <div className="tile is-parent">
                 <div className="tile is-child content">
-                  <Title>{plugin.longName}</Title>
-                  <p>{plugin.description.description}</p>
+                  <Title>{longName}</Title>
+                  <p>{description.description}</p>
                   <MarketplaceButton
                     className={"button is-dark"}
-                    href={plugin.marketplaceUrl}
+                    href={marketplaceUrl}
                   >
                     Get it on the Marketplace
                   </MarketplaceButton>
@@ -72,7 +73,7 @@ export default ({ data, pageContext }) => {
                       return (
                         <li>
                           <DocLink href={router.getPostSlug(slug)}>
-                            {title.replace(plugin.name.concat(": "), "")}
+                            {title.replace(name.concat(": "), "")}
                           </DocLink>
                         </li>
                       );

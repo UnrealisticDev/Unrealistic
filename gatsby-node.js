@@ -32,16 +32,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const postTemplate = path.resolve(`./src/templates/post.js`);
   query.data.allContentfulPost.edges.forEach(({ node }) => {
-    const slug = node.slug;
-    const series = node.series;
+    const { slug } = node;
     const path = router.getPostSlug(slug);
     console.log("Creating page: " + path);
     createPage({
       path,
       component: postTemplate,
       context: {
-        slug: slug,
-        series: series
+        slug: slug
       }
     });
   });

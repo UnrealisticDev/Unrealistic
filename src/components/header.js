@@ -52,7 +52,7 @@ export default () => {
               Home
             </a>
             <a className="navbar-item" href="/posts">
-              Posts
+              Library
             </a>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
               <a href="" className="navbar-link">
