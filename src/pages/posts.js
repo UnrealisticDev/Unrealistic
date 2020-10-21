@@ -102,6 +102,7 @@ export default ({ data }) => {
       <SEO
         title="Game Dev Library"
         description="Find game development insight here, with articles about Unreal Engine 4 and Unity Engine, tips and tricks from insiders, and analysis of industry trends."
+        canonical="/posts"
       />
       <div className="section">
         <div className="container">
@@ -134,7 +135,7 @@ export const query = graphql`
         title
         excerpt
         image {
-          fluid {
+          fluid(maxWidth: 500) {
             ...GatsbyContentfulFluid
           }
         }

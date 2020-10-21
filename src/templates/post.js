@@ -371,6 +371,7 @@ function getFurtherReading(furtherReading) {
 
 export default ({ data }) => {
   const {
+    slug,
     title,
     excerpt,
     createdAt,
@@ -392,7 +393,7 @@ export default ({ data }) => {
         @import
         url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
       </style>
-      <SEO title={title} description={description} />
+      <SEO title={title} description={description} canonical={router.getPostSlug(slug)} />
 
       <Section className="section">
         <div class="container">
@@ -529,6 +530,7 @@ export const query = graphql`
   query($slug: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
       id
+      slug
       title
       excerpt
       createdAt

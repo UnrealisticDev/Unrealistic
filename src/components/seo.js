@@ -1,14 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ title, description, meta, lang }) {
+function SEO({ title, description, canonical, meta, lang }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
+            siteUrl
             title
             tagline
             author
@@ -16,10 +17,11 @@ function SEO({ title, description, meta, lang }) {
         }
       }
     `
-  )
+  );
 
-  const metaTitle = title.concat(' | Unrealistic');
-  const metaDescription = description || site.siteMetadata.tagline
+  const { siteUrl, tagline } = site.siteMetadata;
+  const metaTitle = title.concat(" | Unrealistic");
+  const metaDescription = description || tagline;
 
   return (
     <Helmet
@@ -28,52 +30,54 @@ function SEO({ title, description, meta, lang }) {
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: metaDescription
         },
         {
           property: `og:title`,
-          content: metaTitle,
+          content: metaTitle
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: metaDescription
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `website`
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary`
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.author
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: title
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
-        },
+          content: metaDescription
+        }
       ].concat(meta)}
-    />
-  )
+    >
+      {canonical && <link rel="canonical" href={siteUrl.concat(canonical)} />}
+    </Helmet>
+  );
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  description: ``,
-}
+  description: ``
+};
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
+  title: PropTypes.string.isRequired
+};
 
-export default SEO
+export default SEO;

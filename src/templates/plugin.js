@@ -33,15 +33,26 @@ const DocLink = styled(Link)`
   &:hover {
     background-color: lightgrey !important;
   }
-`
+`;
 
 export default ({ data, pageContext }) => {
   const { plugin, docs } = data;
-  const { name, longName, featureImage, description, marketplaceUrl } = plugin;
+  const {
+    slug,
+    name,
+    longName,
+    featureImage,
+    description,
+    marketplaceUrl
+  } = plugin;
 
   return (
     <Layout>
-      <SEO title={longName.concat(" for Unreal Engine 4")} description={description.description} />
+      <SEO
+        title={longName.concat(" for Unreal Engine 4")}
+        description={description.description}
+        canonical={router.getProductSlug(slug)}
+      />
       <section className="section">
         <div className="container">
           <div className="tile is-ancestor">
@@ -92,6 +103,7 @@ export default ({ data, pageContext }) => {
 export const pluginQuery = graphql`
   query($name: String!) {
     plugin: contentfulPlugin(name: { eq: $name }) {
+      slug
       name
       longName
       description {
