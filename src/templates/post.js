@@ -337,9 +337,9 @@ function getFurtherReading(furtherReading) {
 }
 
 export default ({ data }) => {
-  const { title, createdAt, image, body, projectfiles, series } = data.post;
+  const { title, excerpt, createdAt, image, body, projectfiles, series } = data.post;
 
-  const excerpt = body.childMarkdownRemark.excerpt;
+  const description = excerpt || body.childMarkdownRemark.excerpt;
   const toc = body.childMarkdownRemark.tableOfContents;
   const neighbors = findSeriesNeighbors(data.post, series);
   const furtherReading = getFurtherReading(data.furtherReading);
@@ -350,7 +350,7 @@ export default ({ data }) => {
         @import
         url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
       </style>
-      <SEO title={title} description={excerpt} />
+      <SEO title={title} description={description} />
 
       <Section className="section">
         <div class="container">
@@ -487,6 +487,7 @@ export const postQuery = graphql`
     post: contentfulPost(slug: { eq: $slug }) {
       id
       title
+      excerpt
       createdAt
       image {
         fluid {

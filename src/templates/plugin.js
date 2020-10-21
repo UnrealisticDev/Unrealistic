@@ -1,13 +1,39 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
+import styled from "styled-components";
 
 import router from "../scripts/router";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-import styles from "./plugin.module.scss";
+const Title = styled.h1`
+  @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+
+  font-family: "basic-sans";
+`;
+
+const MarketplaceButton = styled.a`
+  color: #eaaa03 !important;
+`;
+
+const DocLink = styled(Link)`
+  &:hover {
+    background-color: lightgrey !important;
+  }
+`
 
 export default ({ data, pageContext }) => {
   const { plugin, docs } = data;
@@ -26,14 +52,14 @@ export default ({ data, pageContext }) => {
               </div>
               <div className="tile is-parent">
                 <div className="tile is-child content">
-                  <h1>{plugin.longName}</h1>
+                  <Title>{plugin.longName}</Title>
                   <p>{plugin.description.description}</p>
-                  <a
-                    className={"button " + styles.MarketplaceButton}
+                  <MarketplaceButton
+                    className={"button is-dark"}
                     href={plugin.marketplaceUrl}
                   >
                     Get it on the Marketplace
-                  </a>
+                  </MarketplaceButton>
                 </div>
               </div>
             </div>
@@ -45,9 +71,9 @@ export default ({ data, pageContext }) => {
                     {docs.posts.map(({ slug, title }) => {
                       return (
                         <li>
-                          <Link href={router.getPostSlug(slug)}>
+                          <DocLink href={router.getPostSlug(slug)}>
                             {title.replace(plugin.name.concat(": "), "")}
-                          </Link>
+                          </DocLink>
                         </li>
                       );
                     })}
@@ -77,7 +103,7 @@ export const pluginQuery = graphql`
       }
       marketplaceUrl
     }
-    docs: contentfulSeries(title: {eq: $name}) {
+    docs: contentfulSeries(title: { eq: $name }) {
       posts {
         title
         slug

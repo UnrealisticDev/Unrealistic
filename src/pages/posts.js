@@ -28,7 +28,7 @@ const Title = styled.h1`
 
 const ArticleBody = styled.div`
   &:hover {
-    background: #efefef;
+    background: lightgrey;
     border-radius: 5px;
   }
 `
