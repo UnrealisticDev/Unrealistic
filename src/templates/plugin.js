@@ -22,7 +22,7 @@ const Title = styled.h1`
     font-display: auto;
   }
 
-  font-family: "basic-sans";
+  font-family: "basic-sans", sans-serif;
 `;
 
 const MarketplaceButton = styled.a`

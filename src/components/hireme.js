@@ -34,7 +34,7 @@ const Title = styled.h2`
     font-display: auto;
   }
 
-  font-family: "basic-sans";
+  font-family: "basic-sans", sans-serif;
 `
 
 function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
