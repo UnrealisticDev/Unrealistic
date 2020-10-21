@@ -42,7 +42,7 @@ export default () => (
                     <Title className="title is-size-1 is-size-3-mobile">
                       About Unrealistic
                     </Title>
-                    <p style={{ textAlign: "justify" }}>
+                    <p>
                       Unrealistic was inspired by one man's journey to break
                       into game development, and the deluge of naysayers that
                       rained down upon him.
@@ -50,7 +50,7 @@ export default () => (
                     <p>
                       Our mission is to help people from all backgrounds,
                       professional and personal, understand the technologies,
-                      processes, and techniques that go into making some the
+                      processes, and techniques that go into making some of the
                       most impactful digital media of our age. We do this by
                       educating, empowering, and inspiring current and hopeful
                       game developers, through educational content, discussions
