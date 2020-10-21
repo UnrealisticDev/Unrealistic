@@ -7,14 +7,16 @@ import SEO from "../components/seo"
 export default () => {
   return (
     <Layout>
-      <SEO title='Unrealistic - 404'/>
-      <div className='container'>
-        <div className='content has-text-centered'>
-            <p>
-                Something went wrong :(<br/>Return to <Link to='/'>Home</Link>.
-            </p>
+      <SEO title='404 - Page Not Available'/>
+      <section class="section">
+        <div className='container'>
+          <div className='content has-text-centered'>
+              <p>
+                  It looks like this page no longer exists.<br/>Return to <Link to='/'>Home</Link>.
+              </p>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }
