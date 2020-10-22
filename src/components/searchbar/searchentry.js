@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const TextEntry = styled.input`
-  background-color: lightgrey !important;
+  background-color: #DBDBDB !important;
 
   ::placeholder {
     color: #575754 !important;
