@@ -477,7 +477,7 @@ export default ({ data }) => {
                 </div>
               </div>
               <Separator />
-              {/* <HyvorTalk.Embed websiteId={292} /> */}
+              <HyvorTalk.Embed websiteId={292} />
             </div>
             {/* Sidebar */}
             {(series || toc || projectfiles) && (
