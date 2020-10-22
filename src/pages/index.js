@@ -1,18 +1,69 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 import * as random from "random";
+import styled from "styled-components";
 
 import router from "../scripts/router";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Carousel from "../components/carousel";
 import Widget from "../components/widget";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logoAndName from "../images/logo-name.png";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
-import "./index.scss";
+const PageTitle = styled.h1`
+  @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+  font-family: "basic-sans", sans-serif;
+  color: #eaaa03 !important;
+`;
+
+const PageSubtitle = styled.h2`
+  @font-face {
+    font-family: "basic-sans";
+    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff2"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("woff"),
+      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
+        format("opentype");
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+  }
+  font-family: "basic-sans", sans-serif;
+`;
+
+const TipOfTheWeek = styled.div`
+  padding: 5px;
+
+  #totw-title {
+    color: #404040;
+  }
+
+  #totw-author {
+    font-style: italic;
+    display: inline-block;
+  }
+
+  #totw-source {
+    color: #eaaa03 !important;
+  }
+`;
 
 export default ({ data }) => {
   function getRandomPost() {
@@ -38,29 +89,38 @@ export default ({ data }) => {
         titleOverride
         description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4 and Unity, insider insights, and coverage of industry news."
       />
-      <section className="section">
+      {/* Intro */}
+      <section className="hero is-fullheight-with-navbar is-light">
+        <div className="hero-body">
+          <div class="container">
+            <div class="columns is-vcentered is-variable is-8">
+              <div class="column is-4">
+                <PageTitle className="title is-size-1">
+                  Unrealistic
+                </PageTitle>
+                <PageSubtitle className="subtitle">
+                  Game Development Tutorials, Insider Insights, and Industry
+                  Analysis
+                </PageSubtitle>
+                <p>
+                  Unrealistic is the ultimate resource for cracking the gaming
+                  industry. It has tutorials on Unreal Engine 4 and Unity,
+                  insider insights, and coverage of industry news.
+                </p>
+              </div>
+              <div className="column is-8">
+                <Carousel items={data.allPosts} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <section className="hero is-fullheight-with-navbar">
         <div className="container">
           <section className="section">
             <div className="level">
               <div className="container">
-                <div className="content has-text-centered">
-                  <figure
-                    className="image"
-                    style={{
-                      maxWidth: "512px",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      marginBottom: ".5vmin"
-                    }}
-                  >
-                    <img src={logoAndName} alt="logo" />
-                  </figure>
-                  <p id="tagline" style={{ fontStyle: "italic" }}>
-                    A place to learn about Unreal Engine 4,
-                    <br className="is-hidden-mobile" /> gamedev, and other
-                    things
-                  </p>
-                </div>
+                <div className="content has-text-centered"></div>
               </div>
             </div>
           </section>
@@ -91,9 +151,7 @@ export default ({ data }) => {
                     />
                   </div>
                   <div className="tile is-child">
-                    <div
-                      className={"content tip-of-the-week has-text-centered"}
-                    >
+                    <TipOfTheWeek className={"content has-text-centered"}>
                       <hr />
                       <div className="title" id="totw-title">
                         Tip of the Week
@@ -108,7 +166,7 @@ export default ({ data }) => {
                           />
                         </a>
                       )}
-                    </div>
+                    </TipOfTheWeek>
                   </div>
                 </div>
               </div>
@@ -147,7 +205,7 @@ export default ({ data }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 };
@@ -167,10 +225,25 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allContentfulPost {
+    allPosts: allContentfulPost(
+      filter: { seriesRef: { id: { eq: null } } }
+      sort: { fields: createdAt, order: DESC }
+      limit: 3
+    ) {
       edges {
         node {
           slug
+          title
+          image {
+            fluid(maxWidth: 900) {
+              ...GatsbyContentfulFluid
+            }
+          }
+          body {
+            childMarkdownRemark {
+              excerpt
+            }
+          }
         }
       }
     }
