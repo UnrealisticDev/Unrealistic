@@ -558,6 +558,7 @@ export const query = graphql`
       body {
         childMarkdownRemark {
           excerpt(pruneLength: 160)
+          html
           htmlAst
           tableOfContents(absolute: false)
         }
