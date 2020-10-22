@@ -36,7 +36,7 @@ function SEO({
   const metaTitle = titleOverride ? title : `${title} | Unrealistic`;
   const metaDescription = description || tagline;
   const canonicalUrl = `${url}${canonical}`;
-  const displayImage = image ? `${url}${image}` : `${url}${logo}`;
+  const displayImage = image ? `${image}` : `${url}${logo}`;
 
   const structuredDataPost = `{
     "@context": "http://schema.org",
@@ -95,6 +95,7 @@ function SEO({
 
         {/* Opengraph meta tags for LinkedIn */}
         <meta name="image" property="og:image" content={displayImage}/>
+        <meta name='author' content={author}/>
 
         {/* Tags for Twitter and Slack. */}
         <meta name="twitter:card" content="summary" />
