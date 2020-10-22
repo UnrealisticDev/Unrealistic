@@ -6,6 +6,7 @@ import {
   Index,
   PoweredBy
 } from "react-instantsearch-dom";
+import { getPostSlug } from "../../scripts/router";
 
 const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits;
@@ -20,7 +21,7 @@ const HitCount = connectStateResults(({ searchResults }) => {
 });
 
 const PageHit = ({ hit }) => (
-  <Link key={hit.id} to={"/articles/" + hit.slug}>
+  <Link key={hit.id} to={getPostSlug(hit.slug)}>
     <button
       className="button is-light is-fullwidth has-text-left"
       style={{ textAlign: "right !important" }}
