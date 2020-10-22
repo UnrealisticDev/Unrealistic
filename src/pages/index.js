@@ -181,19 +181,6 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    totw: allContentfulTipOfTheWeek(
-      limit: 1
-      sort: { fields: createdAt, order: DESC }
-    ) {
-      edges {
-        node {
-          text {
-            text
-          }
-          author
-        }
-      }
-    }
     allPosts: allContentfulPost(
       filter: { seriesRef: { id: { eq: null } } }
       sort: { fields: createdAt, order: DESC }
@@ -214,81 +201,6 @@ export const query = graphql`
               excerpt
             }
           }
-        }
-      }
-    }
-    newestPosts: allContentfulPost(
-      filter: {
-        topicTags: {
-          nin: [
-            "insider"
-            "devlog"
-            "series"
-            "unrealistic-style-guide"
-            "docs"
-          ]
-        }
-      }
-      sort: { fields: createdAt, order: DESC }
-      limit: 1
-    ) {
-      nodes {
-        slug
-        title
-        image {
-          fluid {
-            ...GatsbyContentfulFluid
-          }
-        }
-        body {
-          childMarkdownRemark {
-            excerpt
-          }
-        }
-      }
-    }
-    insiderPosts: allContentfulPost(
-      filter: { topicTags: { in: "insider" } }
-      sort: { fields: createdAt, order: DESC }
-      limit: 1
-    ) {
-      nodes {
-        slug
-        title
-        image {
-          fluid {
-            ...GatsbyContentfulFluid
-          }
-        }
-      }
-    }
-    unrealisticStyleGuide: contentfulPost(
-      slug: { eq: "unrealistic-style-guide" }
-    ) {
-      title
-      slug
-      image {
-        fluid {
-          ...GatsbyContentfulFluid
-        }
-      }
-    }
-    projectAscendantDevlog: contentfulPost(
-      slug: { eq: "devlog-project-ascendant" }
-    ) {
-      slug
-      image {
-        fluid {
-          ...GatsbyContentfulFluid
-        }
-      }
-    }
-    beginnersGuide: contentfulPost {
-      title
-      slug
-      image {
-        fluid {
-          ...GatsbyContentfulFluid
         }
       }
     }

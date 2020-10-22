@@ -51,6 +51,8 @@ const StyledDot = styled(Dot)`
   &:disabled {
     background: #eaaa03;
   }
+
+  cursor: pointer;
 `;
 
 export default ({ items }) => {
