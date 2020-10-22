@@ -113,7 +113,7 @@ export default ({ data }) => {
           </div>
         </div>
       </section>
-      <section className="hero is-dark is-fullheight-with-navbar">
+      {/* <section className="hero is-dark is-fullheight-with-navbar">
         <div className="hero-body">
           <div class="container">Insider</div>
         </div>
@@ -122,7 +122,7 @@ export default ({ data }) => {
         <div className="hero-body">
           <div class="container">Newsletter</div>
         </div>
-      </section>
+      </section> */}
       {/* <section className="hero is-fullheight-with-navbar">
         <div className="container">
           <section className="section">
