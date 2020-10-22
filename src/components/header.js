@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from "react";
+import {Link} from 'gatsby'
 import styled from "styled-components";
 
 import router from "../scripts/router";
@@ -16,6 +17,10 @@ const Toggle = styled.input`
     display: block;
   }
 `;
+
+const ProductLink = styled(Link)`
+
+`
 
 export default () => {
   return (
@@ -55,28 +60,28 @@ export default () => {
               Library
             </a>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
-              <a href="" className="navbar-link">
+              <div className="navbar-link">
                 Products
-              </a>
+              </div>
               <div className="navbar-dropdown">
-                <a
+                <ProductLink
                   href={router.getProductSlug("remapt")}
                   className="navbar-item"
                 >
                   Remapt
-                </a>
-                <a
+                </ProductLink>
+                <ProductLink
                   href={router.getProductSlug("prefixed")}
                   className="navbar-item"
                 >
                   Prefixed
-                </a>
-                <a
+                </ProductLink>
+                <ProductLink
                   href={router.getProductSlug("cursory")}
                   className="navbar-item"
                 >
                   Cursory
-                </a>
+                </ProductLink>
               </div>
             </div>
             <a className="navbar-item" href="/about">
