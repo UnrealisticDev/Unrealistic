@@ -93,6 +93,9 @@ function SEO({
         <meta property="og:image" content={displayImage} />
         <meta property="og:type" content="NewsArticle" />
 
+        {/* Opengraph meta tags for LinkedIn */}
+        <meta name="image" property="og:image" content={displayImage}/>
+
         {/* Tags for Twitter and Slack. */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content={author} />
