@@ -40,7 +40,7 @@ function SEO({
 
   const structuredDataPost = `{
     "@context": "http://schema.org",
-    "@type:" "${type}",
+    "@type": "${type}",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "${canonicalUrl}"
