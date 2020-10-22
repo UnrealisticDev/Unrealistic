@@ -49,7 +49,6 @@ function SEO({
     "description": "${metaDescription}",
     "url": "${canonicalUrl}",
     "image": "${displayImage}",
-    "articleBody": "${body}",
     "datePublished": "${datePublished}",
     "dateModified": "${dateModified}",
     "author": {

@@ -402,7 +402,6 @@ export default ({ data }) => {
         canonical={router.getPostSlug(slug)}
         image={image.file.url}
         type="BlogPosting"
-        body={body.childMarkdownRemark.html}
         datePublished={createdAt}
         dateModified={updatedAt}
       />
