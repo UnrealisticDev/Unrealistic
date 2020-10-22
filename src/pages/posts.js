@@ -127,7 +127,6 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     posts: allContentfulPost(
-      filter: { tags: { nin: ["docs"] } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {

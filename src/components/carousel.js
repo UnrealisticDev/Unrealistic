@@ -42,7 +42,7 @@ export default ({ items }) => {
     >
       <Slider style={{ overflow: "hidden", boxShadow: "0 0 3px #ccc" }}>
         {items.edges.map(({ node }, i) => {
-          const { slug, title, image, body } = node;
+          const { slug, title, image } = node;
 
           return (
             <Slide

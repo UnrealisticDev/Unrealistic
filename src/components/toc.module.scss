@@ -1,32 +1,6 @@
 @import '../styles/variables.scss';
 
-.Container {
-    flex: 1 1 auto;
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
-}
-
-.Title {
-    font-size: calc(12px + .75vw);
-    border-bottom: 2px solid #EAAA03;
-    padding-bottom: 2vmin;
-
-    flex: 0 0 auto;
-}
-
 .List {
-
-    font-size: calc(1.5vmin);
-
-    @media (min-width: 1024px) {
-        overflow-y: auto;
-        overflow-x: visible;
-        max-height: 70vh;
-        scrollbar-width: thin;
-    }
 
     ul {
         list-style: none;

@@ -1,19 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
-import * as random from "random";
 import styled from "styled-components";
-
-import router from "../scripts/router";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Carousel from "../components/carousel";
-import Widget from "../components/widget";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import logoAndName from "../images/logo-name.png";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 const PageTitle = styled.h1`
   @font-face {
@@ -48,39 +39,7 @@ const PageSubtitle = styled.h2`
   font-family: "basic-sans", sans-serif;
 `;
 
-const TipOfTheWeek = styled.div`
-  padding: 5px;
-
-  #totw-title {
-    color: #404040;
-  }
-
-  #totw-author {
-    font-style: italic;
-    display: inline-block;
-  }
-
-  #totw-source {
-    color: #eaaa03 !important;
-  }
-`;
-
 export default ({ data }) => {
-  function getRandomPost() {
-    var idx = random.int(0, data.allPosts.edges.length - 1);
-    return data.allPosts.edges[idx].node;
-  }
-
-  function getImageFromPost(post) {
-    var defaultImg = "https://bulma.io/images/placeholders/1280x960.png;";
-    return post && post.image ? post.image : defaultImg;
-  }
-
-  var totw = data.totw.edges[0].node;
-  var freshPost = data.newestPosts.nodes[0];
-  var stylePost = data.unrealisticStyleGuide;
-  var devlogPost = data.projectAscendantDevlog;
-  var beginnerPost = data.beginnersGuide;
 
   return (
     <Layout>
@@ -113,6 +72,8 @@ export default ({ data }) => {
           </div>
         </div>
       </section>
+      {/* Industry */}
+      {/* Insider */}
       {/* <section className="hero is-dark is-fullheight-with-navbar">
         <div className="hero-body">
           <div class="container">Insider</div>
@@ -257,7 +218,7 @@ export const query = graphql`
     }
     newestPosts: allContentfulPost(
       filter: {
-        tags: {
+        topicTags: {
           nin: [
             "insider"
             "devlog"
@@ -286,7 +247,7 @@ export const query = graphql`
       }
     }
     insiderPosts: allContentfulPost(
-      filter: { tags: { in: "insider" } }
+      filter: { topicTags: { in: "insider" } }
       sort: { fields: createdAt, order: DESC }
       limit: 1
     ) {
