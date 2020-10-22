@@ -57,7 +57,7 @@ function SEO({
     },
     "publisher": {
       "@type": "Organization",
-      "name": "${author}",
+      "name": "Unrealistic",
       "logo": {
         "@type": "ImageObject",
         "url": "${logo}"
