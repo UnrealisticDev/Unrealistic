@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
+import Helmet from 'react-helmet'
 import styled from "styled-components";
 import rehypeReact from "rehype-react";
 import HyvorTalk from "hyvor-talk-react";
@@ -125,10 +126,10 @@ const Series = ({ series }) => {
   );
 };
 
-const capitalize = (s) => {
-  if (typeof s !== 'string') return ''
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const capitalize = s => {
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
 
 const TopicTags = ({ tags }) => {
   return (
@@ -154,7 +155,7 @@ const TopicTags = ({ tags }) => {
               <div className="dropdown-content">
                 {tags.map(tag => {
                   return (
-                    <div href='#' className="dropdown-item">
+                    <div href="#" className="dropdown-item">
                       {capitalize(tag)}
                     </div>
                   );
@@ -184,7 +185,6 @@ const Body = styled.div`
 `;
 
 const Markdown = styled.div`
-
   & h2,
   h3,
   h4,
@@ -375,6 +375,7 @@ export default ({ data }) => {
     title,
     excerpt,
     createdAt,
+    updatedAt,
     image,
     body,
     topicTags,
@@ -389,11 +390,21 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <style>
-        @import
-        url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
-      </style>
-      <SEO title={title} description={description} canonical={router.getPostSlug(slug)} />
+      <Helmet>
+        <style>
+          @import
+          url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
+        </style>
+      </Helmet>
+      <SEO
+        title={title}
+        description={description}
+        canonical={router.getPostSlug(slug)}
+        image={image.file.url}
+        type="BlogPosting"
+        datePublished={createdAt}
+        dateModified={updatedAt}
+      />
 
       <Section className="section">
         <div class="container">
@@ -534,9 +545,13 @@ export const query = graphql`
       title
       excerpt
       createdAt
+      updatedAt
       image {
         fluid {
           ...GatsbyContentfulFluid
+        }
+        file {
+          url
         }
       }
       body {

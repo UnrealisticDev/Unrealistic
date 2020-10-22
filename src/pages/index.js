@@ -95,9 +95,7 @@ export default ({ data }) => {
           <div class="container">
             <div class="columns is-vcentered is-variable is-8">
               <div class="column is-4">
-                <PageTitle className="title is-size-1">
-                  Unrealistic
-                </PageTitle>
+                <PageTitle className="title is-size-1">Unrealistic</PageTitle>
                 <PageSubtitle className="subtitle">
                   Game Development Tutorials, Insider Insights, and Industry
                   Analysis
@@ -113,6 +111,16 @@ export default ({ data }) => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="hero is-dark is-fullheight-with-navbar">
+        <div className="hero-body">
+          <div class="container">Insider</div>
+        </div>
+      </section>
+      <section className="hero is-light is-fullheight-with-navbar">
+        <div className="hero-body">
+          <div class="container">Newsletter</div>
         </div>
       </section>
       {/* <section className="hero is-fullheight-with-navbar">

@@ -7,10 +7,11 @@
 module.exports = {
   /* Site details */
   siteMetadata: {
+    url: `https://unrealistic.dev`,
     siteUrl: `https://unrealistic.dev`,
     title: `Unrealistic`,
     tagline: `A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.`,
-    author: `Mowgl33`
+    author: `Mustafa Moiz`
   },
   plugins: [
     /* Page routing, metadata, SEO, analytics */

@@ -3,13 +3,26 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ title, titleOverride, description, canonical, meta, lang }) {
+import logo from "../images/logo.png";
+
+function SEO({
+  title,
+  titleOverride,
+  description,
+  canonical,
+  image,
+  type,
+  datePublished,
+  dateModified,
+  body,
+  meta
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            siteUrl
+            url
             title
             tagline
             author
@@ -19,51 +32,81 @@ function SEO({ title, titleOverride, description, canonical, meta, lang }) {
     `
   );
 
-  const { siteUrl, tagline } = site.siteMetadata;
-  const metaTitle = titleOverride ? title : title.concat(" | Unrealistic");
+  const { url, tagline, author } = site.siteMetadata;
+  const metaTitle = titleOverride ? title : `${title} | Unrealistic`;
   const metaDescription = description || tagline;
+  const canonicalUrl = `${url}${canonical}`;
+  const displayImage = image ? `${url}${image}` : `${url}${logo}`;
+
+  const structuredDataPost = `{
+    "@context": "http://schema.org",
+    "@type:" "${type}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "${canonicalUrl}"
+    },
+    "headline": "${metaTitle}",
+    "description": "${metaDescription}",
+    "url": "${canonicalUrl}",
+    "image": "${displayImage}",
+    "articleBody": "${body}",
+    "datePublished": "${datePublished}",
+    "dateModified": "${dateModified}",
+    "author": {
+      "@type": "Person",
+      "name": "${author}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "${author}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "${logo}"
+      }
+    }
+  }`;
+  const metaStructuredData = type === "BlogPosting" ? structuredDataPost : null;
 
   return (
-    <Helmet
-      htmlAttributes={{ lang }}
-      title={metaTitle}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription
-        },
-        {
-          property: `og:title`,
-          content: metaTitle
-        },
-        {
-          property: `og:description`,
-          content: metaDescription
-        },
-        {
-          property: `og:type`,
-          content: `website`
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author
-        },
-        {
-          name: `twitter:title`,
-          content: title
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription
-        }
-      ].concat(meta)}
-    >
-      {canonical && <link rel="canonical" href={siteUrl.concat(canonical)} />}
-    </Helmet>
+    <>
+      <Helmet>
+        {/* The language this site is written in/supports. */}
+        <html lang="en" dir="ltr" />
+
+        {/* The title of this webpage - shows up in tab and search engines. */}
+        <title>{metaTitle}</title>
+
+        {/* The description of this webpage - shows up in search engines. */}
+        <meta name="description" content={metaDescription} />
+
+        {/* The canonical (i.e. master) url for this page. 
+          Prevents search engine confusion about duplicate pages, which can reduce ranking. */}
+        {canonical && <link rel="canonical" href={canonicalUrl} />}
+
+        {/* The image that displays when this page is shared/appears in search result. */}
+        <meta name="image" content={displayImage} />
+
+        {/* Opengraph meta tags for Facebook and LinkedIn shares. */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={displayImage} />
+        <meta property="og:type" content="NewsArticle" />
+
+        {/* Tags for Twitter and Slack. */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content={author} />
+        <meta name="twitter:site" content="@UnrealisticDev" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image:src" content={displayImage} />
+
+        {/* Structured data - consumed by search engines for rich results. */}
+        {metaStructuredData && (
+          <script type="application/ld+json">{metaStructuredData}</script>
+        )}
+      </Helmet>
+    </>
   );
 }
 

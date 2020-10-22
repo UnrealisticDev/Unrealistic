@@ -53,7 +53,7 @@ export default ({ items }) => {
               <Link to={getPostSlug(slug)}>
                 <Img fluid={image ? image.fluid : null} />
                 <PostDetails className="content">
-                  <h2 className="button is-dark is-size-5">{title}</h2>
+                  <PostTitle className="button is-dark is-size-5">{title}</PostTitle>
                   {/* <p
                     style={{
                       background: "#2F2F2F",
