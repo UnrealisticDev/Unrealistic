@@ -208,6 +208,7 @@ export const query = graphql`
               ...GatsbyContentfulFluid
             }
           }
+          excerpt
           body {
             childMarkdownRemark {
               excerpt

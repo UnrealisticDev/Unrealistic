@@ -5,32 +5,57 @@ import styled from "styled-components";
 import { CarouselProvider, Slider, Slide, Dot } from "pure-react-carousel";
 import { getPostSlug } from "../scripts/router";
 
-const PostDetails = styled.div`
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  text-align: right;
+const StyledCarouselProvider = styled(CarouselProvider)`
+  position: relative;
 `;
 
-const PostTitle = styled.h2``;
+const PostDetails = styled.div`
+  @media screen and (min-width: 769px) {
+    text-align: right;
+  }
+`;
+
+const PostTitle = styled.h2`
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 3px solid #eaaa03;
+`;
+const PostExcerpt = styled.p`
+  @media screen and (min-width: 769px) {
+    margin-left: 50%;
+    padding: 5px;
+  }
+`;
 
 const DotBox = styled.div`
   text-align: right;
+  position: absolute;
+
+  @media screen and (min-width: 769px) {
+    bottom: 20px;
+  }
 `;
 
 const StyledDot = styled(Dot)`
   border: 0;
   box-shadow: none;
   border-radius: 1px;
-  height: 3px;
-  width: 20px;
-  background-color: #2f2f2f !important;
-  margin: 2px;
+
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+
+  background: grey;
+
+  &:disabled {
+    background: #eaaa03;
+  }
 `;
 
 export default ({ items }) => {
   return (
-    <CarouselProvider
+    <StyledCarouselProvider
       naturalSlideWidth={600}
       naturalSlideHeight={350}
       totalSlides={items.edges.length}
@@ -39,10 +64,11 @@ export default ({ items }) => {
       dragEnabled={true}
       infinite={true}
       isIntrinsicHeight={true}
+      style={{ position: "relative" }}
     >
-      <Slider style={{ overflow: "hidden", boxShadow: "0 0 3px #ccc" }}>
+      <Slider style={{ overflow: "hidden" }}>
         {items.edges.map(({ node }, i) => {
-          const { slug, title, image } = node;
+          const { slug, title, image, excerpt, body } = node;
 
           return (
             <Slide
@@ -51,24 +77,17 @@ export default ({ items }) => {
               style={{ position: "relative", overflow: "visible" }}
             >
               <Link to={getPostSlug(slug)}>
-                <Img fluid={image ? image.fluid : null} />
-                <PostDetails className="content">
-                  <PostTitle className="button is-dark is-size-5">{title}</PostTitle>
-                  {/* <p
-                    style={{
-                      background: "#2F2F2F",
-                      borderRadius: "5px",
-                      marginLeft: "50%",
-                      textAlign: "left",
-                      color: "#FFFFFF !important",
-                      padding: "5px"
-                    }}
-                    className='has-text-light is-hidden-mobile'
-                  >
-                    {body.childMarkdownRemark.excerpt}
-                  </p> */}
-                </PostDetails>
+                <Img
+                  fluid={image ? image.fluid : null}
+                  style={{ marginBottom: "1rem" }}
+                />{" "}
               </Link>
+              <PostDetails className="">
+                <PostTitle className="title is-size-5">{title}</PostTitle>
+                <PostExcerpt className="has-text-dark">
+                  {excerpt || body.childMarkdownRemark.excerpt}
+                </PostExcerpt>
+              </PostDetails>
             </Slide>
           );
         })}
@@ -78,6 +97,6 @@ export default ({ items }) => {
           return <StyledDot slide={i} key={i} />;
         })}
       </DotBox>
-    </CarouselProvider>
+    </StyledCarouselProvider>
   );
 };
