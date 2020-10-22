@@ -37,6 +37,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-styled-components`,
     },
+    {
+      resolve: `gatsby-plugin-fontawesome-css`
+    },
     /* Content sourcing and transformation */
     {
       resolve: `gatsby-source-contentful`,
