@@ -1,12 +1,10 @@
 /* eslint-disable */
 import React from "react";
-import {Link} from 'gatsby'
+import { Link, useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 
 import router from "../scripts/router";
 import Searchbar from "./searchbar";
-
-import logo from "../images/logo.png";
 
 const Toggle = styled.input`
   &#nav-toggle-state {
@@ -18,11 +16,21 @@ const Toggle = styled.input`
   }
 `;
 
-const ProductLink = styled(Link)`
-
-`
+const ProductLink = styled(Link)``;
 
 export default () => {
+  const { logo } = useStaticQuery(
+    graphql`
+      query {
+        logo: contentfulAsset(title: { eq: "Logo" }) {
+          file {
+            url
+          }
+        }
+      }
+    `
+  );
+
   return (
     <nav
       className="navbar is-fixed-top is-transparent is-light"
@@ -32,9 +40,9 @@ export default () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">
-            <img src={logo} alt="logo" />
-          </a>
+          <Link className="navbar-item" href="/">
+            <img src={logo.file.url} alt="Logo" />
+          </Link>
 
           <label
             role="button"
@@ -53,16 +61,14 @@ export default () => {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item" href="/">
+            <Link className="navbar-item" href="/">
               Home
-            </a>
-            <a className="navbar-item" href="/posts">
+            </Link>
+            <Link className="navbar-item" href="/posts">
               Library
-            </a>
+            </Link>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
-              <div className="navbar-link">
-                Products
-              </div>
+              <div className="navbar-link">Products</div>
               <div className="navbar-dropdown">
                 <ProductLink
                   href={router.getProductSlug("remapt")}
