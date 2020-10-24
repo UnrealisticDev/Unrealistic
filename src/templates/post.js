@@ -12,6 +12,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Sidebar from "../components/sidebar";
 import TOC from "../components/toc";
+import SeriesNav from '../components/seriesnav'
 import ProjectFiles from "../components/projectfiles";
 import ScrollUpButton from "react-scroll-up-button";
 
@@ -484,6 +485,7 @@ export default ({ data }) => {
               <div className="column is-2 is-hidden-mobile">
                 <Sidebar>
                   <TOC src={toc} />
+                  <SeriesNav series={series}/>
                   <ProjectFiles src={projectfiles} />
                 </Sidebar>
               </div>
@@ -570,6 +572,9 @@ export const query = graphql`
           id
           title
           slug
+          series: seriesRef {
+            title
+          }
         }
       }
     }

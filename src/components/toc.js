@@ -13,13 +13,13 @@ const ToggleWrapper = styled.a`
 `;
 
 const List = styled.ul`
-  font-size: calc(1.5vmin);
+  font-size: calc(10px + 0.2rem);
 
   @media (min-width: 1024px) {
-    overflow-y: auto;
     overflow-x: visible;
+    overflow-y: auto;
     max-height: 70vh;
-    scrollbar-width: thin;
+    scrollbar-width: none;
   }
 `;
 
@@ -39,7 +39,7 @@ class TOC extends React.Component {
   render() {
     return this.props.src ? (
       <>
-        <div style={{ marginBottom: "1rem" }}>
+        <div>
           <ToggleWrapper
             className="level is-mobile"
             onClick={this.toggleExpansion}
@@ -63,6 +63,7 @@ class TOC extends React.Component {
             </List>
           )}
         </div>
+        {this.state.expanded ? <div style={{ marginBottom: "1rem" }} /> : null}
       </>
     ) : null;
   }
