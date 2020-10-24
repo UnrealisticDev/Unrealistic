@@ -136,7 +136,7 @@ const TopicTags = ({ tags }) => {
   return (
     tags && (
       <>
-        <div className="level-item">·</div>
+        <div className="level-item" style={{marginRight: '0px'}}>·</div>
         <div class="level-item">
           <div className="subtitle is-size-6 dropdown is-hoverable is-light">
             {" "}
