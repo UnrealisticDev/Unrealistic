@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
-import Helmet from 'react-helmet'
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import rehypeReact from "rehype-react";
 import HyvorTalk from "hyvor-talk-react";
@@ -12,7 +12,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Sidebar from "../components/sidebar";
 import TOC from "../components/toc";
-import SeriesNav from '../components/seriesnav'
+import SeriesNav from "../components/seriesnav";
 import ProjectFiles from "../components/projectfiles";
 import ScrollUpButton from "react-scroll-up-button";
 
@@ -252,7 +252,8 @@ const Markdown = styled.div`
   }
 
   p > code,
-  ul > code {
+  ul > code,
+  ol > code {
     background-color: rgb(250, 242, 242);
     color: rgb(53, 142, 184);
     border-radius: 0.3em;
@@ -264,6 +265,10 @@ const Markdown = styled.div`
     @media screen and (min-width: 770px) {
       padding: 0.5vmin;
     }
+  }
+
+  table {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -485,7 +490,7 @@ export default ({ data }) => {
               <div className="column is-2 is-hidden-mobile">
                 <Sidebar>
                   <TOC src={toc} />
-                  <SeriesNav series={series}/>
+                  <SeriesNav series={series} />
                   <ProjectFiles src={projectfiles} />
                 </Sidebar>
               </div>
