@@ -69,7 +69,7 @@ export default ({ series }) => {
             <FontAwesomeIcon icon={expanded ? faMinus : faPlus} />
           </div>
         </Toggle>
-        <ul>
+        <List>
           {expanded &&
             series.posts.map(post => {
               return (
@@ -80,7 +80,7 @@ export default ({ series }) => {
                 </Post>
               );
             })}
-        </ul>
+        </List>
       </Wrapper>
     )
   );

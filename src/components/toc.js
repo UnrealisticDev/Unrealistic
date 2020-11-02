@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import styles from "./toc.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,6 +12,9 @@ const ToggleWrapper = styled.a`
 `;
 
 const List = styled.ul`
+  list-style: none;
+  padding-left: 0;
+
   font-size: calc(10px + 0.2rem);
 
   @media (min-width: 1024px) {
@@ -20,6 +22,43 @@ const List = styled.ul`
     overflow-y: auto;
     max-height: 70vh;
     scrollbar-width: none;
+  }
+
+  & p {
+    margin: 0;
+  }
+
+  & a {
+    padding: 3px;
+    color: #363636;
+  }
+
+  & a:hover {
+    text-decoration: none;
+    color: #eaaa03;
+  }
+
+  & li {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  & li a {
+    padding: 3px;
+    color: lighten(#363636, 10%);
+  }
+
+  & li li {
+    padding-left: 1em;
+  }
+
+  & li li a {
+    padding: 3px;
+    color: lighten(#363636, 20%);
+  }
+
+  & li li li {
+    padding-left: 2em;
   }
 `;
 
@@ -58,7 +97,7 @@ class TOC extends React.Component {
             </div>
           </ToggleWrapper>
           {this.state.expanded && (
-            <List className={"menu-list " + styles.List}>
+            <List className="menu-list">
               <div dangerouslySetInnerHTML={{ __html: this.props.src }} />
             </List>
           )}
