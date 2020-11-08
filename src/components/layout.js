@@ -12,10 +12,7 @@ import favicon64 from "../images/favicon64.png";
 const Site = styled.div`
   display: flex;
   flex-direction: column;
-
-  @media screen and (min-width: 1024px) {
-    min-height: calc(100vh - 3.25rem);
-  }
+  min-height: calc(100vh - 3.25rem);
 `;
 
 const Content = styled.div`
@@ -48,9 +45,7 @@ export default ({ children }) => (
     </Helmet>
     <Site>
       <Header />
-      <Content className="has-background-light">
-        {children}
-      </Content>
+      <Content className="has-background-light">{children}</Content>
     </Site>
     <Footer />
   </>

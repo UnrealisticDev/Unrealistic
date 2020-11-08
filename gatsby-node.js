@@ -21,6 +21,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        glossaryLists: allContentfulList(filter: { tags: { in: "glossary" } }) {
+          nodes {
+            id
+            references {
+              id
+              slug
+            }
+          }
+        }
       }
     `
   );
@@ -55,6 +64,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         name: name
       }
+    });
+  });
+
+  const definedTermTemplate = path.resolve(`./src/templates/definedterm.js`);
+  query.data.glossaryLists.nodes.forEach(({ id, references }) => {
+    const categoryId = id;
+    references.forEach(({ id, slug }) => {
+      const path = `/glossary/${slug}`;
+      console.log("Creating page: " + path);
+      createPage({
+        path,
+        component: definedTermTemplate,
+        context: {
+          categoryId: categoryId,
+          id: id
+        }
+      });
     });
   });
 };

@@ -32,7 +32,7 @@ export default () => (
   <Layout>
     <SEO title="About" canonical="/about" />
     <section className="section">
-      <div class="hero">
+      <div className="hero">
         <ContentBody className="hero-body">
           <div className="container">
             <div className="columns is-centered is-variable is-6">

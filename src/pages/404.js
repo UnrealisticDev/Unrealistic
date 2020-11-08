@@ -8,7 +8,7 @@ export default () => {
   return (
     <Layout>
       <SEO title='404 - Page Not Available'/>
-      <section class="section">
+      <section className="section">
         <div className='container'>
           <div className='content has-text-centered'>
               <p>

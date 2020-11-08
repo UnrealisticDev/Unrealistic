@@ -87,7 +87,7 @@ const CreateDate = ({ createdAt }) => {
   var dateFormatted = internationalize(date);
 
   return (
-    <div class="level-item">
+    <div className="level-item">
       <p className="subtitle is-size-6">{dateFormatted}</p>
     </div>
   );
@@ -119,7 +119,7 @@ const Series = ({ series }) => {
     series && (
       <>
         <div className="level-item">·</div>
-        <div class="level-item">
+        <div className="level-item">
           <p className="subtitle is-size-6">{series.title}</p>
         </div>
       </>
@@ -137,17 +137,17 @@ const TopicTags = ({ tags }) => {
     tags && (
       <>
         <div className="level-item" style={{marginRight: '0px'}}>·</div>
-        <div class="level-item">
+        <div className="level-item">
           <div className="subtitle is-size-6 dropdown is-hoverable is-light">
             {" "}
-            <div class="dropdown-trigger">
+            <div className="dropdown-trigger">
               <button
-                class="button is-light"
+                className="button is-light"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >
                 <span>{capitalize(tags[0])}</span>
-                <span class="icon is-small">
+                <span className="icon is-small">
                   <FontAwesomeIcon icon={faAngleDown} />
                 </span>
               </button>
@@ -413,15 +413,15 @@ export default ({ data }) => {
       />
 
       <Section className="section">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-6">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-6">
               <Frontmatter>
                 <Title className={"title is-size-1 is-size-3-mobile"}>
                   {sanitizeTitle(title, series)}
                 </Title>
                 <div className="level is-mobile subtitle">
-                  <div class="level-left">
+                  <div className="level-left">
                     <CreateDate createdAt={createdAt} />
                     <Series series={series} />
                     <StyledTopicTags tags={topicTags} />
@@ -462,7 +462,7 @@ export default ({ data }) => {
                 )}
               </Body>
               <Separator />
-              <div class="has-text-centered">
+              <div className="has-text-centered">
                 <h2
                   style={{
                     marginBottom: "2rem",
@@ -474,7 +474,7 @@ export default ({ data }) => {
                 >
                   Up Next
                 </h2>
-                <div class="columns">
+                <div className="columns">
                   {furtherReading.map(({ node }) => (
                     <div className="column is-4">
                       <FurtherReadingPost post={node}></FurtherReadingPost>

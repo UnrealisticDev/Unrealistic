@@ -51,9 +51,9 @@ export default ({ data }) => {
       {/* Intro */}
       <section className="hero is-fullheight-with-navbar is-light">
         <div className="hero-body">
-          <div class="container">
-            <div class="columns is-vcentered is-variable is-8">
-              <div class="column is-4">
+          <div className="container">
+            <div className="columns is-vcentered is-variable is-8">
+              <div className="column is-4">
                 <PageTitle className="title is-size-1">Unrealistic</PageTitle>
                 <PageSubtitle className="subtitle">
                   Game Development Tutorials, Insider Insights, and Industry
@@ -76,12 +76,12 @@ export default ({ data }) => {
       {/* Insider */}
       {/* <section className="hero is-dark is-fullheight-with-navbar">
         <div className="hero-body">
-          <div class="container">Insider</div>
+          <div className="container">Insider</div>
         </div>
       </section>
       <section className="hero is-light is-fullheight-with-navbar">
         <div className="hero-body">
-          <div class="container">Newsletter</div>
+          <div className="container">Newsletter</div>
         </div>
       </section> */}
       {/* <section className="hero is-fullheight-with-navbar">

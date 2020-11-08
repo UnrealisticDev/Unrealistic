@@ -2,7 +2,7 @@ import React from "react"
 
 export default () => (
   <footer className="footer has-background-grey-lighter">
-    <div class="container">
+    <div className="container">
       <div className="content">
       © Mowgl33 2020.
       </div>

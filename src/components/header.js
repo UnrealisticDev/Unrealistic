@@ -90,9 +90,12 @@ export default () => {
                 </ProductLink>
               </div>
             </div>
-            <a className="navbar-item" href="/about">
+            <Link className="navbar-item" href="/glossary">
+              Glossary
+            </Link>
+            <Link className="navbar-item" href="/about">
               About
-            </a>
+            </Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
