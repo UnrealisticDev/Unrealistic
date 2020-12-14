@@ -5,7 +5,7 @@ import rehypeReact from "rehype-react";
 import styled from "styled-components";
 
 import Layout from "../components/layout";
-import SEO from '../components/seo'
+import SEO from "../components/seo";
 import Sidebar from "../components/sidebar";
 import CategoryNav from "../components/glossary/categorynav";
 import CategoryNavInline from "../components/glossary/categorynavinline";
@@ -193,26 +193,28 @@ export default ({ data }) => {
                   {renderAst(codeSample.childMarkdownRemark.htmlAst)}
                 </CodeSample>
               )}
-              <SectionHeader>Examples</SectionHeader>
               {examples && (
-                <ul>
-                  {examples.items.map(({ name, url }) => {
-                    return (
-                      <li>
-                        <Example
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="button is-light is-fullwidth"
-                        >
-                          {name}
-                          <spacer style={{ flex: "1 1 0px" }} />
-                          <FontAwesomeIcon icon={faExternalLinkAlt} />
-                        </Example>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <>
+                  <SectionHeader>Examples</SectionHeader>
+                  <ul>
+                    {examples.items.map(({ name, url }) => {
+                      return (
+                        <li>
+                          <Example
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="button is-light is-fullwidth"
+                          >
+                            {name}
+                            <spacer style={{ flex: "1 1 0px" }} />
+                            <FontAwesomeIcon icon={faExternalLinkAlt} />
+                          </Example>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
               )}
               <InlineCategoryNavWrapper className="level is-mobile">
                 <div className="level-left">
