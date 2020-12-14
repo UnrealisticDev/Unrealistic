@@ -60,6 +60,8 @@ const EntryTitle = styled.h3`
 
 const EntryDescription = styled.p`
   margin-left: 3rem;
+  margin-bottom: 1rem;
+
   font-family: "Open Sans", sans-serif;
 `;
 
