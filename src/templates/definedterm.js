@@ -44,6 +44,10 @@ const renderAst = new rehypeReact({
   }
 }).Compiler;
 
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  -webkit-transform:scale(-1, 1);
+`
+
 const TermName = styled.h1`
   @font-face {
     font-family: "basic-sans";
@@ -173,7 +177,7 @@ export default ({ data }) => {
               to="/glossary"
               style={{ display: "flex" }}
             >
-              <FontAwesomeIcon icon={faLevelUpAlt} style={{ scale: "-1 1" }} />
+              <StyledFontAwesomeIcon icon={faLevelUpAlt} />
               <BackToGlossaryText>Glossary</BackToGlossaryText>
             </Link>
             <div className="column is-6">
