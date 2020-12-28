@@ -6,6 +6,10 @@ import styled from "styled-components";
 import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
+const Nav = styled.nav`
+  width: 100vw;
+`
+
 const Toggle = styled.input`
   &#nav-toggle-state {
     display: none;
@@ -32,11 +36,16 @@ export default () => {
   );
 
   return (
-    <nav
+    <Nav
       className="navbar is-fixed-top is-transparent is-light"
       role="navigation"
       aria-label="main navigation"
-      style={{ boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)" }}
+      style={{
+        boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
+        maxWidth: "320px !important",
+        overflowX: "hidden !important",
+        padding: '0px !important'
+      }}
     >
       <div className="container">
         <div className="navbar-brand">
@@ -104,6 +113,6 @@ export default () => {
           </div>
         </div>
       </div>
-    </nav>
+    </Nav>
   );
 };

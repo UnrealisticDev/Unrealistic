@@ -4,4 +4,9 @@ html {
   scrollbar-width: thin;
 }
 
+html, body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 @import '~bulma/bulma.sass';
