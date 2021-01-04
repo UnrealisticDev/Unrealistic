@@ -86,9 +86,12 @@ const Analysis = styled.div`
   p > code,
   ul > code,
   ol > code {
-    background-color: rgb(250, 242, 242);
+    ${'' /* background-color: rgb(250, 242, 242);
     color: rgb(53, 142, 184);
+    border-radius: 0.3em; */}
+    color: #135d8f;
     border-radius: 0.3em;
+    border-bottom: 2px solid hsl(0, 0%, 71%);
 
     @media screen and (max-width: 769px) {
       padding: 1vmin;
