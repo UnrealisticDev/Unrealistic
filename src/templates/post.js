@@ -190,7 +190,8 @@ const Markdown = styled.div`
   h3,
   h4,
   h5 {
-    font-family: "Lato", sans-serif;
+    ${'' /* font-family: "Lato", sans-serif; */}
+    font-family: 'Bungee', cursive;
     color: #363636;
     display: inline-block;
     margin-top: 2rem;
