@@ -99,7 +99,7 @@ module.exports = {
         background_color: `#f5f5f5`,
         theme_color: `#f5f5f5`,
         display: `standalone`,
-        icon: `src/images/logo-maskable.png`
+        icon: `src/images/logo/maskable.png`
       }
     },
     `gatsby-plugin-offline`
