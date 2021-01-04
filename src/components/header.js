@@ -8,7 +8,7 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  ${'' /* width: 100vw; */}
+  ${"" /* width: 100vw; */}
 `;
 
 const Initials = styled.div`
@@ -69,92 +69,89 @@ export default () => {
   );
 
   return (
-    <>
+    <Nav
+      className="navbar is-fixed-top is-transparent is-light"
+      role="navigation"
+      aria-label="main navigation"
+      style={{
+        boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
+        overflowX: "hidden !important",
+        padding: "0px !important"
+      }}
+    >
       <Helmet>
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
         </style>
       </Helmet>
-      <Nav
-        className="navbar is-fixed-top is-transparent is-light"
-        role="navigation"
-        aria-label="main navigation"
-        style={{
-          boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
-          maxWidth: "320px !important",
-          overflowX: "hidden !important",
-          padding: "0px !important"
-        }}
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link className="navbar-item" href="/">
-              {/* <img src={logo.file.url} alt="Logo" /> */}
-              <Initials>UN</Initials>
-            </Link>
+      <div className="container">
+        <div className="navbar-brand">
+          <Link className="navbar-item" href="/">
+            {/* <img src={logo.file.url} alt="Logo" /> */}
+            <Initials>UN</Initials>
+          </Link>
 
-            <label
-              role="button"
-              className="navbar-burger burger"
-              aria-label="menu"
-              aria-expanded="false"
-              htmlFor="nav-toggle-state"
-              data-target="navbarBasicExample"
-            >
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </label>
-          </div>
-          <Toggle type="checkbox" id="nav-toggle-state" />
+          <label
+            role="button"
+            className="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            htmlFor="nav-toggle-state"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </label>
+        </div>
+        <Toggle type="checkbox" id="nav-toggle-state" />
 
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-start">
-              <NavLink className="navbar-item" href="/">
-                Home
-              </NavLink>
-              <NavLink className="navbar-item" href="/posts">
-                Library
-              </NavLink>
-              <div className="navbar-item has-dropdown is-hoverable" href="/">
-                <NavDropdown className="navbar-link">Products</NavDropdown>
-                <div className="navbar-dropdown">
-                  <ProductLink
-                    href={router.getProductSlug("remapt")}
-                    className="navbar-item"
-                  >
-                    Remapt
-                  </ProductLink>
-                  <ProductLink
-                    href={router.getProductSlug("prefixed")}
-                    className="navbar-item"
-                  >
-                    Prefixed
-                  </ProductLink>
-                  <ProductLink
-                    href={router.getProductSlug("cursory")}
-                    className="navbar-item"
-                  >
-                    Cursory
-                  </ProductLink>
-                </div>
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <NavLink className="navbar-item" href="/">
+              Home
+            </NavLink>
+            <NavLink className="navbar-item" href="/posts">
+              Library
+            </NavLink>
+            <div className="navbar-item has-dropdown is-hoverable" href="/">
+              <NavDropdown className="navbar-link">Products</NavDropdown>
+              <div className="navbar-dropdown">
+                <ProductLink
+                  href={router.getProductSlug("remapt")}
+                  className="navbar-item"
+                >
+                  Remapt
+                </ProductLink>
+                <ProductLink
+                  href={router.getProductSlug("prefixed")}
+                  className="navbar-item"
+                >
+                  Prefixed
+                </ProductLink>
+                <ProductLink
+                  href={router.getProductSlug("cursory")}
+                  className="navbar-item"
+                >
+                  Cursory
+                </ProductLink>
               </div>
-              <NavLink className="navbar-item" href="/glossary">
-                Glossary
-              </NavLink>
-              <NavLink className="navbar-item" href="/about">
-                About
-              </NavLink>
             </div>
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <Searchbar />
-              </div>
+            <NavLink className="navbar-item" href="/glossary">
+              Glossary
+            </NavLink>
+            <NavLink className="navbar-item" href="/about">
+              About
+            </NavLink>
+          </div>
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <Searchbar />
             </div>
           </div>
         </div>
-      </Nav>
-    </>
+      </div>
+    </Nav>
   );
 };
