@@ -40,6 +40,14 @@ const NavLink = styled(Link)`
   }
 `;
 
+const NavDropdown = styled.div`
+  &:hover {
+    &::after {
+      background-color: hsl(204, 86%, 53%) !important;
+    }
+  }
+`;
+
 const ProductLink = styled(Link)`
   &:hover {
     border-left: solid 5px hsl(204, 86%, 53%);
@@ -110,7 +118,7 @@ export default () => {
                 Library
               </NavLink>
               <div className="navbar-item has-dropdown is-hoverable" href="/">
-                <div className="navbar-link">Products</div>
+                <NavDropdown className="navbar-link">Products</NavDropdown>
                 <div className="navbar-dropdown">
                   <ProductLink
                     href={router.getProductSlug("remapt")}
