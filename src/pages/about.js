@@ -20,6 +20,15 @@ const Title = styled.h1`
   }
 
   font-family: "basic-sans", sans-serif;
+
+  & #title-remainder, #title-lead {
+    font-family: "Bungee", cursive !important;
+  }
+
+  & #title-lead {
+    font-size: 2rem;
+    color: hsl(204, 86%, 53%);
+  }
 `;
 
 const ContentBody = styled.div`
@@ -40,7 +49,8 @@ export default () => (
                 <div className="container">
                   <div className="content">
                     <Title className="title is-size-1 is-size-3-mobile">
-                      About Unrealistic
+                      <span id="title-lead"> Un</span>
+                      <span id="title-remainder">realistic</span>
                     </Title>
                     <p>
                       Unrealistic was inspired by one man's journey to break
