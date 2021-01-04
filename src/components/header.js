@@ -8,7 +8,7 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  width: 100vw;
+  ${'' /* width: 100vw; */}
 `;
 
 const Initials = styled.div`
