@@ -4,7 +4,7 @@ export default () => (
   <footer className="footer has-background-grey-lighter">
     <div className="container">
       <div className="content">
-      © Mustafa Moiz 2021.
+      © 2021 Mustafa Moiz.
       </div>
     </div>
   </footer>
