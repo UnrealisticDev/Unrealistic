@@ -34,10 +34,11 @@ const Category = styled.div``;
 
 const CategoryTitle = styled.h2`
   display: inline-block;
-  font-family: "Lato", sans-serif;
+  ${'' /* font-family: "Lato", sans-serif; */}
+  font-family: 'Bungee', cursive;
   color: #363636;
   font-size: calc(10px + 1.4vw);
-  border-bottom: 2px solid #eaaa03;
+  border-bottom: 2px solid hsl(204, 86%, 53%);
 `;
 
 const Entry = styled(Link)`
@@ -75,6 +76,10 @@ export default ({ data }) => (
       <style>
         @import
         url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
+      </style>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Bungee&family=Roboto&display=swap');
       </style>
     </Helmet>
     <section className="section">
