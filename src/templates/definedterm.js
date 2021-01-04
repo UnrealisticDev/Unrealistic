@@ -66,14 +66,15 @@ const TermName = styled.h1`
 `;
 
 const SectionHeader = styled.h2`
-  font-family: "Lato", sans-serif;
+  ${'' /* font-family: "Lato", sans-serif; */}
+  font-family: 'Bungee', cursive;
   color: #363636;
   display: inline-block;
   margin-top: 2rem;
   margin-bottom: 1rem;
 
   font-size: calc(10px + 1.4vw);
-  border-bottom: 2px solid #eaaa03;
+  border-bottom: 2px solid hsl(204, 86%, 53%);
 `;
 
 const Analysis = styled.div`

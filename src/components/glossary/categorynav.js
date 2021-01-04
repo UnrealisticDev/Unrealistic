@@ -33,7 +33,7 @@ const Term = styled.li`
 
   & a:hover {
     text-decoration: none;
-    color: #eaaa03 !important;
+    color: hsl(204, 86%, 53%) !important;
   }
 `;
 
