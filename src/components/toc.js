@@ -35,7 +35,7 @@ const List = styled.ul`
 
   & a:hover {
     text-decoration: none;
-    color: #eaaa03;
+    color: hsl(204, 86%, 53%);
   }
 
   & li {
@@ -45,7 +45,7 @@ const List = styled.ul`
 
   & li a {
     padding: 3px;
-    color: lighten(#363636, 10%);
+    color: lighten(hsl(204, 86%, 53%), 10%);
   }
 
   & li li {
@@ -54,7 +54,7 @@ const List = styled.ul`
 
   & li li a {
     padding: 3px;
-    color: lighten(#363636, 20%);
+    color: lighten(hsl(204, 86%, 53%), 20%);
   }
 
   & li li li {
