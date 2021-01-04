@@ -199,7 +199,7 @@ const Markdown = styled.div`
 
   & h2 {
     font-size: calc(10px + 1.8vw);
-    border-bottom: 2px solid #eaaa03;
+    border-bottom: 2px solid hsl(204, 86%, 53%);
   }
 
   & h3 {
@@ -502,7 +502,7 @@ export default ({ data }) => {
       <ScrollUpButton
         ShowAtPosition={600}
         style={{
-          color: "#EAAA03",
+          color: "hsl(204, 86%, 53%)",
           justifyContent: "right",
           position: "fixed",
           right: "5vmin",
@@ -520,7 +520,7 @@ export default ({ data }) => {
           paddingRight: 1
         }}
         ToggledStyle={{
-          color: "#EAAA03",
+          color: "hsl(204, 86%, 53%)",
           justifyContent: "right",
           position: "fixed",
           right: "5vmin",
