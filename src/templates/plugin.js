@@ -26,7 +26,7 @@ const Title = styled.h1`
 `;
 
 const MarketplaceButton = styled.a`
-  color: #eaaa03 !important;
+  color: hsl(204, 86%, 53%) !important;
 `;
 
 const DocLink = styled(Link)`
