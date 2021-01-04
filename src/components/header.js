@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import Helmet from 'react-helmet'
+import Helmet from "react-helmet";
 import styled from "styled-components";
 
 import router from "../scripts/router";
@@ -12,11 +12,15 @@ const Nav = styled.nav`
 `;
 
 const Initials = styled.div`
-  font-family: 'Bungee', cursive;
+  font-family: "Bungee", cursive;
   font-size: 2rem;
 
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
+  }
+
+  &:hover {
+    color: hsl(204, 86%, 53%);
   }
 `;
 
@@ -30,7 +34,18 @@ const Toggle = styled.input`
   }
 `;
 
-const ProductLink = styled(Link)``;
+const NavLink = styled(Link)`
+  &:hover {
+    border-bottom: solid 5px hsl(204, 86%, 53%);
+  }
+`;
+
+const ProductLink = styled(Link)`
+  &:hover {
+    border-left: solid 5px hsl(204, 86%, 53%);
+    color: hsl(204, 86%, 53%) !important;
+  }
+`;
 
 export default () => {
   const { logo } = useStaticQuery(
@@ -88,12 +103,12 @@ export default () => {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <Link className="navbar-item" href="/">
+              <NavLink className="navbar-item" href="/">
                 Home
-              </Link>
-              <Link className="navbar-item" href="/posts">
+              </NavLink>
+              <NavLink className="navbar-item" href="/posts">
                 Library
-              </Link>
+              </NavLink>
               <div className="navbar-item has-dropdown is-hoverable" href="/">
                 <div className="navbar-link">Products</div>
                 <div className="navbar-dropdown">
@@ -117,12 +132,12 @@ export default () => {
                   </ProductLink>
                 </div>
               </div>
-              <Link className="navbar-item" href="/glossary">
+              <NavLink className="navbar-item" href="/glossary">
                 Glossary
-              </Link>
-              <Link className="navbar-item" href="/about">
+              </NavLink>
+              <NavLink className="navbar-item" href="/about">
                 About
-              </Link>
+              </NavLink>
             </div>
             <div className="navbar-end">
               <div className="navbar-item">
