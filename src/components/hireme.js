@@ -99,7 +99,7 @@ export default () => {
         />
       </BulmaControl>
       <BulmaControl>
-        <button className={"button is-dark is-fullwidth"} style={{color: '#EAAA03' }} type="submit">
+        <button className={"button is-info is-fullwidth"} type="submit">
           Submit
         </button>
       </BulmaControl>
