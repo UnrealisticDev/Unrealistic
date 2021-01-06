@@ -104,7 +104,7 @@ export default () => {
         <Toggle type="checkbox" id="nav-toggle-state" />
 
         <div id="navbarBasicExample" className="navbar-menu">
-          {/* <div className="navbar-start">
+          <div className="navbar-start">
             <NavLink className="navbar-item" href="/">
               Home
             </NavLink>
@@ -145,7 +145,7 @@ export default () => {
             <div className="navbar-item">
               <Searchbar />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </Nav>
