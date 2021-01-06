@@ -117,9 +117,9 @@ export default () => {
             <NavLink className="navbar-item" href="/posts">
               Library
             </NavLink>
-            <div className="navbar-item has-dropdown is-hoverable" href="/">
+            {/* <div className="navbar-item has-dropdown is-hoverable" href="/">
               <NavDropdown className="navbar-link">Products</NavDropdown>
-              <div className="navbar-dropdown">
+              <div className="navbar-dropdown" style={{position: 'absolute'}}>
                 <ProductLink
                   href={router.getProductSlug("remapt")}
                   className="navbar-item"
@@ -139,7 +139,7 @@ export default () => {
                   Cursory
                 </ProductLink>
               </div>
-            </div>
+            </div> */}
             <NavLink className="navbar-item" href="/glossary">
               Glossary
             </NavLink>
