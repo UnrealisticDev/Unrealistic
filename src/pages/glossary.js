@@ -44,7 +44,7 @@ const CategoryTitle = styled.h2`
 const Entry = styled(Link)`
   justify-content: flex-start;
   margin-top: 1rem;
-  color: black;
+
   &:hover {
     h3 {
       color: rgb(50, 115, 220) !important;
@@ -56,6 +56,7 @@ const EntryTitle = styled.h3`
   margin-top: 1rem;
   margin-bottom: 1rem;
 
+  color: black;
   font-family: "Lato", sans-serif;
 `;
 
@@ -63,6 +64,7 @@ const EntryDescription = styled.p`
   margin-left: 3rem;
   margin-bottom: 1rem;
 
+  color: #4A4A4A;
   font-family: "Open Sans", sans-serif;
 `;
 
