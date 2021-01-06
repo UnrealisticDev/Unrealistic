@@ -130,7 +130,7 @@ export default ({ data }) => {
           <Subtitle>
             Find anything and everything about game development here, from
             how-to's for popular technologies like Unreal Engine 4 and Unity
-            Engine, to tips and tricks from gaming insiders, to analysis of the
+            Engine, to tips and tricks from insiders, to analysis of the
             latest developments in the gaming industry.
           </Subtitle>
           <div className="columns is-multiline is-desktop is-variable is-6">

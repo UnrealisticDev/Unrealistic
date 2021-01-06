@@ -61,18 +61,18 @@ export default () => (
                     </Title>
                     <div style={{fontFamily: 'Open Sans'}}>
                       <p>
-                        Unrealistic was inspired by one man's journey to break
+                        Unrealistic was inspired by my (ongoing) journey to break
                         into game development, and the deluge of naysayers that
-                        rained down upon him.
+                        rained down upon me.
                       </p>
                       <p>
-                        Our mission is to help people from all backgrounds,
+                        My mission is to help people from all backgrounds,
                         professional and personal, understand the technologies,
                         processes, and techniques that go into making some of the
-                        most impactful digital media of our age. We do this by
+                        most impactful digital media of our age. I do this by
                         educating, empowering, and inspiring current and hopeful
                         game developers, through educational content, discussions
-                        with gaming insiders, and industry analysis.
+                        with insiders, and industry analysis.
                       </p>
                       <p>
                         Mostly, though, Unrealistic stands as a testament to the
