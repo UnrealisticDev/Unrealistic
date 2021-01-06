@@ -9,6 +9,10 @@ import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+
+  @media screen and (max-width: 768px) {
+    width: 100vw;
+  }
 `;
 
 const Initials = styled.a`
