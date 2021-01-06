@@ -8,9 +8,9 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  boxshadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
-  overflowx: hidden !important;
-  overflowY: hidden !important;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
   padding: 0px !important;
 `;
 
