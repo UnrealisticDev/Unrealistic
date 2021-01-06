@@ -11,7 +11,7 @@ const Nav = styled.nav`
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
 `;
 
-const Initials = styled.div`
+const Initials = styled.a`
   font-family: "Bungee", cursive;
   font-size: 2rem;
 
@@ -20,7 +20,7 @@ const Initials = styled.div`
   }
 
   &:hover {
-    color: hsl(204, 86%, 53%);
+    color: hsl(204, 86%, 53%) !important;
   }
 `;
 
@@ -84,9 +84,9 @@ export default () => {
       </Helmet>
       <div className="container">
         <div className="navbar-brand">
-          {/* <Link className="navbar-item" href="/">
-            <Initials>UN</Initials>
-          </Link> */}
+          <Initials className="navbar-item" href="/">
+            UN
+          </Initials>
 
           <label
             role="button"
