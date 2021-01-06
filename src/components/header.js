@@ -35,8 +35,10 @@ const Toggle = styled.input`
 `;
 
 const NavLink = styled(Link)`
-  &:hover {
-    border-bottom: solid 5px hsl(204, 86%, 53%);
+  @media screen and (min-width: 769px) {
+    &:hover {
+      border-bottom: solid 5px hsl(204, 86%, 53%);
+    }
   }
 `;
 
