@@ -8,15 +8,7 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
-  overflow-x: hidden !important;
-  padding: 0px !important;
-
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${"" /* width: 100vw; */}
 `;
 
 const Initials = styled.div`
@@ -83,6 +75,11 @@ export default () => {
       className="navbar is-fixed-top is-transparent is-light"
       role="navigation"
       aria-label="main navigation"
+      style={{
+        boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
+        overflowX: "hidden !important",
+        padding: "0px !important"
+      }}
     >
       <Helmet>
         <style>
