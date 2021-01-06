@@ -85,10 +85,9 @@ export default () => {
       </Helmet>
       <div className="container">
         <div className="navbar-brand">
-          <Link className="navbar-item" href="/">
-            {/* <img src={logo.file.url} alt="Logo" /> */}
+          {/* <Link className="navbar-item" href="/">
             <Initials>UN</Initials>
-          </Link>
+          </Link> */}
 
           <label
             role="button"
