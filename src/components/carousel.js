@@ -52,6 +52,8 @@ const PostExcerpt = styled.p`
   background: hsl(204, 86%, 53%);
   border-right: solid 7px hsl(204, 86%, 53%);
 
+  font-family: 'Open Sans', san-serif;
+
   &:hover {
     text-decoration: underline;
   }

@@ -27,8 +27,11 @@ const Subtitle = styled.p`
   margin-bottom: 1rem;
   width: 30vw;
 
+  font-family: 'Open Sans', san-serif;
+
   @media screen and (max-width: 768px) {
     width: 100%;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -56,21 +59,38 @@ const ArticleImage = styled(Img)`
   position: absolute;
   top: 0;
   left: 0;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 5px;
+  }
 `;
 
 const ArticleTitle = styled.h2`
   margin-bottom: 1rem;
-  font-family: Lato, sans-serif;
+  font-family: "basic-sans", sans-serif;
   color: #363636;
+
+  margin-bottom: 0.5rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ArticleExcerpt = styled.p`
   color: #363636;
+  font-family: "Open Sans", san-serif;
 `;
 
 function Article({ source }) {
+  const Wrapper = styled.div`
+    margin-bottom: 3rem;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0.5rem;
+    }
+  `;
+
   return (
-    <div className="column is-4" style={{ marginBottom: "3rem" }}>
+    <Wrapper className="column is-4">
       <Link to={source.slug + "/"}>
         <ArticleBody>
           <ArticleImage
@@ -88,7 +108,7 @@ function Article({ source }) {
           </ArticleExcerpt>
         </ArticleBody>
       </Link>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -114,8 +134,21 @@ export default ({ data }) => {
             latest developments in the gaming industry.
           </Subtitle>
           <div className="columns is-multiline is-desktop is-variable is-6">
-            {data.posts.nodes.map(article => {
-              return <Article source={article} />;
+            {data.posts.nodes.map((article, i) => {
+              return (
+                <>
+                  <Article source={article} />{" "}
+                  {i < data.posts.nodes.length - 1 && (
+                    <hr
+                      className="is-hidden-desktop is-hidden-tablet"
+                      style={{
+                        background: "rgb(.1, .1, .1, .1)",
+                        marginBottom: ".5rem"
+                      }}
+                    />
+                  )}
+                </>
+              );
             })}
           </div>
         </div>
@@ -126,9 +159,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    posts: allContentfulPost(
-      sort: { fields: createdAt, order: DESC }
-    ) {
+    posts: allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       nodes {
         slug
         title

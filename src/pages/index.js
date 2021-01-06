@@ -100,6 +100,7 @@ export default ({ data }) => {
           titleOverride
           description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4 and Unity, insider insights, and coverage of industry news."
         />
+        {/* Intro - Desktop */}
         <section
           className="hero is-fullheight-with-navbar is-light is-hidden-mobile"
           style={{ maxHeight: "calc(100vh - 3.25rem)", overflow: "hidden" }}
@@ -111,8 +112,8 @@ export default ({ data }) => {
             <Carousel items={data.allPosts} />
           </div>
         </section>
-        {/* Intro */}
-        <section className="section">
+        {/* Intro - Mobile */}
+        <section className="section is-hidden-desktop is-hidden-tablet">
           <div className="container">
             {data.allPosts.edges.map(({ node }, i) => (
               <>
@@ -122,6 +123,7 @@ export default ({ data }) => {
             ))}
           </div>
         </section>
+        {/* Intro - Deprecated */}
         {/* <section className="hero is-fullheight-with-navbar is-light">
           <div className="hero-body">
             <div className="container">

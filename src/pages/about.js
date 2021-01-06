@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Hireme from "../components/hireme";
+import { Helmet } from "react-helmet";
 
 const Title = styled.h1`
   @font-face {
@@ -40,6 +41,12 @@ const ContentBody = styled.div`
 export default () => (
   <Layout>
     <SEO title="About" canonical="/about" />
+    <Helmet>
+    <style>
+          @import
+          url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
+        </style>
+    </Helmet>
     <section className="section">
       <div className="hero">
         <ContentBody className="hero-body">
@@ -52,25 +59,27 @@ export default () => (
                       <span id="title-lead"> Un</span>
                       <span id="title-remainder">realistic</span>
                     </Title>
-                    <p>
-                      Unrealistic was inspired by one man's journey to break
-                      into game development, and the deluge of naysayers that
-                      rained down upon him.
-                    </p>
-                    <p>
-                      Our mission is to help people from all backgrounds,
-                      professional and personal, understand the technologies,
-                      processes, and techniques that go into making some of the
-                      most impactful digital media of our age. We do this by
-                      educating, empowering, and inspiring current and hopeful
-                      game developers, through educational content, discussions
-                      with gaming insiders, and industry analysis.
-                    </p>
-                    <p>
-                      Mostly, though, Unrealistic stands as a testament to the
-                      idea that everyone has the right to fail, and the chance
-                      to succeed.
-                    </p>
+                    <div style={{fontFamily: 'Open Sans'}}>
+                      <p>
+                        Unrealistic was inspired by one man's journey to break
+                        into game development, and the deluge of naysayers that
+                        rained down upon him.
+                      </p>
+                      <p>
+                        Our mission is to help people from all backgrounds,
+                        professional and personal, understand the technologies,
+                        processes, and techniques that go into making some of the
+                        most impactful digital media of our age. We do this by
+                        educating, empowering, and inspiring current and hopeful
+                        game developers, through educational content, discussions
+                        with gaming insiders, and industry analysis.
+                      </p>
+                      <p>
+                        Mostly, though, Unrealistic stands as a testament to the
+                        idea that everyone has the right to fail, and the chance
+                        to succeed.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
