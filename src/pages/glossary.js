@@ -88,7 +88,7 @@ export default ({ data }) => (
           <div className="column is-3">
             <TitleWrapper>
               <Title className="title is-size-1">Glossary</Title>
-              <p>
+              <p style={{fontFamily: 'Open Sans'}}>
                 Find definitions and examples for Unreal Engine 4 and other game
                 development terminology.
               </p>
