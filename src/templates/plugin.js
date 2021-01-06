@@ -8,6 +8,12 @@ import router from "../scripts/router";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
+const StyledImg = styled(Img)`
+  @media screen and (max-width: 768px) {
+    border-radius: 5px;
+  }
+`
+
 const Title = styled.h1`
   @font-face {
     font-family: "basic-sans";
@@ -59,7 +65,7 @@ export default ({ data, pageContext }) => {
             <div className="tile is-vertical is-8">
               <div className="tile is-parent">
                 <div className="tile is-child">
-                  <Img fluid={featureImage.fluid} alt="Plugin Feature" />
+                  <StyledImg fluid={featureImage.fluid} alt="Plugin Feature" />
                 </div>
               </div>
               <div className="tile is-parent">
