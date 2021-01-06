@@ -8,7 +8,10 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  ${"" /* width: 100vw; */}
+  boxshadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  overflowx: hidden !important;
+  overflowY: hidden !important;
+  padding: 0px !important;
 `;
 
 const Initials = styled.div`
@@ -75,11 +78,6 @@ export default () => {
       className="navbar is-fixed-top is-transparent is-light"
       role="navigation"
       aria-label="main navigation"
-      style={{
-        boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
-        overflowX: "hidden !important",
-        padding: "0px !important"
-      }}
     >
       <Helmet>
         <style>
