@@ -8,7 +8,8 @@ import router from "../scripts/router";
 import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
-  ${"" /* width: 100vw; */}
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  overflow-x: hidden !important;
 `;
 
 const Initials = styled.div`
@@ -75,11 +76,6 @@ export default () => {
       className="navbar is-fixed-top is-transparent is-light"
       role="navigation"
       aria-label="main navigation"
-      style={{
-        boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)",
-        overflowX: "hidden !important",
-        padding: "0px !important"
-      }}
     >
       <Helmet>
         <style>
@@ -110,16 +106,16 @@ export default () => {
         <Toggle type="checkbox" id="nav-toggle-state" />
 
         <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
+          {/* <div className="navbar-start">
             <NavLink className="navbar-item" href="/">
               Home
             </NavLink>
             <NavLink className="navbar-item" href="/posts">
               Library
             </NavLink>
-            {/* <div className="navbar-item has-dropdown is-hoverable" href="/">
+            <div className="navbar-item has-dropdown is-hoverable" href="/">
               <NavDropdown className="navbar-link">Products</NavDropdown>
-              <div className="navbar-dropdown" style={{position: 'absolute'}}>
+              <div className="navbar-dropdown" style={{ position: "absolute" }}>
                 <ProductLink
                   href={router.getProductSlug("remapt")}
                   className="navbar-item"
@@ -139,7 +135,7 @@ export default () => {
                   Cursory
                 </ProductLink>
               </div>
-            </div> */}
+            </div>
             <NavLink className="navbar-item" href="/glossary">
               Glossary
             </NavLink>
@@ -151,7 +147,7 @@ export default () => {
             <div className="navbar-item">
               <Searchbar />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Nav>
