@@ -9,7 +9,6 @@ import Searchbar from "./searchbar";
 
 const Nav = styled.nav`
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
-  overflow-x: hidden !important;
 `;
 
 const Initials = styled.div`
