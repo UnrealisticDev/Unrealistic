@@ -11,6 +11,12 @@ const Nav = styled.nav`
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
   overflow-x: hidden !important;
   padding: 0px !important;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Initials = styled.div`
