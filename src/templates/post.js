@@ -136,7 +136,9 @@ const TopicTags = ({ tags }) => {
   return (
     tags && (
       <>
-        <div className="level-item" style={{marginRight: '0px'}}>·</div>
+        <div className="level-item" style={{ marginRight: "0px" }}>
+          ·
+        </div>
         <div className="level-item">
           <div className="subtitle is-size-6 dropdown is-hoverable is-light">
             {" "}
@@ -190,7 +192,7 @@ const Markdown = styled.div`
   h3,
   h4,
   h5 {
-    ${'' /* font-family: "Lato", sans-serif; */}
+    ${"" /* font-family: "Lato", sans-serif; */}
     font-family: 'Bungee', cursive;
     color: #363636;
     display: inline-block;
@@ -255,7 +257,7 @@ const Markdown = styled.div`
   p > code,
   ul > code,
   ol > code {
-    ${'' /* background-color: hsl(0, 0%, 86%); */}
+    ${"" /* background-color: hsl(0, 0%, 86%); */}
     color: #135d8f;
     border-radius: 0.3em;
     border-bottom: 2px solid hsl(0, 0%, 71%);
@@ -289,7 +291,7 @@ const SeriesNavLink = styled(Link)`
   }
 `;
 
-const SeriesNavInline = ({ post, next }) =>
+const SeriesNavInline = ({ post, next, series}) =>
   post && (
     <SeriesNavLink
       to={router.getPostSlug(post.slug)}
@@ -300,7 +302,7 @@ const SeriesNavInline = ({ post, next }) =>
         style={{ flex: "0 0 28px" }}
       />
       <p className="is-hidden-mobile">
-        {sanitizeTitle(post.title, post.series)}
+        {sanitizeTitle(post.title, series)}
       </p>
     </SeriesNavLink>
   );
@@ -313,13 +315,12 @@ const Separator = styled.hr`
 const FurtherReadingBody = styled.div``;
 
 const FurtherReadingPost = ({ post }) => {
-
   const StyledImg = styled(Img)`
     margin-bottom: 2vmin;
     @media screen and (max-width: 768px) {
       border-radius: 5px;
     }
-  `
+  `;
 
   return (
     <FurtherReadingBody>
@@ -384,7 +385,9 @@ function getFurtherReading(furtherReading) {
   return outPosts;
 }
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
+
+  const {post, series, furtherReading} = data;
   const {
     slug,
     title,
@@ -394,14 +397,15 @@ export default ({ data }) => {
     image,
     body,
     topicTags,
-    projectfiles,
-    series
-  } = data.post;
+    projectfiles
+  } = post;
 
+  const sanitizedTitle = sanitizeTitle(title, series);
   const description = excerpt || body.childMarkdownRemark.excerpt;
   const toc = body.childMarkdownRemark.tableOfContents;
-  const neighbors = findSeriesNeighbors(data.post, series);
-  const furtherReading = getFurtherReading(data.furtherReading);
+
+  const neighbors = findSeriesNeighbors(post, series);
+  const furtherReadingPosts = getFurtherReading(furtherReading);
 
   return (
     <Layout>
@@ -416,7 +420,7 @@ export default ({ data }) => {
         </style>
       </Helmet>
       <SEO
-        title={title}
+        title={series ? `${sanitizedTitle} | ${series.title}` : title}
         description={description}
         canonical={router.getPostSlug(slug)}
         image={image.file.url}
@@ -460,14 +464,14 @@ export default ({ data }) => {
                     <div className="level-right">
                       <div className="level-item">
                         {neighbors.beforePost && (
-                          <SeriesNavInline post={neighbors.beforePost} />
+                          <SeriesNavInline post={neighbors.beforePost} series={series} />
                         )}
                       </div>
                     </div>
                     <div className="level-left">
                       <div className="level-item">
                         {neighbors.afterPost && (
-                          <SeriesNavInline post={neighbors.afterPost} next />
+                          <SeriesNavInline post={neighbors.afterPost} next series={series} />
                         )}
                       </div>
                     </div>
@@ -481,13 +485,13 @@ export default ({ data }) => {
                     marginBottom: "2rem",
                     fontWeight: "600",
                     fontFamily: "'Bungee', sans-serif",
-                    fontSize: "22px",
+                    fontSize: "22px"
                   }}
                 >
                   Up Next
                 </h2>
                 <div className="columns">
-                  {furtherReading.map(({ node }) => (
+                  {furtherReadingPosts.map(({ node }) => (
                     <div className="column is-4">
                       <FurtherReadingPost post={node}></FurtherReadingPost>
                     </div>
@@ -557,7 +561,7 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($slug: String!) {
+  query($slug: String!, $series: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
       id
       slug
@@ -583,21 +587,18 @@ export const query = graphql`
       }
       topicTags
       projectfiles
-      series: seriesRef {
+    }
+
+    series: contentfulSeries(id: { eq: $series }) {
+      title
+      posts {
+        id
         title
-        posts {
-          id
-          title
-          slug
-          series: seriesRef {
-            title
-          }
-        }
+        slug
       }
     }
 
     furtherReading: allContentfulPost(
-      filter: { seriesRef: { id: { eq: null } } }
       sort: { fields: createdAt, order: DESC }
     ) {
       edges {

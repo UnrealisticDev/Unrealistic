@@ -10,7 +10,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allContentfulPost {
           edges {
             node {
+              id
               slug
+            }
+          }
+        }
+        allContentfulSeries {
+          edges {
+            node {
+              id
+              posts {
+                id
+              }
             }
           }
         }
@@ -39,6 +50,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
+  function findSeriesId(post) {
+    for (edge of query.data.allContentfulSeries.edges) {
+      const series = edge.node;
+      for (item of series.posts) {
+        if (item.id == post.id) {
+          return series.id; 
+        }
+      }
+    }
+    return '';
+  }
+
   const postTemplate = path.resolve(`./src/templates/post.js`);
   query.data.allContentfulPost.edges.forEach(({ node }) => {
     const { slug } = node;
@@ -48,7 +71,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path,
       component: postTemplate,
       context: {
-        slug: slug
+        slug: slug,
+        series: findSeriesId(node)
       }
     });
   });
