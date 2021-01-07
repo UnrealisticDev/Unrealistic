@@ -603,7 +603,7 @@ export const query = graphql`
     }
 
     furtherReading: allContentfulPost(
-      filter: { fields: { standalone: { eq: true } } }
+      filter: { fields: { standalone: { eq: true } }, slug: {ne: $slug} }
       sort: { fields: createdAt, order: DESC }
     ) {
       edges {
