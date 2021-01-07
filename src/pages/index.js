@@ -83,6 +83,16 @@ const MobilePostCard = ({ post }) => {
 };
 
 export default ({ data }) => {
+
+  // Get standalone posts (eventually want to filter this at the graphql level)
+  var standalonePosts = {edges: []};
+  data.allPosts.edges.forEach((edge) => {
+    if (edge.node.fields.standalone === true) {
+      standalonePosts.edges.push(edge);
+    }
+  })
+  standalonePosts.edges = standalonePosts.edges.slice(0, 3);
+
   return (
     <>
       <Helmet>
@@ -110,7 +120,7 @@ export default ({ data }) => {
             className="hero-body is-marginless is-paddingless"
             style={{ width: "100%", height: "100%", overflow: "hidden" }}
           >
-            <Carousel items={data.allPosts} />
+            <Carousel items={standalonePosts} />
           </div>
         </section>
         {/* Intro - Mobile */}
@@ -159,10 +169,12 @@ export const query = graphql`
   query {
     allPosts: allContentfulPost(
       sort: { fields: createdAt, order: DESC }
-      limit: 3
     ) {
       edges {
         node {
+          fields {
+            standalone
+          }
           slug
           title
           image {

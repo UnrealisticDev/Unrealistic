@@ -1,6 +1,24 @@
 const path = require(`path`);
 const router = require(`./src/scripts/router`);
 
+exports.sourceNodes = ({ actions: {createNode, createNodeField}, createNodeId, createContentDigest, getNodes, getNodesByType }) => {
+
+  idsOfSerialPosts = []
+  for (node of getNodesByType('ContentfulSeries')) {
+    for (id of node.posts___NODE) {
+      idsOfSerialPosts.push(id);
+    }
+  }
+
+  for (node of getNodesByType('ContentfulPost')) {
+    createNodeField({
+      node,
+      name: `standalone`,
+      value: idsOfSerialPosts.includes(node.id) ? false : true
+    })
+  }
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
