@@ -313,19 +313,26 @@ const Separator = styled.hr`
 const FurtherReadingBody = styled.div``;
 
 const FurtherReadingPost = ({ post }) => {
+
+  const StyledImg = styled(Img)`
+    margin-bottom: 2vmin;
+    @media screen and (max-width: 768px) {
+      border-radius: 5px;
+    }
+  `
+
   return (
     <FurtherReadingBody>
       <Link to={router.getPostSlug(post.slug)}>
-        <Img
+        <StyledImg
           fluid={post.image ? post.image.fluid : ""}
           alt="Article Feature"
-          style={{ marginBottom: "2vmin" }}
         />
         <div
           style={{
             textAlign: "left",
             color: "#363636",
-            fontFamily: "Lato, sans-serif",
+            fontFamily: "'basic-sans', sans-serif",
             fontWeight: "300 !important"
           }}
         >
@@ -403,6 +410,10 @@ export default ({ data }) => {
           @import
           url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
         </style>
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+        </style>
       </Helmet>
       <SEO
         title={title}
@@ -469,9 +480,8 @@ export default ({ data }) => {
                   style={{
                     marginBottom: "2rem",
                     fontWeight: "600",
-                    fontFamily: "segoe ui, sans-serif",
+                    fontFamily: "'Bungee', sans-serif",
                     fontSize: "22px",
-                    color: "#111111"
                   }}
                 >
                   Up Next
