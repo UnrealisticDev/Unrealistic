@@ -83,15 +83,7 @@ const MobilePostCard = ({ post }) => {
 };
 
 export default ({ data }) => {
-
-  // Get standalone posts (eventually want to filter this at the graphql level)
-  var standalonePosts = {edges: []};
-  data.allPosts.edges.forEach((edge) => {
-    if (edge.node.fields.standalone === true) {
-      standalonePosts.edges.push(edge);
-    }
-  })
-  standalonePosts.edges = standalonePosts.edges.slice(0, 3);
+  const { allPosts } = data;
 
   return (
     <>
@@ -120,16 +112,16 @@ export default ({ data }) => {
             className="hero-body is-marginless is-paddingless"
             style={{ width: "100%", height: "100%", overflow: "hidden" }}
           >
-            <Carousel items={standalonePosts} />
+            <Carousel items={allPosts} />
           </div>
         </section>
         {/* Intro - Mobile */}
         <section className="section is-hidden-desktop is-hidden-tablet">
           <div className="container">
-            {data.allPosts.edges.map(({ node }, i) => (
+            {allPosts.edges.map(({ node }, i) => (
               <>
                 <MobilePostCard post={node} />
-                {i < data.allPosts.edges.length - 1 && (
+                {i < allPosts.edges.length - 1 && (
                   <hr style={{ background: "rgb(.1, .1, .1, .1)" }} />
                 )}
               </>
@@ -168,7 +160,9 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     allPosts: allContentfulPost(
+      filter: { fields: { standalone: { eq: true } } }
       sort: { fields: createdAt, order: DESC }
+      limit: 3
     ) {
       edges {
         node {

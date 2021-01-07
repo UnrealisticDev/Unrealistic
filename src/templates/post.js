@@ -291,7 +291,7 @@ const SeriesNavLink = styled(Link)`
   }
 `;
 
-const SeriesNavInline = ({ post, next, series}) =>
+const SeriesNavInline = ({ post, next, series }) =>
   post && (
     <SeriesNavLink
       to={router.getPostSlug(post.slug)}
@@ -301,9 +301,7 @@ const SeriesNavInline = ({ post, next, series}) =>
         icon={next ? faArrowRight : faArrowLeft}
         style={{ flex: "0 0 28px" }}
       />
-      <p className="is-hidden-mobile">
-        {sanitizeTitle(post.title, series)}
-      </p>
+      <p className="is-hidden-mobile">{sanitizeTitle(post.title, series)}</p>
     </SeriesNavLink>
   );
 
@@ -386,8 +384,7 @@ function getFurtherReading(furtherReading) {
 }
 
 export default ({ data, pageContext }) => {
-
-  const {post, series, furtherReading} = data;
+  const { post, series, furtherReading } = data;
   const {
     slug,
     title,
@@ -464,14 +461,21 @@ export default ({ data, pageContext }) => {
                     <div className="level-right">
                       <div className="level-item">
                         {neighbors.beforePost && (
-                          <SeriesNavInline post={neighbors.beforePost} series={series} />
+                          <SeriesNavInline
+                            post={neighbors.beforePost}
+                            series={series}
+                          />
                         )}
                       </div>
                     </div>
                     <div className="level-left">
                       <div className="level-item">
                         {neighbors.afterPost && (
-                          <SeriesNavInline post={neighbors.afterPost} next series={series} />
+                          <SeriesNavInline
+                            post={neighbors.afterPost}
+                            next
+                            series={series}
+                          />
                         )}
                       </div>
                     </div>
@@ -599,6 +603,7 @@ export const query = graphql`
     }
 
     furtherReading: allContentfulPost(
+      filter: { fields: { standalone: { eq: true } } }
       sort: { fields: createdAt, order: DESC }
     ) {
       edges {
