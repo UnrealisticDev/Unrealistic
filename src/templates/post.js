@@ -256,7 +256,9 @@ const Markdown = styled.div`
 
   p > code,
   ul > code,
-  ol > code {
+  ol > code,
+  ul code,
+  ol code {
     ${"" /* background-color: hsl(0, 0%, 86%); */}
     color: #135d8f;
     border-radius: 0.3em;
