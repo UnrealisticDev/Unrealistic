@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
-import rehypeReact from "rehype-react";
-import styled, { keyframes } from "styled-components";
+// import rehypeReact from "rehype-react";
+import styled from "styled-components";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -13,40 +13,37 @@ import CategoryNavInline from "../components/glossary/categorynavinline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
-  faChevronUp,
   faClipboard,
-  faExternalLinkAlt,
-  faLevelUpAlt,
-  faPlus
+  faLevelUpAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 /* Header id formatter. */
-const format = string => {
-  const regex = /,|\./gi;
-  const spacesregex = /\s/gi;
-  var processed = String(string).toLowerCase();
-  processed = processed.replace(regex, "");
-  processed = processed.replace(spacesregex, "-");
-  return processed;
-};
+// const format = string => {
+//   const regex = /,|\./gi;
+//   const spacesregex = /\s/gi;
+//   var processed = String(string).toLowerCase();
+//   processed = processed.replace(regex, "");
+//   processed = processed.replace(spacesregex, "-");
+//   return processed;
+// };
 
-var codeblockId = 0;
+// var codeblockId = 0;
 
 /* Used to demote headers and do other html processing. */
-const renderAst = new rehypeReact({
-  createElement: React.createElement,
-  components: {
-    h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
-    h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
-    h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
-    h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
-    h5: props => <h6 id={format(props.children[0])}>{props.children}</h6>,
-    pre: props => {
-      var id = "codeblock" + ++codeblockId;
-      return <pre id={id}>{props.children}</pre>;
-    }
-  }
-}).Compiler;
+// const renderAst = new rehypeReact({
+//   createElement: React.createElement,
+//   components: {
+//     h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
+//     h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
+//     h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
+//     h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
+//     h5: props => <h6 id={format(props.children[0])}>{props.children}</h6>,
+//     pre: props => {
+//       var id = "codeblock" + ++codeblockId;
+//       return <pre id={id}>{props.children}</pre>;
+//     }
+//   }
+// }).Compiler;
 
 const BackToGlossary = () => {
   const StyledLink = styled(Link)`
@@ -95,7 +92,11 @@ const Type = ({ value }) => {
 };
 
 const Meta = ({ value }) => {
-  return value && <span className="level-item tag is-primary">{value ? "meta" : ""}</span>;
+  return (
+    value && (
+      <span className="level-item tag is-primary">{value ? "meta" : ""}</span>
+    )
+  );
 };
 
 const SectionHeader = styled.h2`
@@ -124,7 +125,7 @@ const Analysis = styled.div`
     border-radius: 0.3em; */}
     color: #0c1c38;
     border-radius: 0.3em;
-    ${'' /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
+    ${"" /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
     background: #dfe8f7;
 
     @media screen and (max-width: 769px) {
@@ -193,7 +194,7 @@ const Code = ({ keyFriendly, meta, values }) => {
     justify-content: left;
     margin-top: 1rem;
     font-size: 18px;
-    ${'' /* font-weight: 600; */}
+    ${"" /* font-weight: 600; */}
     font-style: italic;
 
     & .code {
@@ -262,11 +263,6 @@ const Code = ({ keyFriendly, meta, values }) => {
 };
 
 const Example = ({ file, url }) => {
-  const File = styled.p`
-  `;
-
-  const [active, setActive] = useState(false);
-
   return (
     <a
       href={url}
@@ -274,10 +270,8 @@ const Example = ({ file, url }) => {
       rel="noopener noreferrer"
       className="button is-light"
       style={{ justifyContent: "flex-start" }}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
     >
-      <File>{file}</File>
+      <div>{file}</div>
       {/* {active && <FontAwesomeIcon id="icon" icon={faExternalLinkAlt} />} */}
     </a>
   );
@@ -369,6 +363,8 @@ const Examples = ({ occ }) => {
             <div
               className={"dropdown " + (open ? "is-active" : "")}
               onMouseLeave={() => setOpen(false)}
+              role="menu"
+              tabIndex={0}
             >
               <div className="dropdown-trigger">
                 <button
@@ -398,6 +394,7 @@ const Examples = ({ occ }) => {
                   {occ.versions.map(({ version }) => {
                     return (
                       <a
+                        href={`#${version}`}
                         value={version}
                         onClick={() => {
                           setVersion(version);
@@ -415,7 +412,7 @@ const Examples = ({ occ }) => {
           </div>
         </div>
       </div>
-      <ul className='buttons' style={{width: '30vw'}}>
+      <ul className="buttons" style={{ width: "30vw" }}>
         {data.items.map(({ file }) => {
           return (
             <li>
