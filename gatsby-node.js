@@ -1,23 +1,28 @@
 const path = require(`path`);
 const router = require(`./src/scripts/router`);
 
-exports.sourceNodes = ({ actions: {createNode, createNodeField}, createNodeId, createContentDigest, getNodes, getNodesByType }) => {
-
-  idsOfSerialPosts = []
-  for (node of getNodesByType('ContentfulSeries')) {
+exports.sourceNodes = ({
+  actions: { createNode, createNodeField },
+  createNodeId,
+  createContentDigest,
+  getNodes,
+  getNodesByType
+}) => {
+  idsOfSerialPosts = [];
+  for (node of getNodesByType("ContentfulSeries")) {
     for (id of node.posts___NODE) {
       idsOfSerialPosts.push(id);
     }
   }
 
-  for (node of getNodesByType('ContentfulPost')) {
+  for (node of getNodesByType("ContentfulPost")) {
     createNodeField({
       node,
       name: `standalone`,
       value: idsOfSerialPosts.includes(node.id) ? false : true
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -50,6 +55,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        specifiers: allContentfulUnrealSpecifier {
+          nodes {
+            id
+            slug
+            type
+          }
+        }
         glossaryLists: allContentfulList(filter: { tags: { in: "glossary" } }) {
           nodes {
             id
@@ -73,11 +85,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const series = edge.node;
       for (item of series.posts) {
         if (item.id == post.id) {
-          return series.id; 
+          return series.id;
         }
       }
     }
-    return '';
+    return "";
   }
 
   const postTemplate = path.resolve(`./src/templates/post.js`);
@@ -110,19 +122,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 
   const definedTermTemplate = path.resolve(`./src/templates/definedterm.js`);
-  query.data.glossaryLists.nodes.forEach(({ id, references }) => {
-    const categoryId = id;
-    references.forEach(({ id, slug }) => {
-      const path = `/glossary/${slug}`;
-      console.log("Creating page: " + path);
-      createPage({
-        path,
-        component: definedTermTemplate,
-        context: {
-          categoryId: categoryId,
-          id: id
-        }
-      });
+  query.data.specifiers.nodes.forEach(({ id, slug, type }) => {
+    const path = `/glossary/${slug}`;
+    createPage({
+      path,
+      component: definedTermTemplate,
+      context: {
+        id: id,
+        type: type
+      }
     });
   });
 };

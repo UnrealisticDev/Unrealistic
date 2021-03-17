@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import rehypeReact from "rehype-react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -12,8 +12,12 @@ import CategoryNavInline from "../components/glossary/categorynavinline";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faChevronDown,
+  faChevronUp,
+  faClipboard,
   faExternalLinkAlt,
-  faLevelUpAlt
+  faLevelUpAlt,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 /* Header id formatter. */
@@ -44,11 +48,32 @@ const renderAst = new rehypeReact({
   }
 }).Compiler;
 
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  -webkit-transform:scale(-1, 1);
-`
+const BackToGlossary = () => {
+  const StyledLink = styled(Link)`
+    display: flex;
+    color: hsl(0, 0%, 71%);
 
-const TermName = styled.h1`
+    & #icon {
+      margin-right: 0.5rem;
+      transform: scale(-1, 1);
+    }
+
+    &:hover #icon {
+      color: hsl(204, 86%, 53%);
+    }
+  `;
+
+  return (
+    <StyledLink to="/glossary">
+      <div class="level">
+        <FontAwesomeIcon id="icon" icon={faLevelUpAlt} />
+        <p>Glossary</p>
+      </div>
+    </StyledLink>
+  );
+};
+
+const Key = styled.h1`
   @font-face {
     font-family: "basic-sans";
     src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
@@ -65,8 +90,16 @@ const TermName = styled.h1`
   color: #363636;
 `;
 
+const Type = ({ value }) => {
+  return value && <span className="level-item tag is-info">{value}</span>;
+};
+
+const Meta = ({ value }) => {
+  return value && <span className="level-item tag is-primary">{value ? "meta" : ""}</span>;
+};
+
 const SectionHeader = styled.h2`
-  ${'' /* font-family: "Lato", sans-serif; */}
+  ${"" /* font-family: "Lato", sans-serif; */}
   font-family: 'Bungee', cursive;
   color: #363636;
   display: inline-block;
@@ -86,7 +119,7 @@ const Analysis = styled.div`
   p > code,
   ul > code,
   ol > code {
-    ${'' /* background-color: rgb(250, 242, 242);
+    ${"" /* background-color: rgb(250, 242, 242);
     color: rgb(53, 142, 184);
     border-radius: 0.3em; */}
     color: #135d8f;
@@ -103,70 +136,311 @@ const Analysis = styled.div`
   }
 `;
 
-const CodeSample = styled.div`
-  pre {
+const Code = ({ keyFriendly, meta, values }) => {
+  var code = (
+    <>
+      {meta && (
+        <>
+          <div className="meta">meta</div>
+          <div className="equal">=</div>
+          <div className="left paren">(</div>
+        </>
+      )}
+      {<div className="key">{keyFriendly}</div>}
+      {values && values.length > 0 && (
+        <>
+          <div className="equal">=</div>
+          {meta ? (
+            <div className="quote">"</div>
+          ) : (
+            <div className="left paren">{"("}</div>
+          )}
+          {values.map((value, index) => {
+            return (
+              <>
+                {index > 0 ? <div className="comma">,</div> : null}
+                <div className="value">{value}</div>
+              </>
+            );
+          })}
+          {meta ? (
+            <div className="quote">"</div>
+          ) : (
+            <div className="right paren">{")"}</div>
+          )}
+        </>
+      )}
+      {meta && (
+        <>
+          <div className="right paren">)</div>
+        </>
+      )}
+    </>
+  );
+
+  const Copy = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+  `;
+
+  const Wrapper = styled.div`
     position: relative;
 
-    button {
-      position: absolute;
-      top: 0;
-      right: 0;
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    margin-top: 1rem;
+    font-size: 18px;
+    ${'' /* font-weight: 600; */}
+    font-style: italic;
+
+    & .code {
+      margin-left: 2rem;
+      display: flex;
     }
 
-    scrollbar-width: none;
-    ::-webkit-scrollbar {
+    & .key {
+    }
+
+    & .meta {
+    }
+
+    & .equal {
+      margin: 0 0.5rem;
+      color: hsl(204, 86%, 53%);
+    }
+
+    & .paren {
+      color: hsl(171, 100%, 41%);
+    }
+
+    & .paren.left {
+      margin-right: 0.5rem;
+    }
+
+    & .paren.right {
+      margin-left: 0.5rem;
+    }
+
+    & .value {
+      color: #257bc2;
+    }
+
+    & .comma {
+      margin-right: 0.5rem;
+      color: grey;
+    }
+
+    & .copy {
       display: none;
     }
-  }
-`;
 
-const Example = styled.a`
-  justify-content: flex-start;
-  color: black;
-  &:hover {
-    color: rgb(50, 115, 220) !important;
-  }
-`;
+    &:hover .copy {
+      display: inline-block;
+    }
+  `;
+
+  return (
+    <Wrapper>
+      <Copy
+        className="copy button is-light"
+        onClick={() => {
+          navigator.clipboard.writeText(
+            document.getElementById("code").innerText
+          );
+        }}
+      >
+        <FontAwesomeIcon icon={faClipboard} />
+      </Copy>
+      <div class="code" id="code">
+        {code}
+      </div>
+    </Wrapper>
+  );
+};
+
+const Example = ({ file, url }) => {
+  const File = styled.p`
+  `;
+
+  const [active, setActive] = useState(false);
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="button is-light"
+      style={{ justifyContent: "flex-start" }}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      <File>{file}</File>
+      {/* {active && <FontAwesomeIcon id="icon" icon={faExternalLinkAlt} />} */}
+    </a>
+  );
+};
 
 const InlineCategoryNavWrapper = styled.div`
   margin-top: 5rem;
 `;
 
-function findCategoryNeighbors(term, category) {
-  var ret = {};
+function findCategoryNeighbors(specifier, category) {
+  var neighbors = {};
 
-  if (term && category) {
-    category = category.references;
-    const termIndex = category.findIndex(element => element.id === term.id);
+  if (specifier && category) {
+    category = category.nodes;
+    const specifierIndex = category.findIndex(
+      element => element.id === specifier.id
+    );
 
-    const previousTermIndex = termIndex - 1;
-    ret.previous =
-      category[previousTermIndex] !== void 0
-        ? category[previousTermIndex]
+    const previousSpecifierIndex = specifierIndex - 1;
+    neighbors.previous =
+      category[previousSpecifierIndex] !== void 0
+        ? category[previousSpecifierIndex]
         : null;
 
-    const nextTermIndex = termIndex + 1;
-    ret.next =
-      category[nextTermIndex] !== void 0 ? category[nextTermIndex] : null;
+    const nextSpecifierIndex = specifierIndex + 1;
+    neighbors.next =
+      category[nextSpecifierIndex] !== void 0
+        ? category[nextSpecifierIndex]
+        : null;
   }
 
-  return ret;
+  return neighbors;
 }
 
-const BackToGlossaryText = styled.p`
-  color: black;
-  margin-left: 4px;
-`;
+const Examples = ({ occ }) => {
+  const Header = styled.h3`
+    font-family: "Bungee", cursive;
+    color: #363636;
+    display: inline-block;
+    margin: 0;
+
+    font-size: calc(10px + 1.4vw);
+    border-bottom: 2px solid hsl(204, 86%, 53%);
+  `;
+
+  const DropdownMenu = styled.div`
+    min-width: 2rem !important;
+    height: 30vh;
+
+    overflow-x: visible;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+    & .dropdown-item:hover {
+      border-left: solid 2px hsl(204, 86%, 53%);
+    }
+  `;
+
+  var { versions } = occ;
+  versions.sort((a, b) => {
+    return a.version < b.version;
+  });
+
+  const [version, setVersion] = useState(versions[0].version);
+  const [open, setOpen] = useState(false);
+
+  const prettyVersion = version => {
+    return "4." + version;
+  };
+
+  const prettyFile = file => {
+    const elems = file.split("/");
+    return elems[elems.length - 1].split(".")[0];
+  };
+
+  const data = versions.find(({ version: v }) => v === version);
+
+  return (
+    <div style={{ marginTop: "2rem" }}>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <Header>Found In</Header>
+          </div>
+        </div>
+
+        <div class="level-right">
+          <div className="level-item">
+            <div
+              className={"dropdown " + (open ? "is-active" : "")}
+              onMouseLeave={() => setOpen(false)}
+            >
+              <div className="dropdown-trigger">
+                <button
+                  className="button is-light"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                  onMouseEnter={() => setOpen(true)}
+                >
+                  <div class="has-text-info">{prettyVersion(version)}</div>
+                  <FontAwesomeIcon
+                    icon={faChevronDown}
+                    style={{ marginLeft: "2rem" }}
+                  />
+                </button>
+              </div>
+              <DropdownMenu
+                className="dropdown-menu has-background-light"
+                id="dropdown-menu"
+                role="menu"
+                style={{
+                  minWidth: "2rem !important",
+                  height: "15vh",
+                  overflow: "scroll"
+                }}
+              >
+                <div className="dropdown-content has-background-light">
+                  {occ.versions.map(({ version }) => {
+                    return (
+                      <a
+                        value={version}
+                        onClick={() => {
+                          setVersion(version);
+                          setOpen(false);
+                        }}
+                        className="dropdown-item"
+                      >
+                        {prettyVersion(version)}
+                      </a>
+                    );
+                  })}
+                </div>
+              </DropdownMenu>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul className='buttons' style={{width: '30vw'}}>
+        {data.items.map(({ file }) => {
+          return (
+            <li>
+              <Example
+                file={prettyFile(file)}
+                url={`https://github.com/EpicGames/UnrealEngine/tree/${prettyVersion(
+                  data.version
+                )}/${file}`}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default ({ data }) => {
-  const { term, category } = data;
-  const { name, description, analysis, codeSample, examples } = term;
+  const { specifier, category } = data;
+  const { type, keyFriendly, meta, values, snippet, analysis, occ } = specifier;
 
-  var neighbors = findCategoryNeighbors(term, category);
+  var neighbors = findCategoryNeighbors(specifier, category);
 
   return (
     <Layout>
-      <SEO title={`${name} | ${category.name}`} description={description} />
+      <SEO title={`${keyFriendly} | ${type}`} description={snippet} />
       <Helmet>
         <style>
           @import
@@ -176,18 +450,21 @@ export default ({ data }) => {
       <section className="section">
         <div className="container">
           <div className="columns is-variable is-centered is-5">
-            <Link
-              className="column is-1"
-              to="/glossary"
-              style={{ display: "flex" }}
-            >
-              <StyledFontAwesomeIcon icon={faLevelUpAlt} />
-              <BackToGlossaryText>Glossary</BackToGlossaryText>
-            </Link>
+            <div class="column is-1">
+              <BackToGlossary />
+            </div>
             <div className="column is-6">
-              <TermName className="title is-size-1 is-size-3-mobile">
-                {name}
-              </TermName>
+              <div class="level is-mobile subtitle">
+                <div class="level-left">
+                  <div class="level-item">
+                    <Key className="title is-size-1 is-size-3-mobile">
+                      {keyFriendly}
+                    </Key>
+                  </div>
+                  <Type value={type} />
+                  <Meta value={meta} />
+                </div>
+              </div>
               {analysis && (
                 <Analysis
                   dangerouslySetInnerHTML={{
@@ -195,45 +472,32 @@ export default ({ data }) => {
                   }}
                 />
               )}
-              <SectionHeader>Code</SectionHeader>
-              {codeSample && (
-                <CodeSample>
-                  {renderAst(codeSample.childMarkdownRemark.htmlAst)}
-                </CodeSample>
-              )}
-              {examples && (
+              {keyFriendly && (
                 <>
-                  <SectionHeader>Examples</SectionHeader>
-                  <ul>
-                    {examples.items.map(({ name, url }) => {
-                      return (
-                        <li>
-                          <Example
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="button is-light is-fullwidth"
-                          >
-                            {name}
-                            <spacer style={{ flex: "1 1 0px" }} />
-                            <FontAwesomeIcon icon={faExternalLinkAlt} />
-                          </Example>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <SectionHeader>Form</SectionHeader>
+                  <Code
+                    className="level is-centered"
+                    keyFriendly={keyFriendly}
+                    meta={meta}
+                    values={values}
+                  />
+                </>
+              )}
+              {occ && (
+                <>
+                  <Examples occ={occ} />
                 </>
               )}
               <InlineCategoryNavWrapper className="level is-mobile">
                 <div className="level-left">
                   <CategoryNavInline
-                    term={neighbors.previous}
+                    specifier={neighbors.previous}
                     className="level-item"
                   />
                 </div>
                 <div className="level-right">
                   <CategoryNavInline
-                    term={neighbors.next}
+                    specifier={neighbors.next}
                     next
                     className="level-item"
                   />
@@ -242,7 +506,7 @@ export default ({ data }) => {
             </div>
             <div className="column is-2 is-hidden-mobile">
               <Sidebar>
-                <CategoryNav category={category} />
+                <CategoryNav type={type} category={category} />
               </Sidebar>
             </div>
           </div>
@@ -253,34 +517,36 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($id: String!, $categoryId: String!) {
-    term: contentfulDefinedTerm(id: { eq: $id }) {
+  query($id: String!, $type: String!) {
+    specifier: contentfulUnrealSpecifier(id: { eq: $id }) {
       id
-      name
-      description
+      type
+      keyFriendly
+      meta
+      values
+      snippet
       analysis {
         childMarkdownRemark {
           html
         }
       }
-      codeSample {
-        childMarkdownRemark {
-          html
-          htmlAst
-        }
-      }
-      examples {
-        items {
-          name
-          url
+      occ {
+        versions {
+          version
+          items {
+            count
+            file
+          }
         }
       }
     }
-    category: contentfulList(id: { eq: $categoryId }) {
-      name
-      references {
+    category: allContentfulUnrealSpecifier(
+      filter: { type: { eq: $type } }
+      sort: { fields: key, order: ASC }
+    ) {
+      nodes {
         id
-        name
+        keyFriendly
         slug
       }
     }

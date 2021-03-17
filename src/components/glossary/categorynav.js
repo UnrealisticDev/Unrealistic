@@ -37,7 +37,7 @@ const Term = styled.li`
   }
 `;
 
-export default ({ category }) => {
+export default ({ type, category }) => {
   const [expanded, setExpanded] = useState(true);
 
   function toggleExpansion() {
@@ -45,7 +45,7 @@ export default ({ category }) => {
   }
 
   return (
-    category && (
+    true && (
       <Wrapper>
         <Toggle
           className="level is-mobile"
@@ -57,7 +57,7 @@ export default ({ category }) => {
           tabIndex="0"
         >
           <div className="level-left">
-            <p className="menu-label">In This Category</p>
+            <p className="menu-label">{type}</p>
           </div>
           <div className="level-right">
             <FontAwesomeIcon icon={expanded ? faMinus : faPlus} />
@@ -65,10 +65,10 @@ export default ({ category }) => {
         </Toggle>
         <List>
           {expanded &&
-          category.references.map(({name, slug}) => {
+          category.nodes.map(({keyFriendly, slug}) => {
             return (
               <Term>
-                <Link to={`/glossary/${slug}`}>{name}</Link>
+                <Link to={`/glossary/${slug}`}>{keyFriendly}</Link>
               </Term>
             );
           })}

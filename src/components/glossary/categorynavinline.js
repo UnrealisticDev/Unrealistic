@@ -9,20 +9,25 @@ const InlineCategoryNavLink = styled(Link)`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.next === true ? "row-reverse" : "row")};
-  p {
-    display: inline-block;
-    color: #363636;
-    white-space: nowrap;
+
+  color: hsl(0, 0%, 71%);
+
+  &:hover #icon {
+    color: hsl(204, 86%, 53%);
   }
 `;
 
-export default ({ term, next }) =>
-  term && (
-    <InlineCategoryNavLink to={`/glossary/${term.slug}`} next={next ? true : false}>
+export default ({ specifier, next }) =>
+  specifier && (
+    <InlineCategoryNavLink
+      to={`/glossary/${specifier.slug}`}
+      next={next ? true : false}
+    >
       <FontAwesomeIcon
+        id="icon"
         icon={next ? faArrowRight : faArrowLeft}
         style={{ flex: "0 0 28px" }}
       />
-      <p className="is-hidden-mobile">{term.name}</p>
+      <p className="is-hidden-mobile">{specifier.keyFriendly}</p>
     </InlineCategoryNavLink>
   );
