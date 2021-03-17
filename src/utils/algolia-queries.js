@@ -1,6 +1,6 @@
 const escapeStringRegexp = require("escape-string-regexp");
 
-const indexName = `Articles`;
+const articleIndex = `Articles`;
 
 const articleQuery = `{
     articles: allContentfulPost {
@@ -23,11 +23,41 @@ function pageToAlgoliaRecord({ node: { id, title, slug, ...rest } }) {
   };
 }
 
+const specifierIndex = 'UnrealSpecifiers';
+
+const specifierQuery = `{
+  specifiers: allContentfulUnrealSpecifier {
+    edges {
+      node {
+        id
+        keyFriendly
+        type
+        slug
+      }
+    }
+  }
+}`
+
+function specifierToAlgoliaRecord({ node: { id, keyFriendly, slug, type, ...rest } }) {
+  return {
+    objectID: id,
+    keyFriendly: keyFriendly,
+    type: type,
+    slug: slug,
+    ...rest
+  };
+}
+
 const queries = [
   {
     query: articleQuery,
     transformer: ({ data }) => data.articles.edges.map(pageToAlgoliaRecord),
-    indexName
+    indexName: articleIndex
+  },
+  {
+    query: specifierQuery,
+    transformer: ({data}) => data.specifiers.edges.map(specifierToAlgoliaRecord),
+    indexName: specifierIndex
   }
 ];
 
