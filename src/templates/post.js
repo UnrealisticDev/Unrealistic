@@ -260,9 +260,10 @@ const Markdown = styled.div`
   ul code,
   ol code {
     ${"" /* background-color: hsl(0, 0%, 86%); */}
-    color: #135d8f;
+    color: #0c1c38;
     border-radius: 0.3em;
-    border-bottom: 2px solid hsl(0, 0%, 71%);
+    ${'' /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
+    background: #dfe8f7;
 
     @media screen and (max-width: 769px) {
       padding: 1vmin;
