@@ -82,7 +82,7 @@ const CSearchResults = connectHits(SearchResults);
 
 const Searchbar = () => {
   const [, setQuery] = useState();
-  const [hasFocus, setFocus] = useState(false);
+  const [, setFocus] = useState(false);
 
   return (
     <InstantSearch

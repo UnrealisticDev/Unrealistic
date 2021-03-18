@@ -147,7 +147,7 @@ export default () => {
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
-              <Searchbar />
+              <Searchbar index="Articles" />
             </div>
           </div>
         </div>

@@ -6,28 +6,26 @@ import { connectSearchBox } from "react-instantsearch-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const TextEntry = styled.input`
-  background-color: #DBDBDB !important;
+const SInput = styled.input`
+  background-color: #dbdbdb !important;
 
   ::placeholder {
     color: #575754 !important;
   }
 `;
 
-// This is the actual search bar that users type
-// input into.
-const SearchEntry = connectSearchBox(
-  ({ refine, currentRefinement, onFocus }) => (
-    <form onSubmit={event => event.preventDefault()}>
+export default connectSearchBox(
+  ({ currentRefinement, refine, onFocus, placeholder, style }) => (
+    <form onSubmit={event => event.preventDefault()} style={style}>
       <div className="control has-icons-right is-expanded">
-        <TextEntry
-          className="input"
+        <SInput
           type="text"
-          placeholder="I want to learn about..."
-          aria-label="Search"
-          onChange={e => refine(e.target.value)}
           value={currentRefinement}
+          onChange={event => refine(event.target.value)}
           onFocus={onFocus}
+          placeholder={placeholder}
+          className="input"
+          aria-label="Search"
         />
         <span className="icon is-small is-right">
           <FontAwesomeIcon icon={faSearch} />
@@ -36,5 +34,3 @@ const SearchEntry = connectSearchBox(
     </form>
   )
 );
-
-export default SearchEntry;

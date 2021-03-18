@@ -32,25 +32,21 @@ const PageHit = ({ hit }) => (
   </Link>
 );
 
-const HitsInIndex = ({ index }) => (
-  <Index indexName={index.name}>
+const HitsInIndex = ({ index, hitComponent }) => (
+  <Index indexName={index}>
     <HitCount />
-    <Hits className="Hits" hitComponent={PageHit} />
+    <Hits className="Hits" hitComponent={hitComponent ? hitComponent : PageHit} />
   </Index>
 );
 
-const SearchResult = ({ indices, className, show }) => {
+export default ({ index, show, hitComponent, className  }) => {
   return show ? (
     <div className={className}>
       <div className="box">
-        {indices.map(index => (
-          <HitsInIndex index={index} key={index.name} />
-        ))}
+        <HitsInIndex index={index} hitComponent={hitComponent} />
         <hr />
         <PoweredBy />
       </div>
     </div>
   ) : null;
 };
-
-export default SearchResult;
