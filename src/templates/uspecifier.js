@@ -88,13 +88,17 @@ const Key = styled.h1`
 `;
 
 const Type = ({ value }) => {
-  return value && <span className="level-item tag is-dark is-medium">{value}</span>;
+  return (
+    value && <span className="level-item tag is-dark is-medium">{value}</span>
+  );
 };
 
 const Meta = ({ value }) => {
   return (
     value && (
-      <span className="level-item tag is-success is-medium">{value ? "Meta" : ""}</span>
+      <span className="level-item tag is-success is-medium">
+        {value ? "Meta" : ""}
+      </span>
     )
   );
 };
@@ -438,8 +442,10 @@ const Examples = ({ occ }) => {
 };
 
 export default ({ data }) => {
-  const { specifier, category } = data;
-  const { type, keyFriendly, meta, values, snippet, analysis, occ } = specifier;
+  const { specifier, analysis, category } = data;
+  const { type, keyFriendly, meta, values, snippet, occ } = specifier;
+
+  console.log(analysis);
 
   var neighbors = findCategoryNeighbors(specifier, category);
 
@@ -527,7 +533,7 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($id: String!, $type: String!) {
+  query($id: String!, $type: String!, $slug: String!) {
     specifier: contentfulUnrealSpecifier(id: { eq: $id }) {
       id
       type
@@ -535,11 +541,6 @@ export const query = graphql`
       meta
       values
       snippet
-      analysis {
-        childMarkdownRemark {
-          html
-        }
-      }
       occ {
         versions {
           version
@@ -548,6 +549,11 @@ export const query = graphql`
             file
           }
         }
+      }
+    }
+    analysis: file(name: { eq: $slug }) {
+      childMarkdownRemark {
+        html
       }
     }
     category: allContentfulUnrealSpecifier(

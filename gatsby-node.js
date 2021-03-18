@@ -132,7 +132,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: uSpecifierTemplate,
       context: {
         id: id,
-        type: type
+        type: type,
+        slug: slug
       }
     });
   });
