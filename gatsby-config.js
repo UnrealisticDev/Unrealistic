@@ -48,6 +48,13 @@ module.exports = {
         accessToken: `Xeqkswi8vvM5us2jEa7ESxU4MyAqyZQj5EHQ1SyzTe8`
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'uspecifiers',
+        path: `${__dirname}/src/content/uspecifiers`
+      }
+    },
     /* - Sharp (enables gatsby-image) */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
