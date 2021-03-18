@@ -1,5 +1,8 @@
 const path = require(`path`);
 const router = require(`./src/scripts/router`);
+require('dotenv').config({
+  path: `.env`
+});
 
 exports.sourceNodes = ({
   actions: { createNode, createNodeField },
@@ -121,12 +124,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  const definedTermTemplate = path.resolve(`./src/templates/definedterm.js`);
+  const uSpecifierTemplate = path.resolve(`./src/templates/uspecifier.js`);
   query.data.specifiers.nodes.forEach(({ id, slug, type }) => {
     const path = `/glossary/${slug}`;
     createPage({
       path,
-      component: definedTermTemplate,
+      component: uSpecifierTemplate,
       context: {
         id: id,
         type: type
