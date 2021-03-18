@@ -47,19 +47,18 @@ import {
 // }).Compiler;
 
 const GlossaryLink = styled(Link)`
-display: flex;
-color: hsl(0, 0%, 71%);
+  display: flex;
+  color: hsl(0, 0%, 71%);
 
-& #icon {
-  margin-right: 0.5rem;
-  transform: scale(-1, 1);
-}
+  & #icon {
+    margin-right: 0.5rem;
+    transform: scale(-1, 1);
+  }
 
-&:hover #icon {
-  color: hsl(204, 86%, 53%);
-}
+  &:hover #icon {
+    color: hsl(204, 86%, 53%);
+  }
 `;
-
 
 const BackToGlossary = () => {
   return (
@@ -148,22 +147,22 @@ const Analysis = styled.div`
 `;
 
 const CopyRoot = styled.button`
-display: inline-block;
-margin-left: 1rem;
-height: 2.5rem;
-width: 2.5rem;
+  display: inline-block;
+  margin-left: 1rem;
+  height: 2.5rem;
+  width: 2.5rem;
 
-color: hsl(0, 0%, 71%);
-background-color: hsl(0, 0%, 96%);
-border: none;
-border-radius: 0.3rem;
+  color: hsl(0, 0%, 71%);
+  background-color: hsl(0, 0%, 96%);
+  border: none;
+  border-radius: 0.3rem;
 
-&:hover {
-  color: hsl(0, 0%, 29%);
-  background-color: hsl(0, 0%, 92%);
-}
+  &:hover {
+    color: hsl(0, 0%, 29%);
+    background-color: hsl(0, 0%, 92%);
+  }
 
-cursor: pointer;
+  cursor: pointer;
 `;
 
 const Copy = () => {
@@ -181,62 +180,62 @@ const Copy = () => {
 };
 
 const CodeWrapper = styled.div`
-position: relative;
+  position: relative;
 
-display: flex;
-width: 100%;
-justify-content: left;
-margin-top: 1rem;
-font-style: italic;
-
-overflow: hidden;
-&:hover {
-  overflow: auto;
-}
-
-.code {
   display: flex;
-}
+  width: 100%;
+  justify-content: left;
+  margin-top: 1rem;
+  font-style: italic;
 
-& .key {
-}
+  overflow: hidden;
+  &:hover {
+    overflow: auto;
+  }
 
-& .meta {
-}
+  .code {
+    display: flex;
+  }
 
-& .equal {
-  margin: 0 0.5rem;
-  color: hsl(204, 86%, 53%);
-}
+  & .key {
+  }
 
-& .paren {
-  color: hsl(171, 100%, 41%);
-}
+  & .meta {
+  }
 
-& .paren.left {
-  margin-right: 0.5rem;
-}
+  & .equal {
+    margin: 0 0.5rem;
+    color: hsl(204, 86%, 53%);
+  }
 
-& .paren.right {
-  margin-left: 0.5rem;
-}
+  & .paren {
+    color: hsl(171, 100%, 41%);
+  }
 
-& .value {
-  color: #257bc2;
-}
+  & .paren.left {
+    margin-right: 0.5rem;
+  }
 
-& .comma {
-  margin-right: 0.5rem;
-  color: grey;
-}
+  & .paren.right {
+    margin-left: 0.5rem;
+  }
 
-& .copy {
-  visibility: hidden;
-}
+  & .value {
+    color: #257bc2;
+  }
 
-&:hover .copy {
-  visibility: visible;
-}
+  & .comma {
+    margin-right: 0.5rem;
+    color: grey;
+  }
+
+  & .copy {
+    visibility: hidden;
+  }
+
+  &:hover .copy {
+    visibility: visible;
+  }
 `;
 
 const Code = ({ keyFriendly, meta, values }) => {
@@ -333,26 +332,26 @@ function findCategoryNeighbors(specifier, category) {
 }
 
 const Header = styled.h3`
-font-family: "Bungee", cursive;
-color: #363636;
-display: inline-block;
-margin: 0;
+  font-family: "Bungee", cursive;
+  color: #363636;
+  display: inline-block;
+  margin: 0;
 
-font-size: calc(10px + 1.4vw);
-border-bottom: 2px solid hsl(204, 86%, 53%);
+  font-size: calc(10px + 1.4vw);
+  border-bottom: 2px solid hsl(204, 86%, 53%);
 `;
 
 const DropdownMenu = styled.div`
-min-width: 2rem !important;
-height: 30vh;
+  min-width: 2rem !important;
+  height: 30vh;
 
-overflow-x: visible;
-overflow-y: scroll;
-scrollbar-width: none;
+  overflow-x: visible;
+  overflow-y: scroll;
+  scrollbar-width: none;
 
-& .dropdown-item:hover {
-  border-left: solid 2px hsl(204, 86%, 53%);
-}
+  & .dropdown-item:hover {
+    border-left: solid 2px hsl(204, 86%, 53%);
+  }
 `;
 
 const Examples = ({ occ }) => {
