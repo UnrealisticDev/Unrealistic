@@ -453,8 +453,14 @@ const Examples = ({ occ }) => {
 };
 
 export default ({ data }) => {
-  const { specifier, analysis, category } = data;
-  const { type, keyFriendly, meta, values, snippet, occ } = specifier;
+  const { specifier, local, category } = data;
+  const { type, keyFriendly, meta, values, occ } = specifier;
+  const {
+    childMarkdownRemark: {
+      analysis,
+      frontmatter: { snippet }
+    }
+  } = local;
 
   console.log(analysis);
 
@@ -492,7 +498,7 @@ export default ({ data }) => {
                 <Type value={type} />
                 <Meta value={meta} />
                 <EarliestVersion versions={occ.versions} />
-                <span class='tag is-large'>
+                <span class="tag is-large">
                   <EditOnGithub
                     branch="spectacle"
                     path={`src/content/uspecifiers/${analysis.relativePath}`}
@@ -502,7 +508,7 @@ export default ({ data }) => {
               {analysis && (
                 <Analysis
                   dangerouslySetInnerHTML={{
-                    __html: analysis.childMarkdownRemark.html
+                    __html: analysis
                   }}
                 />
               )}
@@ -570,9 +576,12 @@ export const query = graphql`
         }
       }
     }
-    analysis: file(name: { eq: $slug }) {
+    local: file(name: { eq: $slug }) {
       childMarkdownRemark {
-        html
+        analysis: html
+        frontmatter {
+          snippet
+        }
       }
       relativePath
     }
