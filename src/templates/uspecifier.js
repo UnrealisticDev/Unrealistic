@@ -146,6 +146,39 @@ const Analysis = styled.div`
   }
 `;
 
+const Copy = () => {
+  const Root = styled.button`
+    display: inline-block;
+    margin-left: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+
+    color: hsl(0, 0%, 71%);
+    background-color: hsl(0, 0%, 96%);
+    border: none;
+    border-radius: .3rem;
+
+    &:hover {
+      color: hsl(0, 0%, 29%);
+      background-color: hsl(0, 0%, 92%);
+    }
+
+    cursor: pointer;
+  `;
+
+  return (
+    <Root
+      onClick={() => {
+        navigator.clipboard.writeText(
+          document.getElementById("code").innerText
+        );
+      }}
+    >
+      <FontAwesomeIcon icon={faClipboard} size="lg" />
+    </Root>
+  );
+};
+
 const Code = ({ keyFriendly, meta, values }) => {
   var code = (
     <>
@@ -188,12 +221,6 @@ const Code = ({ keyFriendly, meta, values }) => {
     </>
   );
 
-  const Copy = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-  `;
-
   const Wrapper = styled.div`
     position: relative;
 
@@ -204,9 +231,8 @@ const Code = ({ keyFriendly, meta, values }) => {
     font-size: 18px;
     ${"" /* font-weight: 600; */}
     font-style: italic;
-
-    & .code {
-      margin-left: 2rem;
+    margin-left: 2rem;
+    .code {
       display: flex;
     }
 
@@ -243,29 +269,17 @@ const Code = ({ keyFriendly, meta, values }) => {
     }
 
     & .copy {
-      display: none;
+      visibility: hidden;
     }
 
     &:hover .copy {
-      display: inline-block;
+      visibility: visible;
     }
   `;
 
   return (
-    <Wrapper>
-      <Copy
-        className="copy button is-light"
-        onClick={() => {
-          navigator.clipboard.writeText(
-            document.getElementById("code").innerText
-          );
-        }}
-      >
-        <FontAwesomeIcon icon={faClipboard} />
-      </Copy>
-      <div class="code" id="code">
-        {code}
-      </div>
+    <Wrapper class="code" id="code">
+      {code}
     </Wrapper>
   );
 };
@@ -359,7 +373,7 @@ const Examples = ({ occ }) => {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <div class="level">
+      <div class="level is-mobile">
         <div class="level-left">
           <div class="level-item">
             <Header>Found In</Header>
@@ -494,6 +508,7 @@ export default ({ data }) => {
               {keyFriendly && (
                 <>
                   <SectionHeader>Form</SectionHeader>
+                  <Copy />
                   <Code
                     className="level is-centered"
                     keyFriendly={keyFriendly}
