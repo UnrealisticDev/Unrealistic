@@ -15,8 +15,8 @@ const StyledLink = styled.a`
 
 const TooltipText = styled.span`
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, -100%);
+  right: 0;
+  transform: translate(110%, 0%);
 
   visibility: hidden;
 
@@ -38,7 +38,7 @@ export default ({ branch, path }) => {
   }/${path}`;
   return (
     <StyledLink href={ref} target="_blank" rel="noopener noreferrer">
-      <FontAwesomeIcon icon={faGithub} />
+      <FontAwesomeIcon icon={faGithub}/>
       <TooltipText id="tooltiptext">Edit on Github</TooltipText>
     </StyledLink>
   );

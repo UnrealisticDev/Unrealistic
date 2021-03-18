@@ -156,7 +156,7 @@ const Copy = () => {
     color: hsl(0, 0%, 71%);
     background-color: hsl(0, 0%, 96%);
     border: none;
-    border-radius: .3rem;
+    border-radius: 0.3rem;
 
     &:hover {
       color: hsl(0, 0%, 29%);
@@ -485,18 +485,19 @@ export default ({ data }) => {
                   </div>
                 </div>
                 <div className="level-right">
-                  <div className="level-item">
-                    <EditOnGithub
-                      branch="spectacle"
-                      path={`src/content/uspecifiers/${analysis.relativePath}`}
-                    />
-                  </div>
+                  <div className="level-item"></div>
                 </div>
               </div>
               <div class="tags">
                 <Type value={type} />
                 <Meta value={meta} />
                 <EarliestVersion versions={occ.versions} />
+                <span class='tag is-large'>
+                  <EditOnGithub
+                    branch="spectacle"
+                    path={`src/content/uspecifiers/${analysis.relativePath}`}
+                  />
+                </span>
               </div>
               {analysis && (
                 <Analysis
