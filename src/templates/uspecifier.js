@@ -459,7 +459,8 @@ export default ({ data }) => {
     childMarkdownRemark: {
       analysis,
       frontmatter: { snippet }
-    }
+    },
+    relativePath
   } = local;
 
   console.log(analysis);
@@ -501,7 +502,7 @@ export default ({ data }) => {
                 <span class="tag is-large">
                   <EditOnGithub
                     branch="spectacle"
-                    path={`src/content/uspecifiers/${analysis.relativePath}`}
+                    path={`src/content/uspecifiers/${relativePath}`}
                   />
                 </span>
               </div>
