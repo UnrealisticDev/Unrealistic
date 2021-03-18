@@ -228,10 +228,13 @@ const Code = ({ keyFriendly, meta, values }) => {
     width: 100%;
     justify-content: left;
     margin-top: 1rem;
-    font-size: 18px;
-    ${"" /* font-weight: 600; */}
     font-style: italic;
-    margin-left: 2rem;
+
+    overflow: hidden;
+    &:hover {
+      overflow: auto;
+    }
+
     .code {
       display: flex;
     }
@@ -462,8 +465,6 @@ export default ({ data }) => {
     },
     relativePath
   } = local;
-
-  console.log(analysis);
 
   var neighbors = findCategoryNeighbors(specifier, category);
 
