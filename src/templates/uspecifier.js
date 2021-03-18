@@ -89,17 +89,13 @@ const Key = styled.h1`
 `;
 
 const Type = ({ value }) => {
-  return (
-    value && <span className="level-item tag is-dark is-medium">{value}</span>
-  );
+  return value && <span className="tag is-dark is-medium">{value}</span>;
 };
 
 const Meta = ({ value }) => {
   return (
     value && (
-      <span className="level-item tag is-success is-medium">
-        {value ? "Meta" : ""}
-      </span>
+      <span className="tag is-success is-medium">{value ? "Meta" : ""}</span>
     )
   );
 };
@@ -107,7 +103,7 @@ const Meta = ({ value }) => {
 const EarliestVersion = ({ versions }) => {
   versions.sort((a, b) => a.version > b.version);
   return (
-    <span className="level-item tag is-info is-medium">{`4.${versions[0].version}+`}</span>
+    <span className="tag is-info is-medium">{`4.${versions[0].version}+`}</span>
   );
 };
 
@@ -483,12 +479,10 @@ export default ({ data }) => {
                   </div>
                 </div>
               </div>
-              <div class="level">
-                <div class="level-left">
-                  <Type value={type} />
-                  <Meta value={meta} />
-                  <EarliestVersion versions={occ.versions} />
-                </div>
+              <div class="tags">
+                <Type value={type} />
+                <Meta value={meta} />
+                <EarliestVersion versions={occ.versions} />
               </div>
               {analysis && (
                 <Analysis
