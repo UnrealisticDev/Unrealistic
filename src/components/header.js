@@ -88,7 +88,7 @@ export default () => {
       </Helmet>
       <div className="container">
         <div className="navbar-brand">
-          <Initials className="navbar-item" href="/">
+          <Initials className="navbar-item" to="/">
             UN
           </Initials>
 
@@ -109,39 +109,39 @@ export default () => {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <NavLink className="navbar-item" href="/">
+            <NavLink className="navbar-item" to="/">
               Home
             </NavLink>
-            <NavLink className="navbar-item" href="/posts">
+            <NavLink className="navbar-item" to="/posts">
               Library
             </NavLink>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
               <NavDropdown className="navbar-link">Products</NavDropdown>
               <div className="navbar-dropdown">
                 <ProductLink
-                  href={router.getProductSlug("remapt")}
+                  to={router.getProductSlug("remapt")}
                   className="navbar-item"
                 >
                   Remapt
                 </ProductLink>
                 <ProductLink
-                  href={router.getProductSlug("prefixed")}
+                  to={router.getProductSlug("prefixed")}
                   className="navbar-item"
                 >
                   Prefixed
                 </ProductLink>
                 <ProductLink
-                  href={router.getProductSlug("cursory")}
+                  to={router.getProductSlug("cursory")}
                   className="navbar-item"
                 >
                   Cursory
                 </ProductLink>
               </div>
             </div>
-            <NavLink className="navbar-item" href="/glossary">
+            <NavLink className="navbar-item" to="/glossary">
               Glossary
             </NavLink>
-            <NavLink className="navbar-item" href="/about">
+            <NavLink className="navbar-item" to="/about">
               About
             </NavLink>
           </div>

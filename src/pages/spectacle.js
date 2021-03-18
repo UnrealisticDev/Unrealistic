@@ -110,7 +110,7 @@ export default () => {
         />
         <section className="hero is-fullheight-with-navbar">
           <div className="hero-body">
-            <div class="container">
+            <div className="container">
               <Title className="title is-1 has-text-centered">Spectacle</Title>
               <Searchbar />
             </div>

@@ -67,7 +67,7 @@ export default ({ type, category }) => {
           {expanded &&
           category.nodes.map(({keyFriendly, slug}) => {
             return (
-              <Term>
+              <Term key={keyFriendly}>
                 <Link to={`/glossary/${slug}`}>{keyFriendly}</Link>
               </Term>
             );

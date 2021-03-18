@@ -46,28 +46,29 @@ import {
 //   }
 // }).Compiler;
 
+const GlossaryLink = styled(Link)`
+display: flex;
+color: hsl(0, 0%, 71%);
+
+& #icon {
+  margin-right: 0.5rem;
+  transform: scale(-1, 1);
+}
+
+&:hover #icon {
+  color: hsl(204, 86%, 53%);
+}
+`;
+
+
 const BackToGlossary = () => {
-  const StyledLink = styled(Link)`
-    display: flex;
-    color: hsl(0, 0%, 71%);
-
-    & #icon {
-      margin-right: 0.5rem;
-      transform: scale(-1, 1);
-    }
-
-    &:hover #icon {
-      color: hsl(204, 86%, 53%);
-    }
-  `;
-
   return (
-    <StyledLink to="/glossary">
-      <div class="level">
+    <GlossaryLink to="/glossary">
+      <div className="level">
         <FontAwesomeIcon id="icon" icon={faLevelUpAlt} />
         <p>Glossary</p>
       </div>
-    </StyledLink>
+    </GlossaryLink>
   );
 };
 
@@ -146,28 +147,28 @@ const Analysis = styled.div`
   }
 `;
 
+const CopyRoot = styled.button`
+display: inline-block;
+margin-left: 1rem;
+height: 2.5rem;
+width: 2.5rem;
+
+color: hsl(0, 0%, 71%);
+background-color: hsl(0, 0%, 96%);
+border: none;
+border-radius: 0.3rem;
+
+&:hover {
+  color: hsl(0, 0%, 29%);
+  background-color: hsl(0, 0%, 92%);
+}
+
+cursor: pointer;
+`;
+
 const Copy = () => {
-  const Root = styled.button`
-    display: inline-block;
-    margin-left: 1rem;
-    height: 2.5rem;
-    width: 2.5rem;
-
-    color: hsl(0, 0%, 71%);
-    background-color: hsl(0, 0%, 96%);
-    border: none;
-    border-radius: 0.3rem;
-
-    &:hover {
-      color: hsl(0, 0%, 29%);
-      background-color: hsl(0, 0%, 92%);
-    }
-
-    cursor: pointer;
-  `;
-
   return (
-    <Root
+    <CopyRoot
       onClick={() => {
         navigator.clipboard.writeText(
           document.getElementById("code").innerText
@@ -175,9 +176,68 @@ const Copy = () => {
       }}
     >
       <FontAwesomeIcon icon={faClipboard} size="lg" />
-    </Root>
+    </CopyRoot>
   );
 };
+
+const CodeWrapper = styled.div`
+position: relative;
+
+display: flex;
+width: 100%;
+justify-content: left;
+margin-top: 1rem;
+font-style: italic;
+
+overflow: hidden;
+&:hover {
+  overflow: auto;
+}
+
+.code {
+  display: flex;
+}
+
+& .key {
+}
+
+& .meta {
+}
+
+& .equal {
+  margin: 0 0.5rem;
+  color: hsl(204, 86%, 53%);
+}
+
+& .paren {
+  color: hsl(171, 100%, 41%);
+}
+
+& .paren.left {
+  margin-right: 0.5rem;
+}
+
+& .paren.right {
+  margin-left: 0.5rem;
+}
+
+& .value {
+  color: #257bc2;
+}
+
+& .comma {
+  margin-right: 0.5rem;
+  color: grey;
+}
+
+& .copy {
+  visibility: hidden;
+}
+
+&:hover .copy {
+  visibility: visible;
+}
+`;
 
 const Code = ({ keyFriendly, meta, values }) => {
   var code = (
@@ -200,10 +260,10 @@ const Code = ({ keyFriendly, meta, values }) => {
           )}
           {values.map((value, index) => {
             return (
-              <>
+              <React.Fragment key={value}>
                 {index > 0 ? <div className="comma">,</div> : null}
                 <div className="value">{value}</div>
-              </>
+              </React.Fragment>
             );
           })}
           {meta ? (
@@ -221,69 +281,10 @@ const Code = ({ keyFriendly, meta, values }) => {
     </>
   );
 
-  const Wrapper = styled.div`
-    position: relative;
-
-    display: flex;
-    width: 100%;
-    justify-content: left;
-    margin-top: 1rem;
-    font-style: italic;
-
-    overflow: hidden;
-    &:hover {
-      overflow: auto;
-    }
-
-    .code {
-      display: flex;
-    }
-
-    & .key {
-    }
-
-    & .meta {
-    }
-
-    & .equal {
-      margin: 0 0.5rem;
-      color: hsl(204, 86%, 53%);
-    }
-
-    & .paren {
-      color: hsl(171, 100%, 41%);
-    }
-
-    & .paren.left {
-      margin-right: 0.5rem;
-    }
-
-    & .paren.right {
-      margin-left: 0.5rem;
-    }
-
-    & .value {
-      color: #257bc2;
-    }
-
-    & .comma {
-      margin-right: 0.5rem;
-      color: grey;
-    }
-
-    & .copy {
-      visibility: hidden;
-    }
-
-    &:hover .copy {
-      visibility: visible;
-    }
-  `;
-
   return (
-    <Wrapper class="code" id="code">
+    <CodeWrapper className="code" id="code">
       {code}
-    </Wrapper>
+    </CodeWrapper>
   );
 };
 
@@ -331,30 +332,30 @@ function findCategoryNeighbors(specifier, category) {
   return neighbors;
 }
 
+const Header = styled.h3`
+font-family: "Bungee", cursive;
+color: #363636;
+display: inline-block;
+margin: 0;
+
+font-size: calc(10px + 1.4vw);
+border-bottom: 2px solid hsl(204, 86%, 53%);
+`;
+
+const DropdownMenu = styled.div`
+min-width: 2rem !important;
+height: 30vh;
+
+overflow-x: visible;
+overflow-y: scroll;
+scrollbar-width: none;
+
+& .dropdown-item:hover {
+  border-left: solid 2px hsl(204, 86%, 53%);
+}
+`;
+
 const Examples = ({ occ }) => {
-  const Header = styled.h3`
-    font-family: "Bungee", cursive;
-    color: #363636;
-    display: inline-block;
-    margin: 0;
-
-    font-size: calc(10px + 1.4vw);
-    border-bottom: 2px solid hsl(204, 86%, 53%);
-  `;
-
-  const DropdownMenu = styled.div`
-    min-width: 2rem !important;
-    height: 30vh;
-
-    overflow-x: visible;
-    overflow-y: scroll;
-    scrollbar-width: none;
-
-    & .dropdown-item:hover {
-      border-left: solid 2px hsl(204, 86%, 53%);
-    }
-  `;
-
   var { versions } = occ;
   versions.sort((a, b) => {
     return a.version < b.version;
@@ -376,14 +377,14 @@ const Examples = ({ occ }) => {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <div class="level is-mobile">
-        <div class="level-left">
-          <div class="level-item">
+      <div className="level is-mobile">
+        <div className="level-left">
+          <div className="level-item">
             <Header>Found In</Header>
           </div>
         </div>
 
-        <div class="level-right">
+        <div className="level-right">
           <div className="level-item">
             <div
               className={"dropdown " + (open ? "is-active" : "")}
@@ -398,7 +399,7 @@ const Examples = ({ occ }) => {
                   aria-controls="dropdown-menu"
                   onMouseEnter={() => setOpen(true)}
                 >
-                  <div class="has-text-info">{prettyVersion(version)}</div>
+                  <div className="has-text-info">{prettyVersion(version)}</div>
                   <FontAwesomeIcon
                     icon={faChevronDown}
                     style={{ marginLeft: "2rem" }}
@@ -419,6 +420,7 @@ const Examples = ({ occ }) => {
                   {occ.versions.map(({ version }) => {
                     return (
                       <a
+                        key={version}
                         href={`#${version}`}
                         value={version}
                         onClick={() => {
@@ -440,7 +442,7 @@ const Examples = ({ occ }) => {
       <ul className="buttons" style={{ width: "30vw" }}>
         {data.items.map(({ file }) => {
           return (
-            <li>
+            <li key={file}>
               <Example
                 file={prettyFile(file)}
                 url={`https://github.com/EpicGames/UnrealEngine/tree/${prettyVersion(
@@ -480,13 +482,13 @@ export default ({ data }) => {
       <section className="section">
         <div className="container">
           <div className="columns is-variable is-centered is-5">
-            <div class="column is-1">
+            <div className="column is-1">
               <BackToGlossary />
             </div>
             <div className="column is-6">
-              <div class="level is-mobile subtitle">
-                <div class="level-left">
-                  <div class="level-item">
+              <div className="level is-mobile subtitle">
+                <div className="level-left">
+                  <div className="level-item">
                     <Key className="title is-size-1 is-size-3-mobile">
                       {keyFriendly}
                     </Key>
@@ -496,11 +498,11 @@ export default ({ data }) => {
                   <div className="level-item"></div>
                 </div>
               </div>
-              <div class="tags">
+              <div className="tags">
                 <Type value={type} />
                 <Meta value={meta} />
                 <EarliestVersion versions={occ.versions} />
-                <span class="tag is-large">
+                <span className="tag is-large">
                   <EditOnGithub
                     branch="spectacle"
                     path={`src/content/uspecifiers/${relativePath}`}
