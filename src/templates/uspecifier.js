@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import EditOnGithub from "../components/editongithub";
 import Sidebar from "../components/sidebar";
 import CategoryNav from "../components/glossary/categorynav";
 import CategoryNavInline from "../components/glossary/categorynavinline";
@@ -473,6 +474,14 @@ export default ({ data }) => {
                     </Key>
                   </div>
                 </div>
+                <div className="level-right">
+                  <div className="level-item">
+                    <EditOnGithub
+                      branch="spectacle"
+                      path={`src/content/uspecifiers/${analysis.relativePath}`}
+                    />
+                  </div>
+                </div>
               </div>
               <div class="level">
                 <div class="level-left">
@@ -555,6 +564,7 @@ export const query = graphql`
       childMarkdownRemark {
         html
       }
+      relativePath
     }
     category: allContentfulUnrealSpecifier(
       filter: { type: { eq: $type } }
