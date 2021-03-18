@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Searchbar from "../components/searchbar";
+
+import { connectHits, InstantSearch } from "react-instantsearch-dom";
+import searchClient from "../components/search/client";
+import SearchBox from "../components/search/searchbox";
 
 const Title = styled.h1`
   @font-face {
@@ -25,6 +29,76 @@ const Title = styled.h1`
   margin-bottom: 5vh !important;
 `;
 
+const SSearchBox = styled(SearchBox)`
+  width: 50vw;
+  margin-bottom: 1rem;
+`;
+
+const HitType = styled.h1``;
+
+const Hit = ({ hit }) => {
+  return (
+    <Link id={hit.id} to={`/glossary/${hit.slug}`} className="button">
+      {hit.keyFriendly}
+    </Link>
+  );
+};
+
+const types = [
+  "Class",
+  "Struct",
+  "Function",
+  "Property",
+  "Interface",
+  "Enum",
+  "EnumMeta"
+];
+
+const SearchResults = ({ hits }) => {
+  return (
+    <div className="columns is-multiline">
+      {types.map(type => {
+        var hitsOfType = hits.filter(hit => {
+          return hit.type === type;
+        });
+        return (
+          hitsOfType.length > 0 && (
+            <div className="column is-3">
+              <HitType>{type}</HitType>
+              <ul>
+                {hitsOfType.map(hit => {
+                  return <Hit hit={hit} key={hit.id} />;
+                })}
+              </ul>
+            </div>
+          )
+        );
+      })}
+    </div>
+  );
+};
+
+const CSearchResults = connectHits(SearchResults);
+
+const Searchbar = () => {
+  const [, setQuery] = useState();
+  const [hasFocus, setFocus] = useState(false);
+
+  return (
+    <InstantSearch
+      searchClient={searchClient()}
+      indexName="UnrealSpecifiers"
+      onSearchStateChange={({ query }) => setQuery(query)}
+    >
+      <SSearchBox
+        onFocus={() => setFocus(true)}
+        placeholder={"BlueprintReadWrite"}
+      />
+      <CSearchResults />
+    </InstantSearch>
+  );
+};
+
 export default () => {
   return (
     <>
@@ -32,20 +106,13 @@ export default () => {
       <Layout>
         <SEO
           title="Spectacle"
-          description="Search for class, struct, property and other specifiers for Unreal Engine 4."
+          description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
         />
         <section className="hero is-fullheight-with-navbar">
-          <div className="hero-body" style={{ position: "relative" }}>
-            <div
-              class="columns is-centered"
-              style={{ width: "100%", top: "30%", position: "absolute" }}
-            >
-              <div class="column is-half">
-                <Title className="title is-1 has-text-centered">
-                  Spectacle
-                </Title>
-                <Searchbar />
-              </div>
+          <div className="hero-body">
+            <div class="container">
+              <Title className="title is-1 has-text-centered">Spectacle</Title>
+              <Searchbar />
             </div>
           </div>
         </section>
