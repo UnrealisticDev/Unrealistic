@@ -60,12 +60,12 @@ const GlossaryLink = styled(Link)`
   }
 `;
 
-const BackToGlossary = () => {
+const BackToSearch = () => {
   return (
-    <GlossaryLink to="/glossary">
+    <GlossaryLink to="/spectacle">
       <div className="level">
         <FontAwesomeIcon id="icon" icon={faLevelUpAlt} />
-        <p>Glossary</p>
+        <p>Search</p>
       </div>
     </GlossaryLink>
   );
@@ -482,7 +482,7 @@ export default ({ data }) => {
         <div className="container">
           <div className="columns is-variable is-centered is-5">
             <div className="column is-1">
-              <BackToGlossary />
+              <BackToSearch />
             </div>
             <div className="column is-6">
               <div className="level is-mobile subtitle">
