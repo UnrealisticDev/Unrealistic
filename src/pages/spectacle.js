@@ -3,7 +3,9 @@ import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
-import HitCount, { countHit } from "../components/spectacle/hitcount";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -11,6 +13,7 @@ import SEO from "../components/seo";
 import { connectHits, InstantSearch } from "react-instantsearch-dom";
 import searchClient from "../components/search/client";
 import SearchBox from "../components/search/searchbox";
+import HitCount, { countHit } from "../components/spectacle/hitcount";
 
 const Title = styled.h1`
   @font-face {
@@ -79,25 +82,24 @@ const types = [
   "EnumMeta"
 ];
 
+const TypeWrapper = styled.ul`
+  border-style: solid;
+  border-width: 0px 2px 0px 2px;
+  border-radius: 0.3rem;
+  border-color: rgba(32, 156, 238, 0);
+
+  &:hover {
+    border-color: rgba(32, 156, 238, 100);
+  }
+
+  @media screen and (max-width: 768px) {
+    border-style: none;
+  }
+`;
+
 const RESULT_CHUNK_SIZE = 4;
 
 const SearchResults = ({ hits }) => {
-
-  const TypeWrapper = styled.ul`
-    border-style: solid;
-    border-width: 0px 2px 0px 2px;
-    border-radius: .3rem;
-    border-color: rgba(32, 156, 238, 0);
-
-    &:hover {
-      border-color: rgba(32, 156, 238, 100);
-    }
-
-    @media screen and (max-width: 768px) {
-      border-style: none;
-    }
-  `
-
   return (
     <div className="columns is-multiline is-centered">
       {types.map(type => {
@@ -120,7 +122,7 @@ const SearchResults = ({ hits }) => {
                 {chunks.map(chunk => (
                   <div className="column">
                     {chunk.map(hit => (
-                      <Hit hit={hit} key={hit.id}/>
+                      <Hit hit={hit} key={hit.id} />
                     ))}
                   </div>
                 ))}
@@ -135,25 +137,28 @@ const SearchResults = ({ hits }) => {
 
 const CSearchResults = connectHits(SearchResults);
 
-const Searchbar = () => {
-  const [, setQuery] = useState();
-  const [, setFocus] = useState(false);
+const MainSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 93vmin;
+`;
 
-  return (
-    <InstantSearch
-      searchClient={searchClient()}
-      indexName="UnrealSpecifiers"
-      onSearchStateChange={({ query }) => setQuery(query)}
-    >
-      <SSearchBox
-        onFocus={() => setFocus(true)}
-        placeholder={"BlueprintReadWrite"}
-        className="has-text-centered"
-      />
-      <CSearchResults />
-    </InstantSearch>
-  );
-};
+const MainContainer = styled.div`
+  flex-grow: 1;
+  width: 100%;
+`;
+
+const PoweredByContainer = styled.div`
+  flex-grow: 0;
+  width: 100%;
+`;
+
+const PoweredBy = styled.a`
+  color: hsl(0, 0%, 71%);
+  &:hover {
+    color: hsl(204, 86%, 53%);
+  }
+`;
 
 export default () => {
   const [, setFocus] = useState(false);
@@ -169,8 +174,8 @@ export default () => {
           title="Spectacle"
           description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
         />
-        <section className="section" style={{ position: "relative" }}>
-          <div className="container">
+        <MainSection className="section">
+          <MainContainer className="container">
             <div class="level">
               <div class="level-left">
                 <HitCount className="level-item" />
@@ -186,12 +191,10 @@ export default () => {
                   >
                     Star
                   </GitHubButton>
-
                   {/* <iframe src="https://ghbtns.com/github-btn.html?user=UnrealisticDev&repo=Renom&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe> */}
                 </div>
               </div>
             </div>
-
             <InstantSearch
               searchClient={searchClient()}
               indexName="UnrealSpecifiers"
@@ -213,11 +216,32 @@ export default () => {
                   />
                 </div>
               </div>
-
               {query && query.length > 0 && <CSearchResults />}
             </InstantSearch>
-          </div>
-        </section>
+          </MainContainer>
+          <PoweredByContainer className="container">
+            <div class="level">
+              <div class="level-left" />
+              <div class="level-right">
+                <div class="level-item">
+                  <PoweredBy
+                    className="level is-mobile"
+                    href="https://www.algolia.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div class="level-item">
+                      <p>Powered by</p>
+                    </div>
+                    <div class="level-item">
+                      <FontAwesomeIcon icon={faAlgolia} size="lg" />
+                    </div>
+                  </PoweredBy>
+                </div>
+              </div>
+            </div>
+          </PoweredByContainer>
+        </MainSection>
       </Layout>
     </>
   );
