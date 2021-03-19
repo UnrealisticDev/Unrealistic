@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
+import HitCount, {countHit} from '../components/spectacle/hitcount';
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -10,7 +11,6 @@ import SEO from "../components/seo";
 import { connectHits, InstantSearch } from "react-instantsearch-dom";
 import searchClient from "../components/search/client";
 import SearchBox from "../components/search/searchbox";
-import { query } from "../templates/post";
 
 const Title = styled.h1`
   @font-face {
@@ -68,6 +68,7 @@ const Hit = ({ hit }) => {
       to={`/glossary/${hit.slug}`}
       className=""
       style={{ display: "block" }}
+      onClick={() => countHit()}
     >
       <HitKey>{hit.keyFriendly}</HitKey>
     </Link>
@@ -148,7 +149,7 @@ export default () => {
           <div className="container">
             <div class="level">
               <div class="level-left">
-                <div class="level-item">786 Pawns Served</div>
+                <HitCount/>
               </div>
               <div class="level-right">
                 <div class="level-item">
@@ -160,8 +161,8 @@ export default () => {
                     aria-label="Star UnrealisticDev/Spectacle on GitHub"
                   >
                     Star
-                  </GitHubButton> 
-                   
+                  </GitHubButton>
+
                   {/* <iframe src="https://ghbtns.com/github-btn.html?user=UnrealisticDev&repo=Renom&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe> */}
                 </div>
               </div>
