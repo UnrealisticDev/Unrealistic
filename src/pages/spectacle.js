@@ -149,7 +149,7 @@ export default () => {
           <div className="container">
             <div class="level">
               <div class="level-left">
-                <HitCount/>
+                <HitCount className='level-item'/>
               </div>
               <div class="level-right">
                 <div class="level-item" style={{height: '2rem'}}>
