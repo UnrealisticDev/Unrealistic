@@ -58,6 +58,10 @@ const GlossaryLink = styled(Link)`
   &:hover #icon {
     color: hsl(204, 86%, 53%);
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const BackToSearch = () => {
