@@ -105,7 +105,7 @@ const Type = ({ value }) => {
 const Meta = ({ value }) => {
   return (
     value && (
-      <span className="tag is-success is-medium">{value ? "Meta" : ""}</span>
+      <span className="tag has-background-grey-lighter is-medium">{value ? "Meta" : ""}</span>
     )
   );
 };
