@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Aside = styled.aside`
 
   @media screen and (min-width: 769px) {
-    position: sticky;
+    position: ${props => props.sticky ? "sticky" : "auto"};
     top: 10vh;
 
     height: 80vh;
@@ -16,4 +16,4 @@ const Aside = styled.aside`
   }
 `;
 
-export default ({ children }) => <Aside className="menu">{children}</Aside>;
+export default ({ children, sticky }) => <Aside className="menu" sticky={sticky}>{children}</Aside>;
