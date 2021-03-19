@@ -15,8 +15,12 @@ const SInput = styled.input`
 `;
 
 export default connectSearchBox(
-  ({ currentRefinement, refine, onFocus, placeholder, style }) => (
-    <form onSubmit={event => event.preventDefault()} style={style}>
+  ({ currentRefinement, refine, onFocus, placeholder, className, style }) => (
+    <form
+      onSubmit={event => event.preventDefault()}
+      className={className}
+      style={style}
+    >
       <div className="control has-icons-right is-expanded">
         <SInput
           type="text"

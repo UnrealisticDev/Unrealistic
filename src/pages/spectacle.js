@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
+import GitHubButton from "react-github-btn";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -9,6 +10,7 @@ import SEO from "../components/seo";
 import { connectHits, InstantSearch } from "react-instantsearch-dom";
 import searchClient from "../components/search/client";
 import SearchBox from "../components/search/searchbox";
+import { query } from "../templates/post";
 
 const Title = styled.h1`
   @font-face {
@@ -30,16 +32,44 @@ const Title = styled.h1`
 `;
 
 const SSearchBox = styled(SearchBox)`
-  width: 50vw;
   margin-bottom: 1rem;
 `;
 
-const HitType = styled.h1``;
+const HitType = styled.h2`
+  ${"" /* font-family: "Lato", sans-serif; */}
+  font-family: 'Bungee', cursive;
+  color: #363636;
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  ${"" /* font-size: calc(10px + 1.8vw); */}
+  border-bottom: 2px solid hsl(204, 86%, 53%);
+`;
+
+const HitKey = styled.h3`
+  margin-bottom: 1rem;
+  ${"" /* font-family: "basic-sans", sans-serif; */}
+  color: #363636;
+
+  margin-bottom: 0.5rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+
+  &:hover {
+    color: hsl(204, 86%, 53%);
+  }
+`;
 
 const Hit = ({ hit }) => {
   return (
-    <Link id={hit.id} to={`/glossary/${hit.slug}`} className="button">
-      {hit.keyFriendly}
+    <Link
+      id={hit.id}
+      to={`/glossary/${hit.slug}`}
+      className=""
+      style={{ display: "block" }}
+    >
+      <HitKey>{hit.keyFriendly}</HitKey>
     </Link>
   );
 };
@@ -56,14 +86,14 @@ const types = [
 
 const SearchResults = ({ hits }) => {
   return (
-    <div className="columns is-multiline">
+    <div className="columns is-multiline is-centered">
       {types.map(type => {
         var hitsOfType = hits.filter(hit => {
           return hit.type === type;
         });
         return (
           hitsOfType.length > 0 && (
-            <div className="column is-3">
+            <div className="column is-one-quarter has-text-centered">
               <HitType>{type}</HitType>
               <ul>
                 {hitsOfType.map(hit => {
@@ -93,6 +123,7 @@ const Searchbar = () => {
       <SSearchBox
         onFocus={() => setFocus(true)}
         placeholder={"BlueprintReadWrite"}
+        className="has-text-centered"
       />
       <CSearchResults />
     </InstantSearch>
@@ -100,20 +131,66 @@ const Searchbar = () => {
 };
 
 export default () => {
+  const [, setFocus] = useState(false);
+  const [query, setQuery] = useState();
+
   return (
     <>
-      <Helmet></Helmet>
+      <Helmet>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+      </Helmet>
       <Layout>
         <SEO
           title="Spectacle"
           description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
         />
-        <section className="hero is-fullheight-with-navbar">
-          <div className="hero-body">
-            <div className="container">
-              <Title className="title is-1 has-text-centered">Spectacle</Title>
-              <Searchbar />
+        <section className="section" style={{ position: "relative" }}>
+          <div className="container">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">786 Pawns Served</div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <GitHubButton
+                    href="https://github.com/UnrealisticDev/Renom"
+                    data-icon="octicon-star"
+                    data-show-count="true"
+                    data-size="large"
+                    aria-label="Star UnrealisticDev/Spectacle on GitHub"
+                  >
+                    Star
+                  </GitHubButton> 
+                   
+                  {/* <iframe src="https://ghbtns.com/github-btn.html?user=UnrealisticDev&repo=Renom&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe> */}
+                </div>
+              </div>
             </div>
+
+            <InstantSearch
+              searchClient={searchClient()}
+              indexName="UnrealSpecifiers"
+              onSearchStateChange={({ query }) => setQuery(query)}
+            >
+              <div class="columns is-centered">
+                <div class="column is-half">
+                  <Title className="title is-1 has-text-centered">
+                    Spectacle
+                  </Title>
+                  {/* <Searchbar /> */}
+                  <p className="subtitle has-text-centered">
+                    The first <em>global</em> search for Unreal Engine 4
+                    specifiers.
+                  </p>
+                  <SSearchBox
+                    placeholder="BlueprintReadWrite"
+                    onFocus={() => setFocus(true)}
+                  />
+                </div>
+              </div>
+
+              {query && query.length > 0 && <CSearchResults />}
+            </InstantSearch>
           </div>
         </section>
       </Layout>
