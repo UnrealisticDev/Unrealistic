@@ -16,7 +16,7 @@ function convertCountToThousands(rawCount) {
     return `${Math.floor(rawCount / 1000)}K`;
 }
 
-export default () => {
+export default ({className}) => {
   const [hitCount, setHitCount] = useState(0);
 
   countapi
@@ -24,6 +24,6 @@ export default () => {
     .then(({ value }) => setHitCount(value));
 
   return (
-    hitCount > VISIBILITY_THRESHOLD && <div>Over {convertCountToThousands(hitCount)} pawns served</div>
+    hitCount > VISIBILITY_THRESHOLD && <div className={className}>Over {convertCountToThousands(hitCount)} pawns served</div>
   );
 };
