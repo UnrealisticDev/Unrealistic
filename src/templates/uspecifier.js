@@ -89,7 +89,7 @@ const Key = styled.h1`
 `;
 
 const Type = ({ value }) => {
-  return value && <span className="tag is-dark is-medium">{value}</span>;
+  return value && <span className="tag has-background-grey has-text-light is-medium">{value}</span>;
 };
 
 const Meta = ({ value }) => {
