@@ -47,15 +47,9 @@ const HitType = styled.h2`
 `;
 
 const HitKey = styled.h3`
-  margin-bottom: 1rem;
-  ${"" /* font-family: "basic-sans", sans-serif; */}
-  color: #363636;
-
   margin-bottom: 0.5rem;
-  @media screen and (max-width: 768px) {
-    font-size: 1.25rem;
-  }
 
+  color: #363636;
   &:hover {
     color: hsl(204, 86%, 53%);
   }
