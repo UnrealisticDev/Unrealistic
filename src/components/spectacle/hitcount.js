@@ -10,7 +10,7 @@ export function countHit() {
   countapi.hit(counterID.namespace, counterID.key);
 }
 
-const VISIBILITY_THRESHOLD = 0;
+const VISIBILITY_THRESHOLD = 1000;
 
 function convertCountToThousands(rawCount) {
     return `${Math.floor(rawCount / 1000)}K`;
