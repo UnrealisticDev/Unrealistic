@@ -152,7 +152,7 @@ export default () => {
                 <HitCount/>
               </div>
               <div class="level-right">
-                <div class="level-item">
+                <div class="level-item" style={{height: '2rem'}}>
                   <GitHubButton
                     href="https://github.com/UnrealisticDev/Renom"
                     data-icon="octicon-star"
