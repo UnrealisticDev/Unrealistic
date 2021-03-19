@@ -6,10 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
+  flex-grow: 1;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
   margin-bottom: 1rem;
 `;
 
 const Toggle = styled.a`
+  flex: 0 1 auto;
+
   margin-bottom: 1rem;
 
   color: hsl(0, 0%, 71%);
@@ -18,10 +26,29 @@ const Toggle = styled.a`
   }
 `;
 
-const List = styled.ul``;
+const List = styled.ul`
+  flex: 1 0 auto;
+  height: 100%;
+
+  direction: rtl;
+
+  overflow-y: scroll;
+  scrollbar-width: thin; // Firefox
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 71%);
+  }
+
+  padding-left: .5em;
+`;
 
 const Term = styled.li`
   font-size: calc(10px + 0.2rem);
+
+  direction: ltr;
+  text-align: left;
 
   margin-top: 2px;
   margin-bottom: 2px;
@@ -65,13 +92,13 @@ export default ({ type, category }) => {
         </Toggle>
         <List>
           {expanded &&
-          category.nodes.map(({keyFriendly, slug}) => {
-            return (
-              <Term key={keyFriendly}>
-                <Link to={`/glossary/${slug}`}>{keyFriendly}</Link>
-              </Term>
-            );
-          })}
+            category.nodes.map(({ keyFriendly, slug }) => {
+              return (
+                <Term key={keyFriendly}>
+                  <Link to={`/glossary/${slug}`}>{keyFriendly}</Link>
+                </Term>
+              );
+            })}
         </List>
       </Wrapper>
     )
