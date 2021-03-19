@@ -47,6 +47,9 @@ import {
 // }).Compiler;
 
 const GlossaryLink = styled(Link)`
+
+  margin-top: 1rem;
+
   display: flex;
   color: hsl(0, 0%, 71%);
 
