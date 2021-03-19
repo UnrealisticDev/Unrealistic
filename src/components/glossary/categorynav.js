@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Toggle = styled.a`
   margin-bottom: 1rem;
 
-  color: #363636;
+  color: hsl(0, 0%, 71%);
   &:hover {
     color: #209cee;
   }
