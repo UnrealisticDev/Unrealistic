@@ -459,13 +459,9 @@ const Examples = ({ occ }) => {
 export default ({ data }) => {
   const { specifier, local, category } = data;
   const { type, keyFriendly, meta, values, occ } = specifier;
-  const {
-    childMarkdownRemark: {
-      analysis,
-      frontmatter: { snippet }
-    },
-    relativePath
-  } = local;
+  const { childMarkdownRemark, relativePath } = local || {};
+  const { analysis, frontmatter } = childMarkdownRemark || {};
+  const { snippet } = frontmatter || {};
 
   var neighbors = findCategoryNeighbors(specifier, category);
 
@@ -508,13 +504,13 @@ export default ({ data }) => {
                   />
                 </span>
               </div>
-              {analysis && (
+              {analysis ? (
                 <Analysis
                   dangerouslySetInnerHTML={{
                     __html: analysis
                   }}
                 />
-              )}
+              ) : <div>Coming soon...</div>}
               {keyFriendly && (
                 <>
                   <SectionHeader>Form</SectionHeader>
