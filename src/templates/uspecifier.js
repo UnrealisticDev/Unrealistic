@@ -103,7 +103,7 @@ const Meta = ({ value }) => {
 const EarliestVersion = ({ versions }) => {
   versions.sort((a, b) => a.version > b.version);
   return (
-    <span className="tag is-info is-medium">{`4.${versions[0].version}+`}</span>
+    <span className="tag is-info is-medium">{`Since 4.${versions[0].version}`}</span>
   );
 };
 
