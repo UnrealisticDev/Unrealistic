@@ -154,7 +154,7 @@ export default () => {
               <div class="level-right">
                 <div class="level-item" style={{height: '2rem'}}>
                   <GitHubButton
-                    href="https://github.com/UnrealisticDev/Renom"
+                    href="https://github.com/UnrealisticDev/Spectacle"
                     data-icon="octicon-star"
                     data-show-count="true"
                     data-size="large"
