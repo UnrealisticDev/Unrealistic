@@ -497,12 +497,14 @@ export default ({ data }) => {
                 <Type value={type} />
                 <Meta value={meta} />
                 <EarliestVersion versions={occ.versions} />
-                <span className="tag is-large">
-                  <EditOnGithub
-                    branch="spectacle"
-                    path={`src/content/uspecifiers/${relativePath}`}
-                  />
-                </span>
+                {relativePath && (
+                  <span className="tag is-large">
+                    <EditOnGithub
+                      branch="spectacle"
+                      path={`src/content/uspecifiers/${relativePath}`}
+                    />
+                  </span>
+                )}
               </div>
               {analysis ? (
                 <Analysis
@@ -510,7 +512,9 @@ export default ({ data }) => {
                     __html: analysis
                   }}
                 />
-              ) : <div>Coming soon...</div>}
+              ) : (
+                <div>Coming soon...</div>
+              )}
               {keyFriendly && (
                 <>
                   <SectionHeader>Form</SectionHeader>
