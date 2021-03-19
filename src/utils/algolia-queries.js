@@ -42,6 +42,7 @@ function specifierToAlgoliaRecord({ node: { id, keyFriendly, slug, type, ...rest
   return {
     objectID: id,
     keyFriendly: keyFriendly,
+    keyBreakout: keyFriendly.split(/(?=[A-Z])/),
     type: type,
     slug: slug,
     ...rest
