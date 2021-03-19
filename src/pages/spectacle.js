@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
-import HitCount, {countHit} from '../components/spectacle/hitcount';
+import HitCount, { countHit } from "../components/spectacle/hitcount";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -79,22 +79,52 @@ const types = [
   "EnumMeta"
 ];
 
+const RESULT_CHUNK_SIZE = 4;
+
 const SearchResults = ({ hits }) => {
+
+  const TypeWrapper = styled.ul`
+    border-style: solid;
+    border-width: 0px 2px 0px 2px;
+    border-radius: .3rem;
+    border-color: rgba(32, 156, 238, 0);
+
+    &:hover {
+      border-color: rgba(32, 156, 238, 100);
+    }
+
+    @media screen and (max-width: 768px) {
+      border-style: none;
+    }
+  `
+
   return (
     <div className="columns is-multiline is-centered">
       {types.map(type => {
         var hitsOfType = hits.filter(hit => {
           return hit.type === type;
         });
+
+        const chunks = [];
+        for (var i = 0; i < hitsOfType.length; i += RESULT_CHUNK_SIZE) {
+          chunks.push(hitsOfType.slice(i, i + RESULT_CHUNK_SIZE));
+        }
+
+        console.log(chunks);
+
         return (
-          hitsOfType.length > 0 && (
-            <div className="column is-one-quarter has-text-centered">
+          chunks.length > 0 && (
+            <div className={`column is-${chunks.length * 3}`}>
               <HitType>{type}</HitType>
-              <ul>
-                {hitsOfType.map(hit => {
-                  return <Hit hit={hit} key={hit.id} />;
-                })}
-              </ul>
+              <TypeWrapper className="columns">
+                {chunks.map(chunk => (
+                  <div className="column">
+                    {chunk.map(hit => (
+                      <Hit hit={hit} key={hit.id}/>
+                    ))}
+                  </div>
+                ))}
+              </TypeWrapper>
             </div>
           )
         );
@@ -143,10 +173,10 @@ export default () => {
           <div className="container">
             <div class="level">
               <div class="level-left">
-                <HitCount className='level-item'/>
+                <HitCount className="level-item" />
               </div>
               <div class="level-right">
-                <div class="level-item" style={{height: '2rem'}}>
+                <div class="level-item" style={{ height: "2rem" }}>
                   <GitHubButton
                     href="https://github.com/UnrealisticDev/Spectacle"
                     data-icon="octicon-star"
