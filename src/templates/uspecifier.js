@@ -485,7 +485,7 @@ export default ({ data }) => {
       <section className="section">
         <div className="container">
           <div className="columns is-variable is-centered is-5">
-            <div className="column is-1">
+            <div className="column is-1 is-hidden-mobile">
               <BackToSearch />
             </div>
             <div className="column is-6">
