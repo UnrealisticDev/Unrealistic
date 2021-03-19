@@ -163,6 +163,10 @@ const CopyRoot = styled.button`
   }
 
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Copy = () => {
