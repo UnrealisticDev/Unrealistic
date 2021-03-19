@@ -15,7 +15,7 @@ const Nav = styled.nav`
   }
 `;
 
-const Initials = styled.a`
+const Initials = styled(Link)`
   font-family: "Bungee", cursive;
   font-size: 2rem;
 
