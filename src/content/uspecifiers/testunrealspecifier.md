@@ -1,6 +1,10 @@
 ---
 title: "TestUnrealSpecifier"
 snippet: "A cool snippet"
+values:
+- Object
+- Collision
+- Actor
 ---
 
 The `BlueprintType` specifier is the specifier that you will likely use most when working with UStructs. It *exposes* a struct to Blueprints and to general use within the Editor. For example, with this specifier, a struct can be added as a variable to a Blueprint.
