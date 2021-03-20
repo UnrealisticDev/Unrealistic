@@ -1,3 +1,7 @@
+const env = require('dotenv');
+
+env.config();
+
 /**
  * Configure your Gatsby site with this file.
  *
@@ -89,8 +93,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: `Y7ES67CX6H`,
-        apiKey: `7f89d8a0c9168f15d2e36ef0b99087ff`,
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_KEY,
         queries: require("./src/utils/algolia-queries")
       }
     },
