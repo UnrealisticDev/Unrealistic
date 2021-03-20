@@ -110,7 +110,7 @@ export default ({ items }) => {
               style={{ position: "relative", height: "93vh" }}
             >
               <Link to={getPostSlug(slug)}>
-                <Img fluid={image ? image.fluid : null} style={{height: '94vh', margin: 0, padding: 0, objectFit: 'cover'}} />{" "}
+                <Img fluid={image ? image.fluid : null} style={{height: 'calc(100vh - 3.25rem)', margin: 0, padding: 0, objectFit: 'cover'}} />{" "}
               <PostDetails>
                 <div style={{ display: "flex", flexDirection: 'row' }}>
                   <div style={{ flexGrow: 1 }}></div>

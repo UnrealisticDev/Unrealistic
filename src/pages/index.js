@@ -106,7 +106,6 @@ export default ({ data }) => {
         {/* Intro - Desktop */}
         <section
           className="hero is-fullheight-with-navbar is-light is-hidden-mobile"
-          style={{ maxHeight: "calc(100vh - 3.25rem)", overflow: "hidden" }}
         >
           <div
             className="hero-body is-marginless is-paddingless"
