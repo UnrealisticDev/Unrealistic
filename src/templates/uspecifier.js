@@ -475,10 +475,10 @@ const Examples = ({ occ }) => {
 
 export default ({ data }) => {
   const { specifier, local, category } = data;
-  const { type, keyFriendly, meta, values, occ } = specifier;
+  const { type, keyFriendly, meta, occ } = specifier;
   const { childMarkdownRemark, relativePath } = local || {};
   const { analysis, frontmatter } = childMarkdownRemark || {};
-  const { snippet } = frontmatter || {};
+  const { snippet, values } = frontmatter || {};
 
   var neighbors = findCategoryNeighbors(specifier, category);
 
@@ -584,7 +584,6 @@ export const query = graphql`
       type
       keyFriendly
       meta
-      values
       occ {
         versions {
           version
@@ -600,6 +599,7 @@ export const query = graphql`
         analysis: html
         frontmatter {
           snippet
+          values
         }
       }
       relativePath
