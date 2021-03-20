@@ -1,4 +1,4 @@
-const env = require('dotenv');
+const env = require("dotenv");
 
 env.config();
 
@@ -24,11 +24,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-advanced-sitemap`,
       options: {
-        exclude: [
-          `/404`,
-          `/success`,
-          `/glossary`
-        ]
+        exclude: [`/404`, `/success`, `/glossary`]
       }
     },
     {
@@ -39,7 +35,7 @@ module.exports = {
     },
     /* Styling */
     {
-      resolve: `gatsby-plugin-styled-components`,
+      resolve: `gatsby-plugin-styled-components`
     },
     {
       resolve: `gatsby-plugin-fontawesome-css`
@@ -48,14 +44,14 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `4z1i7rtd5bsh`,
-        accessToken: `Xeqkswi8vvM5us2jEa7ESxU4MyAqyZQj5EHQ1SyzTe8`
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_API_KEY
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'uspecifiers',
+        name: "uspecifiers",
         path: `${__dirname}/src/content/uspecifiers`
       }
     },
