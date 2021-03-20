@@ -14,6 +14,7 @@ import { connectHits, InstantSearch } from "react-instantsearch-dom";
 import searchClient from "../components/search/client";
 import SearchBox from "../components/search/searchbox";
 import HitCount, { countHit } from "../components/spectacle/hitcount";
+import { faCoffee, faMugHot } from "@fortawesome/free-solid-svg-icons";
 
 const Title = styled.h1`
   @font-face {
@@ -140,7 +141,7 @@ const CSearchResults = connectHits(SearchResults);
 const MainSection = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 93vmin;
+  min-height: calc(100vh - 3.25rem);
 `;
 
 const MainContainer = styled.div`
@@ -148,12 +149,23 @@ const MainContainer = styled.div`
   width: 100%;
 `;
 
-const PoweredByContainer = styled.div`
+const ShoutoutContainer = styled.div`
   flex-grow: 0;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 const PoweredBy = styled.a`
+  color: hsl(0, 0%, 71%);
+  &:hover {
+    color: hsl(204, 86%, 53%);
+  }
+`;
+
+const BuyMeCoffee = styled.a`
   color: hsl(0, 0%, 71%);
   &:hover {
     color: hsl(204, 86%, 53%);
@@ -219,9 +231,24 @@ export default () => {
               {query && query.length > 0 && <CSearchResults />}
             </InstantSearch>
           </MainContainer>
-          <PoweredByContainer className="container">
-            <div class="level">
-              <div class="level-left" />
+          <ShoutoutContainer className="container">
+            <div class="level is-mobile">
+              <div class="level-left">
+                <div class="level-item">
+                  <BuyMeCoffee
+                    className="level is-mobile"
+                    href="https://www.buymeacoffee.com/mowgl33"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="level-item">
+                      <FontAwesomeIcon icon={faMugHot} size="lg" />
+                    </div>
+                    <div className="level-item">Buy me coffee</div>
+
+                  </BuyMeCoffee>
+                </div>
+              </div>
               <div class="level-right">
                 <div class="level-item">
                   <PoweredBy
@@ -240,7 +267,7 @@ export default () => {
                 </div>
               </div>
             </div>
-          </PoweredByContainer>
+          </ShoutoutContainer>
         </MainSection>
       </Layout>
     </>
