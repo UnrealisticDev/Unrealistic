@@ -585,7 +585,6 @@ export const query = graphql`
       keyFriendly
       meta
       values
-      snippet
       occ {
         versions {
           version
