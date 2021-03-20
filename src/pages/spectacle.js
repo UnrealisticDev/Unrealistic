@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -178,6 +178,13 @@ export default ({ data }) => {
   const [, setFocus] = useState(false);
   const [query, setQuery] = useState();
 
+  useEffect(() => {
+    document.getElementById("spec-searchbox").focus();
+  });
+
+  const randPlaceholder =
+    specifiers[Math.floor(Math.random() * (specifiers.length - 1))].keyFriendly;
+
   return (
     <>
       <Helmet>
@@ -225,12 +232,9 @@ export default ({ data }) => {
                     specifiers.
                   </p>
                   <SSearchBox
-                    placeholder={
-                      specifiers[
-                        Math.floor(Math.random() * (specifiers.length - 1))
-                      ].keyFriendly
-                    }
+                    placeholder={randPlaceholder}
                     onFocus={() => setFocus(true)}
+                    id="spec-searchbox"
                   />
                 </div>
               </div>

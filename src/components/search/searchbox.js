@@ -15,7 +15,7 @@ const SInput = styled.input`
 `;
 
 export default connectSearchBox(
-  ({ currentRefinement, refine, onFocus, placeholder, className, style }) => (
+  ({ currentRefinement, refine, onFocus, placeholder, className, style, id }) => (
     <form
       onSubmit={event => event.preventDefault()}
       className={className}
@@ -30,6 +30,7 @@ export default connectSearchBox(
           placeholder={placeholder}
           className="input"
           aria-label="Search"
+          id={id}
         />
         <span className="icon is-small is-right">
           <FontAwesomeIcon icon={faSearch} />
