@@ -138,8 +138,8 @@ export default () => {
                 </ProductLink>
               </div>
             </div>
-            <NavLink className="navbar-item" to="/glossary">
-              Glossary
+            <NavLink className="navbar-item" to="/spectacle">
+              Spectacle
             </NavLink>
             <NavLink className="navbar-item" to="/about">
               About
