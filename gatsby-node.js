@@ -1,8 +1,5 @@
 const path = require(`path`);
 const router = require(`./src/scripts/router`);
-require('dotenv').config({
-  path: `.env`
-});
 
 exports.sourceNodes = ({
   actions: { createNode, createNodeField },
