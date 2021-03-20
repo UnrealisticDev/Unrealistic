@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
@@ -170,7 +170,11 @@ const BuyMeCoffee = styled.a`
   }
 `;
 
-export default () => {
+export default ({ data }) => {
+  const {
+    specifiers: { nodes: specifiers }
+  } = data;
+
   const [, setFocus] = useState(false);
   const [query, setQuery] = useState();
 
@@ -221,7 +225,11 @@ export default () => {
                     specifiers.
                   </p>
                   <SSearchBox
-                    placeholder="BlueprintReadWrite"
+                    placeholder={
+                      specifiers[
+                        Math.floor(Math.random() * (specifiers.length - 1))
+                      ].keyFriendly
+                    }
                     onFocus={() => setFocus(true)}
                   />
                 </div>
@@ -270,3 +278,13 @@ export default () => {
     </>
   );
 };
+
+export const query = graphql`
+  query {
+    specifiers: allContentfulUnrealSpecifier {
+      nodes {
+        keyFriendly
+      }
+    }
+  }
+`;
