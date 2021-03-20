@@ -485,7 +485,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={`${keyFriendly} | ${type}`} description={snippet} />
+      <SEO title={`${keyFriendly} | ${type} Specifier`} description={snippet} />
       <Helmet>
         <style>
           @import
