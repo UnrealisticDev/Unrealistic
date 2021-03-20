@@ -206,7 +206,7 @@ export default ({ data }) => {
                   <GitHubButton
                     href="https://github.com/UnrealisticDev/Spectacle"
                     data-icon="octicon-star"
-                    data-show-count="true"
+                    data-show-count="false"
                     data-size="large"
                     aria-label="Star UnrealisticDev/Spectacle on GitHub"
                   >
