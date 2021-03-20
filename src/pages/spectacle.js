@@ -153,9 +153,7 @@ const ShoutoutContainer = styled.div`
   flex-grow: 0;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
-    margin-top: 2rem;
-  }
+  margin-top: 2rem;
 `;
 
 const PoweredBy = styled.a`
@@ -245,7 +243,6 @@ export default () => {
                       <FontAwesomeIcon icon={faMugHot} size="lg" />
                     </div>
                     <div className="level-item">Buy me coffee</div>
-
                   </BuyMeCoffee>
                 </div>
               </div>
