@@ -47,7 +47,6 @@ import {
 // }).Compiler;
 
 const GlossaryLink = styled(Link)`
-
   margin-top: 1rem;
 
   display: flex;
@@ -108,7 +107,9 @@ const Type = ({ value }) => {
 const Meta = ({ value }) => {
   return (
     value && (
-      <span className="tag has-background-grey-lighter is-medium">{value ? "Meta" : ""}</span>
+      <span className="tag has-background-grey-lighter is-medium">
+        {value ? "Meta" : ""}
+      </span>
     )
   );
 };
@@ -498,18 +499,9 @@ export default ({ data }) => {
               <BackToSearch />
             </div>
             <div className="column is-6">
-              <div className="level is-mobile subtitle">
-                <div className="level-left">
-                  <div className="level-item">
-                    <Key className="title is-size-1 is-size-3-mobile">
-                      {keyFriendly}
-                    </Key>
-                  </div>
-                </div>
-                <div className="level-right">
-                  <div className="level-item"></div>
-                </div>
-              </div>
+              <Key className="title is-size-1 is-size-3-mobile">
+                {keyFriendly}
+              </Key>
               <div className="tags">
                 <Type value={type} />
                 <Meta value={meta} />
