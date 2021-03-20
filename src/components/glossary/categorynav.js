@@ -32,7 +32,7 @@ const List = styled.ul`
 
   direction: rtl;
 
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin; // Firefox
   &::-webkit-scrollbar {
     width: 5px;
