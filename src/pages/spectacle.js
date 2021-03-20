@@ -14,7 +14,7 @@ import { connectHits, InstantSearch } from "react-instantsearch-dom";
 import searchClient from "../components/search/client";
 import SearchBox from "../components/search/searchbox";
 import HitCount, { countHit } from "../components/spectacle/hitcount";
-import { faCoffee, faMugHot } from "@fortawesome/free-solid-svg-icons";
+import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 
 const Title = styled.h1`
   @font-face {
