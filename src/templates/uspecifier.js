@@ -524,7 +524,7 @@ export default ({ data }) => {
                 {relativePath && (
                   <span className="tag is-large">
                     <EditOnGithub
-                      branch="spectacle"
+                      branch="master"
                       path={`src/content/uspecifiers/${relativePath}`}
                     />
                   </span>
