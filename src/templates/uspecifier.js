@@ -259,6 +259,7 @@ const CodeWrapper = styled.div`
 const Code = ({ keyFriendly, meta, values }) => {
   var code = (
     <>
+      {/* Meta (optional) */}
       {meta && (
         <>
           <div className="meta">meta</div>
@@ -266,8 +267,18 @@ const Code = ({ keyFriendly, meta, values }) => {
           <div className="left paren">(</div>
         </>
       )}
+      {/* Key */}
       {<div className="key">{keyFriendly}</div>}
-      {values && values.length > 0 && (
+      {/* Value(s) (optional) */}
+      {values && typeof values === "string" && (
+        <>
+          <div className="equal">=</div>
+          {meta && <div className="quote">"</div>}
+          <div className="value">{values}</div>
+          {meta && <div className="quote">"</div>}
+        </>
+      )}
+      {values && Array.isArray(values) && values.length > 0 && (
         <>
           <div className="equal">=</div>
           {meta ? (
@@ -290,6 +301,7 @@ const Code = ({ keyFriendly, meta, values }) => {
           )}
         </>
       )}
+      {/* Meta (optional) */}
       {meta && (
         <>
           <div className="right paren">)</div>
@@ -485,7 +497,10 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={`${keyFriendly} | U${type} Specifier`} description={snippet} />
+      <SEO
+        title={`${keyFriendly} | U${type} Specifier`}
+        description={snippet}
+      />
       <Helmet>
         <style>
           @import
