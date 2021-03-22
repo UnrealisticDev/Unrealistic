@@ -6,7 +6,7 @@ values:                                             # Sample values that could b
 - Very                                              # Op:  no values (e.g. BlueprintType)              --> null
 - Cool                                              #      single value (e.g. AllowPrivateAccess)      --> string
 - Spec                                              #      multiple values (e.g. HideCategories)       --> array
-combine:                                            # Array of specifiers that are used together with this specifier (e.g. DynamicOutputParam and DeterminesOutputType)
+combos:                                             # Array of specifiers that are used together with this specifier (e.g. DynamicOutputParam and DeterminesOutputType)
 - ACoolPair
 mutex:                                              # Array of specifiers that cannot be paired with this specifier (e.g. BlueprintReadWrite and BlueprintReadOnly)
 - NotAGreatPair
