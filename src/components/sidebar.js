@@ -1,19 +1,18 @@
-import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 
-const Aside = styled.aside`
+export const Sidebar = styled.aside`
+  position: relative;
 
-  @media screen and (min-width: 769px) {
-    position: ${props => props.sticky ? "sticky" : "auto"};
-    top: 10vh;
+  height: 60vh;
 
-    height: 80vh;
-    overflow-x: visible;
-    overflow-y: hidden;
-
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
-export default ({ children, sticky }) => <Aside className="menu" sticky={sticky}>{children}</Aside>;
+export const SidebarElement = styled.div`
+    flex-grow: ${props => props.grow ? 1 : 0};
+    flex-basis: ${props => props.intrinsic ? 'auto' : 0};
+    min-height: 0;
+    
+    margin-bottom: 1rem;
+`;

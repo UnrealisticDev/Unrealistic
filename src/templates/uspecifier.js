@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
-// import rehypeReact from "rehype-react";
 import styled from "styled-components";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import EditOnGithub from "../components/editongithub";
-import Sidebar from "../components/sidebar";
-import CategoryNav from "../components/glossary/categorynav";
-import CategoryNavInline from "../components/glossary/categorynavinline";
+import { Sidebar, SidebarElement } from "../components/sidebar";
+import Categories from "../components/uspecifier/incategory";
+import CategoryNavInline from "../components/uspecifier/incategoryinline";
+import SpecList from "../components/uspecifier/list";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,34 +17,6 @@ import {
   faClipboard,
   faLevelUpAlt
 } from "@fortawesome/free-solid-svg-icons";
-
-/* Header id formatter. */
-// const format = string => {
-//   const regex = /,|\./gi;
-//   const spacesregex = /\s/gi;
-//   var processed = String(string).toLowerCase();
-//   processed = processed.replace(regex, "");
-//   processed = processed.replace(spacesregex, "-");
-//   return processed;
-// };
-
-// var codeblockId = 0;
-
-/* Used to demote headers and do other html processing. */
-// const renderAst = new rehypeReact({
-//   createElement: React.createElement,
-//   components: {
-//     h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
-//     h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
-//     h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
-//     h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
-//     h5: props => <h6 id={format(props.children[0])}>{props.children}</h6>,
-//     pre: props => {
-//       var id = "codeblock" + ++codeblockId;
-//       return <pre id={id}>{props.children}</pre>;
-//     }
-//   }
-// }).Compiler;
 
 const GlossaryLink = styled(Link)`
   margin-top: 1rem;
@@ -487,7 +459,7 @@ const Examples = ({ occ }) => {
 };
 
 export default ({ data }) => {
-  const { specifier, local, category } = data;
+  const { specifier, local, category, mirrors, combos, mutex } = data;
   const { type, keyFriendly, meta, occ } = specifier;
   const { childMarkdownRemark, relativePath } = local || {};
   const { analysis, frontmatter } = childMarkdownRemark || {};
@@ -574,7 +546,38 @@ export default ({ data }) => {
             </div>
             <div className="column is-2 is-hidden-mobile">
               <Sidebar>
-                <CategoryNav type={type} category={category} />
+                {mirrors && mirrors.nodes.length > 0 && (
+                  <SidebarElement intrinsic>
+                    <SpecList
+                      label="Mirrors"
+                      specifiers={mirrors}
+                      field="type"
+                    />
+                  </SidebarElement>
+                )}
+                {combos && combos.nodes.length > 0 && (
+                  <SidebarElement intrinsic>
+                    <SpecList
+                      label="Pairs With"
+                      specifiers={combos}
+                      field="keyFriendly"
+                    />
+                  </SidebarElement>
+                )}
+                {mutex && mutex.nodes.length > 0 && (
+                  <SidebarElement intrinsic>
+                    <SpecList
+                      label="Excludes"
+                      specifiers={mutex}
+                      field="keyFriendly"
+                    />
+                  </SidebarElement>
+                )}
+                {category && category.nodes.length > 0 && (
+                  <SidebarElement grow>
+                    <Categories type={type} category={category} />
+                  </SidebarElement>
+                )}
               </Sidebar>
             </div>
           </div>
@@ -585,7 +588,14 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($id: String!, $type: String!, $slug: String!) {
+  query(
+    $id: String!
+    $key: String!
+    $type: String!
+    $slug: String!
+    $combos: [String!]!
+    $mutex: [String!]!
+  ) {
     specifier: contentfulUnrealSpecifier(id: { eq: $id }) {
       id
       type
@@ -617,6 +627,26 @@ export const query = graphql`
     ) {
       nodes {
         id
+        keyFriendly
+        slug
+      }
+    }
+    mirrors: allContentfulUnrealSpecifier(
+      filter: { key: { eq: $key }, type: { ne: $type } }
+    ) {
+      nodes {
+        type
+        slug
+      }
+    }
+    combos: allContentfulUnrealSpecifier(filter: { slug: { in: $combos } }) {
+      nodes {
+        keyFriendly
+        slug
+      }
+    }
+    mutex: allContentfulUnrealSpecifier(filter: { slug: { in: $mutex } }) {
+      nodes {
         keyFriendly
         slug
       }

@@ -52,6 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         specifiers: allContentfulUnrealSpecifier {
           nodes {
             id
+            key
             slug
             type
           }
@@ -116,7 +117,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 
   const uSpecifierTemplate = path.resolve(`./src/templates/uspecifier.js`);
-  query.data.specifiers.nodes.forEach(({ id, slug, type }) => {
+  query.data.specifiers.nodes.forEach(async ({ id, slug, type, key }) => {
+    const {
+      data: { file }
+    } = await graphql(
+      `
+        {
+          file(name: {eq: "${slug}"}) {
+            childMarkdownRemark {
+              frontmatter {
+                combos
+                mutex
+              }
+            }
+          }
+        }
+      `
+    );
+
     const path = `/glossary/${slug}`;
     createPage({
       path,
@@ -124,7 +142,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         id: id,
         type: type,
-        slug: slug
+        key: key,
+        slug: slug,
+        combos:
+          file && file.childMarkdownRemark.frontmatter.combos
+            ? file.childMarkdownRemark.frontmatter.combos
+            : ["none"],
+        mutex:
+          file && file.childMarkdownRemark.frontmatter.mutex
+            ? file.childMarkdownRemark.frontmatter.mutex
+            : ["none"]
       }
     });
   });

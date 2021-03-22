@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
-  flex-grow: 1;
   height: 100%;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ const Toggle = styled.a`
 
 const List = styled.ul`
   flex: 1 0 auto;
-  height: 100%;
+  height: inherit;
 
   direction: rtl;
 
@@ -41,7 +41,7 @@ const List = styled.ul`
     background: hsl(0, 0%, 71%);
   }
 
-  padding-left: .5em;
+  padding-left: 0.5em;
 `;
 
 const Term = styled.li`
@@ -65,7 +65,7 @@ const Term = styled.li`
 `;
 
 export default ({ type, category }) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   function toggleExpansion() {
     setExpanded(!expanded);

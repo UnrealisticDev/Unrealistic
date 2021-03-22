@@ -10,7 +10,7 @@ import router from "../scripts/router";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Sidebar from "../components/sidebar";
+import { Sidebar } from "../components/sidebar";
 import TOC from "../components/toc";
 import SeriesNav from "../components/seriesnav";
 import ProjectFiles from "../components/projectfiles";
@@ -262,7 +262,7 @@ const Markdown = styled.div`
     ${"" /* background-color: hsl(0, 0%, 86%); */}
     color: #0c1c38;
     border-radius: 0.3em;
-    ${'' /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
+    ${"" /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
     background: #dfe8f7;
 
     @media screen and (max-width: 769px) {
@@ -606,7 +606,7 @@ export const query = graphql`
     }
 
     furtherReading: allContentfulPost(
-      filter: { fields: { standalone: { eq: true } }, slug: {ne: $slug} }
+      filter: { fields: { standalone: { eq: true } }, slug: { ne: $slug } }
       sort: { fields: createdAt, order: DESC }
     ) {
       edges {
