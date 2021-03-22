@@ -537,7 +537,7 @@ export default ({ data }) => {
                   }}
                 />
               ) : (
-                <div>Coming soon...</div>
+                <div>Analysis coming soon...</div>
               )}
               {keyFriendly && (
                 <>
