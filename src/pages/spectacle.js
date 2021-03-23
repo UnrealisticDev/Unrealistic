@@ -25,7 +25,7 @@ const Title = styled(Heading)`
 const SearchBoxWrapper = styled.div`
   width: 100%;
   margin-right: 1rem;
-`
+`;
 
 const SSearchBox = styled(SearchBox)`
   ${"" /* margin-bottom: 1rem; */}
@@ -102,8 +102,6 @@ const SearchResults = ({ hits }) => {
           chunks.push(hitsOfType.slice(i, i + RESULT_CHUNK_SIZE));
         }
 
-        console.log(chunks);
-
         return (
           chunks.length > 0 && (
             <div className={`column is-${chunks.length * 3}`}>
@@ -126,6 +124,49 @@ const SearchResults = ({ hits }) => {
 };
 
 const CSearchResults = connectHits(SearchResults);
+
+const CatalogLoader = props => {
+  const [component, setComponent] = useState();
+  useEffect(() => {
+    setTimeout(() => setComponent(<Catalog {...props} />));
+  }, [props]);
+
+  return component || <div className='has-text-centered'>Loading...</div>;
+};
+
+const Catalog = ({ specifiers }) => {
+  return (
+    <>
+      {types.map(type => {
+        var specifiersOfType = specifiers.filter(specifier => {
+          return specifier.type === type;
+        });
+
+        const chunks = [];
+        for (var i = 0; i < specifiersOfType.length; i += RESULT_CHUNK_SIZE) {
+          chunks.push(specifiersOfType.slice(i, i + RESULT_CHUNK_SIZE));
+        }
+
+        return (
+          chunks.length > 0 && (
+            <>
+              <HitType>{type}</HitType>
+              <TypeWrapper className="columns is-multiline">
+                {chunks.map(chunk => (
+                  <div className="column is-3">
+                    {chunk.map(specifier => (
+                      <Hit hit={specifier} key={specifier.id} />
+                    ))}
+                  </div>
+                ))}
+              </TypeWrapper>
+            </>
+          )
+        );
+      })}
+    </>
+  );
+};
 
 const MainSection = styled.div`
   display: flex;
@@ -245,7 +286,10 @@ export default ({ data }) => {
                   </div>
                 </div>
               </div>
-              {query && query.length > 0 && <CSearchResults />}
+              {!inCatalogMode && query && query.length > 0 && (
+                <CSearchResults />
+              )}
+              {inCatalogMode && <CatalogLoader specifiers={specifiers} />}
             </InstantSearch>
           </MainContainer>
           <ShoutoutContainer className="container">
@@ -294,7 +338,10 @@ export const query = graphql`
   query {
     specifiers: allContentfulUnrealSpecifier {
       nodes {
+        id
+        type
         keyFriendly
+        slug
       }
     }
   }
