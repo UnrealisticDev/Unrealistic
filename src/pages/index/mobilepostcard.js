@@ -20,7 +20,7 @@ const Title = styled(Heading)`
 `;
 
 export default ({ post }) => {
-  const { slug, title, image, excerpt, body } = post;
+  const { slug, title, image, excerpt, body } = post || {};
   return (
     <Wrapper>
       <Link to={getPostSlug(slug)}>
@@ -29,7 +29,7 @@ export default ({ post }) => {
       <Title as="h2" className="title is-size-5">
         {title}
       </Title>
-      <Text>{excerpt || body.childMarkdownRemark.excerpt}</Text>
+      <Text>{excerpt || body ? body.childMarkdownRemark.excerpt : null}</Text>
     </Wrapper>
   );
 };
