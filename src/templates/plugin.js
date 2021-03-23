@@ -3,10 +3,10 @@ import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import router from "../shared/scripts/router";
 import Layout from "../shared/components/layout";
 import SEO from "../shared/components/seo";
 import { Heading } from "../shared/components/typography";
+import router from "../shared/scripts/router";
 
 const StyledImg = styled(Img)`
   @media screen and (max-width: 768px) {
@@ -36,60 +36,65 @@ export default ({ data }) => {
   } = plugin;
 
   return (
-    <Layout>
+    <>
       <SEO
-        title={longName.concat(" for Unreal Engine 4")}
+        title={`${longName} for Unreal Engine 4`}
         description={description.description}
         canonical={router.getProductSlug(slug)}
       />
-      <section className="section">
-        <div className="container">
-          <div className="tile is-ancestor">
-            <div className="tile is-vertical is-8">
-              <div className="tile is-parent">
+      <Layout>
+        <section className="section">
+          <div className="container">
+            <div className="tile is-ancestor">
+              <div className="tile is-vertical is-8">
+                <div className="tile is-parent">
+                  <div className="tile is-child">
+                    <StyledImg
+                      fluid={featureImage.fluid}
+                      alt="Plugin Feature"
+                    />
+                  </div>
+                </div>
+                <div className="tile is-parent">
+                  <div className="tile is-child content">
+                    <Heading>{longName}</Heading>
+                    <p>{description.description}</p>
+                    <MarketplaceButton
+                      className="button is-dark"
+                      href={marketplaceUrl}
+                    >
+                      Get it on the Marketplace
+                    </MarketplaceButton>
+                  </div>
+                </div>
+              </div>
+              <div className="tile is-4 is-parent">
                 <div className="tile is-child">
-                  <StyledImg fluid={featureImage.fluid} alt="Plugin Feature" />
+                  <aside className="menu">
+                    <p className="menu-label">Documentation</p>
+                    <ul className="menu-list">
+                      {docs.posts.map(({ slug, title }) => {
+                        return (
+                          <li>
+                            <DocLink href={router.getPostSlug(slug)}>
+                              {title.replace(`${name}: `, "")}
+                            </DocLink>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </aside>
                 </div>
-              </div>
-              <div className="tile is-parent">
-                <div className="tile is-child content">
-                  <Heading>{longName}</Heading>
-                  <p>{description.description}</p>
-                  <MarketplaceButton
-                    className={"button is-dark"}
-                    href={marketplaceUrl}
-                  >
-                    Get it on the Marketplace
-                  </MarketplaceButton>
-                </div>
-              </div>
-            </div>
-            <div className="tile is-4 is-parent">
-              <div className="tile is-child">
-                <aside className="menu">
-                  <p className="menu-label">Documentation</p>
-                  <ul className="menu-list">
-                    {docs.posts.map(({ slug, title }) => {
-                      return (
-                        <li>
-                          <DocLink href={router.getPostSlug(slug)}>
-                            {title.replace(name.concat(": "), "")}
-                          </DocLink>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </aside>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </Layout>
+        </section>
+      </Layout>
+    </>
   );
 };
 
-export const pluginQuery = graphql`
+export const query = graphql`
   query($name: String!) {
     plugin: contentfulPlugin(name: { eq: $name }) {
       slug

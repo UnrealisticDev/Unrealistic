@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-concat */
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {Heading} from '../../shared/components/typography'
+import { Heading } from "../../shared/components/typography";
 
 const Form = styled.form`
   & input.input {
@@ -16,11 +16,12 @@ const Form = styled.form`
   & textarea {
     background-color: lightgrey !important;
   }
-  
-  & input.input::placeholder, textarea::placeholder {
+
+  & input.input::placeholder,
+  textarea::placeholder {
     color: #575754 !important;
   }
-`
+`;
 
 function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
   function getControlClass() {
@@ -42,7 +43,9 @@ export default () => {
   return (
     <Form name="hireme" method="POST" netlify action="/success/">
       <input type="hidden" name="form-name" value="hireme" />
-      <Heading as='h2' className="title is-size-3">Now Accepting New Projects</Heading>
+      <Heading as="h2" className="title is-size-3">
+        Now Accepting New Projects
+      </Heading>
       <div className="columns is-variable is-1">
         <div className="column">
           <BulmaControl name="First Name">

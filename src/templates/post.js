@@ -116,16 +116,14 @@ function sanitizeTitle(title, series) {
 }
 
 const Series = ({ series }) => {
-  return (
-    series && (
-      <>
-        <div className="level-item">·</div>
-        <div className="level-item">
-          <p className="subtitle is-size-6">{series.title}</p>
-        </div>
-      </>
-    )
-  );
+  return series ? (
+    <>
+      <div className="level-item">·</div>
+      <div className="level-item">
+        <p className="subtitle is-size-6">{series.title}</p>
+      </div>
+    </>
+  ) : null;
 };
 
 const capitalize = s => {
@@ -181,9 +179,7 @@ const Frontmatter = styled.div`
   }
 `;
 
-const Body = styled.div`
-
-`;
+const Body = styled.div``;
 
 const Markdown = styled.div`
   @media screen and (max-width: 768px) {
@@ -276,6 +272,10 @@ const Markdown = styled.div`
 
 const SeriesNavWrapper = styled.div`
   margin-top: 3rem;
+  @media screen and (max-width: 768px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 `;
 
 const SeriesNavLink = styled(Link)`
@@ -421,7 +421,7 @@ export default ({ data }) => {
                   {(series || tableOfContents || projectfiles) && (
                     <Sidebar
                       height="auto"
-                      className="column is-3 pl-5 py-0 is-hidden-mobile"
+                      className="column is-3 pl-5 is-hidden-mobile"
                     >
                       {tableOfContents && (
                         <SidebarElement intrinsic>

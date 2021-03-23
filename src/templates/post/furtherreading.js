@@ -27,12 +27,21 @@ function getRandom(array, count) {
   return out;
 }
 
+const Root = styled.div`
+  @media screen and (max-width: 768px) {
+    padding: 1.5rem;
+  }
+`
+
 const PostTitle = styled(Heading)`
   text-align: left;
 `;
 
 const PostImage = styled(Img)`
   margin-bottom: 2vmin;
+  @media screen and (max-width: 768px) {
+    border-radius: 5px;
+  }
 `;
 
 const Post = ({ post }) => {
@@ -50,8 +59,8 @@ export default ({ posts }) => {
   posts = getRandom(posts.nodes, 3);
   return (
     posts && (
-      <>
-        <SubHeading>Up next</SubHeading>
+      <Root>
+        <SubHeading style={{marginBottom: '1rem'}}>Up next</SubHeading>
         <div className="columns">
           {posts.map(post => (
             <div className="column is-4">
@@ -59,7 +68,7 @@ export default ({ posts }) => {
             </div>
           ))}
         </div>
-      </>
+      </Root>
     )
   );
 };

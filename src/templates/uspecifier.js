@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faClipboard,
+  faLevelUpAlt
+} from "@fortawesome/free-solid-svg-icons";
+
 import Layout from "../shared/components/layout";
 import SEO from "../shared/components/seo";
 import { Sidebar, SidebarElement } from "../shared/components/sidebar";
@@ -11,13 +18,6 @@ import EditOnGithub from "./uspecifier/editongithub";
 import Categories from "./uspecifier/incategory";
 import CategoryNavInline from "./uspecifier/incategoryinline";
 import SpecList from "./uspecifier/list";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faClipboard,
-  faLevelUpAlt
-} from "@fortawesome/free-solid-svg-icons";
 
 const GlossaryLink = styled(Link)`
   margin-top: 1rem;
