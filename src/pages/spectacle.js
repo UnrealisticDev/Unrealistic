@@ -6,7 +6,7 @@ import GitHubButton from "react-github-btn";
 import { connectHits, InstantSearch } from "react-instantsearch-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugHot } from "@fortawesome/free-solid-svg-icons";
+import { faList, faMugHot, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 
 import Layout from "../shared/components/layout";
@@ -22,8 +22,13 @@ const Title = styled(Heading)`
   margin-bottom: 5vh !important;
 `;
 
+const SearchBoxWrapper = styled.div`
+  width: 100%;
+  margin-right: 1rem;
+`
+
 const SSearchBox = styled(SearchBox)`
-  margin-bottom: 1rem;
+  ${"" /* margin-bottom: 1rem; */}
 `;
 
 const HitType = styled(SubHeading)`
@@ -161,9 +166,10 @@ export default ({ data }) => {
 
   const [, setFocus] = useState(false);
   const [query, setQuery] = useState();
+  const [inCatalogMode, setCatalogMode] = useState(false);
 
   useEffect(() => {
-    document.getElementById("spec-searchbox").focus();
+    if (!inCatalogMode) document.getElementById("spec-searchbox").focus();
   });
 
   const randPlaceholder =
@@ -210,16 +216,33 @@ export default ({ data }) => {
                   <Title className="title is-1 has-text-centered">
                     Spectacle
                   </Title>
-                  {/* <Searchbar /> */}
                   <p className="subtitle has-text-centered">
                     The first <em>global</em> search for Unreal Engine 4
                     specifiers.
                   </p>
-                  <SSearchBox
-                    placeholder={randPlaceholder}
-                    onFocus={() => setFocus(true)}
-                    id="spec-searchbox"
-                  />
+                  {/* <Searchbar /> */}
+                  <div class="level is-mobile">
+                    <SearchBoxWrapper class="level-item">
+                      <SSearchBox
+                        placeholder={randPlaceholder}
+                        onFocus={() => setFocus(true)}
+                        disabled={inCatalogMode}
+                        id="spec-searchbox"
+                        style={{ width: "100%" }}
+                      />
+                    </SearchBoxWrapper>
+                    <div class="level-item">
+                      <button
+                        onClick={_ => setCatalogMode(!inCatalogMode)}
+                        className="button is-light"
+                        id="catalog-mode-toggle"
+                      >
+                        <FontAwesomeIcon
+                          icon={inCatalogMode ? faSearch : faList}
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
               {query && query.length > 0 && <CSearchResults />}

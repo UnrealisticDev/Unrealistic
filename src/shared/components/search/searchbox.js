@@ -12,10 +12,29 @@ const SInput = styled.input`
   ::placeholder {
     color: #575754 !important;
   }
+
+  &:disabled {
+    background: repeating-linear-gradient(
+      -45deg,
+      hsl(0, 0%, 60%),
+      hsl(0, 0%, 60%) 10px,
+      hsl(0, 0%, 71%) 10px,
+      hsl(0, 0%, 71%) 20px
+    ) !important;
+  }
 `;
 
 export default connectSearchBox(
-  ({ currentRefinement, refine, onFocus, placeholder, className, style, id }) => (
+  ({
+    currentRefinement,
+    refine,
+    onFocus,
+    placeholder,
+    className,
+    style,
+    id,
+    disabled
+  }) => (
     <form
       onSubmit={event => event.preventDefault()}
       className={className}
@@ -31,6 +50,7 @@ export default connectSearchBox(
           className="input"
           aria-label="Search"
           id={id}
+          disabled={disabled}
         />
         <span className="icon is-small is-right">
           <FontAwesomeIcon icon={faSearch} />
