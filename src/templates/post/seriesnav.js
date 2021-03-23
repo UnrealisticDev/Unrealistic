@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-import { getPostSlug } from "../scripts/router";
+import { getPostSlug } from "../../shared/scripts/router";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";

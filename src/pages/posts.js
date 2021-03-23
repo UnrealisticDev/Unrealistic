@@ -3,31 +3,13 @@ import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../shared/components/layout";
+import SEO from "../shared/components/seo";
+import { Heading, Text } from "../shared/components/typography";
 
-const Title = styled.h1`
-  @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-  font-family: "basic-sans", sans-serif;
-  color: #363636;
-`;
-
-const Subtitle = styled.p`
+const Subtitle = styled(Text)`
   margin-bottom: 1rem;
   width: 30vw;
-
-  font-family: 'Open Sans', san-serif;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -65,20 +47,15 @@ const ArticleImage = styled(Img)`
   }
 `;
 
-const ArticleTitle = styled.h2`
-  margin-bottom: 1rem;
-  font-family: "basic-sans", sans-serif;
-  color: #363636;
-
+const ArticleTitle = styled(Heading)`
   margin-bottom: 0.5rem;
   @media screen and (max-width: 768px) {
     font-size: 1.25rem;
   }
 `;
 
-const ArticleExcerpt = styled.p`
+const ArticleExcerpt = styled(Text)`
   color: #363636;
-  font-family: "Open Sans", san-serif;
 `;
 
 function Article({ source }) {
@@ -101,8 +78,7 @@ function Article({ source }) {
             }
             alt="Post Feature"
           />
-
-          <ArticleTitle>{source.title}</ArticleTitle>
+          <ArticleTitle as="h2">{source.title}</ArticleTitle>
           <ArticleExcerpt>
             {source.excerpt || source.body.childMarkdownRemark.excerpt}
           </ArticleExcerpt>
@@ -115,10 +91,6 @@ function Article({ source }) {
 export default ({ data }) => {
   return (
     <Layout>
-      <style>
-        @import
-        url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
-      </style>
       <SEO
         title="Game Dev Library"
         description="Find game development insight here, with articles about Unreal Engine 4 and Unity Engine, tips and tricks from insiders, and analysis of industry trends."
@@ -126,12 +98,12 @@ export default ({ data }) => {
       />
       <div className="section">
         <div className="container">
-          <Title className="title is-size-1">Game Dev Library</Title>
+          <Heading className="title is-size-1">Game Dev Library</Heading>
           <Subtitle>
             Find anything and everything about game development here, from
             how-to's for popular technologies like Unreal Engine 4 and Unity
-            Engine, to tips and tricks from insiders, to analysis of the
-            latest developments in the gaming industry.
+            Engine, to tips and tricks from insiders, to analysis of the latest
+            developments in the gaming industry.
           </Subtitle>
           <div className="columns is-multiline is-desktop is-variable is-6">
             {data.posts.nodes.map((article, i) => {

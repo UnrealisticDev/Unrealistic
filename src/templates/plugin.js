@@ -3,32 +3,15 @@ import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import router from "../scripts/router";
-
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import router from "../shared/scripts/router";
+import Layout from "../shared/components/layout";
+import SEO from "../shared/components/seo";
+import { Heading } from "../shared/components/typography";
 
 const StyledImg = styled(Img)`
   @media screen and (max-width: 768px) {
     border-radius: 5px;
   }
-`
-
-const Title = styled.h1`
-  @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-
-  font-family: "basic-sans", sans-serif;
 `;
 
 const MarketplaceButton = styled.a`
@@ -41,7 +24,7 @@ const DocLink = styled(Link)`
   }
 `;
 
-export default ({ data, pageContext }) => {
+export default ({ data }) => {
   const { plugin, docs } = data;
   const {
     slug,
@@ -70,7 +53,7 @@ export default ({ data, pageContext }) => {
               </div>
               <div className="tile is-parent">
                 <div className="tile is-child content">
-                  <Title>{longName}</Title>
+                  <Heading>{longName}</Heading>
                   <p>{description.description}</p>
                   <MarketplaceButton
                     className={"button is-dark"}

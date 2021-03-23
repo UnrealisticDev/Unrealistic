@@ -4,7 +4,7 @@ export default () => (
   <footer className="footer has-background-grey-lighter">
     <div className="container">
       <div className="content">
-        <span style={{ color: "hsl(204, 86%, 53%)" }}>©</span>
+        <span className="has-text-info">©</span>
         <span> 2021 Mustafa Moiz</span>.
       </div>
     </div>

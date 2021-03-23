@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
-import { Helmet } from "react-helmet";
 import styled from "styled-components";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import EditOnGithub from "../components/editongithub";
-import { Sidebar, SidebarElement } from "../components/sidebar";
-import Categories from "../components/uspecifier/incategory";
-import CategoryNavInline from "../components/uspecifier/incategoryinline";
-import SpecList from "../components/uspecifier/list";
+import Layout from "../shared/components/layout";
+import SEO from "../shared/components/seo";
+import { Sidebar, SidebarElement } from "../shared/components/sidebar";
+import { Heading, SubHeading } from "../shared/components/typography";
+
+import EditOnGithub from "./uspecifier/editongithub";
+import Categories from "./uspecifier/incategory";
+import CategoryNavInline from "./uspecifier/incategoryinline";
+import SpecList from "./uspecifier/list";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -49,23 +50,6 @@ const BackToSearch = () => {
   );
 };
 
-const Key = styled.h1`
-  @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-  font-family: "basic-sans", sans-serif;
-  color: #363636;
-`;
-
 const Type = ({ value }) => {
   return (
     value && (
@@ -93,11 +77,9 @@ const EarliestVersion = ({ versions }) => {
   );
 };
 
-const SectionHeader = styled.h2`
-  ${"" /* font-family: "Lato", sans-serif; */}
-  font-family: 'Bungee', cursive;
-  color: #363636;
+const SectionHeader = styled(SubHeading)`
   display: inline-block;
+
   margin-top: 2rem;
   margin-bottom: 1rem;
 
@@ -299,7 +281,6 @@ const Example = ({ file, url }) => {
       style={{ justifyContent: "flex-start" }}
     >
       <div>{file}</div>
-      {/* {active && <FontAwesomeIcon id="icon" icon={faExternalLinkAlt} />} */}
     </a>
   );
 };
@@ -333,10 +314,9 @@ function findCategoryNeighbors(specifier, category) {
   return neighbors;
 }
 
-const Header = styled.h3`
-  font-family: "Bungee", cursive;
-  color: #363636;
+const Header = styled(SubHeading)`
   display: inline-block;
+
   margin: 0;
 
   font-size: calc(10px + 1.4vw);
@@ -468,122 +448,120 @@ export default ({ data }) => {
   var neighbors = findCategoryNeighbors(specifier, category);
 
   return (
-    <Layout>
+    <>
       <SEO
-        title={`${keyFriendly} | U${type} Specifier`}
+        title={`${keyFriendly} | U${
+          type === "EnumMeta" ? "Meta" : type
+        } Specifier`}
         description={snippet}
       />
-      <Helmet>
-        <style>
-          @import
-          url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
-        </style>
-      </Helmet>
-      <section className="section">
-        <div className="container">
-          <div className="columns is-variable is-centered is-5">
-            <div className="column is-1 is-hidden-mobile">
-              <BackToSearch />
-            </div>
-            <div className="column is-6">
-              <Key className="title is-size-1 is-size-3-mobile">
-                {keyFriendly}
-              </Key>
-              <div className="tags">
-                <Type value={type} />
-                <Meta value={meta} />
-                <EarliestVersion versions={occ.versions} />
-                {relativePath && (
-                  <span className="tag is-large">
-                    <EditOnGithub
-                      branch="master"
-                      path={`src/content/uspecifiers/${relativePath}`}
-                    />
-                  </span>
-                )}
+      <Layout>
+        <section className="section">
+          <div className="container">
+            <div className="columns is-variable is-centered is-5">
+              <div className="column is-1 is-hidden-mobile">
+                <BackToSearch />
               </div>
-              {analysis ? (
-                <Analysis
-                  dangerouslySetInnerHTML={{
-                    __html: analysis
-                  }}
-                />
-              ) : (
-                <div>Analysis coming soon...</div>
-              )}
-              {keyFriendly && (
-                <>
-                  <SectionHeader>Form</SectionHeader>
-                  <Copy />
-                  <Code
-                    className="level is-centered"
-                    keyFriendly={keyFriendly}
-                    meta={meta}
-                    values={values}
-                  />
-                </>
-              )}
-              {occ && (
-                <>
-                  <Examples occ={occ} />
-                </>
-              )}
-              <InlineCategoryNavWrapper className="level is-mobile">
-                <div className="level-left">
-                  <CategoryNavInline
-                    specifier={neighbors.previous}
-                    className="level-item"
-                  />
+              <div className="column is-6">
+                <Heading className="title is-size-1 is-size-3-mobile">
+                  {keyFriendly}
+                </Heading>
+                <div className="tags">
+                  <Type value={type} />
+                  <Meta value={meta} />
+                  <EarliestVersion versions={occ.versions} />
+                  {relativePath && (
+                    <span className="tag is-large">
+                      <EditOnGithub
+                        branch="master"
+                        path={`src/content/uspecifiers/`}
+                      />
+                    </span>
+                  )}
                 </div>
-                <div className="level-right">
-                  <CategoryNavInline
-                    specifier={neighbors.next}
-                    next
-                    className="level-item"
+                {analysis ? (
+                  <Analysis
+                    dangerouslySetInnerHTML={{
+                      __html: analysis
+                    }}
                   />
-                </div>
-              </InlineCategoryNavWrapper>
-            </div>
-            <div className="column is-2 is-hidden-mobile">
-              <Sidebar>
-                {mirrors && mirrors.nodes.length > 0 && (
-                  <SidebarElement intrinsic>
-                    <SpecList
-                      label="Mirrors"
-                      specifiers={mirrors}
-                      field="type"
+                ) : (
+                  <div>Analysis coming soon...</div>
+                )}
+                {keyFriendly && (
+                  <>
+                    <SectionHeader>Form</SectionHeader>
+                    <Copy />
+                    <Code
+                      className="level is-centered"
+                      keyFriendly={keyFriendly}
+                      meta={meta}
+                      values={values}
                     />
-                  </SidebarElement>
+                  </>
                 )}
-                {combos && combos.nodes.length > 0 && (
-                  <SidebarElement intrinsic>
-                    <SpecList
-                      label="Pairs With"
-                      specifiers={combos}
-                      field="keyFriendly"
+                {occ && (
+                  <>
+                    <Examples occ={occ} />
+                  </>
+                )}
+                <InlineCategoryNavWrapper className="level is-mobile">
+                  <div className="level-left">
+                    <CategoryNavInline
+                      specifier={neighbors.previous}
+                      className="level-item"
                     />
-                  </SidebarElement>
-                )}
-                {mutex && mutex.nodes.length > 0 && (
-                  <SidebarElement intrinsic>
-                    <SpecList
-                      label="Excludes"
-                      specifiers={mutex}
-                      field="keyFriendly"
+                  </div>
+                  <div className="level-right">
+                    <CategoryNavInline
+                      specifier={neighbors.next}
+                      next
+                      className="level-item"
                     />
-                  </SidebarElement>
-                )}
-                {category && category.nodes.length > 0 && (
-                  <SidebarElement grow>
-                    <Categories type={type} category={category} />
-                  </SidebarElement>
-                )}
-              </Sidebar>
+                  </div>
+                </InlineCategoryNavWrapper>
+              </div>
+              <div className="column is-2 is-hidden-mobile">
+                <Sidebar>
+                  {mirrors && mirrors.nodes.length > 0 && (
+                    <SidebarElement intrinsic>
+                      <SpecList
+                        label="Mirrors"
+                        specifiers={mirrors}
+                        field="type"
+                      />
+                    </SidebarElement>
+                  )}
+                  {combos && combos.nodes.length > 0 && (
+                    <SidebarElement intrinsic>
+                      <SpecList
+                        label="Pairs With"
+                        specifiers={combos}
+                        field="keyFriendly"
+                      />
+                    </SidebarElement>
+                  )}
+                  {mutex && mutex.nodes.length > 0 && (
+                    <SidebarElement intrinsic>
+                      <SpecList
+                        label="Excludes"
+                        specifiers={mutex}
+                        field="keyFriendly"
+                      />
+                    </SidebarElement>
+                  )}
+                  {category && category.nodes.length > 0 && (
+                    <SidebarElement grow>
+                      <Categories type={type} category={category} />
+                    </SidebarElement>
+                  )}
+                </Sidebar>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </Layout>
+        </section>
+      </Layout>
+    </>
   );
 };
 

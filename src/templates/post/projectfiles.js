@@ -11,9 +11,9 @@ const Wrapper = styled.a`
   }
 `;
 
-export default ({ src }) => {
-  return src ? (
-    <Wrapper href={src} target="_blank" rel="noopener noreferrer">
+export default ({ link }) => {
+  return link ? (
+    <Wrapper href={link} target="_blank" rel="noopener noreferrer">
       <div className="level is-mobile">
         <div className="level-left">
           <div className="level-item menu-label">

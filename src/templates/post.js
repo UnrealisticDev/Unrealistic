@@ -1,19 +1,9 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
-import Helmet from "react-helmet";
 import styled from "styled-components";
 import rehypeReact from "rehype-react";
 import HyvorTalk from "hyvor-talk-react";
-
-import router from "../scripts/router";
-
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import { Sidebar } from "../components/sidebar";
-import TOC from "../components/toc";
-import SeriesNav from "../components/seriesnav";
-import ProjectFiles from "../components/projectfiles";
 import ScrollUpButton from "react-scroll-up-button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,9 +15,18 @@ import {
   faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 
-import "../styles/code.scss";
+import router from "../shared/scripts/router";
+import Layout from "../shared/components/layout";
+import SEO from "../shared/components/seo";
+import { Sidebar, SidebarElement } from "../shared/components/sidebar";
+import { Heading, SubHeading, Text } from "../shared/components/typography";
 
-/* Todo: Enable lazy loaded images in markdown. */
+import FurtherReading from "./post/furtherreading";
+import TableOfContents from "./post/tableofcontents";
+import SeriesNav from "./post/seriesnav";
+import ProjectFiles from "./post/projectfiles";
+
+import "../styles/code.scss";
 
 /* Header id formatter. */
 const format = string => {
@@ -45,11 +44,30 @@ var codeblockId = 0;
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components: {
-    h1: props => <h2 id={format(props.children[0])}>{props.children}</h2>,
-    h2: props => <h3 id={format(props.children[0])}>{props.children}</h3>,
-    h3: props => <h4 id={format(props.children[0])}>{props.children}</h4>,
-    h4: props => <h5 id={format(props.children[0])}>{props.children}</h5>,
-    h5: props => <h6 id={format(props.children[0])}>{props.children}</h6>,
+    h1: props => (
+      <SubHeading id={format(props.children[0])}>{props.children}</SubHeading>
+    ),
+    h2: props => (
+      <SubHeading as="h3" id={format(props.children[0])}>
+        {props.children}
+      </SubHeading>
+    ),
+    h3: props => (
+      <SubHeading as="h4" id={format(props.children[0])}>
+        {props.children}
+      </SubHeading>
+    ),
+    h4: props => (
+      <SubHeading as="h5" id={format(props.children[0])}>
+        {props.children}
+      </SubHeading>
+    ),
+    h5: props => (
+      <SubHeading as="h6" id={format(props.children[0])}>
+        {props.children}
+      </SubHeading>
+    ),
+    p: props => <Text>{props.children}</Text>,
     pre: props => {
       var id = "codeblock" + ++codeblockId;
       return (
@@ -96,23 +114,6 @@ const CreateDate = ({ createdAt }) => {
 function sanitizeTitle(title, series) {
   return series ? title.replace(series.title.concat(": "), "") : title;
 }
-
-const Title = styled.h1`
-  @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-  font-family: "basic-sans", sans-serif;
-  color: #363636;
-`;
 
 const Series = ({ series }) => {
   return (
@@ -175,26 +176,23 @@ const TopicTags = ({ tags }) => {
 const StyledTopicTags = styled(TopicTags)``;
 
 const Frontmatter = styled.div`
-  ${"" /* margin-bottom: 2vmin; */}
-  @media screen and (max-width: 769px) {
-    padding: 3rem 1.5rem 0 1.5rem;
+  @media screen and (max-width: 768px) {
+    padding: 3.75rem 2rem 1rem 2.25rem;
   }
 `;
 
 const Body = styled.div`
-  @media screen and (max-width: 769px) {
-    padding: 3rem 1.5rem;
-  }
+
 `;
 
 const Markdown = styled.div`
+  @media screen and (max-width: 768px) {
+    padding: 1.75rem;
+  }
   & h2,
   h3,
   h4,
   h5 {
-    ${"" /* font-family: "Lato", sans-serif; */}
-    font-family: 'Bungee', cursive;
-    color: #363636;
     display: inline-block;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -210,7 +208,6 @@ const Markdown = styled.div`
   }
 
   & p {
-    font-family: "Open Sans", sans-serif;
     margin-bottom: 1rem;
   }
 
@@ -259,10 +256,8 @@ const Markdown = styled.div`
   ol > code,
   ul code,
   ol code {
-    ${"" /* background-color: hsl(0, 0%, 86%); */}
     color: #0c1c38;
     border-radius: 0.3em;
-    ${"" /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
     background: #dfe8f7;
 
     @media screen and (max-width: 769px) {
@@ -313,38 +308,6 @@ const Separator = styled.hr`
   margin-bottom: 5vmin;
 `;
 
-const FurtherReadingBody = styled.div``;
-
-const FurtherReadingPost = ({ post }) => {
-  const StyledImg = styled(Img)`
-    margin-bottom: 2vmin;
-    @media screen and (max-width: 768px) {
-      border-radius: 5px;
-    }
-  `;
-
-  return (
-    <FurtherReadingBody>
-      <Link to={router.getPostSlug(post.slug)}>
-        <StyledImg
-          fluid={post.image ? post.image.fluid : ""}
-          alt="Article Feature"
-        />
-        <div
-          style={{
-            textAlign: "left",
-            color: "#363636",
-            fontFamily: "'basic-sans', sans-serif",
-            fontWeight: "300 !important"
-          }}
-        >
-          {post.title}
-        </div>
-      </Link>
-    </FurtherReadingBody>
-  );
-};
-
 function findSeriesNeighbors(post, series) {
   var ret = {};
 
@@ -364,29 +327,7 @@ function findSeriesNeighbors(post, series) {
   return ret;
 }
 
-function getFurtherReading(furtherReading) {
-  furtherReading = furtherReading.edges;
-  var outPosts = [];
-
-  if (furtherReading.length < 3) {
-    outPosts = furtherReading;
-  } else {
-    var indices = [];
-    while (indices.length < 3) {
-      var r = Math.floor(Math.random() * (furtherReading.length - 1)) + 1;
-      if (indices.indexOf(r) === -1) {
-        indices.push(r);
-      }
-    }
-    indices.forEach(i => {
-      outPosts.push(furtherReading[i]);
-    });
-  }
-
-  return outPosts;
-}
-
-export default ({ data, pageContext }) => {
+export default ({ data }) => {
   const { post, series, furtherReading } = data;
   const {
     slug,
@@ -402,23 +343,12 @@ export default ({ data, pageContext }) => {
 
   const sanitizedTitle = sanitizeTitle(title, series);
   const description = excerpt || body.childMarkdownRemark.excerpt;
-  const toc = body.childMarkdownRemark.tableOfContents;
+  const tableOfContents = body.childMarkdownRemark.tableOfContents;
 
   const neighbors = findSeriesNeighbors(post, series);
-  const furtherReadingPosts = getFurtherReading(furtherReading);
 
   return (
-    <Layout>
-      <Helmet>
-        <style>
-          @import
-          url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&display=swap");
-        </style>
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-        </style>
-      </Helmet>
+    <>
       <SEO
         title={series ? `${sanitizedTitle} | ${series.title}` : title}
         description={description}
@@ -428,15 +358,14 @@ export default ({ data, pageContext }) => {
         datePublished={createdAt}
         dateModified={updatedAt}
       />
-
-      <Section className="section">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-6">
-              <Frontmatter>
-                <Title className={"title is-size-1 is-size-3-mobile"}>
+      <Layout>
+        <Section className="section">
+          <div className="container">
+            <div className="columns is-multiline">
+              <Frontmatter className="column is-half is-offset-2">
+                <Heading className="title is-size-1 is-size-3-mobile">
                   {sanitizeTitle(title, series)}
-                </Title>
+                </Heading>
                 <div className="level is-mobile subtitle">
                   <div className="level-left">
                     <CreateDate createdAt={createdAt} />
@@ -445,125 +374,120 @@ export default ({ data, pageContext }) => {
                   </div>
                 </div>
               </Frontmatter>
-            </div>
-            <div className="column is-2 is-hidden-mobile" />
-          </div>
-          <div className={"columns is-variable is-5 is-centered"}>
-            <div className="column is-6">
-              <Img
-                fluid={image ? image.fluid : ""}
-                alt="Article Feature"
-                style={{ marginBottom: "2vmin" }}
-              />
-              <Body>
-                <Markdown>
-                  {renderAst(body.childMarkdownRemark.htmlAst)}
-                </Markdown>
-                {neighbors && (
-                  <SeriesNavWrapper className="level is-mobile">
-                    <div className="level-right">
-                      <div className="level-item">
-                        {neighbors.beforePost && (
-                          <SeriesNavInline
-                            post={neighbors.beforePost}
-                            series={series}
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="level-left">
-                      <div className="level-item">
-                        {neighbors.afterPost && (
-                          <SeriesNavInline
-                            post={neighbors.afterPost}
-                            next
-                            series={series}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </SeriesNavWrapper>
-                )}
-              </Body>
-              <Separator />
-              <div className="has-text-centered">
-                <h2
-                  style={{
-                    marginBottom: "2rem",
-                    fontWeight: "600",
-                    fontFamily: "'Bungee', sans-serif",
-                    fontSize: "22px"
-                  }}
-                >
-                  Up Next
-                </h2>
-                <div className="columns">
-                  {furtherReadingPosts.map(({ node }) => (
-                    <div className="column is-4">
-                      <FurtherReadingPost post={node}></FurtherReadingPost>
-                    </div>
-                  ))}
+              <Body className="column is-two-thirds is-offset-2">
+                <div class="columns">
+                  <div className="column is-9">
+                    <Img
+                      fluid={image && image.fluid}
+                      alt="Article Feature"
+                      style={{ marginBottom: "2vmin" }}
+                    />
+                    <Markdown>
+                      {renderAst(body.childMarkdownRemark.htmlAst)}
+                    </Markdown>
+                    {neighbors && (
+                      <SeriesNavWrapper className="level is-mobile">
+                        <div className="level-right">
+                          <div className="level-item">
+                            {neighbors.beforePost && (
+                              <SeriesNavInline
+                                post={neighbors.beforePost}
+                                series={series}
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="level-left">
+                          <div className="level-item">
+                            {neighbors.afterPost && (
+                              <SeriesNavInline
+                                post={neighbors.afterPost}
+                                next
+                                series={series}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </SeriesNavWrapper>
+                    )}
+                    <Separator />
+                    {furtherReading && (
+                      <FurtherReading posts={furtherReading} />
+                    )}
+                    <Separator />
+                    <HyvorTalk.Embed websiteId={292} />
+                  </div>
+                  {/* Sidebar */}
+                  {(series || tableOfContents || projectfiles) && (
+                    <Sidebar
+                      height="auto"
+                      className="column is-3 pl-5 py-0 is-hidden-mobile"
+                    >
+                      {tableOfContents && (
+                        <SidebarElement intrinsic>
+                          <TableOfContents src={tableOfContents} />
+                        </SidebarElement>
+                      )}
+                      {series && (
+                        <SidebarElement intrinsic>
+                          <SeriesNav series={series} />
+                        </SidebarElement>
+                      )}
+                      {projectfiles && (
+                        <SidebarElement intrinsic>
+                          <ProjectFiles link={projectfiles} />
+                        </SidebarElement>
+                      )}
+                    </Sidebar>
+                  )}
                 </div>
-              </div>
-              <Separator />
-              <HyvorTalk.Embed websiteId={292} />
+              </Body>
             </div>
-            {/* Sidebar */}
-            {(series || toc || projectfiles) && (
-              <div className="column is-2 is-hidden-mobile">
-                <Sidebar>
-                  <TOC src={toc} />
-                  <SeriesNav series={series} />
-                  <ProjectFiles src={projectfiles} />
-                </Sidebar>
-              </div>
-            )}
           </div>
-        </div>
-      </Section>
+        </Section>
+        <ScrollUpButton
+          ShowAtPosition={600}
+          style={{
+            color: "hsl(204, 86%, 53%)",
+            justifyContent: "right",
+            position: "fixed",
+            right: "5vmin",
+            bottom: "2vmin",
+            WebkitTransition: "all 0.5s ease-in-out",
+            transition: "all 0.5s ease-in-out",
+            transitionProperty: "opacity, right",
+            cursor: "pointer",
 
-      <ScrollUpButton
-        ShowAtPosition={600}
-        style={{
-          color: "hsl(204, 86%, 53%)",
-          justifyContent: "right",
-          position: "fixed",
-          right: "5vmin",
-          bottom: "2vmin",
-          WebkitTransition: "all 0.5s ease-in-out",
-          transition: "all 0.5s ease-in-out",
-          transitionProperty: "opacity, right",
-          cursor: "pointer",
+            opacity: 0,
+            zIndex: 1000,
+            fill: "#292929",
+            paddingBottom: 1,
+            paddingLeft: 1,
+            paddingRight: 1
+          }}
+          ToggledStyle={{
+            color: "hsl(204, 86%, 53%)",
+            justifyContent: "right",
+            position: "fixed",
+            right: "5vmin",
+            bottom: "2vmin",
+            WebkitTransition: "all 0.5s ease-in-out",
+            transition: "all 0.5s ease-in-out",
+            transitionProperty: "opacity, right",
+            cursor: "pointer",
 
-          opacity: 0,
-          zIndex: 1000,
-          fill: "#292929",
-          paddingBottom: 1,
-          paddingLeft: 1,
-          paddingRight: 1
-        }}
-        ToggledStyle={{
-          color: "hsl(204, 86%, 53%)",
-          justifyContent: "right",
-          position: "fixed",
-          right: "5vmin",
-          bottom: "2vmin",
-          WebkitTransition: "all 0.5s ease-in-out",
-          transition: "all 0.5s ease-in-out",
-          transitionProperty: "opacity, right",
-          cursor: "pointer",
-
-          opacity: 100,
-          zIndex: 1000,
-          fill: "#292929",
-          paddingBottom: 1,
-          paddingLeft: 1,
-          paddingRight: 1
-        }}
-      >
-        <FontAwesomeIcon icon={faAngleUp} size="2x" />
-      </ScrollUpButton>
-    </Layout>
+            opacity: 100,
+            zIndex: 1000,
+            fill: "#292929",
+            paddingBottom: 1,
+            paddingLeft: 1,
+            paddingRight: 1
+          }}
+        >
+          <FontAwesomeIcon icon={faAngleUp} size="2x" />
+        </ScrollUpButton>
+      </Layout>
+    </>
   );
 };
 
@@ -595,7 +519,6 @@ export const query = graphql`
       topicTags
       projectfiles
     }
-
     series: contentfulSeries(id: { eq: $series }) {
       title
       posts {
@@ -604,19 +527,16 @@ export const query = graphql`
         slug
       }
     }
-
     furtherReading: allContentfulPost(
       filter: { fields: { standalone: { eq: true } }, slug: { ne: $slug } }
       sort: { fields: createdAt, order: DESC }
     ) {
-      edges {
-        node {
-          title
-          slug
-          image {
-            fluid(maxWidth: 300) {
-              ...GatsbyContentfulFluid
-            }
+      nodes {
+        title
+        slug
+        image {
+          fluid(maxWidth: 300) {
+            ...GatsbyContentfulFluid
           }
         }
       }

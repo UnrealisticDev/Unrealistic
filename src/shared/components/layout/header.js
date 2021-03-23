@@ -1,11 +1,10 @@
 /* eslint-disable */
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import Helmet from "react-helmet";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
-import router from "../scripts/router";
-import Searchbar from "./searchbar";
+import router from "../../scripts/router";
+import Searchbar from "../searchbar";
 
 const Nav = styled.nav`
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
@@ -62,30 +61,12 @@ const ProductLink = styled(Link)`
 `;
 
 export default () => {
-  const { logo } = useStaticQuery(
-    graphql`
-      query {
-        logo: contentfulAsset(title: { eq: "Logo" }) {
-          file {
-            url
-          }
-        }
-      }
-    `
-  );
-
   return (
     <Nav
       className="navbar is-fixed-top is-transparent is-light"
       role="navigation"
       aria-label="main navigation"
     >
-      <Helmet>
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-        </style>
-      </Helmet>
       <div className="container">
         <div className="navbar-brand">
           <Initials className="navbar-item" to="/">

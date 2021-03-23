@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import {Heading} from '../../shared/components/typography'
+
 const Form = styled.form`
   & input.input {
     background-color: lightgrey !important;
@@ -18,23 +20,6 @@ const Form = styled.form`
   & input.input::placeholder, textarea::placeholder {
     color: #575754 !important;
   }
-`
-
-const Title = styled.h2`
-    @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-
-  font-family: "basic-sans", sans-serif;
 `
 
 function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
@@ -57,7 +42,7 @@ export default () => {
   return (
     <Form name="hireme" method="POST" netlify action="/success/">
       <input type="hidden" name="form-name" value="hireme" />
-      <Title className="title is-size-3">Now Accepting New Projects</Title>
+      <Heading as='h2' className="title is-size-3">Now Accepting New Projects</Heading>
       <div className="columns is-variable is-1">
         <div className="column">
           <BulmaControl name="First Name">

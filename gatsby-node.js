@@ -1,5 +1,5 @@
 const path = require(`path`);
-const router = require(`./src/scripts/router`);
+const router = require(`./src/shared/scripts/router`);
 
 exports.sourceNodes = ({ actions: { createNodeField }, getNodesByType }) => {
   idsOfSerialPosts = [];

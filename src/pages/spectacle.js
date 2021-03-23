@@ -3,35 +3,22 @@ import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
+import { connectHits, InstantSearch } from "react-instantsearch-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../shared/components/layout";
+import SEO from "../shared/components/seo";
+import { Heading, SubHeading } from "../shared/components/typography";
 
-import { connectHits, InstantSearch } from "react-instantsearch-dom";
-import searchClient from "../components/search/client";
-import SearchBox from "../components/search/searchbox";
-import HitCount, { countHit } from "../components/spectacle/hitcount";
-import { faMugHot } from "@fortawesome/free-solid-svg-icons";
+import searchClient from "../shared/components/search/client";
+import SearchBox from "../shared/components/search/searchbox";
 
-const Title = styled.h1`
-  @font-face {
-    font-family: "basic-sans";
-    src: url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff2"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("woff"),
-      url("https://use.typekit.net/af/fa9ffd/00000000000000003b9b0438/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3")
-        format("opentype");
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-  }
-  font-family: "basic-sans", sans-serif;
-  color: #363636;
+import HitCount, { countHit } from "./spectacle/hitcount";
 
+const Title = styled(Heading)`
   margin-bottom: 5vh !important;
 `;
 
@@ -39,14 +26,11 @@ const SSearchBox = styled(SearchBox)`
   margin-bottom: 1rem;
 `;
 
-const HitType = styled.h2`
-  ${"" /* font-family: "Lato", sans-serif; */}
-  font-family: 'Bungee', cursive;
-  color: #363636;
+const HitType = styled(SubHeading)`
   display: inline-block;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  ${"" /* font-size: calc(10px + 1.8vw); */}
+
   border-bottom: 2px solid hsl(204, 86%, 53%);
 `;
 
