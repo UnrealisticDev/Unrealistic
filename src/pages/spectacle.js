@@ -174,11 +174,11 @@ export default ({ data }) => {
       <Helmet>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
       </Helmet>
+      <SEO
+        title="Spectacle"
+        description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
+      />
       <Layout>
-        <SEO
-          title="Spectacle"
-          description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
-        />
         <MainSection className="section">
           <MainContainer className="container">
             <div class="level">
