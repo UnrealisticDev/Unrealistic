@@ -16,10 +16,10 @@ const SInput = styled.input`
   &:disabled {
     background: repeating-linear-gradient(
       -45deg,
-      hsl(0, 0%, 60%),
-      hsl(0, 0%, 60%) 10px,
-      hsl(0, 0%, 71%) 10px,
-      hsl(0, 0%, 71%) 20px
+      hsl(0, 0%, 86%),
+      hsl(0, 0%, 86%) 10px,
+      hsl(0, 0%, 80%) 10px,
+      hsl(0, 0%, 80%) 20px
     ) !important;
   }
 `;
