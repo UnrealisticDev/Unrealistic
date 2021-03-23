@@ -131,7 +131,7 @@ const CatalogLoader = props => {
     setTimeout(() => setComponent(<Catalog {...props} />));
   }, [props]);
 
-  return component || <div className='has-text-centered'>Loading...</div>;
+  return component || <div className="has-text-centered">Loading...</div>;
 };
 
 const Catalog = ({ specifiers }) => {
@@ -200,14 +200,17 @@ const BuyMeCoffee = styled.a`
   }
 `;
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   const {
     specifiers: { nodes: specifiers }
   } = data;
+  const urlSearchTerms = location.search.split(/(\?)([^=]+)=([^&]+)/);
 
   const [, setFocus] = useState(false);
   const [query, setQuery] = useState();
-  const [inCatalogMode, setCatalogMode] = useState(false);
+  const [inCatalogMode, setCatalogMode] = useState(
+    urlSearchTerms.includes("catalog") && urlSearchTerms.includes("true")
+  );
 
   useEffect(() => {
     if (!inCatalogMode) document.getElementById("spec-searchbox").focus();
