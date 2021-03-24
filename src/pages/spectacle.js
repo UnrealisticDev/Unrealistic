@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, navigate } from "gatsby";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GitHubButton from "react-github-btn";
@@ -277,7 +277,12 @@ export default ({ data, location }) => {
                     </SearchBoxWrapper>
                     <div class="level-item">
                       <button
-                        onClick={_ => setCatalogMode(!inCatalogMode)}
+                        onClick={_ => {
+                          setCatalogMode(!inCatalogMode);
+                          navigate(`/spectacle?catalog=${!inCatalogMode}`, {
+                            replace: true
+                          });
+                        }}
                         className="button is-light"
                         id="catalog-mode-toggle"
                       >
