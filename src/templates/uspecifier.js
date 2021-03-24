@@ -72,10 +72,14 @@ const Meta = ({ value }) => {
 };
 
 const EarliestVersion = ({ versions }) => {
-  versions.sort((a, b) => a.version - b.version);
-  return (
-    <span className="tag is-info is-medium">{`Since 4.${versions[0].version}`}</span>
-  );
+  if (versions) {
+    versions.sort((a, b) => a.version - b.version);
+    return (
+      <span className="tag is-info is-medium">{`Since 4.${versions[0].version}`}</span>
+    );
+  } else {
+    return null;
+  }
 };
 
 const SectionHeader = styled(SubHeading)`
@@ -441,7 +445,7 @@ export default ({ data }) => {
                 <div className="tags">
                   <Type value={type} />
                   <Meta value={meta} />
-                  <EarliestVersion versions={occ.versions} />
+                  <EarliestVersion versions={occ ? occ.versions : null} />
                   {relativePath && (
                     <span className="tag is-large">
                       <EditOnGithub
