@@ -41,11 +41,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
           }
         }
-        allContentfulPlugin {
-          edges {
-            node {
-              name
-            }
+        plugins: allContentfulPlugin {
+          nodes {
+            name
           }
         }
         specifiers: allContentfulUnrealSpecifier {
@@ -78,8 +76,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 
   const pluginTemplate = path.resolve(`./src/templates/plugin.js`);
-  query.data.allContentfulPlugin.edges.forEach(({ node }) => {
-    const { name } = node;
+  query.data.plugins.nodes.forEach(({ name }) => {
     const path = router.getProductSlug(name.toLowerCase());
     createPage({
       path,
