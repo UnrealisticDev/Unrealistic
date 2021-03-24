@@ -339,7 +339,9 @@ export default ({ data, location }) => {
 
 export const query = graphql`
   query {
-    specifiers: allContentfulUnrealSpecifier {
+    specifiers: allContentfulUnrealSpecifier(
+      sort: { order: ASC, fields: key }
+    ) {
       nodes {
         id
         type
