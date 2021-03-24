@@ -56,15 +56,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             type
           }
         }
-        glossaryLists: allContentfulList(filter: { tags: { in: "glossary" } }) {
-          nodes {
-            id
-            references {
-              id
-              slug
-            }
-          }
-        }
       }
     `
   );
