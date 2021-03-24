@@ -11,6 +11,7 @@ import {
 
 import Layout from "../shared/components/layout";
 import SEO from "../shared/components/seo";
+import Prose from "../shared/components/prose";
 import { Sidebar, SidebarElement } from "../shared/components/sidebar";
 import { Heading, SubHeading } from "../shared/components/typography";
 
@@ -85,33 +86,6 @@ const SectionHeader = styled(SubHeading)`
 
   font-size: calc(10px + 1.4vw);
   border-bottom: 2px solid hsl(204, 86%, 53%);
-`;
-
-const Analysis = styled.div`
-  & p {
-    font-family: "Open Sans", sans-serif;
-    margin-bottom: 1rem;
-  }
-
-  p > code,
-  ul > code,
-  ol > code {
-    ${"" /* background-color: rgb(250, 242, 242);
-    color: rgb(53, 142, 184);
-    border-radius: 0.3em; */}
-    color: #0c1c38;
-    border-radius: 0.3em;
-    ${"" /* border-bottom: 2px solid hsl(0, 0%, 71%); */}
-    background: #dfe8f7;
-
-    @media screen and (max-width: 769px) {
-      padding: 1vmin;
-    }
-
-    @media screen and (min-width: 770px) {
-      padding: 0.5vmin;
-    }
-  }
 `;
 
 const CopyRoot = styled.button`
@@ -480,11 +454,7 @@ export default ({ data }) => {
                   )}
                 </div>
                 {analysis ? (
-                  <Analysis
-                    dangerouslySetInnerHTML={{
-                      __html: analysis
-                    }}
-                  />
+                  <Prose htmlAst={analysis} />
                 ) : (
                   <div>Analysis coming soon...</div>
                 )}
@@ -591,7 +561,7 @@ export const query = graphql`
     }
     local: file(name: { eq: $slug }) {
       childMarkdownRemark {
-        analysis: html
+        analysis: htmlAst
         frontmatter {
           snippet
           values
