@@ -72,7 +72,7 @@ const Meta = ({ value }) => {
 };
 
 const EarliestVersion = ({ versions }) => {
-  versions.sort((a, b) => a.version > b.version);
+  versions.sort((a, b) => a.version - b.version);
   return (
     <span className="tag is-info is-medium">{`Since 4.${versions[0].version}`}</span>
   );
@@ -312,9 +312,7 @@ const DropdownMenu = styled.div`
 
 const Examples = ({ occ }) => {
   var { versions } = occ;
-  versions.sort((a, b) => {
-    return a.version < b.version;
-  });
+  versions.sort((a, b) => b.version - a.version);
 
   const [version, setVersion] = useState(versions[0].version);
   const [open, setOpen] = useState(false);
