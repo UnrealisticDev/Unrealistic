@@ -91,7 +91,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   query.data.allContentfulPost.edges.forEach(({ node }) => {
     const { slug } = node;
     const path = router.getPostSlug(slug);
-    console.log("Creating page: " + path);
     createPage({
       path,
       component: postTemplate,
@@ -106,7 +105,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   query.data.allContentfulPlugin.edges.forEach(({ node }) => {
     const { name } = node;
     const path = router.getProductSlug(name.toLowerCase());
-    console.log("Creating page: " + path);
     createPage({
       path,
       component: pluginTemplate,
