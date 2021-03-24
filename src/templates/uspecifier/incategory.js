@@ -27,8 +27,7 @@ const Toggle = styled.a`
 `;
 
 const List = styled.ul`
-  flex: 1 0 auto;
-  height: inherit;
+  flex: 1 1 auto;
 
   direction: rtl;
 
