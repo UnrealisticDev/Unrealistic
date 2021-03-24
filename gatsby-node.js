@@ -41,16 +41,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
           }
         }
-        allContentfulSeries {
-          edges {
-            node {
-              id
-              posts {
-                id
-              }
-            }
-          }
-        }
         allContentfulPlugin {
           edges {
             node {
