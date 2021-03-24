@@ -6,11 +6,28 @@ exports.sourceNodes = ({
   getNode,
   getNodesByType
 }) => {
-  // Relate posts to referencing series
+  /* Relate posts to referencing series */
   for (const series of getNodesByType("ContentfulSeries")) {
     for (const postId of series.posts___NODE) {
       var post = getNode(postId);
       createNodeField({ node: post, name: `series`, value: series });
+    }
+  }
+};
+
+exports.onCreateNode = ({ node, actions, getNodesByType }) => {
+  /* Link uspecifiers and local analysis files. */
+  const { createParentChildLink } = actions;
+  if (
+    node.internal.type === "File" &&
+    node.sourceInstanceName === "uspecifiers"
+  ) {
+    const file = node;
+    const specifier = getNodesByType("ContentfulUnrealSpecifier").find(
+      specifier => specifier.slug === file.name
+    );
+    if (specifier) {
+      createParentChildLink({ parent: specifier, child: file });
     }
   }
 };
@@ -38,6 +55,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             key
             slug
             type
+            local: childrenFile {
+              childMarkdownRemark {
+                frontmatter {
+                  combos
+                  mutex
+                }
+              }
+            }
           }
         }
       }
@@ -74,23 +99,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 
   const uSpecifierTemplate = path.resolve(`./src/templates/uspecifier.js`);
-  query.data.specifiers.nodes.forEach(async ({ id, slug, type, key }) => {
-    const {
-      data: { file }
-    } = await graphql(
-      `
-        {
-          file(name: {eq: "${slug}"}) {
-            childMarkdownRemark {
-              frontmatter {
-                combos
-                mutex
-              }
-            }
-          }
-        }
-      `
-    );
+  query.data.specifiers.nodes.forEach(({ id, slug, type, key, local }) => {
+    const { combos, mutex } =
+      local && local[0] && local[0].childMarkdownRemark
+        ? local[0].childMarkdownRemark.frontmatter
+        : {};
 
     const path = `/glossary/${slug}`;
     createPage({
@@ -101,14 +114,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         type: type,
         key: key,
         slug: slug,
-        combos:
-          file && file.childMarkdownRemark.frontmatter.combos
-            ? file.childMarkdownRemark.frontmatter.combos
-            : ["none"],
-        mutex:
-          file && file.childMarkdownRemark.frontmatter.mutex
-            ? file.childMarkdownRemark.frontmatter.mutex
-            : ["none"]
+        combos: combos || [],
+        mutex: mutex || []
       }
     });
   });

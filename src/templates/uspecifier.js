@@ -411,9 +411,9 @@ const Examples = ({ occ }) => {
 };
 
 export default ({ data }) => {
-  const { specifier, local, category, mirrors, combos, mutex } = data;
-  const { type, keyFriendly, meta, occ } = specifier;
-  const { childMarkdownRemark, relativePath } = local || {};
+  const { specifier, category, mirrors, combos, mutex } = data;
+  const { type, keyFriendly, meta, occ, local } = specifier;
+  const { childMarkdownRemark, relativePath } = local[0] || {};
   const { analysis, frontmatter } = childMarkdownRemark || {};
   const { snippet, values } = frontmatter || {};
 
@@ -538,7 +538,6 @@ export const query = graphql`
     $id: String!
     $key: String!
     $type: String!
-    $slug: String!
     $combos: [String!]!
     $mutex: [String!]!
   ) {
@@ -556,16 +555,17 @@ export const query = graphql`
           }
         }
       }
-    }
-    local: file(name: { eq: $slug }) {
-      childMarkdownRemark {
-        analysis: htmlAst
-        frontmatter {
-          snippet
-          values
+      local: childrenFile {
+        relativePath
+        childMarkdownRemark {
+          analysis: htmlAst
+          frontmatter {
+            mutex
+            combos
+            snippet
+          }
         }
       }
-      relativePath
     }
     category: allContentfulUnrealSpecifier(
       filter: { type: { eq: $type } }
