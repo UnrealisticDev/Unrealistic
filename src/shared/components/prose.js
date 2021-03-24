@@ -104,7 +104,7 @@ export default styled(Prose)`
     }
 
     @media screen and (min-width: 770px) {
-      padding: 0.5vmin;
+      padding: 0.1rem;
     }
   }
 `;
