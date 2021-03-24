@@ -48,15 +48,12 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     posts: allContentfulPost(
-      filter: { fields: { standalone: { eq: true } } }
+      filter: { fields: { series: { id: { eq: null } } } }
       sort: { fields: createdAt, order: DESC }
       limit: 3
     ) {
       edges {
         node {
-          fields {
-            standalone
-          }
           slug
           title
           image {

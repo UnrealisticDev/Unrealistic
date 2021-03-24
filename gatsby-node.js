@@ -6,26 +6,12 @@ exports.sourceNodes = ({
   getNode,
   getNodesByType
 }) => {
+  // Relate posts to referencing series
   for (const series of getNodesByType("ContentfulSeries")) {
     for (const postId of series.posts___NODE) {
       var post = getNode(postId);
       createNodeField({ node: post, name: `series`, value: series });
     }
-  }
-
-  idsOfSerialPosts = [];
-  for (node of getNodesByType("ContentfulSeries")) {
-    for (id of node.posts___NODE) {
-      idsOfSerialPosts.push(id);
-    }
-  }
-
-  for (node of getNodesByType("ContentfulPost")) {
-    createNodeField({
-      node,
-      name: `standalone`,
-      value: idsOfSerialPosts.includes(node.id) ? false : true
-    });
   }
 };
 

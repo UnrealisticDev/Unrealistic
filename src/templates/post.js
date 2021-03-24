@@ -533,7 +533,7 @@ export const query = graphql`
       }
     }
     furtherReading: allContentfulPost(
-      filter: { fields: { standalone: { eq: true } }, id: { ne: $id } }
+      filter: { fields: { series: { id: { eq: null } } }, id: { ne: $id } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
