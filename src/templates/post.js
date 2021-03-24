@@ -328,7 +328,7 @@ function findSeriesNeighbors(post, series) {
 }
 
 export default ({ data }) => {
-  const { post, series, furtherReading } = data;
+  const { post, furtherReading } = data;
   const {
     slug,
     title,
@@ -338,8 +338,11 @@ export default ({ data }) => {
     image,
     body,
     topicTags,
-    projectfiles
+    projectfiles,
+    fields
   } = post;
+
+  const { series } = fields;
 
   const sanitizedTitle = sanitizeTitle(title, series);
   const description = excerpt || body.childMarkdownRemark.excerpt;
@@ -492,7 +495,7 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($slug: String!, $series: String!) {
+  query($slug: String!) {
     post: contentfulPost(slug: { eq: $slug }) {
       id
       slug
@@ -518,13 +521,15 @@ export const query = graphql`
       }
       topicTags
       projectfiles
-    }
-    series: contentfulSeries(id: { eq: $series }) {
-      title
-      posts {
-        id
-        title
-        slug
+      fields {
+        series {
+          title
+          posts {
+            id
+            title
+            slug
+          }
+        }
       }
     }
     furtherReading: allContentfulPost(

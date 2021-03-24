@@ -1,7 +1,18 @@
 const path = require(`path`);
 const router = require(`./src/shared/scripts/router`);
 
-exports.sourceNodes = ({ actions: { createNodeField }, getNodesByType }) => {
+exports.sourceNodes = ({
+  actions: { createNodeField },
+  getNode,
+  getNodesByType
+}) => {
+  for (const series of getNodesByType("ContentfulSeries")) {
+    for (const postId of series.posts___NODE) {
+      var post = getNode(postId);
+      createNodeField({ node: post, name: `series`, value: series });
+    }
+  }
+
   idsOfSerialPosts = [];
   for (node of getNodesByType("ContentfulSeries")) {
     for (id of node.posts___NODE) {
