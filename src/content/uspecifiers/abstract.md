@@ -22,6 +22,7 @@ AActor::AActor()
 {
   MeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 }
+```
 
 On a related note, a Blueprint class can be marked as `Abstract` from its *Class Settings* panel. This appears to have the same behavior as marking a native class with the `Abstract` specifier. 
 
