@@ -342,7 +342,7 @@ export default ({ data }) => {
     fields
   } = post;
 
-  const { series } = fields;
+  const { series } = fields || {};
 
   const sanitizedTitle = sanitizeTitle(title, series);
   const description = excerpt || body.childMarkdownRemark.excerpt;
