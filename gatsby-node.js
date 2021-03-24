@@ -35,12 +35,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const query = await graphql(
     `
       {
-        allContentfulPost {
-          edges {
-            node {
-              id
-              slug
-            }
+        posts: allContentfulPost {
+          nodes {
+            id
+            slug
           }
         }
         allContentfulSeries {
@@ -86,28 +84,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  function findSeriesId(post) {
-    for (edge of query.data.allContentfulSeries.edges) {
-      const series = edge.node;
-      for (item of series.posts) {
-        if (item.id == post.id) {
-          return series.id;
-        }
-      }
-    }
-    return "";
-  }
-
   const postTemplate = path.resolve(`./src/templates/post.js`);
-  query.data.allContentfulPost.edges.forEach(({ node }) => {
-    const { slug } = node;
+  query.data.posts.nodes.forEach(({ id, slug }) => {
     const path = router.getPostSlug(slug);
     createPage({
       path,
       component: postTemplate,
       context: {
-        slug: slug,
-        series: findSeriesId(node)
+        id: id
       }
     });
   });

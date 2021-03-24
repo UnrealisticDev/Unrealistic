@@ -495,8 +495,8 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query($slug: String!) {
-    post: contentfulPost(slug: { eq: $slug }) {
+  query($id: String!) {
+    post: contentfulPost(id: { eq: $id }) {
       id
       slug
       title
@@ -533,7 +533,7 @@ export const query = graphql`
       }
     }
     furtherReading: allContentfulPost(
-      filter: { fields: { standalone: { eq: true } }, slug: { ne: $slug } }
+      filter: { fields: { standalone: { eq: true } }, id: { ne: $id } }
       sort: { fields: createdAt, order: DESC }
     ) {
       nodes {
