@@ -3,13 +3,14 @@ import { graphql } from "gatsby";
 
 import Layout from "../shared/components/layout";
 import SEO from "../shared/components/seo";
-import Carousel from "../shared/components/carousel";
 
-import MobilePostCard from "./index/mobilepostcard";
+import Intro from "./index/intro";
+import Portfolio from "./index/portfolio";
 
 export default ({ data }) => {
-  const { posts } = data;
+  const { posts, portfolio } = data;
 
+  console.log(portfolio);
   return (
     <>
       <SEO
@@ -18,28 +19,8 @@ export default ({ data }) => {
         description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4, insider insights, and coverage of industry news."
       />
       <Layout>
-        {/* Intro - Desktop */}
-        <section className="hero is-fullheight-with-navbar is-light is-hidden-mobile">
-          <div
-            className="hero-body is-marginless is-paddingless"
-            style={{ width: "100%", height: "100%", overflow: "hidden" }}
-          >
-            <Carousel items={posts} />
-          </div>
-        </section>
-        {/* Intro - Mobile */}
-        <section className="section is-hidden-desktop is-hidden-tablet">
-          <div className="container">
-            {posts.edges.map(({ node }, i) => (
-              <>
-                <MobilePostCard post={node} />
-                {i < posts.edges.length - 1 && (
-                  <hr style={{ background: "rgb(.1, .1, .1, .1)" }} />
-                )}
-              </>
-            ))}
-          </div>
-        </section>
+        <Intro posts={posts.nodes} />
+        <Portfolio portfolio={portfolio.nodes} />
       </Layout>
     </>
   );
@@ -50,25 +31,34 @@ export const query = graphql`
     posts: allContentfulPost(
       filter: { fields: { series: { id: { eq: null } } } }
       sort: { fields: createdAt, order: DESC }
-      limit: 3
+      limit: 5
     ) {
-      edges {
-        node {
-          slug
-          title
-          image {
-            fluid(maxWidth: 900) {
-              ...GatsbyContentfulFluid
-            }
-            file {
-              url
-            }
+      nodes {
+        slug
+        title
+        image {
+          fluid(maxWidth: 900) {
+            ...GatsbyContentfulFluid
           }
-          excerpt
-          body {
-            childMarkdownRemark {
-              excerpt
-            }
+          file {
+            url
+          }
+        }
+        excerpt
+        body {
+          childMarkdownRemark {
+            excerpt
+          }
+        }
+      }
+    }
+    portfolio: allContentfulPost(limit: 9) {
+      nodes {
+        slug
+        title
+        image {
+          fluid(maxWidth: 900) {
+            ...GatsbyContentfulFluid
           }
         }
       }
