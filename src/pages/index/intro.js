@@ -19,7 +19,7 @@ const PanelWrapper = styled(Link)`
   #title {
     margin-bottom: 1rem;
   }
-  
+
   &:hover #title {
     color: hsl(204, 86%, 53%) !important;
   }
@@ -33,19 +33,17 @@ const StyledImg = styled(Img)`
 const Panel = ({ post, className, excerpt }) => {
   return post ? (
     <PanelWrapper to={getPostSlug(post.slug)} className={className}>
-      <StyledImg id='thumbnail' fluid={post.image.fluid} />
+      <StyledImg id="thumbnail" fluid={post.image.fluid} />
       <Heading as="h2" id="title" className="subtitle">
         {post.title}
       </Heading>
       {excerpt ? <Text>{post.excerpt}</Text> : null}
     </PanelWrapper>
-  ) : (
-    null
-  );
+  ) : null;
 };
 
 export default ({ posts }) => {
-  return (
+  return posts ? (
     <section className="section">
       <div class="container">
         <Title className="title is-1 is-size-3-mobile">
@@ -85,5 +83,5 @@ export default ({ posts }) => {
         </div>
       </div>
     </section>
-  );
+  ) : null;
 };

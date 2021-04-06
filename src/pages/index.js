@@ -9,8 +9,6 @@ import Portfolio from "./index/portfolio";
 
 export default ({ data }) => {
   const { posts, portfolio } = data;
-
-  console.log(portfolio);
   return (
     <>
       <SEO
