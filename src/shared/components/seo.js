@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
 
 import logo from "../../content/images/logo/favicon64.png";
 
@@ -17,20 +16,6 @@ function SEO({
   body,
   meta
 }) {
-  // const { site } = useStaticQuery(
-  //   graphql`
-  //     query {
-  //       site {
-  //         siteMetadata {
-  //           url
-  //           title
-  //           tagline
-  //           author
-  //         }
-  //       }
-  //     }
-  //   `
-  // );
   const site = {
     siteMetadata: {
       url: 'https://unrealistic.dev',
