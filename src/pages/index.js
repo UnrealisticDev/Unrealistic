@@ -15,7 +15,7 @@ export default ({ data }) => {
       <SEO
         title="Unrealistic: Game Development Tutorials, Insider Insights, and Industry Analysis"
         titleOverride
-        description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4 and Unity, insider insights, and coverage of industry news."
+        description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4, insider insights, and coverage of industry news."
       />
       <Layout>
         {/* Intro - Desktop */}
