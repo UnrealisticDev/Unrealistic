@@ -17,20 +17,27 @@ function SEO({
   body,
   meta
 }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            url
-            title
-            tagline
-            author
-          }
-        }
-      }
-    `
-  );
+  // const { site } = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       site {
+  //         siteMetadata {
+  //           url
+  //           title
+  //           tagline
+  //           author
+  //         }
+  //       }
+  //     }
+  //   `
+  // );
+  const site = {
+    siteMetadata: {
+      url: 'https://unrealistic.dev',
+      tagline: 'A place to learn about Unreal Engine 4, gamedev, and chasing your dreams.',
+      author: 'Mustafa Moiz'
+    }
+  }
 
   const { url, tagline, author } = site.siteMetadata;
   const metaTitle = titleOverride ? title : `${title} | Unrealistic`;
