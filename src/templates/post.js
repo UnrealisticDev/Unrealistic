@@ -215,7 +215,6 @@ const Markdown = styled.div`
 
   a:not(.gatsby-resp-image-link) {
     color: #3298dc;
-    border-bottom: 2px dotted #363636;
   }
 
   ul,
@@ -247,12 +246,14 @@ const Markdown = styled.div`
     }
   }
 
+  a > code,
   p > code,
   ul > code,
   ol > code,
   ul code,
   ol code {
     color: #0c1c38;
+    border: unset;
     border-radius: 0.3em;
     background: #dfe8f7;
 
@@ -263,6 +264,10 @@ const Markdown = styled.div`
     @media screen and (min-width: 770px) {
       padding: 0.5vmin;
     }
+  }
+
+  .token.number {
+    all: unset;
   }
 
   table {
