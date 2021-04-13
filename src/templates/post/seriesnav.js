@@ -7,12 +7,8 @@ import { getPostSlug } from "../../shared/scripts/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const Wrapper = styled.div`
-  margin-bottom: 1rem;
-`;
-
 const Toggle = styled.a`
-  margin-bottom: 1rem;
+  margin-bottom: ${props => props.expanded ? "1.5rem" : "unset"} !important;
 
   color: #363636;
   &:hover {
@@ -20,22 +16,26 @@ const Toggle = styled.a`
   }
 `;
 
-const List = styled.ul``;
+const List = styled.ul`
+  list-style: none;
+  font-size: calc(10px + 0.2rem);
 
-const Post = styled.li`
-  font-size: calc(10px + .2rem);
-
-  margin-top: 2px;
-  margin-bottom: 2px;
-
-  & a {
-    color: #363636;
-    padding: 3px;
+  @media (min-width: 1024px) {
+    max-height: 70vh;
+    scrollbar-width: none;
   }
 
-  & a:hover {
+  & li {
+    padding-bottom: .5em;
+  }
+
+  & li a {
+    color: #363636;
+  }
+
+  & li a:hover {
     text-decoration: none;
-    color: hsl(204, 86%, 53%) !important;
+    color: hsl(204, 86%, 53%);
   }
 `;
 
@@ -52,7 +52,7 @@ export default ({ series }) => {
 
   return (
     series && (
-      <Wrapper>
+      <>
         <Toggle
           className="level is-mobile"
           onClick={() => toggleExpansion()}
@@ -61,6 +61,7 @@ export default ({ series }) => {
           }}
           role="button"
           tabIndex="0"
+          expanded={expanded}
         >
           <div className="level-left">
             <p className="menu-label">Series</p>
@@ -73,15 +74,15 @@ export default ({ series }) => {
           {expanded &&
             series.posts.map(post => {
               return (
-                <Post>
+                <li>
                   <Link to={getPostSlug(post.slug)}>
                     {sanitizeTitle(post.title, series)}
                   </Link>
-                </Post>
+                </li>
               );
             })}
         </List>
-      </Wrapper>
+      </>
     )
   );
 };
