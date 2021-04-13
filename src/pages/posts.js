@@ -7,6 +7,9 @@ import Layout from "../shared/components/layout";
 import SEO from "../shared/components/seo";
 import { Heading, Text } from "../shared/components/typography";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStream } from "@fortawesome/free-solid-svg-icons";
+
 const Subtitle = styled(Text)`
   margin-bottom: 1rem;
   width: 30vw;
@@ -58,14 +61,50 @@ const ArticleExcerpt = styled(Text)`
   color: #363636;
 `;
 
-function Article({ source }) {
-  const Wrapper = styled.div`
-    margin-bottom: 3rem;
-    @media screen and (max-width: 768px) {
-      margin-bottom: 0.5rem;
-    }
-  `;
+const Wrapper = styled.div`
+  margin-bottom: 3rem;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
+`;
 
+const SeriesIcon = styled(FontAwesomeIcon)`
+  margin-left: .5em;
+  color: hsl(0, 0%, 71%);
+`
+
+function Series({ source }) {
+  const { title, posts } = source;
+  const firstPost = posts[0];
+
+  return (
+    <Wrapper className="column is-4">
+      <Link to={firstPost.slug + "/"}>
+        <ArticleBody>
+          <ArticleImage
+            fluid={
+              firstPost.image
+                ? firstPost.image.fluid
+                : "https://versions.bulma.io/0.5.3/images/placeholders/1280x960.png"
+            }
+            alt="Post Feature"
+          />
+          <div>
+            <ArticleTitle as="h2" style={{ display: "inline-block" }}>
+              {title}
+            </ArticleTitle>
+            <SeriesIcon icon={faStream} />
+          </div>
+          <ArticleExcerpt>
+            {firstPost.excerpt || firstPost.body.childMarkdownRemark.excerpt}
+          </ArticleExcerpt>
+        </ArticleBody>
+      </Link>
+    </Wrapper>
+  );
+}
+
+function Article({ source }) {
   return (
     <Wrapper className="column is-4">
       <Link to={source.slug + "/"}>
@@ -89,6 +128,8 @@ function Article({ source }) {
 }
 
 export default ({ data }) => {
+  const { series, standalonePosts } = data;
+
   return (
     <Layout>
       <SEO
@@ -106,11 +147,25 @@ export default ({ data }) => {
             developments in the gaming industry.
           </Subtitle>
           <div className="columns is-multiline is-desktop is-variable is-6">
-            {data.posts.nodes.map((article, i) => {
+            {series.nodes.map((series, i) => {
+              return (
+                <>
+                  <Series source={series} />{" "}
+                  <hr
+                    className="is-hidden-desktop is-hidden-tablet"
+                    style={{
+                      background: "rgb(.1, .1, .1, .1)",
+                      marginBottom: ".5rem"
+                    }}
+                  />
+                </>
+              );
+            })}
+            {standalonePosts.nodes.map((article, i) => {
               return (
                 <>
                   <Article source={article} />{" "}
-                  {i < data.posts.nodes.length - 1 && (
+                  {i < standalonePosts.nodes.length - 1 && (
                     <hr
                       className="is-hidden-desktop is-hidden-tablet"
                       style={{
@@ -123,6 +178,7 @@ export default ({ data }) => {
               );
             })}
           </div>
+          <div className="columns is-multiline is-desktop is-variable is-6"></div>
         </div>
       </div>
     </Layout>
@@ -131,7 +187,31 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    posts: allContentfulPost(sort: { fields: createdAt, order: DESC }) {
+    series: allContentfulSeries {
+      nodes {
+        id
+        title
+        posts {
+          slug
+          title
+          excerpt
+          image {
+            fluid(maxWidth: 500) {
+              ...GatsbyContentfulFluid
+            }
+          }
+          body {
+            childMarkdownRemark {
+              excerpt
+            }
+          }
+        }
+      }
+    }
+    standalonePosts: allContentfulPost(
+      filter: { fields: { series: { id: { eq: null } } } }
+      sort: { fields: createdAt, order: DESC }
+    ) {
       nodes {
         slug
         title
