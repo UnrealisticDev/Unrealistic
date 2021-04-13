@@ -27,13 +27,15 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     posts: allContentfulPost(
-      filter: { fields: { series: { id: { eq: null } } } }
       sort: { fields: createdAt, order: DESC }
-      limit: 5
+      limit: 25
     ) {
       nodes {
         slug
         title
+        series {
+          id
+        }
         image {
           fluid(maxWidth: 900) {
             ...GatsbyContentfulFluid

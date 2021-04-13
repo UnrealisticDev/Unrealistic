@@ -42,7 +42,26 @@ const Panel = ({ post, className, excerpt }) => {
   ) : null;
 };
 
+function limitOnePerSeries(posts) {
+  var outPosts = [];
+  var identifiedSeries = [];
+
+  posts.forEach(post => {
+    if (post.series !== null) {
+      if (!identifiedSeries.includes(post.series.id)) {
+        identifiedSeries.push(post.series.id);
+        outPosts.push(post);
+      }
+    } else {
+      outPosts.push(post);
+    }
+  });
+
+  return outPosts;
+}
+
 export default ({ posts }) => {
+  posts = limitOnePerSeries(posts);
   return posts ? (
     <section className="section">
       <div class="container">
