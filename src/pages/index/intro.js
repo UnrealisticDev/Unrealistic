@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import { Heading, SubHeading, Text } from "../../shared/components/typography";
 import { getPostSlug } from "../../shared/scripts/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStream } from "@fortawesome/free-solid-svg-icons";
 
 const Title = styled(SubHeading)`
   & #title-lead {
@@ -16,13 +18,13 @@ const Title = styled(SubHeading)`
 const PanelWrapper = styled(Link)`
   color: hsl(0, 0%, 21%) !important;
 
-  #title {
-    margin-bottom: 1rem;
-  }
-
   &:hover #title {
     color: hsl(204, 86%, 53%) !important;
   }
+`;
+
+const StyledHeading = styled(Heading)`
+  display: inline;
 `;
 
 const StyledImg = styled(Img)`
@@ -30,13 +32,21 @@ const StyledImg = styled(Img)`
   margin-bottom: 1rem;
 `;
 
+const SeriesIcon = styled(FontAwesomeIcon)`
+  margin-left: 0.5em;
+  color: hsl(0, 0%, 71%);
+`;
+
 const Panel = ({ post, className, excerpt }) => {
   return post ? (
     <PanelWrapper to={getPostSlug(post.slug)} className={className}>
       <StyledImg id="thumbnail" fluid={post.image.fluid} />
-      <Heading as="h2" id="title" className="subtitle">
-        {post.title}
-      </Heading>
+      <div style={{ marginBottom: "1rem" }}>
+        <StyledHeading as="h2" className="subtitle">
+          {post.title}
+        </StyledHeading>
+        {post.series && <SeriesIcon icon={faStream} />}
+      </div>
       {excerpt ? <Text>{post.excerpt}</Text> : null}
     </PanelWrapper>
   ) : null;
