@@ -11,7 +11,7 @@ const Wrapper = styled.a`
   }
 `;
 
-export default ({ link }) => {
+const ProjectFiles = ({ link }) => {
   return link ? (
     <Wrapper href={link} target="_blank" rel="noopener noreferrer">
       <div className="level is-mobile">
@@ -29,3 +29,5 @@ export default ({ link }) => {
     </Wrapper>
   ) : null;
 };
+
+export default ProjectFiles;

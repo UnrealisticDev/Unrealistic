@@ -63,7 +63,7 @@ const Term = styled.li`
   }
 `;
 
-export default ({ type, category }) => {
+const Category = ({ type, category }) => {
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpansion() {
@@ -103,3 +103,5 @@ export default ({ type, category }) => {
     )
   );
 };
+
+export default Category;

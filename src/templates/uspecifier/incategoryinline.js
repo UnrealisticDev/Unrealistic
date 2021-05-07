@@ -17,7 +17,7 @@ const InlineCategoryNavLink = styled(Link)`
   }
 `;
 
-export default ({ specifier, next }) =>
+const InlineCategory = ({ specifier, next }) =>
   specifier && (
     <InlineCategoryNavLink
       to={`/glossary/${specifier.slug}`}
@@ -31,3 +31,5 @@ export default ({ specifier, next }) =>
       <p className="is-hidden-mobile">{specifier.keyFriendly}</p>
     </InlineCategoryNavLink>
   );
+
+export default InlineCategory;

@@ -19,7 +19,7 @@ const Title = styled(Heading)`
   margin-bottom: 0.5rem !important;
 `;
 
-export default ({ post }) => {
+const MobilePostCard = ({ post }) => {
   const { slug, title, image, excerpt, body } = post || {};
   return (
     <Wrapper>
@@ -33,3 +33,5 @@ export default ({ post }) => {
     </Wrapper>
   );
 };
+
+export default MobilePostCard;

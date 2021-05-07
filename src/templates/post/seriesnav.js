@@ -43,7 +43,7 @@ function sanitizeTitle(title, series) {
   return series ? title.replace(`${series.title}: `, "") : title;
 }
 
-export default ({ series }) => {
+const SeriesNav = ({ series }) => {
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpansion() {
@@ -86,3 +86,5 @@ export default ({ series }) => {
     )
   );
 };
+
+export default SeriesNav;

@@ -17,7 +17,7 @@ import {
 
 import router from "../shared/scripts/router";
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import { Sidebar, SidebarElement } from "../shared/components/sidebar";
 import { Heading, SubHeading, Text } from "../shared/components/typography";
 
@@ -332,7 +332,7 @@ function findSeriesNeighbors(post, series) {
   return ret;
 }
 
-export default ({ data }) => {
+const Template = ({ data }) => {
   const { post, furtherReading } = data;
   const {
     slug,
@@ -357,7 +357,7 @@ export default ({ data }) => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={series ? `${sanitizedTitle} | ${series.title}` : title}
         description={description}
         canonical={router.getPostSlug(slug)}
@@ -498,6 +498,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default Template;
 
 export const query = graphql`
   query($id: String!) {

@@ -39,7 +39,7 @@ const HitsInIndex = ({ index, hitComponent }) => (
   </Index>
 );
 
-export default ({ index, show, hitComponent, className  }) => {
+const SearchResult = ({ index, show, hitComponent, className  }) => {
   return show ? (
     <div className={className}>
       <div className="box">
@@ -50,3 +50,5 @@ export default ({ index, show, hitComponent, className  }) => {
     </div>
   ) : null;
 };
+
+export default SearchResult;

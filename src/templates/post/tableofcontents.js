@@ -60,7 +60,7 @@ const List = styled.ul`
   }
 `;
 
-export default ({ src }) => {
+const TableOfContents = ({ src }) => {
   const [isExpanded, setExpanded] = useState(false);
 
   function toggleExpansion(_) {
@@ -99,3 +99,5 @@ export default ({ src }) => {
     </>
   ) : null;
 };
+
+export default TableOfContents;

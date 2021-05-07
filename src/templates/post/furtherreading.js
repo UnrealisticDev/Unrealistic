@@ -55,7 +55,7 @@ const Post = ({ post }) => {
   );
 };
 
-export default ({ posts }) => {
+const FurtherReading = ({ posts }) => {
   posts = getRandom(posts.nodes, 3);
   return (
     posts && (
@@ -72,3 +72,5 @@ export default ({ posts }) => {
     )
   );
 };
+
+export default FurtherReading;

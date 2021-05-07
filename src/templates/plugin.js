@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import { Heading } from "../shared/components/typography";
 import router from "../shared/scripts/router";
 
@@ -24,7 +24,7 @@ const DocLink = styled(Link)`
   }
 `;
 
-export default ({ data }) => {
+const Template = ({ data }) => {
   const { plugin, docs } = data;
   const {
     slug,
@@ -37,7 +37,7 @@ export default ({ data }) => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={`${longName} for Unreal Engine 4`}
         description={description.description}
         canonical={router.getProductSlug(slug)}
@@ -93,6 +93,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default Template;
 
 export const query = graphql`
   query($name: String!) {

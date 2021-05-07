@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import Prose from "../shared/components/prose";
 import { Sidebar, SidebarElement } from "../shared/components/sidebar";
 import { Heading, SubHeading } from "../shared/components/typography";
@@ -414,7 +414,7 @@ const Examples = ({ occ }) => {
   );
 };
 
-export default ({ data }) => {
+const Template = ({ data }) => {
   const { specifier, category, mirrors, combos, mutex } = data;
   const { type, keyFriendly, meta, occ, local } = specifier;
   const { childMarkdownRemark, relativePath } = local[0] || {};
@@ -425,7 +425,7 @@ export default ({ data }) => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={`${keyFriendly} | U${
           type === "EnumMeta" ? "Meta" : type
         } Specifier`}
@@ -536,6 +536,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default Template;
 
 export const query = graphql`
   query(

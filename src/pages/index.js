@@ -2,16 +2,16 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 
 import Intro from "./index/intro";
 import Portfolio from "./index/portfolio";
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { posts, portfolio } = data;
   return (
     <>
-      <SEO
+      <Seo
         title="Unrealistic: Game Development Tutorials, Insider Insights, and Industry Analysis"
         titleOverride
         description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4, insider insights, and coverage of industry news."
@@ -23,6 +23,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default Page;
 
 export const query = graphql`
   query {

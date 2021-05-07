@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import { SubHeading, Text } from "../shared/components/typography";
 
 import HireMe from "./about/hireme";
@@ -20,9 +20,9 @@ const ContentBody = styled.div`
   }
 `;
 
-export default () => (
+const Page = () => (
   <>
-    <SEO title="About" canonical="/about" />
+    <Seo title="About" canonical="/about" />
     <Layout>
       <section className="section">
         <div className="hero">
@@ -75,3 +75,5 @@ export default () => (
     </Layout>
   </>
 );
+
+export default Page;

@@ -10,7 +10,7 @@ import { faList, faMugHot, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import { Heading, SubHeading } from "../shared/components/typography";
 
 import searchClient from "../shared/components/search/client";
@@ -200,7 +200,7 @@ const BuyMeCoffee = styled.a`
   }
 `;
 
-export default ({ data, location }) => {
+const Page = ({ data, location }) => {
   const {
     specifiers: { nodes: specifiers }
   } = data;
@@ -224,7 +224,7 @@ export default ({ data, location }) => {
       <Helmet>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
       </Helmet>
-      <SEO
+      <Seo
         title="Spectacle"
         description="Search for class, struct, property and other specifiers for Unreal Engine 4, all in one place."
       />
@@ -341,6 +341,8 @@ export default ({ data, location }) => {
     </>
   );
 };
+
+export default Page;
 
 export const query = graphql`
   query {

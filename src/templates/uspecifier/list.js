@@ -19,7 +19,7 @@ const Specifier = styled.li`
   }
 `;
 
-export default ({ label, specifiers, field }) => {
+const List = ({ label, specifiers, field }) => {
   specifiers = specifiers ? specifiers.nodes : null;
   return (
     <>
@@ -40,3 +40,5 @@ export default ({ label, specifiers, field }) => {
     </>
   );
 };
+
+export default List;

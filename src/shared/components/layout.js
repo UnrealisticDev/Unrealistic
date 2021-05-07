@@ -32,7 +32,7 @@ function getFavicon(size, icon) {
   };
 }
 
-export default ({ children }) => (
+const Layout = ({ children }) => (
   <>
     <Helmet
       link={[
@@ -50,3 +50,5 @@ export default ({ children }) => (
     <Footer />
   </>
 );
+
+export default Layout;

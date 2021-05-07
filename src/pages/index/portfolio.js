@@ -35,7 +35,7 @@ const Panel = ({ post, className, excerpt }) => {
   ) : null;
 };
 
-export default ({ portfolio }) => {
+const Portfolio = ({ portfolio }) => {
   return (
     <section className="section is-fullheight-with-navbar">
       <div class="container">
@@ -52,3 +52,5 @@ export default ({ portfolio }) => {
     </section>
   );
 };
+
+export default Portfolio;

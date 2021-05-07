@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 
 import Layout from "../shared/components/layout";
-import SEO from "../shared/components/seo";
+import Seo from "../shared/components/seo";
 import { Heading, Text } from "../shared/components/typography";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -127,12 +127,12 @@ function Article({ source }) {
   );
 }
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { series, standalonePosts } = data;
 
   return (
     <Layout>
-      <SEO
+      <Seo
         title="Game Dev Library"
         description="Find game development insight here, with articles about Unreal Engine 4 and Unity Engine, tips and tricks from insiders, and analysis of industry trends."
         canonical="/posts"
@@ -184,6 +184,8 @@ export default ({ data }) => {
     </Layout>
   );
 };
+
+export default Page;
 
 export const query = graphql`
   query {

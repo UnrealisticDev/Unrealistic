@@ -2,12 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../shared/components/layout"
-import SEO from "../shared/components/seo"
+import Seo from "../shared/components/seo"
 
-export default () => {
+const Success = () => {
   return (
     <Layout>
-      <SEO title='Unrealistic - Success'/>
+      <Seo title='Unrealistic - Success'/>
       <div className='container'>
         <div className='content has-text-centered'>
             <p>
@@ -18,3 +18,5 @@ export default () => {
     </Layout>
   )
 }
+
+export default Success;

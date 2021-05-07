@@ -1,6 +1,6 @@
 import React from "react";
 
-export default () => (
+const Footer = () => (
   <footer className="footer has-background-grey-lighter">
     <div className="container">
       <div className="content">
@@ -10,3 +10,5 @@ export default () => (
     </div>
   </footer>
 );
+
+export default Footer;

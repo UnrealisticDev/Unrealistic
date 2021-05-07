@@ -72,8 +72,8 @@ function limitOnePerSeries(posts) {
   return outPosts;
 }
 
-export default ({ posts }) => {
-  var posts = limitOnePerSeries(posts);
+const Intro = ({ posts }) => {
+  posts = limitOnePerSeries(posts);
   return posts ? (
     <section className="section">
       <div class="container">
@@ -116,3 +116,5 @@ export default ({ posts }) => {
     </section>
   ) : null;
 };
+
+export default Intro;

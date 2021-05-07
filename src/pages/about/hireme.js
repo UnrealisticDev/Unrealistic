@@ -39,7 +39,7 @@ function BulmaControl({ children, name, hasLeftIcons, hasRightIcons }) {
   );
 }
 
-export default () => {
+const HireMe = () => {
   return (
     <Form name="hireme" method="POST" netlify action="/success/">
       <input type="hidden" name="form-name" value="hireme" />
@@ -94,3 +94,5 @@ export default () => {
     </Form>
   );
 };
+
+export default HireMe;

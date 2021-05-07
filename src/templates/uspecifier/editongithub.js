@@ -32,7 +32,7 @@ const TooltipText = styled.span`
   text-align: center;
 `;
 
-export default ({ branch, path }) => {
+const EditOnGithub = ({ branch, path }) => {
   const ref = `https://github.com/UnrealisticDev/Unrealistic/tree/${
     branch ? branch : "master"
   }/${path}`;
@@ -43,3 +43,5 @@ export default ({ branch, path }) => {
     </StyledLink>
   );
 };
+
+export default EditOnGithub;

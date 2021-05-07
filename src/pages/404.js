@@ -2,12 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../shared/components/layout"
-import SEO from "../shared/components/seo"
+import Seo from "../shared/components/seo"
 
-export default () => {
+const Page = () => {
   return (
     <Layout>
-      <SEO title='404 - Page Not Available'/>
+      <Seo title='404 - Page Not Available'/>
       <section className="section">
         <div className='container'>
           <div className='content has-text-centered'>
@@ -20,3 +20,5 @@ export default () => {
     </Layout>
   )
 }
+
+export default Page;
