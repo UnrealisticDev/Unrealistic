@@ -28,7 +28,6 @@
     "countapi-js": "^1.0.2",
     "gatsby": "^3.4.1",
     "gatsby-image": "^3.4.0",
-    "gatsby-plugin-advanced-sitemap": "^1.6.0",
     "gatsby-plugin-algolia": "^0.19.0",
     "gatsby-plugin-canonical-urls": "^3.4.0",
     "gatsby-plugin-catch-links": "^3.4.0",

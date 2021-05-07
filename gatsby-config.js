@@ -22,9 +22,9 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     {
-      resolve: `gatsby-plugin-advanced-sitemap`,
+      resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: [`/404`, `/success`, `/glossary`]
+        excludes: [`/404`, `/success`, `/glossary`]
       }
     },
     {
