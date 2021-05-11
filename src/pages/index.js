@@ -18,7 +18,7 @@ const Page = ({ data }) => {
       />
       <Layout>
         <Intro posts={posts.nodes} />
-        <Portfolio portfolio={portfolio.nodes} />
+        <Portfolio portfolio={portfolio} />
       </Layout>
     </>
   );

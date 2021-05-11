@@ -37,18 +37,20 @@ const Panel = ({ showcase, className }) => {
 
 const Portfolio = ({ portfolio }) => {
   return (
-    <section className="section is-fullheight-with-navbar">
-      <div class="container">
-        <SubHeading className="title is-1 is-size-3-mobile">
-          Portfolio
-        </SubHeading>
-        <div className="columns is-multiline">
-          {portfolio.map((showcase) => {
-            return <Panel showcase={showcase} className="column is-4" />;
-          })}
+    portfolio ? (
+      <section className="section is-fullheight-with-navbar">
+        <div class="container">
+          <SubHeading className="title is-1 is-size-3-mobile">
+            Portfolio
+          </SubHeading>
+          <div className="columns is-multiline">
+            {portfolio.nodes.map((showcase) => {
+              return <Panel showcase={showcase} className="column is-4" />;
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    ) : null
   );
 };
 
