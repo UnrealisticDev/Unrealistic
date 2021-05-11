@@ -65,7 +65,7 @@ export default function Template({ data }) {
 
   return (
     <>
-      <Seo title={title} description={pitch} />
+      <Seo title={title} description={pitch} image={feature.file.url}/>
       <Layout>
         <section className="section" id="frontmatter">
           <div className="container">
@@ -138,6 +138,9 @@ export const query = graphql`
       feature {
         fluid {
           ...GatsbyContentfulFluid
+        }
+        file {
+          url
         }
       }
       pitch
