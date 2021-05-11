@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 
 import { Heading, SubHeading, Text } from "../../shared/components/typography";
-import { getPostSlug } from "../../shared/scripts/router";
+import { getShowcaseSlug } from "../../shared/scripts/router";
 
 const PanelWrapper = styled(Link)`
   color: hsl(0, 0%, 21%) !important;
@@ -23,14 +23,14 @@ const StyledImg = styled(Img)`
   margin-bottom: 1rem;
 `;
 
-const Panel = ({ post, className, excerpt }) => {
-  return post ? (
-    <PanelWrapper to={getPostSlug(post.slug)} className={className}>
-      <StyledImg fluid={post.image.fluid} />
+const Panel = ({ showcase, className }) => {
+  return showcase ? (
+    <PanelWrapper to={getShowcaseSlug(showcase)} className={className}>
+      <StyledImg fluid={showcase.feature.fluid} />
       <Heading as="h2" id="title" className="subtitle">
-        {post.title}
+        {showcase.title}
       </Heading>
-      {excerpt ? <Text>{post.excerpt}</Text> : null}
+      <Text>{showcase.pitch}</Text>
     </PanelWrapper>
   ) : null;
 };
@@ -42,12 +42,11 @@ const Portfolio = ({ portfolio }) => {
         <SubHeading className="title is-1 is-size-3-mobile">
           Portfolio
         </SubHeading>
-        <Text>Coming soon...</Text>
-        {/* <div className="columns is-multiline">
-          {portfolio.map(post => {
-            return <Panel post={post} className="column is-4" />;
+        <div className="columns is-multiline">
+          {portfolio.map((showcase) => {
+            return <Panel showcase={showcase} className="column is-4" />;
           })}
-        </div> */}
+        </div>
       </div>
     </section>
   );

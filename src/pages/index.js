@@ -54,15 +54,15 @@ export const query = graphql`
         }
       }
     }
-    portfolio: allContentfulPost(limit: 9) {
+    portfolio: allContentfulShowcase {
       nodes {
-        slug
         title
-        image {
+        feature {
           fluid(maxWidth: 900) {
             ...GatsbyContentfulFluid
           }
         }
+        pitch
       }
     }
   }
