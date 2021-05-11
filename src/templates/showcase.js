@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
@@ -116,6 +116,16 @@ export default function Template({ data }) {
             </section>
           );
         })}
+
+        <section className="section" id="like-what-you-see">
+          <div className="container has-text-centered">
+            <Link to="/about">
+              <button className="button is-dark is-outlined">
+                <span as="p">Like What You See?</span>
+              </button>
+            </Link>
+          </div>
+        </section>
       </Layout>
     </>
   );
