@@ -4,7 +4,7 @@ const router = require(`./src/shared/scripts/router`);
 exports.sourceNodes = ({
   actions: { createNodeField },
   getNode,
-  getNodesByType
+  getNodesByType,
 }) => {
   /* Relate posts to referencing series */
   for (const series of getNodesByType("ContentfulSeries")) {
@@ -24,7 +24,7 @@ exports.onCreateNode = ({ node, actions, getNodesByType }) => {
   ) {
     const file = node;
     const specifier = getNodesByType("ContentfulUnrealSpecifier").find(
-      specifier => specifier.slug === file.name
+      (specifier) => specifier.slug === file.name
     );
     if (specifier) {
       createParentChildLink({ parent: specifier, child: file });
@@ -47,6 +47,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         plugins: allContentfulPlugin {
           nodes {
             name
+          }
+        }
+        showcases: allContentfulShowcase {
+          nodes {
+            id
+            title
           }
         }
         specifiers: allContentfulUnrealSpecifier {
@@ -81,8 +87,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path,
       component: postTemplate,
       context: {
-        id: id
-      }
+        id: id,
+      },
     });
   });
 
@@ -93,8 +99,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path,
       component: pluginTemplate,
       context: {
-        name: name
-      }
+        name: name,
+      },
+    });
+  });
+
+  const showcaseTemplate = path.resolve("./src/templates/showcase.js");
+  query.data.showcases.nodes.forEach((showcase) => {
+    const path = router.getShowcaseSlug(showcase);
+    console.log(`Creating showcase page at ${path}`);
+    createPage({
+      path,
+      component: showcaseTemplate,
+      context: {
+        id: showcase.id,
+      },
     });
   });
 
@@ -115,8 +134,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         key: key,
         slug: slug,
         combos: combos || [],
-        mutex: mutex || []
-      }
+        mutex: mutex || [],
+      },
     });
   });
 };
