@@ -13,6 +13,10 @@ const Feature = styled(Img)`
 
 const Description = styled(Text)`
   margin-bottom: 5rem;
+
+  & p {
+    margin-bottom: 2rem;
+  }
 `;
 
 const DisplayLinks = ({ children }) => {
@@ -74,7 +78,12 @@ export default function Template({ data }) {
                   fluid={feature && feature.fluid}
                   alt="Showcase Feature"
                 />
-                <Description>{description.description}</Description>
+                <Description
+                  as="div"
+                  dangerouslySetInnerHTML={{
+                    __html: description.childMarkdownRemark.html,
+                  }}
+                />
                 <DisplayLinks>
                   <DisplayLink text="Play" link={demoLink} />
                   <DisplayLink text="Watch" link={watchLink} />
@@ -123,7 +132,9 @@ export const query = graphql`
       }
       pitch
       description {
-        description
+        childMarkdownRemark {
+          html
+        }
       }
       demoLink
       watchLink
