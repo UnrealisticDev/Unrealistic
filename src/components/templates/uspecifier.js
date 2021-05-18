@@ -9,16 +9,16 @@ import {
   faLevelUpAlt
 } from "@fortawesome/free-solid-svg-icons";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import Prose from "../shared/components/prose";
-import { Sidebar, SidebarElement } from "../shared/components/sidebar";
-import { Heading, SubHeading } from "../shared/components/typography";
+import Layout from "../shared/layout";
+import Seo from "../shared/seo";
+import Prose from "../shared/prose";
+import { Sidebar, SidebarElement } from "../shared/sidebar";
+import { Heading, SubHeading } from "../shared/typography";
 
-import EditOnGithub from "./uspecifier/editongithub";
-import Categories from "./uspecifier/incategory";
-import CategoryNavInline from "./uspecifier/incategoryinline";
-import SpecList from "./uspecifier/list";
+import EditOnGithub from "../uspecifier/editongithub";
+import Categories from "../uspecifier/incategory";
+import CategoryNavInline from "../uspecifier/incategoryinline";
+import SpecList from "../uspecifier/list";
 
 const GlossaryLink = styled(Link)`
   margin-top: 1rem;

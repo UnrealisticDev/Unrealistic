@@ -1,11 +1,11 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
+import Layout from "../components/shared/layout";
+import Seo from "../components/shared/seo";
 
-import Intro from "./index/intro";
-import Portfolio from "./index/portfolio";
+import Intro from "../components/index/intro";
+import Portfolio from "../components/index/portfolio";
 
 const Page = ({ data }) => {
   const { posts, portfolio } = data;

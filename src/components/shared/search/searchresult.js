@@ -6,7 +6,8 @@ import {
   Index,
   PoweredBy
 } from "react-instantsearch-dom";
-import { getPostSlug } from "../../scripts/router";
+
+import { getPostSlug } from "../../../scripts/shared/router";
 
 const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits;

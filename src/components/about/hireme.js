@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Heading } from "../../shared/components/typography";
+import { Heading } from "../shared/typography";
 
 const Form = styled.form`
   & input.input {

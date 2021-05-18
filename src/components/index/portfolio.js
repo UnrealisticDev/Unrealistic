@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import { Heading, SubHeading, Text } from "../../shared/components/typography";
-import { getShowcaseSlug } from "../../shared/scripts/router";
+import { Heading, SubHeading, Text } from "../shared/typography";
+import { getShowcaseSlug } from "../../scripts/shared/router";
 
 const PanelWrapper = styled(Link)`
   color: hsl(0, 0%, 21%) !important;

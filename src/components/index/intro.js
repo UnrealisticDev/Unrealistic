@@ -3,10 +3,11 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import { Heading, SubHeading, Text } from "../../shared/components/typography";
-import { getPostSlug } from "../../shared/scripts/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStream } from "@fortawesome/free-solid-svg-icons";
+
+import { Heading, SubHeading, Text } from "../shared/typography";
+import { getPostSlug } from "../../scripts/shared/router";
 
 const Title = styled(SubHeading)`
   & #title-lead {

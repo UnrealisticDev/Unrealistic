@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import { SubHeading, Text } from "../shared/components/typography";
+import Layout from "../components/shared/layout";
+import Seo from "../components/shared/seo";
+import { SubHeading, Text } from "../components/shared/typography";
 
-import HireMe from "./about/hireme";
+import HireMe from "../components/about/hireme";
 
 const Title = styled(SubHeading)`
   & #title-lead {

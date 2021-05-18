@@ -3,9 +3,9 @@ import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import Seo from "../shared/components/seo";
-import Layout from "../shared/components/layout";
-import { Heading, SubHeading, Text } from "../shared/components/typography";
+import Seo from "../shared/seo";
+import Layout from "../shared/layout";
+import { Heading, SubHeading, Text } from "../shared/typography";
 
 const Feature = styled(Img)`
   margin-bottom: 2rem;

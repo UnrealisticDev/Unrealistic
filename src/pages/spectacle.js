@@ -9,14 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faMugHot, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import { Heading, SubHeading } from "../shared/components/typography";
-
-import searchClient from "../shared/components/search/client";
-import SearchBox from "../shared/components/search/searchbox";
-
-import HitCount, { countHit } from "./spectacle/hitcount";
+import Layout from "../components/shared/layout";
+import Seo from "../components/shared/seo";
+import { Heading, SubHeading } from "../components/shared/typography";
+import searchClient from "../components/shared/search/client";
+import SearchBox from "../components/shared/search/searchbox";
+import HitCount, { countHit } from "../components/spectacle/hitcount";
 
 const Title = styled(Heading)`
   margin-bottom: 5vh !important;

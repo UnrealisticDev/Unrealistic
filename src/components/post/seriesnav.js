@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-import { getPostSlug } from "../../shared/scripts/router";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+
+import { getPostSlug } from "../../scripts/shared/router";
 
 const Toggle = styled.a`
   margin-bottom: ${props => props.expanded ? "1.5rem" : "unset"} !important;

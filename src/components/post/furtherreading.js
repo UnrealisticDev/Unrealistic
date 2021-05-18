@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import { Heading, SubHeading } from "../../shared/components/typography";
-import router from "../../shared/scripts/router";
+import { Heading, SubHeading } from "../shared/typography";
+import router from "../../scripts/shared/router";
 
 function getRandom(array, count) {
   var out = [];

@@ -3,10 +3,10 @@ import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import { Heading } from "../shared/components/typography";
-import router from "../shared/scripts/router";
+import Layout from "../shared/layout";
+import Seo from "../shared/seo";
+import { Heading } from "../shared/typography";
+import router from "../../scripts/shared/router";
 
 const StyledImg = styled(Img)`
   @media screen and (max-width: 768px) {

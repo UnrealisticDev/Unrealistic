@@ -3,12 +3,12 @@ import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import { Heading, Text } from "../shared/components/typography";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStream } from "@fortawesome/free-solid-svg-icons";
+
+import Layout from "../components/shared/layout";
+import Seo from "../components/shared/seo";
+import { Heading, Text } from "../components/shared/typography";
 
 const Subtitle = styled(Text)`
   margin-bottom: 1rem;

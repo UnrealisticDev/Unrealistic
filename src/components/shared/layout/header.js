@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-import router from "../../scripts/router";
+import router from "../../../scripts/shared/router";
 import Searchbar from "../searchbar";
 
 const Nav = styled.nav`

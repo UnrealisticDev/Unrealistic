@@ -15,18 +15,18 @@ import {
   faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 
-import router from "../shared/scripts/router";
-import Layout from "../shared/components/layout";
-import Seo from "../shared/components/seo";
-import { Sidebar, SidebarElement } from "../shared/components/sidebar";
-import { Heading, SubHeading, Text } from "../shared/components/typography";
+import router from "../../scripts/shared/router";
+import Layout from "../shared/layout";
+import Seo from "../shared/seo";
+import { Sidebar, SidebarElement } from "../shared/sidebar";
+import { Heading, SubHeading, Text } from "../shared/typography";
 
-import FurtherReading from "./post/furtherreading";
-import TableOfContents from "./post/tableofcontents";
-import SeriesNav from "./post/seriesnav";
-import ProjectFiles from "./post/projectfiles";
+import FurtherReading from "../post/furtherreading";
+import TableOfContents from "../post/tableofcontents";
+import SeriesNav from "../post/seriesnav";
+import ProjectFiles from "../post/projectfiles";
 
-import "../styles/code.scss";
+import "../../styles/code.scss";
 
 /* Header id formatter. */
 const format = string => {

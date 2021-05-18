@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 
-import { Heading, Text } from "../../shared/components/typography";
-import { getPostSlug } from "../../shared/scripts/router";
+import { Heading, Text } from "../shared/typography";
+import { getPostSlug } from "../../scripts/shared/router";
 
 const Wrapper = styled.div`
   margin-bottom: 2rem;
