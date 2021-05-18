@@ -1,5 +1,5 @@
 const path = require(`path`);
-const router = require(`./src/shared/scripts/router`);
+const router = require(`./src/scripts/shared/router`);
 
 exports.sourceNodes = ({
   actions: { createNodeField },
@@ -80,7 +80,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const postTemplate = path.resolve(`./src/templates/post.js`);
+  const postTemplate = path.resolve(`./src/components/templates/post.js`);
   query.data.posts.nodes.forEach(({ id, slug }) => {
     const path = router.getPostSlug(slug);
     createPage({
@@ -92,7 +92,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  const pluginTemplate = path.resolve(`./src/templates/plugin.js`);
+  const pluginTemplate = path.resolve(`./src/components/templates/plugin.js`);
   query.data.plugins.nodes.forEach(({ name }) => {
     const path = router.getProductSlug(name.toLowerCase());
     createPage({
@@ -104,7 +104,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  const showcaseTemplate = path.resolve("./src/templates/showcase.js");
+  const showcaseTemplate = path.resolve("./src/components/templates/showcase.js");
   query.data.showcases.nodes.forEach((showcase) => {
     const path = router.getShowcaseSlug(showcase);
     console.log(`Creating showcase page at ${path}`);
@@ -117,7 +117,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  const uSpecifierTemplate = path.resolve(`./src/templates/uspecifier.js`);
+  const uSpecifierTemplate = path.resolve(`./src/components/templates/uspecifier.js`);
   query.data.specifiers.nodes.forEach(({ id, slug, type, key, local }) => {
     const { combos, mutex } =
       local && local[0] && local[0].childMarkdownRemark

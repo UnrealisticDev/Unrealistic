@@ -2,8 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 
-import Header from "./layout/header";
-import Footer from "./layout/footer";
+import Header from "../shared/components/layout/header";
+import Footer from "../shared/components/layout/footer";
 
 import favicon16 from "../../content/images/logo/favicon16.png";
 import favicon32 from "../../content/images/logo/favicon32.png";
