@@ -417,7 +417,7 @@ const Examples = ({ occ }) => {
 const Template = ({ data }) => {
   const { specifier, category, mirrors, combos, mutex } = data;
   const { type, keyFriendly, meta, occ, local } = specifier;
-  const { childMarkdownRemark, relativePath } = local[0] || {};
+  const { childMarkdownRemark, relativePath } = local || {};
   const { analysis, frontmatter } = childMarkdownRemark || {};
   const { snippet, values } = frontmatter || {};
 
@@ -561,7 +561,7 @@ export const query = graphql`
           }
         }
       }
-      local: childrenFile {
+      local: childFile {
         relativePath
         childMarkdownRemark {
           analysis: htmlAst
@@ -569,6 +569,7 @@ export const query = graphql`
             mutex
             combos
             snippet
+            values
           }
         }
       }
