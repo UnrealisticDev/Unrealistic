@@ -120,7 +120,7 @@ const Copy = () => {
     <CopyRoot
       onClick={() => {
         navigator.clipboard.writeText(
-          document.getElementById("code").innerText
+          document.getElementById("code").innerText.replace(/\s/g,'')
         );
       }}
     >
