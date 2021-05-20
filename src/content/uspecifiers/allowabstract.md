@@ -2,7 +2,7 @@
 id: 5Ic6MPe4JBz0EMrNxOqZuU
 title: AllowAbstract
 snippet: Allows Abstract classes to be selected in the class picker. Applies to Subclass and SoftClass properties only.
-values: true
+values: ['true']
 ---
 As a general matter, [`Abstract`](abstract) classes cannot be picked from the Editor class picker. Adding the `AllowAbstract` specifier to a `Subclass` or `SoftClass` property, and setting its value to true, will allow `Abstract` classes to be set for that property.
 

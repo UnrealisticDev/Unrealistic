@@ -2,10 +2,10 @@
 id: 6SN4nO2F3iU7sFzXKTHeoS
 title: AllowPrivateAccess
 snippet: Allows a private property to be accessed from Blueprints.
-values: true
+values: ['true']
 combos:
-- blueprintreadonly
-- blueprintreadwrite
+  - blueprintreadonly
+  - blueprintreadwrite
 ---
 The `AllowPrivateAccess` specifier allows a property that is marked private to be accessed from Blueprints. Typically, a property marked private cannot be accessed outside of the declaring class.
 

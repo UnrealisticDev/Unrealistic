@@ -2,7 +2,7 @@
 id: 1yw26Fa8CkYKdgmoWqfdyp
 title: AllowPreserveRatio
 snippet: Applies to FVector properties. Adds a ratio lock button to property in details panel.
-values: true
+values: ['true']
 ---
 The `AllowPreserveRatio` specifier, which applies only to `FVector` properties, adds a ratio lock button (indicated by a padlock) to the details panel display. Most users will likely have seen this specifier in action for an Actor's `Scale` property.
 

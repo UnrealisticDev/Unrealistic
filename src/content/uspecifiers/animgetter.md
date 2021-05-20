@@ -2,9 +2,9 @@
 id: 6maYcvl5Mymwsfr5KR6Foi
 title: AnimGetter
 snippet: 
-values: true
+values: ['true']
 combos:
-- blueprintpure
+  - blueprintpure
 ---
 The `AnimGetter` specifier appears in only one place throughout the Engine: `UAnimInstance`, the parent class for Animation Blueprints. Per the comment found in that class, this specifier can ostensibly be used for any class deriving from `UAnimInstance`.
 

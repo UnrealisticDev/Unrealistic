@@ -3,9 +3,9 @@ id: gaBIlmy5QT6DeSCuHuClp
 title: AdvancedDisplay
 snippet: Hides the pins for the specified function parameters by default, allowing the developer to access by expanding UI manually.
 values:
-- Some
-- Cool
-- Params
+  - Some
+  - Cool
+  - Params
 ---
 The `AdvancedDisplay` specifier hides the pins for the specified function parameters from the function node by default. The function node will then contain a toggleable arrow at its bottom that, when clicked, will show all `AdvancedDisplay` parameters.
 
