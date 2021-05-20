@@ -74,7 +74,7 @@ const SeriesIcon = styled(FontAwesomeIcon)`
 `
 
 function Series({ source }) {
-  const { title, posts } = source;
+  const { title, overview, posts } = source;
   const firstPost = posts[0];
 
   return (
@@ -96,7 +96,7 @@ function Series({ source }) {
             <SeriesIcon icon={faStream} />
           </div>
           <ArticleExcerpt>
-            {firstPost.excerpt || firstPost.body.childMarkdownRemark.excerpt}
+            {overview || firstPost.excerpt || firstPost.body.childMarkdownRemark.excerpt}
           </ArticleExcerpt>
         </ArticleBody>
       </Link>
@@ -193,6 +193,7 @@ export const query = graphql`
       nodes {
         id
         title
+        overview
         posts {
           slug
           title
