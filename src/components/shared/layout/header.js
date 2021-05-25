@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+
 import router from "../../../scripts/shared/router";
 import Searchbar from "../searchbar";
 
@@ -59,6 +62,12 @@ const ProductLink = styled(Link)`
     color: hsl(204, 86%, 53%) !important;
   }
 `;
+
+const GitHubIcon = styled(FontAwesomeIcon)`
+  &:hover {
+    color: hsl(204, 86%, 53%) !important;
+  }
+`
 
 export default () => {
   return (
@@ -127,6 +136,10 @@ export default () => {
             </NavLink>
           </div>
           <div className="navbar-end">
+            <a className="navbar-item" href="https://github.com/unrealisticdev" target="_blank" rel="noopener noreferrer">
+              <GitHubIcon icon={faGithub} size="lg" className="is-hidden-mobile"/>
+              <span className="is-hidden-desktop">GitHub</span>
+            </a>
             <div className="navbar-item">
               <Searchbar index="Articles" />
             </div>
