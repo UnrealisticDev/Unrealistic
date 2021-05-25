@@ -43,7 +43,7 @@ const Portfolio = ({ portfolio }) => {
           <SubHeading className="title is-1 is-size-3-mobile">
             Portfolio
           </SubHeading>
-          <div className="columns is-multiline">
+          <div className="columns is-multiline is-centered">
             {portfolio.nodes.map((showcase) => {
               return <Panel showcase={showcase} className="column is-4" />;
             })}
