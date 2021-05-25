@@ -94,7 +94,7 @@ export default function Template({ data }) {
           </div>
         </section>
 
-        {elements.map(({ headline, blurb, visualAid }, i) => {
+        {elements && elements.map(({ headline, blurb, visualAid }, i) => {
           return (
             <section class="section">
               <div class="container">
