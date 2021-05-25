@@ -106,7 +106,7 @@ export default () => {
               Library
             </NavLink>
             <div className="navbar-item has-dropdown is-hoverable" href="/">
-              <NavDropdown className="navbar-link">Plugins</NavDropdown>
+              <NavDropdown className="navbar-link">Docs</NavDropdown>
               <div className="navbar-dropdown">
                 <ProductLink
                   to={router.getProductSlug("remapt")}
