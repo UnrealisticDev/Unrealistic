@@ -28,7 +28,7 @@ const DisplayLinks = ({ children }) => {
 };
 
 const DisplayLink = ({ text, link }) => {
-  return (
+  return (link &&
     <a
       class="level-item px-2"
       href={link}
