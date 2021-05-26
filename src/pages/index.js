@@ -8,13 +8,14 @@ import Intro from "../components/index/intro";
 import Portfolio from "../components/index/portfolio";
 
 const Page = ({ data }) => {
-  const { posts, portfolio } = data;
+  const { image, posts, portfolio } = data;
   return (
     <>
       <Seo
         title="Unrealistic: Game Development Tutorials, Insider Insights, and Industry Analysis"
         titleOverride
-        description="Unrealistic is the ultimate resource for cracking the gaming industry. It has tutorials on Unreal Engine 4, insider insights, and coverage of industry news."
+        description="Unrealistic is a rapidly evolving resource for cracking the gaming industry. It has tutorials on Unreal Engine 4, insider insights, and coverage of industry news."
+        image={image.file.url}
       />
       <Layout>
         <Intro posts={posts.nodes} />
@@ -28,6 +29,11 @@ export default Page;
 
 export const query = graphql`
   query {
+    image: contentfulAsset(contentful_id: {eq: "5QAYKE7TJDpaODDRxp4ggZ"}) {
+      file {
+        url
+      }
+    }
     posts: allContentfulPost(
       sort: { fields: createdAt, order: DESC }
       limit: 25
