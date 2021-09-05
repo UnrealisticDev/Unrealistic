@@ -430,6 +430,7 @@ const Template = ({ data }) => {
           type === "EnumMeta" ? "Meta" : type
         } Specifier`}
         description={snippet}
+        hidden={true}
       />
       <Layout>
         <section className="section">

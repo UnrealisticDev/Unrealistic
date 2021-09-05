@@ -14,7 +14,8 @@ function SEO({
   datePublished,
   dateModified,
   body,
-  meta
+  meta,
+  hidden
 }) {
   const site = {
     siteMetadata: {
@@ -100,6 +101,9 @@ function SEO({
         {metaStructuredData && (
           <script type="application/ld+json">{metaStructuredData}</script>
         )}
+
+        {/* Hide from search results. */}
+        {hidden && <meta name="robots" content="noindex"/>}
       </Helmet>
     </>
   );
