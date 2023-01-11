@@ -51,7 +51,7 @@
     "gatsby-remark-prismjs": "^5.1.0",
     "gatsby-source-contentful": "^5.4.0",
     "gatsby-source-filesystem": "^3.4.0",
-    "gatsby-transformer-remark": "^4.1.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^3.4.0",
     "hyvor-talk-react": "^1.0.3",
     "node-sass": "^5.0.0",
